@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="D:\android-sdk-studio\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.1"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="D:\androidstudio-work\RDPDFReader3\rDPDFReader\build\intermediates\pre-dexed\debug\support-v4-19.1.0_9f2bba60b3af760626552286c2e037e44c4290c0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\androidstudio-work\RDPDFReader3\rDPDFReader\build\intermediates\exploded-aar\RDPDFReader3\viewLib\unspecified\jars\libs\google-api-translate-java-0.97.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.1"
+        sha1="241b3c312a31ba23630edd4d4b948d0950308747">
+        <dex dex="D:\androidstudio-work\RDPDFReader3\rDPDFReader\build\intermediates\pre-dexed\debug\google-api-translate-java-0.97_6b1508f6346d595687c2fbb2826c2358cbb67c0a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\androidstudio-work\RDPDFReader3\rDPDFReader\build\intermediates\exploded-aar\RDPDFReader3\viewLib\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.1"
+        sha1="7a2efbab21319094e9a722e5dd3e05d6af65ca19">
+        <dex dex="D:\androidstudio-work\RDPDFReader3\rDPDFReader\build\intermediates\pre-dexed\debug\RDPDFReader3-viewLib-unspecified_c53390e0a10eb327873ecf4bb94e724459c2fd64.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\androidstudio-work\RDPDFReader3\rDPDFReader\build\intermediates\exploded-aar\RDPDFReader3\viewLib\unspecified\jars\libs\com.radaee.view.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.1"
+        sha1="6bcde9eeae80b6ccef06a974dddd3ca8b32caf92">
+        <dex dex="D:\androidstudio-work\RDPDFReader3\rDPDFReader\build\intermediates\pre-dexed\debug\com.radaee.view_1a1d8e0341c963666764ca8b85ee6514ac881917.jar" />
+    </item>
+
+</items>

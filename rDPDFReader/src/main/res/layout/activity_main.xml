@@ -1,0 +1,189 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_google_signin_btn_text_dark_pressed"
+    tools:context="${packageName}.${activityClass}">
+
+    <Button
+        android:id="@+id/btn_sdcard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn_http"
+        android:layout_alignBottom="@+id/btn_http"
+        android:layout_alignParentLeft="true"
+        android:text="Open From sdcard"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/btn_asset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_toRightOf="@+id/btn_about"
+        android:text="Open Asset (ReadOnly)"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/btn_http"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Pwdedit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:text="查看分享" />
+
+    <Button
+        android:id="@+id/btn_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_sdcard"
+        android:layout_centerHorizontal="true"
+        android:onClick="buttonSampleClick"
+        android:text="對話練習" />
+
+    <Button
+        android:id="@+id/btn_gl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_http"
+        android:layout_alignParentLeft="true"
+        android:text="Simple OpenGL"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/btn_565"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_gl"
+        android:layout_alignParentLeft="true"
+        android:text="Using RGB_565"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/btn_4444"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_565"
+        android:layout_alignParentLeft="true"
+        android:text="Using ARGB_4444"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/btn_curl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_4444"
+        android:layout_alignParentLeft="true"
+        android:text="Curl Pages"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/btn_about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_curl"
+        android:layout_alignParentLeft="true"
+        android:text="About"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/IDedit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:visibility="invisible">
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/Pwdedit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/IDedit"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/IDedit"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_marginTop="22dp"
+        android:text="密碼:"
+        android:textSize="16sp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        android:layout_toLeftOf="@+id/IDedit"
+        android:text="帳號:"
+        android:textSize="16sp"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_gl"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/en_gl_r2_c6" />
+
+    <Button
+        android:id="@+id/btn_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_asset"
+        android:layout_centerHorizontal="true"
+        android:text="進入選擇文件" />
+
+    <Spinner
+        android:id="@+id/spinner_std"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Pwdedit"
+        android:layout_alignRight="@+id/IDedit"
+        android:layout_marginBottom="17dp"
+        android:layout_toRightOf="@+id/textView2" />
+
+    <Spinner
+        android:id="@+id/spinner_work"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Pwdedit"
+        android:layout_alignRight="@+id/Pwdedit"
+        android:layout_alignBottom="@+id/Pwdedit" />
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="65dp"
+        android:layout_alignTop="@+id/editName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-31dp"
+        android:text="請輸入你的座號"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+</RelativeLayout>

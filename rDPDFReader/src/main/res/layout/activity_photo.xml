@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.naer.pdfreader.PhotoActivity"
+    android:layout_alignParentBottom="true">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="555dp"
+        android:layout_height="458dp"
+        android:layout_gravity="center" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btnBrowse_Click"
+        android:text="選擇要上傳的圖片" />
+
+    <EditText
+        android:id="@+id/txtImageName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Image name" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btnUpload_Click"
+        android:text="上傳圖片" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btnShowListImage_Click"
+        android:text="觀看同學圖片" />
+
+
+</LinearLayout>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dlg_show_note"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/lab_subj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:text="標題:" />
+
+    <EditText
+        android:id="@+id/txt_subj"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/lab_subj"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/lab_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/txt_subj"
+        android:text="內容:" />
+
+    <Button
+        android:id="@+id/voicebut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/txt_content"
+        android:text="錄音" />
+
+    <EditText
+        android:id="@+id/txt_content"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/lab_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="158dp"
+        android:ems="10"
+        android:inputType="textMultiLine">
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/voicestbut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_content"
+        android:layout_toRightOf="@+id/voicebut"
+        android:text="停止" />
+
+    <Button
+        android:id="@+id/PlayBut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/voicestbut"
+        android:layout_alignBottom="@+id/voicestbut"
+        android:layout_toRightOf="@+id/voicestbut"
+        android:text="播放" />
+
+    <Button
+        android:id="@+id/DOBut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_content"
+        android:layout_toRightOf="@+id/PlayBut"
+        android:text="完成"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/photobut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/DOBut"
+        android:layout_alignBottom="@+id/DOBut"
+        android:layout_toRightOf="@+id/PlayBut"
+        android:text="選圖" />
+
+    <SurfaceView
+        android:id="@+id/surfaceView1"
+        android:layout_width="320px"
+        android:layout_height="240px"
+        android:layout_alignRight="@+id/tv"
+        android:layout_below="@+id/DOBut"
+        android:layout_marginTop="34dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/txt_subj"
+        android:layout_marginRight="18dp"
+        android:layout_toRightOf="@+id/voicebut"
+        android:text="記得打上標題喔!!" />
+
+    <Button
+        android:id="@+id/savephbutton"
+        android:layout_width="49dp"
+        android:layout_height="118dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="174dp"
+        android:layout_marginTop="83dp"
+        android:layout_toRightOf="@+id/DOBut"
+        android:text="存圖及顯示"
+        android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="274dp"
+        android:layout_height="137dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="146dp"
+        android:layout_marginTop="78dp"
+        android:src="@android:color/transparent" />
+
+</RelativeLayout>
