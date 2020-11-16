@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="650dp"
+        android:layout_height="350dp"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="56dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/b_say"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="17dp"
+                android:layout_marginBottom="12dp"
+                android:text="編輯對話 B"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/recordplayer2"
+                    android:layout_width="120dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/record_btn"
+                    android:drawableLeft="@drawable/record_111"
+                    android:paddingLeft="5dp"
+                    android:text="開始錄音"
+                    android:textAlignment="center" />
+
+                <Button
+                    android:id="@+id/stopplayer2"
+                    android:layout_width="120dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/record_btn"
+                    android:drawableLeft="@drawable/record_222"
+                    android:paddingLeft="5dp"
+                    android:text="停止錄音"
+                    android:textAlignment="center" />
+
+                <Button
+                    android:id="@+id/playplayer2"
+                    android:layout_width="120dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/record_btn"
+                    android:drawableLeft="@drawable/playvoice_333"
+                    android:paddingLeft="5dp"
+                    android:text="播放錄音"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/show_time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="24dp" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="362dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="350dp"></EditText>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
+

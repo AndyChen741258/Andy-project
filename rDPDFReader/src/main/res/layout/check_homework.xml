@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="600dp"
+    android:layout_height="400dp">
+
+    <ImageView
+        android:id="@+id/check_photo"
+        android:layout_width="440dp"
+        android:layout_height="330dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="30dp"/>
+
+    <Button
+        android:id="@+id/check_voice_a"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/play_hw"/>
+
+    <Button
+        android:id="@+id/check_voice_b"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/check_voice_a"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/play_hw"/>
+
+    <TextView
+        android:id="@+id/check_a_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="78dp"
+        android:text="A"
+        android:textSize="36sp" />
+
+    <TextView
+        android:id="@+id/check_b_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/check_a_text"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="53dp"
+        android:text="B"
+        android:textSize="36sp" />
+
+</RelativeLayout>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.naer.pdfreader.DramaAchievement">
+
+    <TextView
+        android:id="@+id/tellstunum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="90dp"
+        android:text="請選擇座號"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/telldramanum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/tellstunum"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="130dp"
+        android:text="請選擇劇本"
+        android:textSize="24sp" />
+
+    <Spinner
+        android:id="@+id/drama_stu_num"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"/>
+
+    <Spinner
+        android:id="@+id/drama_dramawork_num"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/drama_stu_num"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"/>
+
+    <ImageView
+        android:id="@+id/drama_four_image"
+        android:layout_width="900dp"
+        android:layout_height="650dp"
+        android:layout_below="@+id/drama_stu_num"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        app:srcCompat="@android:color/transparent" />
+
+    <Button
+        android:id="@+id/btn_searchdrama"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_toEndOf="@+id/drama_dramawork_num"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/ic_search_black_24dp"/>
+
+    <Button
+        android:id="@+id/drama_voice_1_a"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/drama_stu_num"
+        android:layout_marginTop="100dp"
+        android:layout_toStartOf="@+id/drama_four_image"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/voice_a"/>
+
+    <Button
+        android:id="@+id/drama_voice_1_b"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/drama_stu_num"
+        android:layout_marginTop="200dp"
+        android:layout_toStartOf="@+id/drama_four_image"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/voice_b"/>
+
+    <Button
+        android:id="@+id/drama_voice_2_a"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/drama_stu_num"
+        android:layout_toEndOf="@+id/drama_four_image"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/voice_a"/>
+
+    <Button
+        android:id="@+id/drama_voice_2_b"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/drama_stu_num"
+        android:layout_toEndOf="@+id/drama_four_image"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/voice_b"/>
+
+    <Button
+        android:id="@+id/drama_voice_3_a"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/drama_stu_num"
+        android:layout_marginTop="430dp"
+        android:layout_toStartOf="@+id/drama_four_image"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/voice_a"/>
+
+    <Button
+        android:id="@+id/drama_voice_3_b"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/drama_stu_num"
+        android:layout_marginTop="530dp"
+        android:layout_toStartOf="@+id/drama_four_image"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/voice_b"/>
+
+    <Button
+        android:id="@+id/drama_voice_4_a"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/drama_stu_num"
+        android:layout_toEndOf="@+id/drama_four_image"
+        android:layout_marginTop="430dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/voice_a"/>
+
+    <Button
+        android:id="@+id/drama_voice_4_b"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/drama_stu_num"
+        android:layout_toEndOf="@+id/drama_four_image"
+        android:layout_marginTop="530dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/voice_b"/>
+
+
+
+</RelativeLayout>

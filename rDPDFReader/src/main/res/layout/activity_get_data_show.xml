@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.naer.pdfreader.GetDataShow">
+
+    <Spinner
+        android:id="@+id/num_data"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_toEndOf="@+id/data_list"/>
+
+    <TextView
+        android:id="@+id/time_describe_text"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="造句次數"
+        android:layout_toEndOf="@+id/num_data"
+        android:layout_marginLeft="50dp"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/time_describe"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_toEndOf="@+id/time_describe_text"
+        android:layout_marginLeft="50dp"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <ListView
+        android:id="@+id/data_list"
+        android:layout_width="600dp"
+        android:layout_height="500dp"
+        android:layout_below="@+id/num_data"
+        android:layout_marginTop="30dp"/>
+
+
+    <TextView
+        android:id="@+id/time_speech_text"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_toEndOf="@+id/time_describe"
+        android:layout_marginLeft="50dp"
+        android:text="口說次數"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/time_speech"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_toEndOf="@+id/time_speech_text"
+        android:layout_marginLeft="50dp"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+
+    <TextView
+        android:id="@+id/time_listen_tts_text"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="聆聽TTS次數"
+        android:layout_below="@+id/data_list"
+        android:layout_toEndOf="@+id/data_list"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/time_lis_tts"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_toEndOf="@+id/time_listen_tts_text"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/data_list"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/time_share_click_text"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="分享次數"
+        android:layout_toEndOf="@+id/time_lis_tts"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/data_list"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/time_share_click"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_toEndOf="@+id/time_share_click_text"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/data_list"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/time_see_self_tts_text"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="觀看自己的tts"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/data_list"
+        android:layout_below="@+id/time_listen_tts_text"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/time_see_self_tts"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/time_listen_tts_text"
+        android:layout_toEndOf="@+id/time_see_self_tts_text"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/time_see_self_text"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="觀看自己的次數"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@+id/time_listen_tts_text"
+        android:layout_toEndOf="@+id/time_see_self_tts"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/time_see_self"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/time_listen_tts_text"
+        android:layout_toEndOf="@+id/time_see_self_text"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/time_see_other_tts_text"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="觀看別人的tts"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/data_list"
+        android:layout_below="@+id/time_see_self_tts_text"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/time_see_other_tts"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/time_see_self_tts_text"
+        android:layout_toEndOf="@+id/time_see_other_tts_text"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/time_see_other_text"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="觀看別人的次數"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@+id/time_see_self_tts_text"
+        android:layout_toEndOf="@+id/time_see_other_tts"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/time_see_other"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/time_see_self_tts_text"
+        android:layout_toEndOf="@+id/time_see_other_text"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/clicktoget"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="獲取數據"
+        android:textSize="24sp" />
+
+
+</RelativeLayout>

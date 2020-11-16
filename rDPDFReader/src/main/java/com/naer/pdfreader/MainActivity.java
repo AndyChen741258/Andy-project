@@ -163,15 +163,15 @@ public class MainActivity extends Activity implements OnClickListener {
 		btn_review.setOnClickListener(this);
 		chatbot = (FloatingActionButton) layout.findViewById(R.id.fab_item1);
 		chatbot.setOnClickListener(this);
-//		chatbot.setOnClickListener(new View.OnClickListener(){
-//			@Override
-//			public void onClick(View view){
-//				Toast.makeText(MainActivity.this, "Test", Toast.LENGTH_SHORT).show();
-//			}
-//		});
+		chatbot.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View view){
+				Toast.makeText(MainActivity.this, "Test", Toast.LENGTH_SHORT).show();
+			}
+		});
 
 
-//		btn_conversation.setOnClickListener(this);
+		btn_conversation.setOnClickListener(this);
 
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
