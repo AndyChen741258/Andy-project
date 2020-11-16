@@ -1,208 +1,45 @@
 {
   "project_info": {
-    "project_number": "251953467825",
-    "firebase_url": "https://newvpen-809b2.firebaseio.com",
-    "project_id": "newvpen-809b2",
-    "storage_bucket": "newvpen-809b2.appspot.com"
+    "project_number": "493282268963",
+    "firebase_url": "https://carolvpen.firebaseio.com",
+    "project_id": "carolvpen",
+    "storage_bucket": "carolvpen.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:251953467825:android:e7701f7997eef6f3",
+        "mobilesdk_app_id": "1:493282268963:android:e7701f7997eef6f3",
         "android_client_info": {
           "package_name": "com.naer.pdfreader"
         }
       },
       "oauth_client": [
         {
-          "client_id": "251953467825-csbjgbede56ebkk2vvk5qehcld7cf7vo.apps.googleusercontent.com",
+          "client_id": "493282268963-7c5ak947fpfsf5ngrij8r2jjjll0m7ag.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.naer.pdfreader",
-            "certificate_hash": "da376ee15756e407e57a971ca93caff89813475b"
+            "certificate_hash": "ecb5c2144851399622ebad0a19984fb089580c99"
           }
         },
         {
-          "client_id": "251953467825-416djto2lsv7evvggavqi3baq415b9f0.apps.googleusercontent.com",
+          "client_id": "493282268963-s6k6ipm4tp4rsqpl32lcka8huaclcpg8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCjQVP4uYpRNWIH5kK5mTqWBu0YqxjHUAU"
+          "current_key": "AIzaSyDytp725zbdQ4nz2FW0-Yn29nD5f8P1B_c"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "251953467825-416djto2lsv7evvggavqi3baq415b9f0.apps.googleusercontent.com",
+              "client_id": "493282268963-s6k6ipm4tp4rsqpl32lcka8huaclcpg8.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:251953467825:android:3746a7f2264e399a",
-        "android_client_info": {
-          "package_name": "com.radaee.nearpdf"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "251953467825-139jfa8katvn8por8c88n4b2flff4vfb.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.radaee.nearpdf",
-            "certificate_hash": "2d8c8c9c526cc9b2bab0ee2a822ed0b1a4b970c5"
-          }
-        },
-        {
-          "client_id": "251953467825-416djto2lsv7evvggavqi3baq415b9f0.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCjQVP4uYpRNWIH5kK5mTqWBu0YqxjHUAU"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "251953467825-416djto2lsv7evvggavqi3baq415b9f0.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:251953467825:android:6433e62ade2ac59a",
-        "android_client_info": {
-          "package_name": "com.radaee.reader"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "251953467825-c7e3d369uu9hvpffi627uhgcqn9fre23.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.radaee.reader",
-            "certificate_hash": "0afc334e74ed44de0f8332b744445010bcf3d89f"
-          }
-        },
-        {
-          "client_id": "251953467825-ctpb90u3sbg87a3kfhpecdie7r4uod3c.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.radaee.reader",
-            "certificate_hash": "0161788c8edfbe57ab917584bd17d0c2894ab4a3"
-          }
-        },
-        {
-          "client_id": "251953467825-3tuaqclgdeekhgq0u2q06lf2a24hlls8.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.radaee.reader",
-            "certificate_hash": "da376ee15756e407e57a971ca93caff89813475b"
-          }
-        },
-        {
-          "client_id": "251953467825-1e442mtdvksuvts2ljhin7a9d0jsirbe.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.radaee.reader",
-            "certificate_hash": "14793a882835d48c159d0cbe91d6194e67c45276"
-          }
-        },
-        {
-          "client_id": "251953467825-416djto2lsv7evvggavqi3baq415b9f0.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCjQVP4uYpRNWIH5kK5mTqWBu0YqxjHUAU"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "251953467825-416djto2lsv7evvggavqi3baq415b9f0.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:251953467825:android:c379018b15e5bf6e",
-        "android_client_info": {
-          "package_name": "com.radaee.viewlib"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "251953467825-41nq3j6pherk6djp9t5v0gpip3hu6ce2.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.radaee.viewlib",
-            "certificate_hash": "0afc334e74ed44de0f8332b744445010bcf3d89f"
-          }
-        },
-        {
-          "client_id": "251953467825-416djto2lsv7evvggavqi3baq415b9f0.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCjQVP4uYpRNWIH5kK5mTqWBu0YqxjHUAU"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "251953467825-416djto2lsv7evvggavqi3baq415b9f0.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }

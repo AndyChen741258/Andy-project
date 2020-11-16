@@ -26,7 +26,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images.Media;
-import android.support.annotation.NonNull;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.util.AttributeSet;
@@ -47,6 +46,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -55,17 +56,16 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.radaee.Broadcast.MyBroadcast;
+import com.radaee.Model.StudentsNote;
 import com.radaee.pdf.Document;
+import com.radaee.pdf.Global;
 import com.radaee.pdf.Ink;
 import com.radaee.pdf.Matrix;
 import com.radaee.pdf.Page;
+import com.radaee.pdf.Page.Annotation;
 import com.radaee.util.ComboList;
 import com.radaee.util.PictureUtil;
-import com.radaee.Broadcast.MyBroadcast;
-import com.radaee.Model.StudentsNote;
-import com.radaee.pdf.Global;
-
-import com.radaee.pdf.Page.Annotation;
 import com.radaee.view.PDFLayout;
 import com.radaee.view.PDFLayout.LayoutListener;
 import com.radaee.view.PDFLayout.PDFPos;
@@ -84,6 +84,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+//import android.support.annotation.NonNull;
 
 //import org.geometerplus.zlibrary.text.view.SaveValue;
 
@@ -98,11 +102,11 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 	static final protected int STA_LINE = 7;
 	static final protected int STA_STAMP = 8;
 	static final protected int STA_ANNOT = 100;
-	public static String WordNum;	//得知在哪個學生目錄下
+	public static String WordNum;    //得知在哪個學生目錄下
 	static protected String WordNum2;
 	static public boolean WordNum_btn; //得知共享是否開啟
 	static protected String WordworkNum; //得知在第幾課下
-	static protected String View_mode="直向";//得知查看方式
+	static protected String View_mode = "直向";//得知查看方式
 	static protected String pageNumber;//得知在第幾頁
 	private Bitmap.Config m_bmp_format = Bitmap.Config.ALPHA_8;
 	private PDFLayout m_layout;
@@ -110,10 +114,10 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 	private int m_status = STA_NONE;
 	private boolean m_zooming = false;
 	private int m_pageno = 0;
-	private boolean work_share=false;
+	private boolean work_share = false;
 	private PDFPos m_goto_pos = null;
 	private MediaRecorder mediaRecorder = null;
-	private boolean arm_work=true;
+	private boolean arm_work = true;
 	private GestureDetector m_gesture = null;
 	private Annotation m_annot = null;
 	private PDFPos m_annot_pos = null;
@@ -122,8 +126,8 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 	private float m_annot_rect0[];
 	private float m_annot_x0;
 	private float m_annot_y0;
-    private String Link;
-    private PDFViewController m_pdfvc;
+	private String Link;
+	private PDFViewController m_pdfvc;
 	private Ink m_ink = null;
 	private Bitmap m_icon = null;
 	private float m_rects[];
@@ -143,6 +147,8 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 	private File audioFile;
 	private File audioFilePH;
 	private FileOutputStream fos;
+
+
 	/*
 	 * // 宣告拍照介面元件SurfaceView private SurfaceView surfaceView1; //
 	 * 宣告介面控制元件SurfaceHolder private SurfaceHolder surfaceHolder; // 宣告照相機
@@ -155,12 +161,12 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 	private static String fileName = "record.amr";
 	private static String fileNamePh = "record.jpg";
 	private static ImageView IV;
-	private String ST_ID=WordNum+"_";
+	private String ST_ID = WordNum + "_";
 	private PDFViewAct activity;
 	String[] proj = {MediaStore.Images.Media.DATA};
 	private String IVP;
 	private ImageView btn_annot_note;
-	public static final  int ImageNote = 101;
+	public static final int ImageNote = 101;
 
 
 	RelativeLayout layout;
@@ -173,6 +179,8 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 	private static TextView tv;
 	private static Button playbtn;
 
+
+
 	FirebaseStorage storage;
 	StorageReference storageReference;
 	DatabaseReference DatabaseRef;
@@ -180,24 +188,24 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 
 	//TODO 回呼是從PDFViewAct 讀到PDF的URI 回傳回來的，為了顯示在此頁面上
 	public void onShowImage(String path) {
-		
+
 		IV.setImageBitmap(PictureUtil.getSmallBitmap(path, IV.getWidth(), IV.getHeight()));
-		IVP=path;
+		IVP = path;
 		File SDCardpath = Environment.getExternalStorageDirectory();
-		File myDataPath = new File(SDCardpath.getAbsolutePath() + "/" +WordNum);
+		File myDataPath = new File(SDCardpath.getAbsolutePath() + "/" + WordNum);
 		if (!myDataPath.exists())
 			myDataPath.mkdirs();
-		audioFilePH = new File(SDCardpath.getAbsolutePath() + "/" +WordNum+"/" + fileNamePh);
-		File save_image = new File(myDataPath,fileNamePh);
+		audioFilePH = new File(SDCardpath.getAbsolutePath() + "/" + WordNum + "/" + fileNamePh);
+		File save_image = new File(myDataPath, fileNamePh);
 		IV.setImageBitmap(PictureUtil.getSmallBitmap(IVP, IV.getWidth(), IV.getHeight()));
 		IV.setDrawingCacheEnabled(true);
 		Bitmap bmp = IV.getDrawingCache();
 		try {
 			save_image.createNewFile();
 			fos = new FileOutputStream(save_image);
-			 bmp.compress(Bitmap.CompressFormat.JPEG,100,fos);
-             fos.flush();
-             fos.close();
+			bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+			fos.flush();
+			fos.close();
 		} catch (FileNotFoundException e) {
 			// TODO 自動產生的 catch 區塊
 			e.printStackTrace();
@@ -214,33 +222,62 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 		activity.setOnCommandListenter(this, this);
 	}
 
-	public void ShowImageToNote(Bitmap pbmp)
-	{
+	public void ShowImageToNote(Bitmap pbmp) {
 		IV = (ImageView) layout.findViewById(R.id.imageView);
 		IV.setImageBitmap(pbmp);
-	}
+		storageReference = FirebaseStorage.getInstance().getReference();
+		DatabaseRef = FirebaseDatabase.getInstance().getReference("Image/");//到realtime database設一個圖片路徑
+		String PhotoFile = MyBroadcast.StudentsName + "_" + subj.getText() + ".png";//選取的圖片丟到firebase的命名
+		if (activity.imgUri != null) {
+			final ProgressDialog progressDialog = new ProgressDialog(activity);
+			progressDialog.setTitle("Uploading...");
+			progressDialog.show();
+			phref = storageReference.child("Image/" + MyBroadcast.StudentsName + "/" + PhotoFile);//phref為尋找storageReference的檔案
+			phref.putFile(activity.imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+				@Override
+				public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+					progressDialog.dismiss();
+					Toast.makeText(activity, "Uploaded", Toast.LENGTH_SHORT).show();
+				}
+			}).addOnFailureListener(new OnFailureListener() {
+				@Override
+				public void onFailure(@NonNull Exception e) {
+					progressDialog.dismiss();
+					Toast.makeText(activity, "Failed" + e.getMessage(), Toast.LENGTH_SHORT).show();
+				}
+			}).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+				@Override
+				public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+					double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+					progressDialog.setMessage("Uploaded " + (int) progress + "%");
+				}
+			});
+			}
+		}
 
 	private class DownloadImageTask extends AsyncTask<String, Integer, Bitmap> {
-		protected Bitmap doInBackground(String... strings){
-			try{
+		protected Bitmap doInBackground(String... strings) {
+			try {
 				URL url = new URL(strings[0]);
-				HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 				connection.setDoInput(true);
 				connection.connect();
 				InputStream input = connection.getInputStream();
 				Bitmap bitmap = BitmapFactory.decodeStream(input);
 				return bitmap;
-			}catch (IOException e){
+			} catch (IOException e) {
 				e.printStackTrace();
 				return null;
 			}
 		}
-		protected void onPostExecute(Bitmap bitmap){
+
+		protected void onPostExecute(Bitmap bitmap) {
 			IV.setImageBitmap(bitmap);
 		}
 	}
 
 	class PDFGestureListener extends GestureDetector.SimpleOnGestureListener {// ***手勢區(長按.2下)***
+
 		@Override
 		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
 			if (m_status == STA_NONE) {
@@ -286,6 +323,7 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 
 
 		boolean Touch = true;
+
 		@Override
 		public boolean onSingleTapUp(MotionEvent e) {// ***按一下***
 			if (m_status == STA_NONE || m_status == STA_ANNOT) {
@@ -328,24 +366,24 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 						edit.setTextSize(TypedValue.COMPLEX_UNIT_PX, fsize);
 						edit.setPadding(2, 2, 2, 2);
 						switch (m_annot.GetEditType()) {
-						case 1:
-							edit.setSingleLine();
-							edit.setInputType(InputType.TYPE_CLASS_TEXT + InputType.TYPE_TEXT_VARIATION_NORMAL);
-							break;
-						case 2:
-							edit.setSingleLine();
-							edit.setInputType(InputType.TYPE_CLASS_TEXT + InputType.TYPE_TEXT_VARIATION_PASSWORD);
-							break;
-						case 3:
-							edit.setSingleLine(false);
-							edit.setInputType(InputType.TYPE_CLASS_TEXT + InputType.TYPE_TEXT_VARIATION_NORMAL);
-							break;
+							case 1:
+								edit.setSingleLine();
+								edit.setInputType(InputType.TYPE_CLASS_TEXT + InputType.TYPE_TEXT_VARIATION_NORMAL);
+								break;
+							case 2:
+								edit.setSingleLine();
+								edit.setInputType(InputType.TYPE_CLASS_TEXT + InputType.TYPE_TEXT_VARIATION_PASSWORD);
+								break;
+							case 3:
+								edit.setSingleLine(false);
+								edit.setInputType(InputType.TYPE_CLASS_TEXT + InputType.TYPE_TEXT_VARIATION_NORMAL);
+								break;
 						}
 						int maxlen = m_annot.GetEditMaxlen();
 						if (maxlen > 0)
-							edit.setFilters(new InputFilter[] { new InputFilter.LengthFilter(maxlen) });
+							edit.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxlen)});
 						else
-							edit.setFilters(new InputFilter[] { new InputFilter.LengthFilter(1020) });
+							edit.setFilters(new InputFilter[]{new InputFilter.LengthFilter(1020)});
 						edit.setText(m_annot.GetEditText());
 						m_edit_type = 1;
 						m_pEdit.showAtLocation(PDFLayoutView.this, Gravity.NO_GRAVITY,
@@ -382,6 +420,7 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 	}
 
 	public interface PDFLayoutListener {// **布局監聽器**
+
 		public void OnPDFPageModified(int pageno);
 
 		public void OnPDFPageChanged(int pageno);
@@ -406,6 +445,7 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 	}
 
 	class PDFVPageSet {// ***頁面***
+
 		PDFVPageSet(int max_len) {
 			pages = new VPage[max_len];
 			pages_cnt = 0;
@@ -457,7 +497,7 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 		m_pCombo.setBackgroundDrawable(dw);
 		m_doc = null;
 		m_gesture = new GestureDetector(context, new PDFGestureListener());
-		btn_annot_note = (ImageView)findViewById(com.radaee.viewlib.R.id.btn_annot_note);
+		btn_annot_note = (ImageView) findViewById(com.radaee.viewlib.R.id.btn_annot_note);
 
 	}
 
@@ -660,54 +700,54 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 		if (m_gesture.onTouchEvent(event))
 			return true;
 		switch (event.getActionMasked()) {
-		case MotionEvent.ACTION_DOWN:
-			m_hold_x = event.getX();
-			m_hold_y = event.getY();
-			m_hold_docx = m_layout.vGetX();
-			m_hold_docy = m_layout.vGetY();
-			m_layout.vScrollAbort();
-			invalidate();
-			break;
-		case MotionEvent.ACTION_MOVE:
-			if (m_hold_x <= -10000 && m_hold_y <= -10000) {
+			case MotionEvent.ACTION_DOWN:
 				m_hold_x = event.getX();
 				m_hold_y = event.getY();
 				m_hold_docx = m_layout.vGetX();
 				m_hold_docy = m_layout.vGetY();
-			} else {
-				m_layout.vSetX((int) (m_hold_docx + m_hold_x - event.getX()));
-				m_layout.vSetY((int) (m_hold_docy + m_hold_y - event.getY()));
+				m_layout.vScrollAbort();
 				invalidate();
-			}
-			break;
-		case MotionEvent.ACTION_UP:
-		case MotionEvent.ACTION_CANCEL:
-			if (m_hold_x <= -10000 && m_hold_y <= -10000) {
-				m_hold_x = event.getX();
-				m_hold_y = event.getY();
-				m_hold_docx = m_layout.vGetX();
-				m_hold_docy = m_layout.vGetY();
-			} else {
-				m_layout.vSetX((int) (m_hold_docx + m_hold_x - event.getX()));
-				m_layout.vSetY((int) (m_hold_docy + m_hold_y - event.getY()));
-				invalidate();
-				m_layout.vMoveEnd();
-			}
-			break;
-		case MotionEvent.ACTION_POINTER_DOWN:
-			if (event.getPointerCount() >= 2) {
-				m_status = STA_ZOOM;
-				m_hold_x = (event.getX(0) + event.getX(1)) / 2;
-				m_hold_y = (event.getY(0) + event.getY(1)) / 2;
-				m_zoom_pos = m_layout.vGetPos((int) m_hold_x, (int) m_hold_y);
-				float dx = event.getX(0) - event.getX(1);
-				float dy = event.getY(0) - event.getY(1);
-				m_zoom_dis0 = (float)Math.sqrt(dx * dx + dy * dy);
-				m_zoom_scale = m_layout.vGetZoom();
-				m_status = STA_ZOOM;
-				m_layout.vZoomStart();
-			}
-			break;
+				break;
+			case MotionEvent.ACTION_MOVE:
+				if (m_hold_x <= -10000 && m_hold_y <= -10000) {
+					m_hold_x = event.getX();
+					m_hold_y = event.getY();
+					m_hold_docx = m_layout.vGetX();
+					m_hold_docy = m_layout.vGetY();
+				} else {
+					m_layout.vSetX((int) (m_hold_docx + m_hold_x - event.getX()));
+					m_layout.vSetY((int) (m_hold_docy + m_hold_y - event.getY()));
+					invalidate();
+				}
+				break;
+			case MotionEvent.ACTION_UP:
+			case MotionEvent.ACTION_CANCEL:
+				if (m_hold_x <= -10000 && m_hold_y <= -10000) {
+					m_hold_x = event.getX();
+					m_hold_y = event.getY();
+					m_hold_docx = m_layout.vGetX();
+					m_hold_docy = m_layout.vGetY();
+				} else {
+					m_layout.vSetX((int) (m_hold_docx + m_hold_x - event.getX()));
+					m_layout.vSetY((int) (m_hold_docy + m_hold_y - event.getY()));
+					invalidate();
+					m_layout.vMoveEnd();
+				}
+				break;
+			case MotionEvent.ACTION_POINTER_DOWN:
+				if (event.getPointerCount() >= 2) {
+					m_status = STA_ZOOM;
+					m_hold_x = (event.getX(0) + event.getX(1)) / 2;
+					m_hold_y = (event.getY(0) + event.getY(1)) / 2;
+					m_zoom_pos = m_layout.vGetPos((int) m_hold_x, (int) m_hold_y);
+					float dx = event.getX(0) - event.getX(1);
+					float dy = event.getY(0) - event.getY(1);
+					m_zoom_dis0 = (float) Math.sqrt(dx * dx + dy * dy);
+					m_zoom_scale = m_layout.vGetZoom();
+					m_status = STA_ZOOM;
+					m_layout.vZoomStart();
+				}
+				break;
 		}
 		return true;
 	}
@@ -716,31 +756,31 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 		if (m_status != STA_ZOOM)
 			return false;
 		switch (event.getActionMasked()) {
-		case MotionEvent.ACTION_MOVE:
-			if (m_status == STA_ZOOM) {
-				float dx = event.getX(0) - event.getX(1);
-				float dy = event.getY(0) - event.getY(1);
-				float dis1 = (float)Math.sqrt(dx * dx + dy * dy);
-				m_layout.vZoomSet((int) m_hold_x, (int) m_hold_y, m_zoom_pos, m_zoom_scale * dis1 / m_zoom_dis0);
-				invalidate();
-			}
-			break;
-		case MotionEvent.ACTION_UP:
-		case MotionEvent.ACTION_POINTER_UP:
-		case MotionEvent.ACTION_CANCEL:
-			if (m_status == STA_ZOOM && event.getPointerCount() <= 2) {
-				float dx = event.getX(0) - event.getX(1);
-				float dy = event.getY(0) - event.getY(1);
-				float dis1 = (float)Math.sqrt(dx * dx + dy * dy);
-				m_layout.vZoomSet((int) m_hold_x, (int) m_hold_y, m_zoom_pos, m_zoom_scale * dis1 / m_zoom_dis0);
-				m_hold_x = -10000;
-				m_hold_y = -10000;
-				m_status = STA_NONE;
-				m_zooming = true;
-				m_layout.vZoomConfirmed();
-				invalidate();
-			}
-			break;
+			case MotionEvent.ACTION_MOVE:
+				if (m_status == STA_ZOOM) {
+					float dx = event.getX(0) - event.getX(1);
+					float dy = event.getY(0) - event.getY(1);
+					float dis1 = (float) Math.sqrt(dx * dx + dy * dy);
+					m_layout.vZoomSet((int) m_hold_x, (int) m_hold_y, m_zoom_pos, m_zoom_scale * dis1 / m_zoom_dis0);
+					invalidate();
+				}
+				break;
+			case MotionEvent.ACTION_UP:
+			case MotionEvent.ACTION_POINTER_UP:
+			case MotionEvent.ACTION_CANCEL:
+				if (m_status == STA_ZOOM && event.getPointerCount() <= 2) {
+					float dx = event.getX(0) - event.getX(1);
+					float dy = event.getY(0) - event.getY(1);
+					float dis1 = (float) Math.sqrt(dx * dx + dy * dy);
+					m_layout.vZoomSet((int) m_hold_x, (int) m_hold_y, m_zoom_pos, m_zoom_scale * dis1 / m_zoom_dis0);
+					m_hold_x = -10000;
+					m_hold_y = -10000;
+					m_status = STA_NONE;
+					m_zooming = true;
+					m_layout.vZoomConfirmed();
+					invalidate();
+				}
+				break;
 		}
 		return true;
 	}
@@ -749,34 +789,34 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 		if (m_status != STA_SELECT)
 			return false;
 		switch (event.getActionMasked()) {
-		case MotionEvent.ACTION_DOWN:
-			m_hold_x = event.getX();
-			m_hold_y = event.getY();
-			if (m_sel != null) {
-				m_sel.Clear();
-				m_sel = null;
-			}
-			m_annot_pos = m_layout.vGetPos((int) m_hold_x, (int) m_hold_y);
-			m_annot_page = m_layout.vGetPage(m_annot_pos.pageno);
-			m_sel = new VSel(m_doc.GetPage(m_annot_pos.pageno));
-			break;
-		case MotionEvent.ACTION_MOVE:
-			if (m_sel != null) {
-				m_sel.SetSel(m_annot_pos.x, m_annot_pos.y, m_annot_page.ToPDFX(event.getX(), m_layout.vGetX()),
-						m_annot_page.ToPDFY(event.getY(), m_layout.vGetY()));
-				invalidate();
-			}
-			break;
-		case MotionEvent.ACTION_UP:
-		case MotionEvent.ACTION_CANCEL:
-			if (m_sel != null) {
-				m_sel.SetSel(m_annot_pos.x, m_annot_pos.y, m_annot_page.ToPDFX(event.getX(), m_layout.vGetX()),
-						m_annot_page.ToPDFY(event.getY(), m_layout.vGetY()));
-				invalidate();
-				if (m_listener != null)
-					m_listener.OnPDFSelectEnd(m_sel.GetSelString());
-			}
-			break;
+			case MotionEvent.ACTION_DOWN:
+				m_hold_x = event.getX();
+				m_hold_y = event.getY();
+				if (m_sel != null) {
+					m_sel.Clear();
+					m_sel = null;
+				}
+				m_annot_pos = m_layout.vGetPos((int) m_hold_x, (int) m_hold_y);
+				m_annot_page = m_layout.vGetPage(m_annot_pos.pageno);
+				m_sel = new VSel(m_doc.GetPage(m_annot_pos.pageno));
+				break;
+			case MotionEvent.ACTION_MOVE:
+				if (m_sel != null) {
+					m_sel.SetSel(m_annot_pos.x, m_annot_pos.y, m_annot_page.ToPDFX(event.getX(), m_layout.vGetX()),
+							m_annot_page.ToPDFY(event.getY(), m_layout.vGetY()));
+					invalidate();
+				}
+				break;
+			case MotionEvent.ACTION_UP:
+			case MotionEvent.ACTION_CANCEL:
+				if (m_sel != null) {
+					m_sel.SetSel(m_annot_pos.x, m_annot_pos.y, m_annot_page.ToPDFX(event.getX(), m_layout.vGetX()),
+							m_annot_page.ToPDFY(event.getY(), m_layout.vGetY()));
+					invalidate();
+					if (m_listener != null)
+						m_listener.OnPDFSelectEnd(m_sel.GetSelString());
+				}
+				break;
 		}
 		return true;
 	}
@@ -785,22 +825,22 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 		if (m_status != STA_INK)
 			return false;
 		switch (event.getActionMasked()) {
-		case MotionEvent.ACTION_DOWN:
-			if (m_annot_page == null) {
-				PDFPos pos = m_layout.vGetPos((int) event.getX(), (int) event.getY());
-				m_annot_page = m_layout.vGetPage(pos.pageno);
-			}
-			m_ink.OnDown(event.getX(), event.getY());
-			break;
-		case MotionEvent.ACTION_MOVE:
-			m_ink.OnMove(event.getX(), event.getY());
-			break;
-		case MotionEvent.ACTION_UP:
-			PDFSetInk(1);
-			break;
-		case MotionEvent.ACTION_CANCEL:
-			m_ink.OnUp(event.getX(), event.getY());
-			break;
+			case MotionEvent.ACTION_DOWN:
+				if (m_annot_page == null) {
+					PDFPos pos = m_layout.vGetPos((int) event.getX(), (int) event.getY());
+					m_annot_page = m_layout.vGetPage(pos.pageno);
+				}
+				m_ink.OnDown(event.getX(), event.getY());
+				break;
+			case MotionEvent.ACTION_MOVE:
+				m_ink.OnMove(event.getX(), event.getY());
+				break;
+			case MotionEvent.ACTION_UP:
+				PDFSetInk(1);
+				break;
+			case MotionEvent.ACTION_CANCEL:
+				m_ink.OnUp(event.getX(), event.getY());
+				break;
 		}
 		invalidate();
 		return true;
@@ -814,29 +854,29 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 			len = m_rects.length;
 		int cur = 0;
 		switch (event.getActionMasked()) {
-		case MotionEvent.ACTION_DOWN:
-			float rects[] = new float[len + 4];
-			for (cur = 0; cur < len; cur++)
-				rects[cur] = m_rects[cur];
-			len += 4;
-			rects[cur + 0] = event.getX();
-			rects[cur + 1] = event.getY();
-			rects[cur + 2] = event.getX();
-			rects[cur + 3] = event.getY();
-			m_rects = rects;
-			break;
-		case MotionEvent.ACTION_MOVE:
-			m_rects[len - 2] = event.getX();
-			m_rects[len - 1] = event.getY();
-			break;
-		case MotionEvent.ACTION_UP:
-			UploadStudentsRecordData("矩形記號");
-			PDFSetRect(1);
-			break;
-		case MotionEvent.ACTION_CANCEL:
-			m_rects[len - 2] = event.getX();
-			m_rects[len - 1] = event.getY();
-			break;
+			case MotionEvent.ACTION_DOWN:
+				float rects[] = new float[len + 4];
+				for (cur = 0; cur < len; cur++)
+					rects[cur] = m_rects[cur];
+				len += 4;
+				rects[cur + 0] = event.getX();
+				rects[cur + 1] = event.getY();
+				rects[cur + 2] = event.getX();
+				rects[cur + 3] = event.getY();
+				m_rects = rects;
+				break;
+			case MotionEvent.ACTION_MOVE:
+				m_rects[len - 2] = event.getX();
+				m_rects[len - 1] = event.getY();
+				break;
+			case MotionEvent.ACTION_UP:
+				UploadStudentsRecordData("矩形記號");
+				PDFSetRect(1);
+				break;
+			case MotionEvent.ACTION_CANCEL:
+				m_rects[len - 2] = event.getX();
+				m_rects[len - 1] = event.getY();
+				break;
 		}
 		invalidate();
 		return true;
@@ -850,29 +890,29 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 			len = m_rects.length;
 		int cur = 0;
 		switch (event.getActionMasked()) {
-		case MotionEvent.ACTION_DOWN:
-			float rects[] = new float[len + 4];
-			for (cur = 0; cur < len; cur++)
-				rects[cur] = m_rects[cur];
-			len += 4;
-			rects[cur + 0] = event.getX();
-			rects[cur + 1] = event.getY();
-			rects[cur + 2] = event.getX();
-			rects[cur + 3] = event.getY();
-			m_rects = rects;
-			break;
-		case MotionEvent.ACTION_MOVE:
-			m_rects[len - 2] = event.getX();
-			m_rects[len - 1] = event.getY();
-			break;
-		case MotionEvent.ACTION_UP:
-			UploadStudentsRecordData("圓形記號");
-			PDFSetEllipse(1);
-			break;
-		case MotionEvent.ACTION_CANCEL:
-			m_rects[len - 2] = event.getX();
-			m_rects[len - 1] = event.getY();
-			break;
+			case MotionEvent.ACTION_DOWN:
+				float rects[] = new float[len + 4];
+				for (cur = 0; cur < len; cur++)
+					rects[cur] = m_rects[cur];
+				len += 4;
+				rects[cur + 0] = event.getX();
+				rects[cur + 1] = event.getY();
+				rects[cur + 2] = event.getX();
+				rects[cur + 3] = event.getY();
+				m_rects = rects;
+				break;
+			case MotionEvent.ACTION_MOVE:
+				m_rects[len - 2] = event.getX();
+				m_rects[len - 1] = event.getY();
+				break;
+			case MotionEvent.ACTION_UP:
+				UploadStudentsRecordData("圓形記號");
+				PDFSetEllipse(1);
+				break;
+			case MotionEvent.ACTION_CANCEL:
+				m_rects[len - 2] = event.getX();
+				m_rects[len - 1] = event.getY();
+				break;
 		}
 		invalidate();
 		return true;
@@ -882,73 +922,73 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 		if (m_status != STA_ANNOT)
 			return false;
 		switch (event.getActionMasked()) {
-		case MotionEvent.ACTION_DOWN:
-			m_annot_x0 = event.getX();
-			m_annot_y0 = event.getY();
-			if (m_annot_x0 > m_annot_rect[0] && m_annot_y0 > m_annot_rect[1] && m_annot_x0 < m_annot_rect[2]
-					&& m_annot_y0 < m_annot_rect[3]) {
-				m_annot_rect0 = new float[4];
-				m_annot_rect0[0] = m_annot_rect[0];
-				m_annot_rect0[1] = m_annot_rect[1];
-				m_annot_rect0[2] = m_annot_rect[2];
-				m_annot_rect0[3] = m_annot_rect[3];
-			} else
-				m_annot_rect0 = null;
-			break;
-		case MotionEvent.ACTION_MOVE:
-			if (m_annot_rect0 != null) {
-				float x = event.getX();
-				float y = event.getY();
-				m_annot_rect[0] = m_annot_rect0[0] + x - m_annot_x0;
-				m_annot_rect[1] = m_annot_rect0[1] + y - m_annot_y0;
-				m_annot_rect[2] = m_annot_rect0[2] + x - m_annot_x0;
-				m_annot_rect[3] = m_annot_rect0[3] + y - m_annot_y0;
-			}
-			break;
-		case MotionEvent.ACTION_UP:
-			PDFEditAnnot();
-			break;
-		case MotionEvent.ACTION_CANCEL:
-			if (m_annot_rect0 != null) {
-				float x = event.getX();
-				float y = event.getY();
-				PDFPos pos = m_layout.vGetPos((int) x, (int) y);
-				m_annot_rect[0] = m_annot_rect0[0] + x - m_annot_x0;
-				m_annot_rect[1] = m_annot_rect0[1] + y - m_annot_y0;
-				m_annot_rect[2] = m_annot_rect0[2] + x - m_annot_x0;
-				m_annot_rect[3] = m_annot_rect0[3] + y - m_annot_y0;
-				if (m_annot_page.GetPageNo() == pos.pageno) {
-					m_annot_rect0[0] = m_annot_page.ToPDFX(m_annot_rect[0], m_layout.vGetX());
-					m_annot_rect0[1] = m_annot_page.ToPDFY(m_annot_rect[3], m_layout.vGetY());
-					m_annot_rect0[2] = m_annot_page.ToPDFX(m_annot_rect[2], m_layout.vGetX());
-					m_annot_rect0[3] = m_annot_page.ToPDFY(m_annot_rect[1], m_layout.vGetY());
-					m_annot.SetRect(m_annot_rect0[0], m_annot_rect0[1], m_annot_rect0[2], m_annot_rect0[3]);
-					m_layout.vRenderSync(m_annot_page);
-					if (m_listener != null)
-						m_listener.OnPDFPageModified(m_annot_page.GetPageNo());
-				} else {
-					VPage vpage = m_layout.vGetPage(pos.pageno);
-					Page page = m_doc.GetPage(vpage.GetPageNo());
-					if (page != null) {
-						page.ObjsStart();
-						m_annot_rect0[0] = vpage.ToPDFX(m_annot_rect[0], m_layout.vGetX());
-						m_annot_rect0[1] = vpage.ToPDFY(m_annot_rect[3], m_layout.vGetY());
-						m_annot_rect0[2] = vpage.ToPDFX(m_annot_rect[2], m_layout.vGetX());
-						m_annot_rect0[3] = vpage.ToPDFY(m_annot_rect[1], m_layout.vGetY());
-						m_annot.MoveToPage(page, m_annot_rect0);
-						// page.CopyAnnot(m_annot, m_annot_rect0);
-						page.Close();
-					}
-					m_layout.vRenderSync(m_annot_page);
-					m_layout.vRenderSync(vpage);
-					if (m_listener != null) {
-						m_listener.OnPDFPageModified(m_annot_page.GetPageNo());
-						m_listener.OnPDFPageModified(vpage.GetPageNo());
+			case MotionEvent.ACTION_DOWN:
+				m_annot_x0 = event.getX();
+				m_annot_y0 = event.getY();
+				if (m_annot_x0 > m_annot_rect[0] && m_annot_y0 > m_annot_rect[1] && m_annot_x0 < m_annot_rect[2]
+						&& m_annot_y0 < m_annot_rect[3]) {
+					m_annot_rect0 = new float[4];
+					m_annot_rect0[0] = m_annot_rect[0];
+					m_annot_rect0[1] = m_annot_rect[1];
+					m_annot_rect0[2] = m_annot_rect[2];
+					m_annot_rect0[3] = m_annot_rect[3];
+				} else
+					m_annot_rect0 = null;
+				break;
+			case MotionEvent.ACTION_MOVE:
+				if (m_annot_rect0 != null) {
+					float x = event.getX();
+					float y = event.getY();
+					m_annot_rect[0] = m_annot_rect0[0] + x - m_annot_x0;
+					m_annot_rect[1] = m_annot_rect0[1] + y - m_annot_y0;
+					m_annot_rect[2] = m_annot_rect0[2] + x - m_annot_x0;
+					m_annot_rect[3] = m_annot_rect0[3] + y - m_annot_y0;
+				}
+				break;
+			case MotionEvent.ACTION_UP:
+				PDFEditAnnot();
+				break;
+			case MotionEvent.ACTION_CANCEL:
+				if (m_annot_rect0 != null) {
+					float x = event.getX();
+					float y = event.getY();
+					PDFPos pos = m_layout.vGetPos((int) x, (int) y);
+					m_annot_rect[0] = m_annot_rect0[0] + x - m_annot_x0;
+					m_annot_rect[1] = m_annot_rect0[1] + y - m_annot_y0;
+					m_annot_rect[2] = m_annot_rect0[2] + x - m_annot_x0;
+					m_annot_rect[3] = m_annot_rect0[3] + y - m_annot_y0;
+					if (m_annot_page.GetPageNo() == pos.pageno) {
+						m_annot_rect0[0] = m_annot_page.ToPDFX(m_annot_rect[0], m_layout.vGetX());
+						m_annot_rect0[1] = m_annot_page.ToPDFY(m_annot_rect[3], m_layout.vGetY());
+						m_annot_rect0[2] = m_annot_page.ToPDFX(m_annot_rect[2], m_layout.vGetX());
+						m_annot_rect0[3] = m_annot_page.ToPDFY(m_annot_rect[1], m_layout.vGetY());
+						m_annot.SetRect(m_annot_rect0[0], m_annot_rect0[1], m_annot_rect0[2], m_annot_rect0[3]);
+						m_layout.vRenderSync(m_annot_page);
+						if (m_listener != null)
+							m_listener.OnPDFPageModified(m_annot_page.GetPageNo());
+					} else {
+						VPage vpage = m_layout.vGetPage(pos.pageno);
+						Page page = m_doc.GetPage(vpage.GetPageNo());
+						if (page != null) {
+							page.ObjsStart();
+							m_annot_rect0[0] = vpage.ToPDFX(m_annot_rect[0], m_layout.vGetX());
+							m_annot_rect0[1] = vpage.ToPDFY(m_annot_rect[3], m_layout.vGetY());
+							m_annot_rect0[2] = vpage.ToPDFX(m_annot_rect[2], m_layout.vGetX());
+							m_annot_rect0[3] = vpage.ToPDFY(m_annot_rect[1], m_layout.vGetY());
+							m_annot.MoveToPage(page, m_annot_rect0);
+							// page.CopyAnnot(m_annot, m_annot_rect0);
+							page.Close();
+						}
+						m_layout.vRenderSync(m_annot_page);
+						m_layout.vRenderSync(vpage);
+						if (m_listener != null) {
+							m_listener.OnPDFPageModified(m_annot_page.GetPageNo());
+							m_listener.OnPDFPageModified(vpage.GetPageNo());
+						}
 					}
 				}
-			}
-			PDFEndAnnot();
-			break;
+				PDFEndAnnot();
+				break;
 		}
 		invalidate();
 		return true;
@@ -962,29 +1002,29 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 			len = m_rects.length;
 		int cur = 0;
 		switch (event.getActionMasked()) {
-		case MotionEvent.ACTION_DOWN:
-			float rects[] = new float[len + 4];
-			for (cur = 0; cur < len; cur++)
-				rects[cur] = m_rects[cur];
-			len += 4;
-			rects[cur + 0] = event.getX();
-			rects[cur + 1] = event.getY();
-			rects[cur + 2] = event.getX();
-			rects[cur + 3] = event.getY();
-			m_rects = rects;
-			break;
-		case MotionEvent.ACTION_MOVE:
-			m_rects[len - 2] = event.getX();
-			m_rects[len - 1] = event.getY();
-			break;
-		case MotionEvent.ACTION_UP:
-			UploadStudentsRecordData("線型記號");
-			PDFSetLine(1);
-			break;
-		case MotionEvent.ACTION_CANCEL:
-			m_rects[len - 2] = event.getX();
-			m_rects[len - 1] = event.getY();
-			break;
+			case MotionEvent.ACTION_DOWN:
+				float rects[] = new float[len + 4];
+				for (cur = 0; cur < len; cur++)
+					rects[cur] = m_rects[cur];
+				len += 4;
+				rects[cur + 0] = event.getX();
+				rects[cur + 1] = event.getY();
+				rects[cur + 2] = event.getX();
+				rects[cur + 3] = event.getY();
+				m_rects = rects;
+				break;
+			case MotionEvent.ACTION_MOVE:
+				m_rects[len - 2] = event.getX();
+				m_rects[len - 1] = event.getY();
+				break;
+			case MotionEvent.ACTION_UP:
+				UploadStudentsRecordData("線型記號");
+				PDFSetLine(1);
+				break;
+			case MotionEvent.ACTION_CANCEL:
+				m_rects[len - 2] = event.getX();
+				m_rects[len - 1] = event.getY();
+				break;
 		}
 		invalidate();
 		return true;
@@ -998,29 +1038,29 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 			len = m_rects.length;
 		int cur = 0;
 		switch (event.getActionMasked()) {
-		case MotionEvent.ACTION_DOWN:
-			float rects[] = new float[len + 4];
-			for (cur = 0; cur < len; cur++)
-				rects[cur] = m_rects[cur];
-			len += 4;
-			rects[cur + 0] = event.getX();
-			rects[cur + 1] = event.getY();
-			rects[cur + 2] = event.getX();
-			rects[cur + 3] = event.getY();
-			m_rects = rects;
-			break;
-		case MotionEvent.ACTION_MOVE:
-			m_rects[len - 2] = event.getX();
-			m_rects[len - 1] = event.getY();
-			break;
-		case MotionEvent.ACTION_UP:
-			UploadStudentsRecordData("星型記號");
-			PDFSetStamp(1);
-			break;
-		case MotionEvent.ACTION_CANCEL:
-			m_rects[len - 2] = event.getX();
-			m_rects[len - 1] = event.getY();
-			break;
+			case MotionEvent.ACTION_DOWN:
+				float rects[] = new float[len + 4];
+				for (cur = 0; cur < len; cur++)
+					rects[cur] = m_rects[cur];
+				len += 4;
+				rects[cur + 0] = event.getX();
+				rects[cur + 1] = event.getY();
+				rects[cur + 2] = event.getX();
+				rects[cur + 3] = event.getY();
+				m_rects = rects;
+				break;
+			case MotionEvent.ACTION_MOVE:
+				m_rects[len - 2] = event.getX();
+				m_rects[len - 1] = event.getY();
+				break;
+			case MotionEvent.ACTION_UP:
+				UploadStudentsRecordData("星型記號");
+				PDFSetStamp(1);
+				break;
+			case MotionEvent.ACTION_CANCEL:
+				m_rects[len - 2] = event.getX();
+				m_rects[len - 1] = event.getY();
+				break;
 		}
 		invalidate();
 		return true;
@@ -1032,55 +1072,55 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 			return false;
 
 		switch (event.getActionMasked()) {
-		case MotionEvent.ACTION_DOWN:
-			PDFPos pos = m_layout.vGetPos((int) event.getX(), (int) event.getY());
-			VPage vpage = m_layout.vGetPage(pos.pageno);
-			Page page = m_doc.GetPage(vpage.GetPageNo());
-			if (page != null) {
-				page.ObjsStart();
-				if (m_note_pages == null) {
-					m_note_pages = new VPage[1];
-					m_note_indecs = new int[1];
-					m_note_pages[0] = vpage;
-					m_note_indecs[0] = page.GetAnnotCount();
-				} else {
-					int cur = 0;
-					int cnt = m_note_pages.length;
-					while (cur < cnt) {
-						if (m_note_pages[cur] == vpage)
-							break;
-						cur++;
-					}
-					if (cur >= cnt)// append 1 page
-					{
-						VPage pages[] = new VPage[cnt + 1];
-						int indecs[] = new int[cnt + 1];
-						for (cur = 0; cur < cnt; cur++) {
-							pages[cur] = m_note_pages[cur];
-							indecs[cur] = m_note_indecs[cur];
+			case MotionEvent.ACTION_DOWN:
+				PDFPos pos = m_layout.vGetPos((int) event.getX(), (int) event.getY());
+				VPage vpage = m_layout.vGetPage(pos.pageno);
+				Page page = m_doc.GetPage(vpage.GetPageNo());
+				if (page != null) {
+					page.ObjsStart();
+					if (m_note_pages == null) {
+						m_note_pages = new VPage[1];
+						m_note_indecs = new int[1];
+						m_note_pages[0] = vpage;
+						m_note_indecs[0] = page.GetAnnotCount();
+					} else {
+						int cur = 0;
+						int cnt = m_note_pages.length;
+						while (cur < cnt) {
+							if (m_note_pages[cur] == vpage)
+								break;
+							cur++;
 						}
-						pages[cnt] = vpage;
-						indecs[cnt] = page.GetAnnotCount();
-						m_note_pages = pages;
-						m_note_indecs = indecs;
+						if (cur >= cnt)// append 1 page
+						{
+							VPage pages[] = new VPage[cnt + 1];
+							int indecs[] = new int[cnt + 1];
+							for (cur = 0; cur < cnt; cur++) {
+								pages[cur] = m_note_pages[cur];
+								indecs[cur] = m_note_indecs[cur];
+							}
+							pages[cnt] = vpage;
+							indecs[cnt] = page.GetAnnotCount();
+							m_note_pages = pages;
+							m_note_indecs = indecs;
+						}
 					}
-				}
-				float pt[] = new float[2];
-				pt[0] = pos.x;
-				pt[1] = pos.y;
-				page.AddAnnotText(pt);
-				m_layout.vRenderSync(vpage);
-				invalidate();
-				page.Close();
+					float pt[] = new float[2];
+					pt[0] = pos.x;
+					pt[1] = pos.y;
+					page.AddAnnotText(pt);
+					m_layout.vRenderSync(vpage);
+					invalidate();
+					page.Close();
 
-				if (m_listener != null)
-					m_listener.OnPDFPageModified(vpage.GetPageNo());
-			}
-			break;
+					if (m_listener != null)
+						m_listener.OnPDFPageModified(vpage.GetPageNo());
+				}
+				break;
 			case MotionEvent.ACTION_UP:
 				PDFSetNote(1);//手指抬起後 關閉註記
-               // m_status = STA_ANNOT;
-              //  PDFEditAnnot();
+				// m_status = STA_ANNOT;
+				//  PDFEditAnnot();
 				break;
 		}
 		return true;
@@ -1125,29 +1165,29 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 			pos = m_layout.vGetPos(0, 0);
 		PDFClose();
 		switch (style) {
-		case 3: {
-			PDFLayoutDual layout = new PDFLayoutDual(getContext());
-			boolean paras[] = new boolean[m_doc.GetPageCount()];
-			int cur = 0;
-			while (cur < paras.length) {
-				paras[cur] = false;
-				cur++;
+			case 3: {
+				PDFLayoutDual layout = new PDFLayoutDual(getContext());
+				boolean paras[] = new boolean[m_doc.GetPageCount()];
+				int cur = 0;
+				while (cur < paras.length) {
+					paras[cur] = false;
+					cur++;
+				}
+				layout.vSetLayoutPara(null, paras, m_rtol, true);
+				m_layout = layout;
 			}
-			layout.vSetLayoutPara(null, paras, m_rtol, true);
-			m_layout = layout;
-		}
 			break;
-		case 4:
-		case 6: {
-			PDFLayoutDual layout = new PDFLayoutDual(getContext());
-			layout.vSetLayoutPara(null, null, m_rtol, true);
-			m_layout = layout;
-		}
+			case 4:
+			case 6: {
+				PDFLayoutDual layout = new PDFLayoutDual(getContext());
+				layout.vSetLayoutPara(null, null, m_rtol, true);
+				m_layout = layout;
+			}
 			break;
-		default: {
-			PDFLayoutVert layout = new PDFLayoutVert(getContext());
-			m_layout = layout;
-		}
+			default: {
+				PDFLayoutVert layout = new PDFLayoutVert(getContext());
+				m_layout = layout;
+			}
 			break;
 		}
 		m_layout.vOpen(m_doc, this);
@@ -1632,62 +1672,67 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 		vstbtn = (Button) layout.findViewById(R.id.voicestbut);
 		tv = (TextView) layout.findViewById(R.id.tv);
 		IV = (ImageView) layout.findViewById(R.id.imageView);
-		IV.setImageBitmap(getBitmapFromSDCard(WordNum+"/"+fileNamePh));
+		IV.setImageBitmap(getBitmapFromSDCard(WordNum + "/" + fileNamePh));
 		playbtn = (Button) layout.findViewById(R.id.PlayBut);
 		player = new MediaPlayer();
-		fileName = ST_ID+subj.getText()+".amr";
-		fileNamePh = ST_ID+subj.getText()+".jpg";
-		mDatabase = FirebaseDatabase.getInstance().getReference();	//初始化FirebaseDatabase
+		fileName = ST_ID + subj.getText() + ".amr";
+		fileNamePh = ST_ID + subj.getText() + ".jpg";
+		mDatabase = FirebaseDatabase.getInstance().getReference();    //初始化FirebaseDatabase
 		AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 		final SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日HH:mm:ss");
-		amrPlayBtn=false;
-		arm_work=true;
-		work_share=false;
-		if (subj.getText().toString().isEmpty()){
+		amrPlayBtn = false;
+		arm_work = true;
+		work_share = false;
+
+
+
+
+		if (subj.getText().toString().isEmpty()) {
 			subj.setError("請先輸入標題");
 			Toast.makeText(getContext(), "請先輸入標題", Toast.LENGTH_SHORT).show();
 		}
-		if (!isConnected()){
+		if (!isConnected()) {
 			Toast.makeText(getContext(), "請開啟網路否則無法上傳分享", Toast.LENGTH_SHORT).show();
 		}
-		if (isConnected()){
+		if (isConnected()) {
 			Toast.makeText(getContext(), "已開啟網路可安心上傳分享", Toast.LENGTH_SHORT).show();
 		}
+
+
 		voicebtn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-
-				fileName = ST_ID+subj.getText()+".amr";
+				fileName = ST_ID + subj.getText().toString()+ ".amr";
 				try {
-					if(arm_work==true){
-					File SDCardpath = Environment.getExternalStorageDirectory();
-					File myDataPath = new File(SDCardpath.getAbsolutePath() + "/"+WordNum);
-					if (!myDataPath.exists())
-						myDataPath.mkdirs();
-					audioFile = new File(SDCardpath.getAbsolutePath() + "/"+WordNum+"/" + fileName);
-					/*
-					 * audioFile = new File( SDCardpath.getAbsolutePath() +
-					 * "/download/"+ System.currentTimeMillis() + ".amr");
-					 */
-					mediaRecorder = new MediaRecorder();
-					// 設定音源
-					mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-					// 設定輸出檔案的格式
-					mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.RAW_AMR);
-					// 設定編碼格式
-					mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-					// 設定錄音檔位置
-					mediaRecorder.setOutputFile(audioFile.getAbsolutePath());
-					mediaRecorder.prepare();
-					tv.setText("開始錄音");
-					Toast.makeText(getContext(), "開始錄音", Toast.LENGTH_SHORT).show();
-					// 開始錄音
-					mediaRecorder.start();
-						arm_work=false;
-						amrPlayBtn=true;
+					if (arm_work == true) {
+						File SDCardpath = Environment.getExternalStorageDirectory();
+						File myDataPath = new File(SDCardpath.getAbsolutePath() + "/" + WordNum);
+						if (!myDataPath.exists())
+							myDataPath.mkdirs();
+						audioFile = new File(SDCardpath.getAbsolutePath() + "/" + WordNum + "/" + fileName);
+						/*
+						 * audioFile = new File( SDCardpath.getAbsolutePath() +
+						 * "/download/"+ System.currentTimeMillis() + ".amr");
+						 */
+						mediaRecorder = new MediaRecorder();
+						// 設定音源
+						mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+						// 設定輸出檔案的格式
+						mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.RAW_AMR);
+						// 設定編碼格式
+						mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+						// 設定錄音檔位置
+						mediaRecorder.setOutputFile(audioFile.getAbsolutePath());
+						mediaRecorder.prepare();
+						tv.setText("開始錄音");
+						Toast.makeText(getContext(), "開始錄音", Toast.LENGTH_SHORT).show();
+						// 開始錄音
+						mediaRecorder.start();
+						arm_work = false;
+						amrPlayBtn = true;
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
-				} 
+				}
 			}
 
 		});
@@ -1695,16 +1740,26 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 		// 停止錄音
 		vstbtn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				arm_work=false;
-				amrPlayBtn=false;
+				arm_work = false;
+				amrPlayBtn = false;
 				if (mediaRecorder != null) {
 					tv.setText("停止錄音");
 					Toast.makeText(getContext(), "停止錄音", Toast.LENGTH_SHORT).show();
 					mediaRecorder.stop();
 					mediaRecorder.release();
 					mediaRecorder = null;
-					work_share=true;
+					work_share = true;
 				}
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String date = sdf.format(new java.util.Date());
+				mDatabase.child("學生資料")
+						.child("學生" + MyBroadcast.StudentsName + "號")
+						.child("註記")
+						.child("語音註記")
+						.child(date)
+						.push()
+						.setValue(new StudentsNote(m_annot.GetPopupSubject(), m_annot.GetPopupText()));
+
 			}
 		});
 		// 播放
@@ -1713,31 +1768,44 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 			@Override
 			public void onClick(View v) {
 				player = new MediaPlayer();
-				if(amrPlayBtn==true){
-					amrPlayBtn=false;
-					arm_work=false;
+				if (amrPlayBtn == true) {
+					amrPlayBtn = false;
+					arm_work = false;
 					mediaRecorder.stop();
 					mediaRecorder.release();
 					mediaRecorder = null;
-					work_share=true;
-				}else {
-					amrPlayBtn=false;
+					work_share = true;
+				} else {
+					amrPlayBtn = false;
 				}
-				fileName = ST_ID+subj.getText()+".amr";
+				fileName = ST_ID + subj.getText() + ".amr";
 				File SDCardpath = Environment.getExternalStorageDirectory();
-				File myDataPath = new File(SDCardpath.getAbsolutePath() + "/"+WordNum);
+				File myDataPath = new File(SDCardpath.getAbsolutePath() + "/" + WordNum);
 				if (!myDataPath.exists())
 					myDataPath.mkdirs();
-				audioFile = new File(SDCardpath.getAbsolutePath() + "/"+WordNum+"/" + fileName);
-                ////////////////////////////////////////////共享
+				audioFile = new File(SDCardpath.getAbsolutePath() + "/" + WordNum + "/" + fileName);
+
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String date = sdf.format(new java.util.Date());
+				mDatabase.child("學生資料")
+						.child("學生" + MyBroadcast.StudentsName + "號")
+						.child("觀看分享")
+						.child(date)
+						.child(MyBroadcast.ShareStudentsName)
+						.child(MyBroadcast.Topic)
+						.child("聆聽錄音")
+						.push()
+						.setValue(new StudentsNote(m_annot.GetPopupSubject(), m_annot.GetPopupText()));
+
+				////////////////////////////////////////////共享
 				//其他同學檔案路徑
-				String SharedRecordingFile = MyBroadcast.StudentSelectedName+"_"+subj.getText()+".amr";
-                mStorageRef = FirebaseStorage.getInstance().getReference();
-                mStorageRef.child(MyBroadcast.StudentSelectedName+"/"+SharedRecordingFile).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        Link =uri.toString();
-						if (WordNum_btn==true) {
+				String SharedRecordingFile = MyBroadcast.StudentSelectedName + "_" + subj.getText() + ".amr";
+				mStorageRef = FirebaseStorage.getInstance().getReference();
+				mStorageRef.child(MyBroadcast.StudentSelectedName + "/" + SharedRecordingFile).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+					@Override
+					public void onSuccess(Uri uri) {
+						Link = uri.toString();
+						if (WordNum_btn == true) {
 							try {
 								player.setDataSource(Link);
 							} catch (IOException e) {
@@ -1749,31 +1817,31 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 								e.printStackTrace();
 							}
 							player.start();
-							arm_work=true;
+							arm_work = true;
 							//執行共享任務
 						}
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-						if (WordNum_btn==true) {
-							Toast.makeText(getContext(), "請開啟網路", Toast.LENGTH_SHORT).show();
+					}
+				}).addOnFailureListener(new OnFailureListener() {
+					@Override
+					public void onFailure(@NonNull Exception exception) {
+						if (WordNum_btn == true) {
+							Toast.makeText(getContext(), "載入失敗", Toast.LENGTH_SHORT).show();
 						}
-                    }
-                 });
+					}
+				});
 				tv.setText("播放錄音");
 				Toast.makeText(getContext(), "播放錄音", Toast.LENGTH_SHORT).show();
 				// TODO 自動產生的方法 Stub
 				try {
-                    if(WordNum_btn==false){
-                        player.setOnCompletionListener(null);
-                        player.setDataSource(audioFile.getAbsolutePath());
-                        player.prepare();
+					if (WordNum_btn == false) {
+						player.setOnCompletionListener(null);
+						player.setDataSource(audioFile.getAbsolutePath());
+						player.prepare();
 						player.start();
-						arm_work=true;
-                        mediaRecorder.stop();
-                        mediaRecorder.release();
-                    }
+						arm_work = true;
+						mediaRecorder.stop();
+						mediaRecorder.release();
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 					// TODO: handle exception
@@ -1782,141 +1850,158 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 		});
 		photobtn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				fileNamePh = ST_ID+subj.getText()+".jpg";
+				fileNamePh = ST_ID + subj.getText() + ".jpg";
 				//m_poto.onpoto();
 				//建立 "選擇檔案 Action" 的 Intent
-				Intent intent = new Intent( Intent.ACTION_GET_CONTENT);
+				Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 				// 過濾檔案格式
-				intent.setType( "image/*" );
+				intent.setType("image/*");
 				// 建立 "檔案選擇器" 的 Intent  (第二個參數: 選擇器的標題)
-				Intent destIntent = Intent.createChooser( intent, "選擇檔案" );
+				Intent destIntent = Intent.createChooser(intent, "選擇檔案");
 				// 切換到檔案選擇器 (它的處理結果, 會觸發 onActivityResult 事件)
-				activity.startActivityForResult( destIntent, ImageNote);
+				activity.startActivityForResult(destIntent, ImageNote);
 				tv.setText(fileNamePh);
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String date = sdf.format(new java.util.Date());
+				mDatabase.child("學生資料")
+						.child("學生" + MyBroadcast.StudentsName + "號")
+						.child("註記")
+						.child("圖片註記")
+						.child(date)
+						.push()
+						.setValue(new StudentsNote(m_annot.GetPopupSubject(), m_annot.GetPopupText()));
 				/////////////////////////////////////////////////////////////轉換圖存
 			}
 
 		});
+
 		savephbutton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-					storageReference = FirebaseStorage.getInstance().getReference();
-					DatabaseRef = FirebaseDatabase.getInstance().getReference("Image/");//到realtime database設一個圖片路徑
-					String PhotoFile = MyBroadcast.StudentsName+"_"+subj.getText()+".png";//選取的圖片丟到firebase的命名
-					if(activity.imgUri != null)
+				String PhotoFile;
+				String Name;
+				storageReference = FirebaseStorage.getInstance().getReference();
+				/////修改部分，顯示自己的圖片
+				try {
+					if(WordNum_btn != true)
 					{
-						final ProgressDialog progressDialog = new ProgressDialog(activity);
-						progressDialog.setTitle("Uploading...");
-						progressDialog.show();
-
-						//StorageReference phref = storageReference.child("Image/"+ System.currentTimeMillis() + ".png");
-						phref = storageReference.child("Image/"+ MyBroadcast.StudentsName+"/"+ PhotoFile);//phref為尋找storageReference的檔案
-						phref.putFile(activity.imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-							@Override
-							public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-								progressDialog.dismiss();
-								Toast.makeText(activity, "Uploaded", Toast.LENGTH_SHORT).show();
-							}
-						}).addOnFailureListener(new OnFailureListener() {
-							@Override
-							public void onFailure(@NonNull Exception e) {
-								progressDialog.dismiss();
-								Toast.makeText(activity, "Failed"+e.getMessage(), Toast.LENGTH_SHORT).show();
-							}
-						}).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-							@Override
-							public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-								double progress = (100.0 * taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
-								progressDialog.setMessage("Uploaded "+(int)progress+"%");
-							}
-						});
-						phref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-							@Override
-							public void onSuccess(Uri uri) {
-								String path = uri.toString();
-								DownloadImageTask downloadImageTask = new DownloadImageTask();
-								downloadImageTask.execute(path);
-							}
-						});
-
+						PhotoFile = MyBroadcast.StudentsName + "_" + subj.getText() + ".png";//選取的圖片丟到firebase的命名
+						Name = MyBroadcast.StudentsName;
 					}
+					else
+					{
+					    String name =MyBroadcast.StudentSelectedName;
+					    String regex="[^0-9]";
+                        Pattern p = Pattern.compile(regex);
+                        Matcher m = p.matcher(name);
 
-					//分享
-					String SharePhoto =  MyBroadcast.StudentSelectedName+"_"+subj.getText()+".png";
-					storageReference.child("Image/" + MyBroadcast.StudentSelectedName+"/"+ SharePhoto).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+						PhotoFile = m.replaceAll("")+ "_" + subj.getText() + ".png";//選取的圖片丟到firebase的命名
+						Name = m.replaceAll("");
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        String date = sdf.format(new java.util.Date());
+                        mDatabase.child("學生資料")
+                                .child("學生" + MyBroadcast.StudentsName + "號")
+                                .child("觀看分享")
+                                .child(date)
+                                .child(MyBroadcast.ShareStudentsName)
+                                .child(MyBroadcast.Topic)
+                                .child("查看圖片")
+                                .push()
+                                .setValue(new StudentsNote(m_annot.GetPopupSubject(), m_annot.GetPopupText()));
+					}
+					Toast.makeText(activity, PhotoFile, Toast.LENGTH_SHORT).show();
+					phref = storageReference.child("Image/" + Name + "/" + PhotoFile);//phref為尋找storageReference的檔案
+					phref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
 						@Override
 						public void onSuccess(Uri uri) {
-							String path1 = uri.toString();
-							if (WordNum_btn==true){
-								DownloadImageTask downloadImageTask = new DownloadImageTask();
-								downloadImageTask.execute(path1);
-							}
+							String path = uri.toString();
+							DownloadImageTask downloadImageTask = new DownloadImageTask();
+							downloadImageTask.execute(path);
 						}
 					});
+				} catch (Exception e) {
+					//e.printStackTrace();
+					Toast.makeText(activity, e.toString(), Toast.LENGTH_SHORT).show();
 				}
+			}
 		});
 
 		builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				String str_subj = subj.getText().toString();
-				String str_content = content.getText().toString();
-				m_annot.SetPopupSubject(str_subj);
-				m_annot.SetPopupText(str_content);
-				Date curDate = new Date(System.currentTimeMillis()) ;
-				String str_time =formatter.format(curDate);
-				arm_work=true;
-				dialog.dismiss();
-				if(amrPlayBtn==true){
-					amrPlayBtn=false;
-					arm_work=false;
-					mediaRecorder.stop();
-					mediaRecorder.release();
-					mediaRecorder = null;
-					work_share=true;
-				}
-				if (!isConnected()){
-					Toast.makeText(getContext(), "請開啟網路", Toast.LENGTH_SHORT).show();
-				}
-				if (isConnected()&&WordNum_btn==false&&work_share==true)
-				{
-					File SDCardpath = Environment.getExternalStorageDirectory();
-					Uri file = Uri.fromFile(new File(SDCardpath.getAbsolutePath() + "/"+WordNum+"/" + fileName));
-					StorageReference riversRef = mStorageRef.child(WordNum+"/"+file.getLastPathSegment());
-					uploadTask = riversRef.putFile(file);
-					uploadTask.addOnFailureListener(new OnFailureListener() {
-						@Override
-						public void onFailure(@NonNull Exception exception) {
-							// Handle unsuccessful uploads
-							Toast.makeText(getContext(), "請開啟網路", Toast.LENGTH_SHORT).show();
-						}
-					}).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-						@Override
-						public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+					String str_subj = subj.getText().toString();
+					String str_content = content.getText().toString();
+					m_annot.SetPopupSubject(str_subj);
+					m_annot.SetPopupText(str_content);
+					Date curDate = new Date(System.currentTimeMillis());
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					String date = sdf.format(new java.util.Date());
+					//String str_time =formatter.format(curDate);
+					arm_work = true;
+					dialog.dismiss();
 
-							Toast.makeText(getContext(), "上傳成功加入共享", Toast.LENGTH_SHORT).show();
-						}
-					});
+					if (amrPlayBtn == true) {
+						amrPlayBtn = false;
+						arm_work = false;
+						mediaRecorder.stop();
+						mediaRecorder.release();
+						mediaRecorder = null;
+						work_share = true;
+					}
+					if (!isConnected()) {
+						Toast.makeText(getContext(), "請開啟網路", Toast.LENGTH_SHORT).show();
+					}
+					if (isConnected() && WordNum_btn == false) {
 
-				}
-				if (m_listener != null)
-					m_listener.OnPDFPageModified(m_annot_page.GetPageNo());
-				PDFEndAnnot();
+						mDatabase.child("學生資料")
+								.child(WordNum)
+								.child("註記")
+								.child("文字註記")
+								.child(date)
+								.push()
+								.child("Title: " + subj.getText().toString())
+								.setValue(content.getText().toString());
+					}
+					if (isConnected() && WordNum_btn == false && work_share == true) {
+						File SDCardpath = Environment.getExternalStorageDirectory();
+						Uri file = Uri.fromFile(new File(SDCardpath.getAbsolutePath() + "/" + WordNum + "/" + fileName));
+						StorageReference riversRef = mStorageRef.child(WordNum + "/" + file.getLastPathSegment());
+						uploadTask = riversRef.putFile(file);
+						uploadTask.addOnFailureListener(new OnFailureListener() {
+							@Override
+							public void onFailure(@NonNull Exception exception) {
+								// Handle unsuccessful uploads
+								Toast.makeText(getContext(), "請開啟網路", Toast.LENGTH_SHORT).show();
+							}
+						}).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+							@Override
+							public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+								Toast.makeText(getContext(), "上傳成功加入共享", Toast.LENGTH_SHORT).show();
+							}
+						});
+
+
+					}
+					if (m_listener != null)
+						m_listener.OnPDFPageModified(m_annot_page.GetPageNo());
+					PDFEndAnnot();
+
 			}
 		});
 		builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				if(amrPlayBtn==true){
-					amrPlayBtn=false;
-					arm_work=false;
+				if (amrPlayBtn == true) {
+					amrPlayBtn = false;
+					arm_work = false;
 					mediaRecorder.stop();
 					mediaRecorder.release();
 					mediaRecorder = null;
-					work_share=true;
+					work_share = true;
 				}
 				dialog.dismiss();
 				PDFEndAnnot();
 			}
 		});
-		IV.setImageBitmap(getBitmapFromSDCard(WordNum+"/"+fileNamePh));
+		IV.setImageBitmap(getBitmapFromSDCard(WordNum + "/" + fileNamePh));
 		builder.setTitle("註記內容");
 		builder.setCancelable(false);
 		builder.setView(layout);
@@ -1925,19 +2010,18 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 		AlertDialog dlg = builder.create();
 		dlg.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 		dlg.show();
-		if(m_annot.GetPopupSubject() !=null || m_annot.GetPopupText() !=null)
-		{
+		if (m_annot.GetPopupSubject() != null || m_annot.GetPopupText() != null) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			String date = sdf.format(new java.util.Date());
 			mDatabase.child("學生資料")
-					.child("學生"+MyBroadcast.StudentsName+"號")
+					.child("學生" + MyBroadcast.StudentsName + "號")
 					.child("觀看分享")
 					.child(date)
 					.child(MyBroadcast.ShareStudentsName)
 					.child(MyBroadcast.Topic)
 					.child("查看註解")
 					.push()
-					.setValue(new StudentsNote(m_annot.GetPopupSubject(),m_annot.GetPopupText()));
+					.setValue(new StudentsNote(m_annot.GetPopupSubject(), m_annot.GetPopupText()));
 		}
 	}
 
@@ -2032,16 +2116,16 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 		int check = m_annot.GetCheckStatus();
 		if (m_doc.CanSave() && check >= 0) {
 			switch (check) {
-			case 0:
-				m_annot.SetCheckValue(true);
-				break;
-			case 1:
-				m_annot.SetCheckValue(false);
-				break;
-			case 2:
-			case 3:
-				m_annot.SetRadio();
-				break;
+				case 0:
+					m_annot.SetCheckValue(true);
+					break;
+				case 1:
+					m_annot.SetCheckValue(false);
+					break;
+				case 2:
+				case 3:
+					m_annot.SetRadio();
+					break;
 			}
 			m_layout.vRenderSync(m_annot_page);
 			if (m_listener != null)
@@ -2165,16 +2249,17 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 			return null;
 		}
 	}
-    private boolean isConnected(){//是否有網路查詢方法(目前沒用到)
-        ConnectivityManager cm = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+	private boolean isConnected() {//是否有網路查詢方法(目前沒用到)
+		ConnectivityManager cm = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        if (networkInfo != null && networkInfo.isConnected()) {
-            return true;
-        }
-        return false;
-    }
+		NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+
+		if (networkInfo != null && networkInfo.isConnected()) {
+			return true;
+		}
+		return false;
+	}
 
 	public void startCamera() {
 
@@ -2194,11 +2279,10 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 	 * return filePath; }
 	 */
 
-	private void UploadStudentsRecordData(String data)
-	{
+	private void UploadStudentsRecordData(String data) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String date = sdf.format(new java.util.Date());
-		DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("學生資料").child("學生"+MyBroadcast.StudentsName+"號").child("註記").child("圖形註記").child(date).child(data);
+		DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("學生資料").child("學生" + MyBroadcast.StudentsName + "號").child("註記").child("圖形註記").child(date).child(data);
 		databaseReference.push().setValue(1);
 	}
 
@@ -2210,4 +2294,45 @@ public class PDFLayoutView extends  View implements LayoutListener, OnItemClickL
 		return m_doc.CanSave();
 	}
 
+	public void SavePhoto() {
+		storageReference = FirebaseStorage.getInstance().getReference();
+		DatabaseRef = FirebaseDatabase.getInstance().getReference("Image/");//到realtime database設一個圖片路徑
+		String PhotoFile = MyBroadcast.StudentsName + "_" + subj.getText() + ".png";//選取的圖片丟到firebase的命名
+		if (activity.imgUri != null) {
+			final ProgressDialog progressDialog = new ProgressDialog(activity);
+			progressDialog.setTitle("Uploading...");
+			progressDialog.show();
+
+			//StorageReference phref = storageReference.child("Image/"+ System.currentTimeMillis() + ".png");
+			phref = storageReference.child("Image/" + MyBroadcast.StudentsName + "/" + PhotoFile);//phref為尋找storageReference的檔案
+			phref.putFile(activity.imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+				@Override
+				public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+					progressDialog.dismiss();
+					Toast.makeText(activity, "Uploaded", Toast.LENGTH_SHORT).show();
+				}
+			}).addOnFailureListener(new OnFailureListener() {
+				@Override
+				public void onFailure(@NonNull Exception e) {
+					progressDialog.dismiss();
+					Toast.makeText(activity, "Failed" + e.getMessage(), Toast.LENGTH_SHORT).show();
+				}
+			}).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+				@Override
+				public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+					double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+					progressDialog.setMessage("Uploaded " + (int) progress + "%");
+				}
+			});
+			phref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+				@Override
+				public void onSuccess(Uri uri) {
+					String path = uri.toString();
+					DownloadImageTask downloadImageTask = new DownloadImageTask();
+					downloadImageTask.execute(path);
+				}
+			});
+		}
+
+	}
 }

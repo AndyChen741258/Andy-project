@@ -19,6 +19,7 @@ package com.naer.pdfreader;
 public abstract class Config {
     // copy this keys from your developer dashboard
     public static String ACCESS_TOKEN = "a4ed4d1cc451401a81549b6d67f896dc";
+    public static final String ServerHost = "https://smart-uenglish.ga/vision-dialog";
 
     public static final LanguageConfig[] languages = new LanguageConfig[]{
             new LanguageConfig("en", "a11ea1d839e3446d84e402cb97cdadfb"),

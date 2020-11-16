@@ -2,19 +2,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/common_google_signin_btn_text_dark_pressed"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/wooden2"
     tools:context="${packageName}.${activityClass}">
+
+
 
     <Button
         android:id="@+id/btn_sdcard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btn_http"
-        android:layout_alignBottom="@+id/btn_http"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="29dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="46dp"
         android:text="Open From sdcard"
         android:visibility="invisible" />
-
     <Button
         android:id="@+id/btn_asset"
         android:layout_width="wrap_content"
@@ -26,28 +31,35 @@
 
     <Button
         android:id="@+id/btn_http"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Pwdedit"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
-        android:text="查看分享" />
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_below="@+id/imageView1"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/main_file_btn"
+        android:paddingTop="10dp"
+        android:paddingLeft="8dp"
+        android:drawableTop="@drawable/research128"
+        android:gravity="center_horizontal"
+        android:text="查看分享"
+        android:textAlignment="center"
+        android:textSize="24dp"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/btn_dialog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_sdcard"
-        android:layout_centerHorizontal="true"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:onClick="buttonSampleClick"
-        android:text="對話練習" />
+        android:text="對話練習"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/btn_gl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_http"
         android:layout_alignParentLeft="true"
+        android:layout_marginLeft="1dp"
         android:text="Simple OpenGL"
         android:visibility="invisible" />
 
@@ -99,6 +111,7 @@
         <requestFocus />
     </EditText>
 
+
     <EditText
         android:id="@+id/Pwdedit"
         android:layout_width="wrap_content"
@@ -133,38 +146,64 @@
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="926dp"
+        android:layout_height="312dp"
         android:layout_below="@+id/btn_gl"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/en_gl_r2_c6" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/english_word" />
 
     <Button
         android:id="@+id/btn_file"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_asset"
-        android:layout_centerHorizontal="true"
-        android:text="進入選擇文件" />
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/imageView1"
+        android:layout_toRightOf="@+id/btn_review"
+        android:paddingTop="10dp"
+        android:paddingLeft="8dp"
+        android:drawableTop="@drawable/folder_1_128"
+        android:gravity="center_horizontal"
+        android:background="@drawable/main_file_btn"
+        android:text="選擇文件"
+        android:textSize="24dp"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/btn_hw"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/imageView1"
+        android:layout_toRightOf="@+id/btn_conversation"
+        android:paddingTop="10dp"
+        android:paddingLeft="8dp"
+        android:drawableTop="@drawable/homework"
+        android:gravity="center_horizontal"
+        android:background="@drawable/main_file_btn"
+        android:text="對話作業"
+        android:textSize="24dp" />
 
     <Spinner
         android:id="@+id/spinner_std"
-        android:layout_width="match_parent"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/Pwdedit"
-        android:layout_alignRight="@+id/IDedit"
-        android:layout_marginBottom="17dp"
-        android:layout_toRightOf="@+id/textView2" />
+        android:layout_below="@+id/btn_http"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="5dp"
+        android:visibility="invisible"/>
 
     <Spinner
         android:id="@+id/spinner_work"
-        android:layout_width="match_parent"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/Pwdedit"
-        android:layout_alignRight="@+id/Pwdedit"
-        android:layout_alignBottom="@+id/Pwdedit" />
+        android:layout_below="@+id/spinner_std"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="5dp"
+        android:visibility="invisible"/>
 
     <TextView
         android:id="@+id/number"
@@ -184,6 +223,115 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:digits="1234567890"/>
+
+    <Button
+        android:id="@+id/btn_describe"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/imageView1"
+        android:layout_toRightOf="@+id/btn_review"
+        android:paddingTop="10dp"
+        android:paddingLeft="8dp"
+        android:drawableTop="@drawable/explorer128"
+        android:gravity="center_horizontal"
+        android:background="@drawable/main_file_btn"
+        android:text="探索情境"
+        android:textSize="24dp"/>
+    <Button
+        android:id="@+id/btn_creatdrama"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/imageView1"
+        android:layout_toRightOf="@+id/btn_describe"
+        android:paddingTop="10dp"
+        android:paddingLeft="8dp"
+        android:drawableTop="@drawable/theater128"
+        android:gravity="center_horizontal"
+        android:background="@drawable/main_file_btn"
+        android:text="戲劇創作"
+        android:textSize="24dp"/>
+
+    <Button
+        android:id="@+id/btn_seedrama"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/imageView1"
+        android:layout_toRightOf="@+id/btn_creatdrama"
+        android:paddingTop="10dp"
+        android:paddingLeft="8dp"
+        android:drawableTop="@drawable/cinema128"
+        android:gravity="center_horizontal"
+        android:background="@drawable/main_file_btn"
+        android:text="觀看劇本"
+        android:textSize="24dp"/>
+
+    <Button
+        android:id="@+id/btn_conversation"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/imageView1"
+        android:layout_toRightOf="@+id/btn_seedrama"
+        android:paddingTop="10dp"
+        android:paddingLeft="8dp"
+        android:drawableTop="@drawable/conversation128"
+        android:gravity="center_horizontal"
+        android:background="@drawable/main_file_btn"
+        android:onClick="conversationClick"
+        android:text="對話練習"
+        android:textSize="24dp"/>
+
+    <Button
+        android:id="@+id/btn_review"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_below="@+id/imageView1"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/main_file_btn"
+        android:paddingTop="10dp"
+        android:paddingLeft="8dp"
+        android:drawableTop="@drawable/research128"
+        android:gravity="center_horizontal"
+        android:text="查看情境造句"
+        android:textAlignment="center"
+        android:textSize="24dp" />
+
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fab_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:menu_backgroundColor="@android:color/transparent"
+        app:menu_fab_label=""
+        app:menu_openDirection="up"
+        app:menu_showShadow="true">
+
+        <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/fab_item1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fab_label="@string/item1"
+        app:fab_size="mini"
+        android:src="@drawable/ic_baseline_message_24"/>
+
+    </com.github.clans.fab.FloatingActionMenu>
 
 </RelativeLayout>
+
+

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.naer.pdfreader.ChatbotActivity">
+    <TextView
+        android:id="@+id/dialogspeak_text3"
+        android:layout_width="420dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/voice_text3"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@+id/dialogflowspeak_text3"
+        android:textSize="30dp"
+        android:background="@drawable/text_dialogspeak"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/dialogflowspeak_text3"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialogflowspeak_text2"
+        android:layout_marginTop="220dp"
+        android:textSize="40dp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/youspeak_text3"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/dialogspeak_text2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="0dp"
+        android:textSize="50dp"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/voice_text3"
+        android:layout_width="500dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/dialogspeak_text2"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="600dp"
+        android:layout_marginTop="30dp"
+        android:textSize="50dp"
+        android:background="@drawable/textview_youspeak"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/voice_text"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.978"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/dialogflowspeak_text2"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialogflowspeak_text"
+        android:layout_marginTop="220dp"
+        android:textSize="40dp"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/youspeak_text2"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="280dp"
+        android:layout_marginEnd="0dp"
+        android:textSize="50dp"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/voice_text"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="600dp"
+        android:background="@drawable/textview_youspeak"
+        android:text="您輸入的訊息"
+        android:textColor="#FFFFFF"
+        android:textSize="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_voice"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.978"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/voice_text2"
+        android:layout_width="500dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/dialogspeak_text"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="600dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="80dp"
+        android:textSize="50dp"
+        android:background="@drawable/textview_youspeak"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/voice_text"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.978"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/dialogspeak_text"
+        android:layout_width="420dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/voice_text"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@+id/dialogflowspeak_text"
+        android:background="@drawable/text_dialogspeak"
+        android:text="回應訊息"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/dialogspeak_text2"
+        android:layout_width="420dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/voice_text2"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@+id/dialogflowspeak_text2"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
+        android:background="@drawable/text_dialogspeak"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/btn_voice"
+        android:layout_width="846dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="702dp"
+        android:layout_marginEnd="202dp"
+        android:background="@drawable/btn_talk_selector"
+        android:onClick="startRecord"
+        android:text="Speak"
+        android:textColor="@color/lightBlue"
+        android:textSize="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.986"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/youspeak_text"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="0dp"
+        android:text="You"
+        android:textColor="#000000"
+        android:textSize="50dp"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/dialogflowspeak_text"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="100dp"
+        android:text="Dialog"
+        android:textColor="#000000"
+        android:textSize="40dp"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/btn_show"
+        android:layout_width="145dp"
+        android:layout_height="86dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="13dp"
+        android:layout_toStartOf="@+id/btn_voice"
+        android:text="show"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/btn_Conform"
+        android:layout_width="145dp"
+        android:layout_height="86dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="189dp"
+        android:layout_marginBottom="13dp"
+        android:layout_toStartOf="@+id/btn_voice"
+        android:text="Conform"
+        android:visibility="invisible"/>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="850dp"
+        android:layout_height="650dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="206dp">
+
+        <LinearLayout
+            android:id="@+id/linerlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/loading"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="72dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/loading"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/placechatbot"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="121dp"
+        android:text=""
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/place_tittle"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="183dp"
+        android:text="目前位置:"
+        android:textSize="30dp" />
+</RelativeLayout>

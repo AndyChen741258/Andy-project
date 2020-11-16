@@ -30,8 +30,8 @@ public class UploadStudentsBehavior {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String date = sdf.format(new java.util.Date());
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference()
-                .child("學生資料")
-                .child("學生"+Student.Name+"號")
+                .child("Speech")
+                .child("學生"+ Student.Name +"號")
                 .child("語音辨識")
                 .child(date)
                 .child(studentsSpeech.Correct)

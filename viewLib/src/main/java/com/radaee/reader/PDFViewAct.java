@@ -17,8 +17,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.speech.tts.TextToSpeech;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
@@ -85,21 +86,27 @@ public class PDFViewAct extends Activity implements PDFLayoutView.PDFLayoutListe
 			if (resultCode == Activity.RESULT_OK) {
 				Uri uri = data.getData();
 				mCallback.onShowImage(getRealPathFromURI(uri));
+
 			}
 		}else if(requestCode == PDFLayoutView.ImageNote)
 		{
 			if(requestCode == PDFLayoutView.ImageNote)
 			{
-				imgUri = data.getData();
+				try{imgUri = data.getData();
 				Bitmap photobmp = null;
 				try {
 					photobmp = BitmapFactory.decodeStream(getContentResolver().openInputStream(imgUri), null, null);
 				} catch (FileNotFoundException e) {
 					Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
 				}
-				showImageToNote.ShowImageToNote(photobmp);
+				showImageToNote.ShowImageToNote(photobmp);}
+				catch (Exception e){
+					e.printStackTrace();
+				}
+
 			}else{
 				Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+
 			}
 		}
 	}
@@ -318,7 +325,9 @@ public class PDFViewAct extends Activity implements PDFLayoutView.PDFLayoutListe
 								PDFViewAct.super.onBackPressed();
 							}
 						}).show();
-			} else
+			}
+
+			else
 				super.onBackPressed();
 		}
 	}
@@ -495,4 +504,6 @@ public class PDFViewAct extends Activity implements PDFLayoutView.PDFLayoutListe
 	public void OnPDFOpen3D(String path) {
 		Toast.makeText(PDFViewAct.this, "todo: play 3D module", Toast.LENGTH_SHORT).show();
 	}
+
+
 }

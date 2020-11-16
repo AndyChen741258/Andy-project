@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Program\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
+            "outputFile": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\WinDSou1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6033fffeb0df0608002b7d4c9b6056a8\\res\\values-port\\values-port.xml",
+                    "source": "C:\\Users\\Louis\\.gradle\\caches\\transforms-2\\files-2.1\\ba37539c050033af8f0fc376f1e56e1f\\appcompat-1.1.0\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

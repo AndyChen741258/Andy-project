@@ -116,7 +116,7 @@
         android:layout_marginLeft="174dp"
         android:layout_marginTop="83dp"
         android:layout_toRightOf="@+id/DOBut"
-        android:text="存圖及顯示"
+        android:text="顯示圖片"
         android:visibility="visible" />
 
     <ImageView

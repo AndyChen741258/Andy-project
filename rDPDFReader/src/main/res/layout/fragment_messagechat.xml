@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Fragment_messagechat">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/barlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarMessage"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/greyBlue"
+            android:theme="@style/toolbar_theme"
+            app:popupTheme="@style/MenuStyle"
+            tools:targetApi="lollipop">
+
+            <TextView
+                android:id="@+id/usernameMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.youth.banner.Banner
+        android:id="@+id/banner"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/barlayout"
+        android:layout_marginTop="20dp"
+        android:layout_centerInParent="true"/>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/talkmessage_gif"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        android:src="@mipmap/message_gif" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom"
+        android:layout_below="@id/banner"
+        android:layout_margin="20dp" />
+
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#F4F3F0"
+        android:padding="20dp">
+
+        <ImageButton
+            android:id="@+id/btn_photoMessage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/icon_photo_selector" />
+
+        <RelativeLayout
+            android:id="@+id/relativelayout_keyboardState"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_toEndOf="@+id/btn_photoMessage">
+
+            <ImageButton
+                android:id="@+id/btn_keyboardMessage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/icon_keyboard_selector"
+                android:visibility="visible" />
+
+            <ImageButton
+                android:id="@+id/btn_GonekeyboardMessage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/icon_keyboardgone_selector"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativelayout_keyboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/btn_talkMessage"
+            android:layout_toEndOf="@+id/relativelayout_keyboardState"
+            android:visibility="invisible">
+
+            <EditText
+                android:id="@+id/text_send"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="20dp"
+                android:layout_toStartOf="@+id/btn_send"
+                android:background="@android:color/transparent"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ .,\'?"
+                android:inputType="textCapSentences"
+                android:hint="輸入訊息..."
+                android:paddingStart="10dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="30sp" />
+
+            <ImageButton
+                android:id="@+id/btn_send"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:background="@mipmap/ic_action_send" />
+        </RelativeLayout>
+
+        <ImageButton
+            android:id="@+id/btn_talkMessage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/icon_record_selector" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,8 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '27.0.1'
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 21
@@ -21,10 +20,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:15.0.2'
     implementation 'com.google.firebase:firebase-auth:15.1.0'
     implementation 'com.google.firebase:firebase-database:15.0.1'
-    compile 'com.android.support:support-v4:19.1.0'
-    compile files('libs/com.radaee.view.jar')
-    compile files('libs/google-api-translate-java-0.97.jar')
+    implementation 'com.android.support:support-v4:28.0.0'
+
+    api files('libs/com.radaee.view.jar')
+    api files('libs/google-api-translate-java-0.97.jar')
 }
 
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'
 
