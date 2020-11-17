@@ -27,6 +27,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -38,6 +39,7 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -54,8 +56,10 @@ import com.google.cloud.dialogflow.v2.SessionName;
 import com.google.cloud.dialogflow.v2.SessionsClient;
 import com.google.cloud.dialogflow.v2.SessionsSettings;
 import com.google.cloud.dialogflow.v2.TextInput;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -150,8 +154,11 @@ public class ChatbotActivity extends Activity {
     private Random num;
     int a = 0;
     private String welcomeText;
-    private String sentence;
-//    DatabaseReference storageReference;
+    private String[] welcomelist;
+    private DatabaseReference fire_welcome;
+    private String[] sssttt = {"a", "b", "c"};
+    private String[] st;
+    private String welcome;
     private LocationManager mLocationManager;
 
     private LocationListener mLocationListener = new LocationListener() {
@@ -277,32 +284,81 @@ public class ChatbotActivity extends Activity {
 //            }
 //        });
 
-
-        random();
-        String welcome = welcomeText;
-        addChat(welcome,1);
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference getContactsRef = database.getReference().child("playground").child("sentence");
 
 
 
+//        Query queryRef = getContactsRef;
+//        queryRef.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//                Log.v("Get",dataSnapshot.toString());
+//            }
+//
+//            @Override
+//            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+
+        fire_welcome = FirebaseDatabase.getInstance().getReference();
+                fire_welcome.child("playground").child("welcome").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        int i =0;
+                        sssttt = new String [(int)dataSnapshot.getChildrenCount()];
+                        for(DataSnapshot each : dataSnapshot.getChildren()){
+                            sssttt[i] = each.getValue().toString();
+//                            Log.v("GET",sssttt[i]);
+                            i++;
+                        }
+                         st = sssttt;
+                        Random x = new Random();
+                        a=x.nextInt(st.length);
+                        Log.v("Get",st[a]);
+                        welcome = st[a];
+                        addChat(welcome,1);
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
 
     }
 
 
 
 
-    private void random() {
+
+    public void random() {
         Random x = new Random();
-        a=x.nextInt(5);
-       if("playground" == placeview) {
-            String [] playground = new String[] {"1","2","3","4","5"};
-            welcomeText = playground[a];
+        a=x.nextInt(12);
+//       if("playground" == placeview) {
+//            String [] playground = new String[] {"1","2","3","4","5"};
+//            welcomeText = playground[a];
+//        }
+//        else {
+//           welcomeText = ("GPS loading");
+////            String [] hello = new String[] {"Hello,What kind of balls are there?","Hey,What plants are here?","Hi,How is the weather today?", "Who are in the family?","What did you see in supermarket?"};
+////            welcomeText = hello[a];
         }
-        else {
-           welcomeText = ("GPS loading");
-//            String [] hello = new String[] {"Hello,What kind of balls are there?","Hey,What plants are here?","Hi,How is the weather today?", "Who are in the family?","What did you see in supermarket?"};
-//            welcomeText = hello[a];
-        }
-    }
 
 
 //    private void initPopupWindow() {
@@ -557,7 +613,7 @@ public class ChatbotActivity extends Activity {
             final int diffListIndex = diffList.size() - 1;
             final String originalText = text; //翻譯前
             textView = new TextView(ChatbotActivity.this);
-            textView.setTextSize(50);
+            textView.setTextSize(30);
             textView.setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
             textView.setBackground(getResources().getDrawable(R.drawable.text_send));
             textView.setLayoutParams(textParam);
@@ -591,7 +647,7 @@ public class ChatbotActivity extends Activity {
             }
             final String originalText = fulfillmentText.substring(0, fulfillmentText.length() - 1);
             textView = new TextView(ChatbotActivity.this);
-            textView.setTextSize(50);
+            textView.setTextSize(30);
             textView.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
             textView.setBackground(getResources().getDrawable(R.drawable.text_receive));
             textView.setLayoutParams(textParam);

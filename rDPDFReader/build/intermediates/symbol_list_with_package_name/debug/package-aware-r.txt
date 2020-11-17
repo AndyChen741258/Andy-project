@@ -2247,6 +2247,7 @@ id pin
 id place
 id place_tell
 id place_tittle
+id placechatbot
 id playplayer1
 id playplayer2
 id practice_character
