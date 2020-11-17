@@ -263,4 +263,16 @@
         android:layout_marginBottom="183dp"
         android:text="目前位置:"
         android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/gps_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="1063dp"
+        android:layout_marginBottom="127dp"
+        android:textStyle="bold"
+        android:textSize="10dp"/>
+
 </RelativeLayout>

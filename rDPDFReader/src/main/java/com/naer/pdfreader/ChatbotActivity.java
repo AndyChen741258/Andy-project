@@ -12,6 +12,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -41,6 +42,7 @@ import android.widget.Toolbar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -68,8 +70,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
+
 import Firebase.GetDataFromFirebase;
 import Firebase.UploadStudentsBehavior;
+
 import com.orhanobut.logger.Logger;
 
 import org.xml.sax.XMLReader;
@@ -98,7 +102,7 @@ public class ChatbotActivity extends Activity {
     private ChatbotActivity context;
     private PopupWindow popupWindow = null;
     private Button btnConfirm, btnShow;
-    private String TAG ="Louis";
+    private String TAG = "Louis";
     private Button btn_voice;
     private TextView voice_text;
     private TextView voice_text2;
@@ -124,16 +128,14 @@ public class ChatbotActivity extends Activity {
     private static Field field;
 
 
-
-
     //限制錄音按鈕僅能按一下, 等按下停止時才可以再恢復可按狀態
     private boolean isPress = true;
     private boolean inputbool = false;
     private boolean inputbool_2 = false;
-    private String queryText="";
-    private String inputText="";
-    private String outputText="";
-    private String outputText2="";
+    private String queryText = "";
+    private String inputText = "";
+    private String outputText = "";
+    private String outputText2 = "";
     private String uuid = UUID.randomUUID().toString();
     public static String placeview;
     private SessionsClient sessionsClient;
@@ -153,18 +155,30 @@ public class ChatbotActivity extends Activity {
     private int questionId;
     private Random num;
     int a = 0;
-    private String welcomeText;
-    private String[] welcomelist;
+    //    private String welcomeText;
     private DatabaseReference fire_welcome;
     private String[] sssttt = {"a", "b", "c"};
     private String[] st;
     private String welcome;
+    private TextView gps_view;
+    private String loc_msg;
     private LocationManager mLocationManager;
+
+    private Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if (msg.what == 0x001) {
+                gps_view.setText(loc_msg);
+            }
+            return false;
+        }
+    });
 
     private LocationListener mLocationListener = new LocationListener() {
 
         @Override
         public void onLocationChanged(Location location) {
+            updateShow(location);
             final Date now = new Date();
             android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm", now);
             if (location != null) {
@@ -254,6 +268,7 @@ public class ChatbotActivity extends Activity {
         // Java V2
         initV2Chatbot();
 
+
         voice_text2.setVisibility(View.INVISIBLE);
         voice_text3.setVisibility(View.INVISIBLE);
         dialogspeak_text2.setVisibility(View.INVISIBLE);
@@ -265,9 +280,13 @@ public class ChatbotActivity extends Activity {
         mLocationManager = (LocationManager) getSystemService(android.content.Context.LOCATION_SERVICE);
         PlaceName = findViewById(R.id.placechatbot);
 
+        gps_view = findViewById(R.id.gps_view);
+
         textParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         parentParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         textParam.setMargins(0, 0, 0, 15);
+
+        locationUpdate();
 
 
 //        storageReference = FirebaseDatabase.getInstance().getReference().child("playground").child("sentence");
@@ -286,7 +305,6 @@ public class ChatbotActivity extends Activity {
 
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();
 //        DatabaseReference getContactsRef = database.getReference().child("playground").child("sentence");
-
 
 
 //        Query queryRef = getContactsRef;
@@ -319,46 +337,44 @@ public class ChatbotActivity extends Activity {
 //        });
 
         fire_welcome = FirebaseDatabase.getInstance().getReference();
-                fire_welcome.child("playground").child("welcome").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        int i =0;
-                        sssttt = new String [(int)dataSnapshot.getChildrenCount()];
-                        for(DataSnapshot each : dataSnapshot.getChildren()){
-                            sssttt[i] = each.getValue().toString();
+        fire_welcome.child("playground").child("welcome").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int i = 0;
+                sssttt = new String[(int) dataSnapshot.getChildrenCount()];
+                for (DataSnapshot each : dataSnapshot.getChildren()) {
+                    sssttt[i] = each.getValue().toString();
 //                            Log.v("GET",sssttt[i]);
-                            i++;
-                        }
-                         st = sssttt;
-                        Random x = new Random();
-                        a=x.nextInt(st.length);
-                        Log.v("Get",st[a]);
-                        welcome = st[a];
-                        addChat(welcome,1);
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                    }
-                });
+                    i++;
+                }
+                st = sssttt;
+                Random x = new Random();
+                a = x.nextInt(st.length);
+                Log.v("Get", st[a]);
+                welcome = st[a];
+                addChat(welcome, 1);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
 
     }
 
 
-
-
-
-    public void random() {
-        Random x = new Random();
-        a=x.nextInt(12);
+//    public void random() {
+//        Random x = new Random();
+//        a=x.nextInt(12);
 //       if("playground" == placeview) {
 //            String [] playground = new String[] {"1","2","3","4","5"};
 //            welcomeText = playground[a];
 //        }
 //        else {
-//           welcomeText = ("GPS loading");
-////            String [] hello = new String[] {"Hello,What kind of balls are there?","Hey,What plants are here?","Hi,How is the weather today?", "Who are in the family?","What did you see in supermarket?"};
-////            welcomeText = hello[a];
-        }
+//          welcomeText = ("GPS loading");
+//            String [] hello = new String[] {"Hello,What kind of balls are there?","Hey,What plants are here?","Hi,How is the weather today?", "Who are in the family?","What did you see in supermarket?"};
+//            welcomeText = hello[a];
+//        }
 
 
 //    private void initPopupWindow() {
@@ -376,7 +392,6 @@ public class ChatbotActivity extends Activity {
 //
 //
 //    }
-
 
 
     public View.OnClickListener listener = new View.OnClickListener() {
@@ -409,7 +424,7 @@ public class ChatbotActivity extends Activity {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST: {
                 // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED &&  grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 } else {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
@@ -437,10 +452,10 @@ public class ChatbotActivity extends Activity {
 //        else{
         loading.setVisibility(View.VISIBLE);
         Log.d(TAG, "startRecord: ");
-            Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
-            speechRecognizer.startListening(intent);
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
+        speechRecognizer.startListening(intent);
 //        }
     }
 
@@ -474,14 +489,14 @@ public class ChatbotActivity extends Activity {
         @Override
         public void onError(int i) {
             Log.d(TAG, "Recognizer Error Code: " + i);
-            if(i == 8) {
+            if (i == 8) {
                 speechRecognizer.cancel();
                 Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
                 speechRecognizer.startListening(intent);
             }
-            if(i==7){
+            if (i == 7) {
                 loading.setVisibility(View.INVISIBLE);
             }
         }
@@ -531,9 +546,6 @@ public class ChatbotActivity extends Activity {
             // set user text
 
 
-
-
-
             // Java V2
             QueryInput queryInput = QueryInput.newBuilder().setText(TextInput.newBuilder().setText(queryText).setLanguageCode("en-US")).build();
             Struct struct_params = Struct.newBuilder().putFields("longitude", Value.newBuilder().setStringValue(Double.toString(longitude)).build())
@@ -569,7 +581,7 @@ public class ChatbotActivity extends Activity {
                         } else {
                             questioning = false;
                         }
-                        addChat(queryText , 0);
+                        addChat(queryText, 0);
 
 
                         // get options
@@ -622,16 +634,16 @@ public class ChatbotActivity extends Activity {
             textView.setText(content);
             //textView.setText(text);
             //textView.setOnClickListener(new View.OnClickListener() {
-                //Override
-                //public void onClick(View view) {
+            //Override
+            //public void onClick(View view) {
 //                    Intent intent = new Intent(FixedActivity.this, DiffActivity.class);
 //                    intent.putExtra("diff", diffList.get(diffListIndex)[0]);
 //                    intent.putExtra("questionPattern", diffList.get(diffListIndex)[1]);
 //                    intent.putExtra("userPattern", diffList.get(diffListIndex)[2]);
 //                    startActivity(intent);
 //                    createDiffView(diffListIndex);
-               // }
-           // });
+            // }
+            // });
             parent = new LinearLayout(ChatbotActivity.this);
             parent.setLayoutParams(parentParam);
             parent.setGravity(Gravity.RIGHT);
@@ -734,14 +746,14 @@ public class ChatbotActivity extends Activity {
     }
 
     @Override
-    protected  void onStop(){
+    protected void onStop() {
         super.onStop();
         TTS.stop();
     }
 
     private void createDiffView(int diffListIndex) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View diffView = inflater.inflate(R.layout.activity_diff,null);
+        View diffView = inflater.inflate(R.layout.activity_diff, null);
 
         answerTextView = diffView.findViewById(R.id.answerTextViewDiff);
         userTextView = diffView.findViewById(R.id.userTextView);
@@ -816,8 +828,11 @@ public class ChatbotActivity extends Activity {
         public TtsOnClickListener(String text) {
             this.text = text;
         }
+
         @Override
-        public void onClick(View v) { TTS.speak(this.text); }
+        public void onClick(View v) {
+            TTS.speak(this.text);
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -826,7 +841,8 @@ public class ChatbotActivity extends Activity {
         boolean isNetworkEnabled = mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
         Location location = null;
-        if (!(isGPSEnabled || isNetworkEnabled)){}
+        if (!(isGPSEnabled || isNetworkEnabled)) {
+        }
         //(Carol) Snackbar.make(mMapView, com.naer.pdfreader.R.string.error_location_provider, Snackbar.LENGTH_INDEFINITE).show();
         else {
             if (isNetworkEnabled) {
@@ -861,11 +877,12 @@ public class ChatbotActivity extends Activity {
                 location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             }
         }
-        if (location != null){
+        if (location != null) {
             //(Carol) drawMarker(location);
         }
 
     }
+
     public void CheckLocation(Double latitude, Double longitude) {
         //Place 裡面的資料是目前的位置
         Place place = new Place();
@@ -921,9 +938,38 @@ public class ChatbotActivity extends Activity {
         }
     }
 
+    private void updateShow(Location location) {
+        if (location != null) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("現在位置:\n");
+            sb.append("經度:" + location.getLongitude() + "\n");
+            sb.append("緯度:" + location.getLatitude() + "\n");
+            loc_msg = sb.toString();
+        } else loc_msg = "";
+            handler.sendEmptyMessage(0x001);
+    }
+
+    public void locationUpdate() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        Location location = mLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        updateShow(location);
+        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000,8,mLocationListener);
+
+    }
+
     @Override
     public void onResume() {
         super.onResume();
+        locationUpdate();
 //        InitSpeechRecognizer();
         new Handler().postDelayed(new Runnable() {
             @RequiresApi(api = Build.VERSION_CODES.M)

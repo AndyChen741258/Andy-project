@@ -2112,6 +2112,7 @@ id ghost_view
 id ghost_view_holder
 id gone
 id good
+id gps_view
 id group_divider
 id groups
 id hideable
