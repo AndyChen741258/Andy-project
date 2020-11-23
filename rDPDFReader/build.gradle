@@ -51,8 +51,10 @@ android {
         exclude 'META-INF/notice.txt'
         exclude 'META-INF/ASL2.0'
         exclude 'META-INF/INDEX.LIST'
+        exclude 'project.properties'
     }
 }
+
 
 def mySupportVersion = "26.1.0"
 
@@ -98,6 +100,13 @@ dependencies {
     implementation 'io.grpc:grpc-okhttp:1.13.1'
 
     implementation 'com.google.firebase:firebase-analytics:17.6.0'
+    implementation('com.google.cloud:google-cloud-translate:1.12.0') {
+        exclude group: 'org.apache.httpcomponents'
+        exclude group: 'org.json', module: 'json'
+    }
+    implementation 'com.github.iammannan:TranslateAPI:1.1'
+    annotationProcessor 'com.google.cloud:google-cloud-translate:1.12.0'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

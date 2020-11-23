@@ -495,13 +495,15 @@ com/naer/pdfreader/MainActivity.java
 com/naer/pdfreader/ChatbotActivity.java
  com.naer.pdfreader.ChatbotActivity
  com.naer.pdfreader.ChatbotActivity$1
+ com.naer.pdfreader.ChatbotActivity$10
+ com.naer.pdfreader.ChatbotActivity$11
  com.naer.pdfreader.ChatbotActivity$2
  com.naer.pdfreader.ChatbotActivity$3
  com.naer.pdfreader.ChatbotActivity$4
  com.naer.pdfreader.ChatbotActivity$5
- com.naer.pdfreader.ChatbotActivity$5$1
- com.naer.pdfreader.ChatbotActivity$5$2
  com.naer.pdfreader.ChatbotActivity$6
+ com.naer.pdfreader.ChatbotActivity$6$1
+ com.naer.pdfreader.ChatbotActivity$6$2
  com.naer.pdfreader.ChatbotActivity$7
  com.naer.pdfreader.ChatbotActivity$8
  com.naer.pdfreader.ChatbotActivity$9

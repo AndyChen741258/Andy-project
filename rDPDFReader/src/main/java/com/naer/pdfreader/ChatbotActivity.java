@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.StrictMode;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -58,6 +59,9 @@ import com.google.cloud.dialogflow.v2.SessionName;
 import com.google.cloud.dialogflow.v2.SessionsClient;
 import com.google.cloud.dialogflow.v2.SessionsSettings;
 import com.google.cloud.dialogflow.v2.TextInput;
+import com.google.cloud.translate.Translate;
+import com.google.cloud.translate.TranslateOptions;
+import com.google.cloud.translate.Translation;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -74,10 +78,13 @@ import com.google.protobuf.Value;
 import Firebase.GetDataFromFirebase;
 import Firebase.UploadStudentsBehavior;
 
+import com.mannan.translateapi.Language;
+import com.mannan.translateapi.TranslateAPI;
 import com.orhanobut.logger.Logger;
 
 import org.xml.sax.XMLReader;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -92,6 +99,7 @@ import java.lang.reflect.Field;
 
 import Firebase.GetDataFromFirebase;
 import Interface.IDataDownloadCompleted;
+import io.grpc.Metadata;
 import pl.droidsonroids.gif.GifImageView;
 
 import static com.naer.pdfreader.DialogActivity.LOCATION_UPDATE_MIN_DISTANCE;
@@ -118,13 +126,14 @@ public class ChatbotActivity extends Activity {
     private GifImageView loading;
     private SpeechRecognizer speechRecognizer;
     private boolean questioning;
+    private boolean bol_trans=false;
     private double longitude = 0.0;
     private double latitude = 0.0;
     private String options = "";//for user's choose
     private ScrollView scrollView;
     private LinearLayout linearLayout;
     private List<String[]> diffList;
-    private double similarity = 0;
+    private String similarity;
     private static Field field;
 
 
@@ -137,6 +146,7 @@ public class ChatbotActivity extends Activity {
     private String outputText = "";
     private String outputText2 = "";
     private String uuid = UUID.randomUUID().toString();
+    private String intentname;
     public static String placeview;
     private SessionsClient sessionsClient;
     private SessionName session;
@@ -163,6 +173,7 @@ public class ChatbotActivity extends Activity {
     private TextView gps_view;
     private String loc_msg;
     private LocationManager mLocationManager;
+
 
     private Handler handler = new Handler(new Handler.Callback() {
         @Override
@@ -231,6 +242,10 @@ public class ChatbotActivity extends Activity {
         }
     };
     private TextView textSpeech;
+    private String usertext;
+    private Translate translate;
+    private String translatedText;
+    private String trn_originalText;
 
 
     @Override
@@ -287,6 +302,7 @@ public class ChatbotActivity extends Activity {
         textParam.setMargins(0, 0, 0, 15);
 
         locationUpdate();
+
 
 
 //        storageReference = FirebaseDatabase.getInstance().getReference().child("playground").child("sentence");
@@ -558,6 +574,11 @@ public class ChatbotActivity extends Activity {
                     if (response != null) {
                         // process aiResponse here
                         final QueryResult result = response.getQueryResult();
+                        final com.google.cloud.dialogflow.v2.Intent intent = result.getIntent();
+                        intentname = intent.getDisplayName();
+                        if (intent != null) {
+                            Log.i(TAG, "Intent name: " + intentname);
+                        }
                         final String speech = result.getFulfillmentText();
                         Log.i(TAG, "V2  Speech: " + speech);
                         dialogflowspeak_text.setText(speech);
@@ -583,7 +604,10 @@ public class ChatbotActivity extends Activity {
                         }
                         addChat(queryText, 0);
 
-
+                        // set user text
+                        String[] diff = new String[4];
+                        diffList.add(diff);
+//                        addChat(queryText + "\n" + getResources().getString(R.string.your_score_title) + ": " + similarity, 0);
                         // get options
                         try {
                             final Map<String, Value> payload = result.getWebhookPayload().getFieldsMap();
@@ -622,7 +646,7 @@ public class ChatbotActivity extends Activity {
     private void addChat(String text, int type) {
         // type 0 user, 1 dialog, 2 actively notify
         if (type == 0) {
-            final int diffListIndex = diffList.size() - 1;
+            final int diffListIndex = diffList.size()-1;
             final String originalText = text; //翻譯前
             textView = new TextView(ChatbotActivity.this);
             textView.setTextSize(30);
@@ -633,17 +657,18 @@ public class ChatbotActivity extends Activity {
             content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
             textView.setText(content);
             //textView.setText(text);
-            //textView.setOnClickListener(new View.OnClickListener() {
-            //Override
-            //public void onClick(View view) {
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 //                    Intent intent = new Intent(FixedActivity.this, DiffActivity.class);
 //                    intent.putExtra("diff", diffList.get(diffListIndex)[0]);
 //                    intent.putExtra("questionPattern", diffList.get(diffListIndex)[1]);
 //                    intent.putExtra("userPattern", diffList.get(diffListIndex)[2]);
 //                    startActivity(intent);
-//                    createDiffView(diffListIndex);
-            // }
-            // });
+                    usertext = queryText;
+                    createDiffView(diffListIndex);
+                }
+             });
             parent = new LinearLayout(ChatbotActivity.this);
             parent.setLayoutParams(parentParam);
             parent.setGravity(Gravity.RIGHT);
@@ -671,6 +696,7 @@ public class ChatbotActivity extends Activity {
                 @Override
                 public void onClick(View view) {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(ChatbotActivity.this, R.style.AlertDialogStyle);
+                    trn_originalText = originalText;
                     alertDialog.setTitle(getString(R.string.detail_dialog_title))
                             .setIcon(R.mipmap.good_icon)
                             .setMessage(getString(R.string.original) + ":\n" + originalText + "\n" + getString(R.string.translation) + ":\n" + getString(R.string.detail_dialog_translating))
@@ -687,6 +713,7 @@ public class ChatbotActivity extends Activity {
                                     TTS.speak(originalText);
                                 }
                             })
+
                             .setPositiveButton(getString(R.string.Read), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -699,16 +726,18 @@ public class ChatbotActivity extends Activity {
                                     }
                                     alertDialogList = new ArrayList<AlertDialog>();
                                 }
-                            });
-
+                            })
+                            .setMessage(getString(R.string.original) + ":\n" + originalText + "\n" + getString(R.string.translation) + ":\n" + translatedText)
+                            ;
                     AlertDialog alertDialogFixed = alertDialog.create();
                     alertDialogFixed.setCanceledOnTouchOutside(false);
                     alertDialogFixed.show();
 
                     dialogList.add(originalText);
                     alertDialogList.add(alertDialogFixed);
+                    trans();
 
-                    //MicrosoftTranslate.translate(FixedActivity.this, dialogList.size() - 1);
+//                    MicrosoftTranslate.translate(FixedActivity.this, dialogList.size() - 1);
                 }
             });
             parent = new LinearLayout(ChatbotActivity.this);
@@ -761,10 +790,10 @@ public class ChatbotActivity extends Activity {
         wrongWord = diffView.findViewById(R.id.wrongWord);
         wrongWordScrollView = diffView.findViewById(R.id.wrongWordScrollView);
 
-        answerTextView.setText(this.diffList.get(diffListIndex)[1]);
+        answerTextView.setText(intentname);
 
         diffMatchPatch diff_matchPatch_obj = new diffMatchPatch();
-        LinkedList<diffMatchPatch.Diff> diffListUser = diff_matchPatch_obj.diff_wordMode(this.diffList.get(diffListIndex)[2].replaceAll("[,|.|!|?|']", "").trim().replaceAll(" +", " ").toLowerCase(), this.diffList.get(diffListIndex)[1].replaceAll("[,|.|!|?|']", "").trim().replaceAll(" +", " ").toLowerCase());
+        LinkedList<diffMatchPatch.Diff> diffListUser = diff_matchPatch_obj.diff_wordMode(usertext.replaceAll("[,|.|!|?|']", "").trim().replaceAll(" +", " ").toLowerCase(), intentname.replaceAll("[,|.|!|?|']", "").trim().replaceAll(" +", " ").toLowerCase());
 
         // change tag <u> to real del line
         String htmlDiff = diff_matchPatch_obj.diff_prettyHtml(diffListUser);
@@ -814,12 +843,12 @@ public class ChatbotActivity extends Activity {
             linearLayout.addView(imageButton);
             wrongWord.addView(linearLayout);
         }
-        /*AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context, R.style.AlertDialogStyle);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context, R.style.AlertDialogStyle);
         alertDialogBuilder.setIcon(R.mipmap.correction_icon);
         alertDialogBuilder.setTitle("\t錯誤訂正");
         alertDialogBuilder.setView(diffView);
         AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();*/
+        alertDialog.show();
     }
 
     private class TtsOnClickListener implements View.OnClickListener {
@@ -978,6 +1007,32 @@ public class ChatbotActivity extends Activity {
             }
         }, 1000);
     }
+
+private void trans(){
+    TranslateAPI translateAPI = new TranslateAPI(
+            Language.AUTO_DETECT,
+            Language.CHINESE_TRADITIONAL,
+            trn_originalText
+    );
+    translateAPI.setTranslateListener(new TranslateAPI.TranslateListener() {
+        @Override
+        public void onSuccess(String s) {
+            translatedText=s;
+            if(ChatbotActivity.alertDialogList.size() > 0){
+                ChatbotActivity.alertDialogList.get(ChatbotActivity.alertDialogList.size() - 1).setMessage(getString(R.string.original) + ":\n" + trn_originalText + "\n" + getString(R.string.translation) + ":\n" +translatedText);
+            }
+        }
+
+        @Override
+        public void onFailure(String s) {
+
+        }
+    });
+}
+
+
+
+
 
 }
 
