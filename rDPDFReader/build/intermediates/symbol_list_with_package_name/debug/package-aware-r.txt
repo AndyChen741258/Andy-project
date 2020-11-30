@@ -1584,6 +1584,7 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable add
 drawable add_border
 drawable avd_hide_password
 drawable avd_show_password
@@ -1628,6 +1629,7 @@ drawable btn_view
 drawable btn_view_dual
 drawable btn_view_single
 drawable btn_view_vert
+drawable cancel
 drawable cantunderstand
 drawable chat15
 drawable chat35
@@ -1955,6 +1957,7 @@ id btn_show
 id btn_talkMessage
 id btn_view
 id btn_voice
+id button1
 id button13
 id button14
 id button15
@@ -1962,14 +1965,18 @@ id button16
 id button17
 id button18
 id button19
+id button2
 id button20
 id button21
 id button22
+id button3
+id button4
 id buttonClear
 id buttonClick
 id buttonPanel
 id buttonSend
 id camera_preview
+id cancel
 id cancel_action
 id cancel_button
 id cardphoto
@@ -2017,6 +2024,10 @@ id creat1
 id creat2
 id creat3
 id creat4
+id creat5
+id creat6
+id creat7
+id creat8
 id cropImageView
 id crop_image_menu_crop
 id crop_image_menu_flip
@@ -2055,6 +2066,10 @@ id drama1
 id drama2
 id drama3
 id drama4
+id drama5
+id drama6
+id drama7
+id drama8
 id drama_dramawork_num
 id drama_example_photo
 id drama_four_image
@@ -2438,6 +2453,8 @@ id toolbar_stop
 id top
 id topPanel
 id touch_outside
+id trans_correct
+id trans_speak
 id transition_current_scene
 id transition_layout_save
 id transition_position
@@ -2711,8 +2728,8 @@ raw tinosbi
 raw tinosi
 raw umaps
 raw version_config
+string CANCEL
 string Listen
-string Read
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description

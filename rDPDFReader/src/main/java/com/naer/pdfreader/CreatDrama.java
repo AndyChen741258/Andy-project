@@ -47,6 +47,8 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.FileNotFoundException;
 
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 import static com.naer.pdfreader.DialogActivity.TAG;
 
 public class CreatDrama extends Activity {
@@ -56,11 +58,25 @@ public class CreatDrama extends Activity {
     public static ImageView drama2;
     public static ImageView drama3;
     public static ImageView drama4;
+    public static ImageView drama5; //創作第一格照片
+    public static ImageView drama6;
+    public static ImageView drama7;
+    public static ImageView drama8;
     private Button creat1;
     private Button creat2;
     private Button creat3;
     private Button creat4;
+    private Button creat5;
+    private Button creat6;
+    private Button creat7;
+    private Button creat8;
+    private Button button1;
+    private Button button2;
+    private Button button3;
+    private Button button4;
+    private Button cancel;
     private Button finish_and_return;
+    private int scoreview;
 
 
     //劇本編號所選擇的選項文字
@@ -104,12 +120,102 @@ public class CreatDrama extends Activity {
         creat2 = findViewById(R.id.creat2);
         creat3 = findViewById(R.id.creat3);
         creat4 = findViewById(R.id.creat4);
+        drama5 = findViewById(R.id.drama5);
+        drama6 = findViewById(R.id.drama6);
+        drama7 = findViewById(R.id.drama7);
+        drama8 = findViewById(R.id.drama8);
+        creat5 = findViewById(R.id.creat5);
+        creat6 = findViewById(R.id.creat6);
+        creat7 = findViewById(R.id.creat7);
+        creat8 = findViewById(R.id.creat8);
+        button1 = findViewById(R.id.button1);
+        button2 = findViewById(R.id.button2);
+        button3 = findViewById(R.id.button3);
+        button4 = findViewById(R.id.button4);
+        cancel = findViewById(R.id.cancel);
         finish_and_return = findViewById(R.id.finish_and_return);
 
-        drama1.setVisibility(View.INVISIBLE);
-        drama2.setVisibility(View.INVISIBLE);
-        drama3.setVisibility(View.INVISIBLE);
-        drama4.setVisibility(View.INVISIBLE);
+        drama1.setVisibility(INVISIBLE);
+        drama2.setVisibility(INVISIBLE);
+        drama3.setVisibility(INVISIBLE);
+        drama4.setVisibility(INVISIBLE);
+
+        button1.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                creat5.setVisibility(VISIBLE);
+                button2.setVisibility(VISIBLE);
+                button1.setVisibility(INVISIBLE);
+                scoreview=1;
+
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                creat6.setVisibility(VISIBLE);
+                button3.setVisibility(VISIBLE);
+                button2.setVisibility(INVISIBLE);
+                scoreview=2;
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                creat7.setVisibility(VISIBLE);
+                button4.setVisibility(VISIBLE);
+                button3.setVisibility(INVISIBLE);
+                scoreview=3;
+            }
+        });
+        button4.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                creat8.setVisibility(VISIBLE);
+                button4.setVisibility(INVISIBLE);
+                scoreview=4;
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                switch (scoreview){
+                    case 4:
+                        creat8.setVisibility(INVISIBLE);
+                        button4.setVisibility(VISIBLE);
+                        scoreview=3;
+                        break;
+                    case 3:
+                        creat7.setVisibility(INVISIBLE);
+                        button4.setVisibility(INVISIBLE);
+                        button3.setVisibility(VISIBLE);
+                        scoreview=2;
+                        break;
+                    case 2:
+                        creat6.setVisibility(INVISIBLE);
+                        button3.setVisibility(INVISIBLE);
+                        button2.setVisibility(VISIBLE);
+                        scoreview=1;
+                        break;
+                    case 1:
+                        creat5.setVisibility(INVISIBLE);
+                        button2.setVisibility(INVISIBLE);
+                        button1.setVisibility(VISIBLE);
+                        break;
+                }
+            }
+        });
+
+
+
+
+
 
 
 
@@ -217,6 +323,90 @@ public class CreatDrama extends Activity {
                         BringImagePicker();
                     }
                     num = 4;
+                    edit = false;
+                }else{
+                    Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        creat5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!TextUtils.equals("請選擇", spinner_drame_word)){
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
+                        if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(CreatDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                        } else {
+                            BringImagePicker();
+                        }
+                    } else {  //拍照
+                        BringImagePicker();
+                    }
+                    num = 5;
+                    edit = false;
+                }else{
+                    Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        creat6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!TextUtils.equals("請選擇", spinner_drame_word)){
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
+                        if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(CreatDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                        } else {
+                            BringImagePicker();
+                        }
+                    } else {  //拍照
+                        BringImagePicker();
+                    }
+                    num = 6;
+                    edit = false;
+                }else{
+                    Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        creat7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!TextUtils.equals("請選擇", spinner_drame_word)){
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
+                        if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(CreatDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                        } else {
+                            BringImagePicker();
+                        }
+                    } else {  //拍照
+                        BringImagePicker();
+                    }
+                    num = 7;
+                    edit = false;
+                }else{
+                    Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        creat8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!TextUtils.equals("請選擇", spinner_drame_word)){
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
+                        if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(CreatDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                        } else {
+                            BringImagePicker();
+                        }
+                    } else {  //拍照
+                        BringImagePicker();
+                    }
+                    num = 8;
                     edit = false;
                 }else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
@@ -407,7 +597,7 @@ public class CreatDrama extends Activity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    drama1.setVisibility(View.VISIBLE);
+                    drama1.setVisibility(VISIBLE);
                     Glide.with(drama1.getContext()).load(dataSnapshot.child("editFinishPhotoUri").getValue().toString()).into(drama1);
                 }else if(!dataSnapshot.exists()){
                     //Toast.makeText(CreatDrama.this, "開始創作", Toast.LENGTH_SHORT).show();
@@ -425,7 +615,7 @@ public class CreatDrama extends Activity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    drama2.setVisibility(View.VISIBLE);
+                    drama2.setVisibility(VISIBLE);
                     Glide.with(drama2.getContext()).load(dataSnapshot.child("editFinishPhotoUri").getValue().toString()).into(drama2);
                 }else if(!dataSnapshot.exists()){
                     //Toast.makeText(CreatDrama.this, "開始創作", Toast.LENGTH_SHORT).show();
@@ -443,7 +633,7 @@ public class CreatDrama extends Activity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    drama3.setVisibility(View.VISIBLE);
+                    drama3.setVisibility(VISIBLE);
                     Glide.with(drama3.getContext()).load(dataSnapshot.child("editFinishPhotoUri").getValue().toString()).into(drama3);
                 }else if(!dataSnapshot.exists()){
                     //Toast.makeText(CreatDrama.this, "開始創作", Toast.LENGTH_SHORT).show();
@@ -461,8 +651,76 @@ public class CreatDrama extends Activity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    drama4.setVisibility(View.VISIBLE);
+                    drama4.setVisibility(VISIBLE);
                     Glide.with(drama4.getContext()).load(dataSnapshot.child("editFinishPhotoUri").getValue().toString()).into(drama4);
+                }else if(!dataSnapshot.exists()){
+                    //Toast.makeText(CreatDrama.this, "開始創作", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "開始");
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e(TAG, "有問題");
+
+            }
+        });
+        fire_check_edit_exist.child("學生"+Student.Name+"號").child(spinner_drame_word).child("5").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    drama5.setVisibility(VISIBLE);
+                    Glide.with(drama5.getContext()).load(dataSnapshot.child("editFinishPhotoUri").getValue().toString()).into(drama5);
+                }else if(!dataSnapshot.exists()){
+                    //Toast.makeText(CreatDrama.this, "開始創作", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "開始");
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e(TAG, "有問題");
+
+            }
+        });
+        fire_check_edit_exist.child("學生"+Student.Name+"號").child(spinner_drame_word).child("6").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    drama6.setVisibility(VISIBLE);
+                    Glide.with(drama6.getContext()).load(dataSnapshot.child("editFinishPhotoUri").getValue().toString()).into(drama6);
+                }else if(!dataSnapshot.exists()){
+                    //Toast.makeText(CreatDrama.this, "開始創作", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "開始");
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e(TAG, "有問題");
+
+            }
+        });
+        fire_check_edit_exist.child("學生"+Student.Name+"號").child(spinner_drame_word).child("7").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    drama7.setVisibility(VISIBLE);
+                    Glide.with(drama7.getContext()).load(dataSnapshot.child("editFinishPhotoUri").getValue().toString()).into(drama7);
+                }else if(!dataSnapshot.exists()){
+                    //Toast.makeText(CreatDrama.this, "開始創作", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "開始");
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e(TAG, "有問題");
+
+            }
+        });
+        fire_check_edit_exist.child("學生"+Student.Name+"號").child(spinner_drame_word).child("8").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    drama8.setVisibility(VISIBLE);
+                    Glide.with(drama8.getContext()).load(dataSnapshot.child("editFinishPhotoUri").getValue().toString()).into(drama8);
                 }else if(!dataSnapshot.exists()){
                     //Toast.makeText(CreatDrama.this, "開始創作", Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "開始");

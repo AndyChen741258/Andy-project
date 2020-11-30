@@ -123,6 +123,8 @@ public class ChatbotActivity extends Activity {
     private TextView dialogspeak_text2;
     private TextView dialogspeak_text3;
     private TextView dialogspeak_text;
+    private TextView trans_correct;
+    private TextView trans_speak;
     private GifImageView loading;
     private SpeechRecognizer speechRecognizer;
     private boolean questioning;
@@ -605,7 +607,7 @@ public class ChatbotActivity extends Activity {
                         addChat(queryText, 0);
 
                         // set user text
-                        String[] diff = new String[4];
+                        String[] diff = new String[3];
                         diffList.add(diff);
 //                        addChat(queryText + "\n" + getResources().getString(R.string.your_score_title) + ": " + similarity, 0);
                         // get options
@@ -646,8 +648,16 @@ public class ChatbotActivity extends Activity {
     private void addChat(String text, int type) {
         // type 0 user, 1 dialog, 2 actively notify
         if (type == 0) {
+            String[] sentences = text.split("<br>");
+            String fulfillmentText = "";
+            for (int i = 0; i < sentences.length; i++) {
+                String sentence = sentences[i];
+                fulfillmentText += sentence + "\n";
+                TTS.speak(sentence);
+            }
             final int diffListIndex = diffList.size()-1;
-            final String originalText = text; //翻譯前
+            final String originalText_right = fulfillmentText.substring(0, fulfillmentText.length() - 1);
+//            final String originalText = text; //翻譯前
             textView = new TextView(ChatbotActivity.this);
             textView.setTextSize(30);
             textView.setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
@@ -665,7 +675,7 @@ public class ChatbotActivity extends Activity {
 //                    intent.putExtra("questionPattern", diffList.get(diffListIndex)[1]);
 //                    intent.putExtra("userPattern", diffList.get(diffListIndex)[2]);
 //                    startActivity(intent);
-                    usertext = queryText;
+                    usertext = originalText_right;
                     createDiffView(diffListIndex);
                 }
              });
@@ -714,7 +724,7 @@ public class ChatbotActivity extends Activity {
                                 }
                             })
 
-                            .setPositiveButton(getString(R.string.Read), new DialogInterface.OnClickListener() {
+                            .setPositiveButton(getString(R.string.CANCEL), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     try {
@@ -789,8 +799,22 @@ public class ChatbotActivity extends Activity {
         wrongTextView = diffView.findViewById(R.id.wrongTextView);
         wrongWord = diffView.findViewById(R.id.wrongWord);
         wrongWordScrollView = diffView.findViewById(R.id.wrongWordScrollView);
+        trans_correct = diffView.findViewById(R.id.trans_correct);
+        trans_speak = diffView.findViewById(R.id.trans_speak);
 
         answerTextView.setText(intentname);
+        answerTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TTS.speak(answerTextView.getText().toString());
+            }
+        });
+
+        if (intentname == ""){
+            trans_correct.setText("");
+        }else{
+            trans_correct();
+        }
 
         diffMatchPatch diff_matchPatch_obj = new diffMatchPatch();
         LinkedList<diffMatchPatch.Diff> diffListUser = diff_matchPatch_obj.diff_wordMode(usertext.replaceAll("[,|.|!|?|']", "").trim().replaceAll(" +", " ").toLowerCase(), intentname.replaceAll("[,|.|!|?|']", "").trim().replaceAll(" +", " ").toLowerCase());
@@ -818,6 +842,7 @@ public class ChatbotActivity extends Activity {
             }
         });
         userTextView.setText(recorrect_response);
+        trans_speak();
 
         GetDiffWords getDiffWords = new GetDiffWords();
         final String[] words = new String[100];
@@ -1008,7 +1033,7 @@ public class ChatbotActivity extends Activity {
         }, 1000);
     }
 
-private void trans(){
+    private void trans(){
     TranslateAPI translateAPI = new TranslateAPI(
             Language.AUTO_DETECT,
             Language.CHINESE_TRADITIONAL,
@@ -1028,7 +1053,47 @@ private void trans(){
 
         }
     });
-}
+    }
+
+    private void trans_correct(){
+        TranslateAPI translateAPI = new TranslateAPI(
+                Language.AUTO_DETECT,
+                Language.CHINESE_TRADITIONAL,intentname
+
+        );
+        translateAPI.setTranslateListener(new TranslateAPI.TranslateListener() {
+            @Override
+            public void onSuccess(String s) {
+                trans_correct.setText(s);
+            }
+
+            @Override
+            public void onFailure(String s) {
+
+            }
+        });
+    }
+
+    private void trans_speak(){
+        TranslateAPI translateAPI = new TranslateAPI(
+                Language.AUTO_DETECT,
+                Language.CHINESE_TRADITIONAL,usertext
+
+        );
+        translateAPI.setTranslateListener(new TranslateAPI.TranslateListener() {
+            @Override
+            public void onSuccess(String s) {
+                trans_speak.setText(s);
+            }
+
+            @Override
+            public void onFailure(String s) {
+
+            }
+        });
+    }
+
+
 
 
 

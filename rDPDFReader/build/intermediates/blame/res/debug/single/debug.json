@@ -376,6 +376,10 @@
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\layout\\activity_edit_drama.xml"
     },
     {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_add.png.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable-ldpi\\add.png"
+    },
+    {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_background_left_selector.xml.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable-mdpi\\background_left_selector.xml"
     },
@@ -502,6 +506,10 @@
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_folder.png.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\folder.png"
+    },
+    {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_cancel.png.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable-ldpi\\cancel.png"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_sound_accuracy.png.flat",

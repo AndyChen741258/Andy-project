@@ -16,7 +16,7 @@
     <string name="translation">\nTranslation</string>
     <string name="detail_dialog_translating">Please wait. Translating...</string>
     <string name="Listen">Listen</string>
-    <string name="Read">Read</string>
+    <string name="CANCEL">CANCEL</string>
     <string name="answer_diff_title">Correct answer</string>
     <string name="user_diff_title">Your answer</string>
     <string name="wrong_word_title">Wrong words</string>

@@ -6,97 +6,255 @@
     android:layout_height="match_parent"
     tools:context="com.naer.pdfreader.CreatDrama">
 
-    <ImageView
-        android:id="@+id/drama1"
-        android:layout_width="440dp"
-        android:layout_height="330dp"
-        android:layout_marginLeft="160dp"
-        android:layout_marginTop="120dp"
-        app:srcCompat="@android:color/transparent" />
-
-    <ImageView
-        android:id="@+id/drama2"
-        android:layout_width="440dp"
-        android:layout_height="330dp"
-        android:layout_toEndOf="@id/drama1"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="120dp"
-        app:srcCompat="@android:color/transparent" />
-
-    <ImageView
-        android:id="@+id/drama3"
-        android:layout_width="440dp"
-        android:layout_height="330dp"
-        android:layout_marginLeft="160dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/drama1"
-        app:srcCompat="@android:color/transparent" />
-
-    <ImageView
-        android:id="@+id/drama4"
-        android:layout_width="440dp"
-        android:layout_height="330dp"
-        android:layout_below="@id/drama2"
-        android:layout_toEndOf="@id/drama3"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="10dp"
-        app:srcCompat="@android:color/transparent" />
-
-
     <Spinner
         android:id="@+id/dramanumber"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="50dp"/>
-
-    <Button
-        android:id="@+id/creat1"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="120dp"
-        android:text="1" />
-
-    <Button
-        android:id="@+id/creat2"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_toEndOf="@id/drama1"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="120dp"
-        android:text="2" />
-
-    <Button
-        android:id="@+id/creat3"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/drama1"
-        android:text="3" />
-
-    <Button
-        android:id="@+id/creat4"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_toEndOf="@id/drama3"
-        android:layout_below="@id/drama2"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="10dp"
-        android:text="4" />
+        android:layout_marginTop="50dp" />
 
     <Button
         android:id="@+id/finish_and_return"
         android:layout_width="150dp"
         android:layout_height="70dp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="40dp"
         android:layout_marginTop="30dp"
-        android:drawableLeft="@drawable/save4"
-        android:paddingTop="5dp"
-        android:paddingLeft="15dp"
+        android:layout_marginRight="40dp"
         android:background="@drawable/save_drama_btn"
+        android:drawableLeft="@drawable/save4"
+        android:paddingLeft="15dp"
+        android:paddingTop="5dp"
         android:text="儲存劇本" />
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="750dp"
+        android:layout_marginTop="650dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/cancel" />
+
+    <ScrollView
+        android:layout_width="899dp"
+        android:layout_height="628dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="90dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/creat1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="10dp"
+                    android:text="1" />
+
+                <ImageView
+                    android:id="@+id/drama1"
+                    android:layout_width="400dp"
+                    android:layout_height="300dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    app:srcCompat="@android:color/transparent" />
+
+                <Button
+                    android:id="@+id/creat2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginTop="10dp"
+                    android:text="2" />
+
+                <ImageView
+                    android:id="@+id/drama2"
+                    android:layout_width="400dp"
+                    android:layout_height="300dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    app:srcCompat="@android:color/transparent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/creat3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="10dp"
+                    android:text="3" />
+
+                <ImageView
+                    android:id="@+id/drama3"
+                    android:layout_width="400dp"
+                    android:layout_height="300dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    app:srcCompat="@android:color/transparent" />
+
+                <Button
+                    android:id="@+id/creat4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginTop="10dp"
+                    android:text="4" />
+
+                <ImageView
+                    android:id="@+id/drama4"
+                    android:layout_width="400dp"
+                    android:layout_height="300dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    app:srcCompat="@android:color/transparent" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/creat5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="10dp"
+                    android:visibility="invisible"
+                    android:text="5" />
+
+                <ImageView
+                    android:id="@+id/drama5"
+                    android:layout_width="400dp"
+                    android:layout_height="300dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="0dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@android:color/transparent" />
+
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginStart="170dp"
+                    android:layout_marginTop="50dp"
+                    android:background="@drawable/add"
+                    />
+
+                <Button
+                    android:id="@+id/creat6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="570dp"
+                    android:layout_marginTop="10dp"
+                    android:visibility="invisible"
+                    android:text="6" />
+
+                <ImageView
+                    android:id="@+id/drama6"
+                    android:layout_width="400dp"
+                    android:layout_height="300dp"
+                    android:layout_marginLeft="650dp"
+                    android:layout_marginTop="0dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@android:color/transparent" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginStart="750dp"
+                    android:layout_marginTop="50dp"
+                    android:visibility="invisible"
+                    android:background="@drawable/add" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/creat7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="10dp"
+                    android:visibility="invisible"
+                    android:text="7" />
+
+                <ImageView
+                    android:id="@+id/drama7"
+                    android:layout_width="400dp"
+                    android:layout_height="300dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="0dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@android:color/transparent" />
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginStart="170dp"
+                    android:layout_marginTop="50dp"
+                    android:visibility="invisible"
+                    android:background="@drawable/add" />
+
+                <Button
+                    android:id="@+id/creat8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="570dp"
+                    android:layout_marginTop="10dp"
+                    android:visibility="invisible"
+                    android:text="8" />
+
+                <ImageView
+                    android:id="@+id/drama8"
+                    android:layout_width="400dp"
+                    android:layout_height="300dp"
+                    android:layout_marginLeft="650dp"
+                    android:layout_marginTop="0dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@android:color/transparent" />
+
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginStart="750dp"
+                    android:layout_marginTop="50dp"
+                    android:visibility="invisible"
+                    android:background="@drawable/add" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

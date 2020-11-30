@@ -29,6 +29,21 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Translate Correct"
+            android:paddingTop="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/trans_correct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/user_diff_title"
             android:paddingTop="10dp"
             android:textColor="@color/colorPrimaryDark"
@@ -40,6 +55,21 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="TextView"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Translate You Speak"
+            android:paddingTop="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/trans_speak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
             android:textSize="22sp" />
 
         <TextView
