@@ -1739,6 +1739,7 @@ drawable mtrl_tabs_default_indicator
 drawable mydata
 drawable navigation_empty_icon
 drawable next
+drawable noimage
 drawable noimage2
 drawable notification_action_background
 drawable notification_bg
@@ -1918,6 +1919,7 @@ id btn_4444
 id btn_565
 id btn_Conform
 id btn_GonekeyboardMessage
+id btn_Notify
 id btn_about
 id btn_annot
 id btn_annot_ink
@@ -1954,6 +1956,8 @@ id btn_seedrama
 id btn_select
 id btn_send
 id btn_show
+id btn_start
+id btn_stop
 id btn_talkMessage
 id btn_view
 id btn_voice

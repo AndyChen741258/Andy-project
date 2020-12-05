@@ -1,17 +1,26 @@
 package com.naer.pdfreader;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
 import android.os.StrictMode;
 import android.speech.RecognitionListener;
@@ -88,6 +97,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -105,8 +115,9 @@ import pl.droidsonroids.gif.GifImageView;
 import static com.naer.pdfreader.DialogActivity.LOCATION_UPDATE_MIN_DISTANCE;
 import static com.naer.pdfreader.DialogActivity.LOCATION_UPDATE_MIN_TIME;
 
-public class ChatbotActivity extends Activity {
+public class ChatbotActivity<MyBinder> extends Activity {
 
+    private static final String LOG_TAG ="";
     private ChatbotActivity context;
     private PopupWindow popupWindow = null;
     private Button btnConfirm, btnShow;
@@ -177,18 +188,24 @@ public class ChatbotActivity extends Activity {
     private LocationManager mLocationManager;
 
 
+
+
+
     private Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
             if (msg.what == 0x001) {
                 gps_view.setText(loc_msg);
+
             }
             return false;
         }
     });
 
+
     private LocationListener mLocationListener = new LocationListener() {
 
+        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void onLocationChanged(Location location) {
             updateShow(location);
@@ -248,8 +265,17 @@ public class ChatbotActivity extends Activity {
     private Translate translate;
     private String translatedText;
     private String trn_originalText;
+    private String[] anwerTextArray;
+    private Button btn_start;
+    private Button btn_stop;
+    private Button btn_Notify;
+    private long[] vibrate= {0,100,200,300};
+    private NotificationChannel chnnel;
+    private NotificationManager mNotificationManager;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @SuppressLint("ServiceCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -277,6 +303,8 @@ public class ChatbotActivity extends Activity {
         dialogspeak_text = findViewById(R.id.dialogspeak_text);
         loading = findViewById(R.id.loading);
         btn_voice = findViewById(R.id.btn_voice);
+        btn_start = findViewById(R.id.btn_start);
+        btn_stop = findViewById(R.id.btn_stop);
 
         // init speechRecognizer
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
@@ -304,6 +332,16 @@ public class ChatbotActivity extends Activity {
         textParam.setMargins(0, 0, 0, 15);
 
         locationUpdate();
+
+        mNotificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        chnnel=new  NotificationChannel("ID","notification_text_a",NotificationManager.IMPORTANCE_HIGH);
+        mNotificationManager.createNotificationChannel(chnnel);
+
+        
+        btn_Notify = findViewById(R.id.btn_Notify);
+
+
+
 
 
 
@@ -378,7 +416,30 @@ public class ChatbotActivity extends Activity {
             }
         });
 
+        btn_Notify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                PendingIntent  PI = PendingIntent.getActivity(context,0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
+
+                Notification.Builder builder = new Notification.Builder(context);
+                builder.setSmallIcon(R.drawable.ic_launcher)
+                        .setChannelId("ID")
+                        .setContentTitle("位置更換")
+                        .setContentText("您現在位置是:"+PlaceName.getText().toString())
+                        .setContentIntent(PI);
+
+                Notification notification = builder.build();
+                mNotificationManager.notify(0,notification);
+
+            }
+        });
+
     }
+
+
 
 
 //    public void random() {
@@ -410,6 +471,7 @@ public class ChatbotActivity extends Activity {
 //
 //
 //    }
+
 
 
     public View.OnClickListener listener = new View.OnClickListener() {
@@ -803,6 +865,8 @@ public class ChatbotActivity extends Activity {
         trans_speak = diffView.findViewById(R.id.trans_speak);
 
         answerTextView.setText(intentname);
+        anwerTextArray = answerTextView.getText().toString().replace(",","").replace(".","").split("\\s+");
+        Log.v("wordss:",Arrays.toString(anwerTextArray));
         answerTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -847,10 +911,10 @@ public class ChatbotActivity extends Activity {
         GetDiffWords getDiffWords = new GetDiffWords();
         final String[] words = new String[100];
         getDiffWords.getInsert(htmlDiff, words);
-        for (int i = 0; i < words.length; i++) {
-            if (words[i] == null || words[i] == "") {
-                break;
-            }
+        for (int i = 0; i < anwerTextArray.length; i++) {
+//            if (words[i] == null || words[i] == "") {
+//                break;
+//            }
 //            wrongWordScrollView.removeAllViews();
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.setOrientation(LinearLayout.HORIZONTAL);
@@ -859,12 +923,12 @@ public class ChatbotActivity extends Activity {
             TextView textView = new TextView(context);
             textView.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 9));
             textView.setTextSize(22);
-            textView.setText(words[i]);
+            textView.setText(anwerTextArray[i]);
             linearLayout.addView(textView);
             ImageButton imageButton = new ImageButton(context);
             imageButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_voice_selector));
             imageButton.setBackgroundColor(getResources().getColor(R.color.transparent));
-            imageButton.setOnClickListener(new TtsOnClickListener(words[i]));
+            imageButton.setOnClickListener(new TtsOnClickListener(anwerTextArray[i]));
             linearLayout.addView(imageButton);
             wrongWord.addView(linearLayout);
         }
@@ -937,6 +1001,7 @@ public class ChatbotActivity extends Activity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void CheckLocation(Double latitude, Double longitude) {
         //Place 裡面的資料是目前的位置
         Place place = new Place();
@@ -966,6 +1031,21 @@ public class ChatbotActivity extends Activity {
                     }, 5000);
                 }
                 PlaceName.setText((keyDatabase.Place));
+
+                Intent intent = new Intent(context,MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                PendingIntent  PI = PendingIntent.getActivity(context,0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
+
+                Notification.Builder builder = new Notification.Builder(context);
+                builder.setSmallIcon(R.drawable.ic_launcher)
+                        .setChannelId("ID")
+                        .setContentTitle("位置更換")
+                        .setContentText("您現在位置是:"+PlaceName.getText().toString())
+                        .setContentIntent(PI);
+
+                Notification notification = builder.build();
+                mNotificationManager.notify(0,notification);
 
                 //抓到PlaceName後，讀取相對應的資料塞進String陣列中，在Adapter進AutoCompleteTextview中
 //                fire_vocabulary.child(PlaceName.getText().toString()).child("sentence").addValueEventListener(new ValueEventListener() {
@@ -998,6 +1078,7 @@ public class ChatbotActivity extends Activity {
             sb.append("現在位置:\n");
             sb.append("經度:" + location.getLongitude() + "\n");
             sb.append("緯度:" + location.getLatitude() + "\n");
+
             loc_msg = sb.toString();
         } else loc_msg = "";
             handler.sendEmptyMessage(0x001);

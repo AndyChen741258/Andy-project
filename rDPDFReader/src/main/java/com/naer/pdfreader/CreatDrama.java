@@ -7,6 +7,10 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -17,6 +21,7 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -46,12 +51,14 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.FileNotFoundException;
+import java.security.Key;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static com.naer.pdfreader.DialogActivity.TAG;
 
 public class CreatDrama extends Activity {
+    private static int i;
     //創作劇本四格畫面
     private Spinner dramanumber;  //劇本編號
     public static ImageView drama1; //創作第一格照片
@@ -62,18 +69,18 @@ public class CreatDrama extends Activity {
     public static ImageView drama6;
     public static ImageView drama7;
     public static ImageView drama8;
-    private Button creat1;
-    private Button creat2;
-    private Button creat3;
-    private Button creat4;
-    private Button creat5;
-    private Button creat6;
-    private Button creat7;
-    private Button creat8;
-    private Button button1;
-    private Button button2;
-    private Button button3;
-    private Button button4;
+    private TextView creat1;
+    private TextView creat2;
+    private TextView creat3;
+    private TextView creat4;
+    private static TextView creat5;
+    private static TextView creat6;
+    private static TextView creat7;
+    private static TextView creat8;
+    private static Button button1;
+    private static Button button2;
+    private static Button button3;
+    private static Button button4;
     private Button cancel;
     private Button finish_and_return;
     private int scoreview;
@@ -102,12 +109,14 @@ public class CreatDrama extends Activity {
 //    private String b ="";
 
     public static boolean cantoload = false;
+    private View view;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);//隱藏標題列
+        this.getWindow().setFlags(0x80000000,0x80000000);
         setContentView(R.layout.activity_creat_drama);
 
 
@@ -135,10 +144,7 @@ public class CreatDrama extends Activity {
         cancel = findViewById(R.id.cancel);
         finish_and_return = findViewById(R.id.finish_and_return);
 
-        drama1.setVisibility(INVISIBLE);
-        drama2.setVisibility(INVISIBLE);
-        drama3.setVisibility(INVISIBLE);
-        drama4.setVisibility(INVISIBLE);
+
 
         button1.setOnClickListener(new View.OnClickListener() {
 
@@ -146,6 +152,7 @@ public class CreatDrama extends Activity {
             public void onClick(View v) {
                 creat5.setVisibility(VISIBLE);
                 button2.setVisibility(VISIBLE);
+                drama5.setVisibility(VISIBLE);
                 button1.setVisibility(INVISIBLE);
                 scoreview=1;
 
@@ -157,6 +164,7 @@ public class CreatDrama extends Activity {
             public void onClick(View v) {
                 creat6.setVisibility(VISIBLE);
                 button3.setVisibility(VISIBLE);
+                drama6.setVisibility(VISIBLE);
                 button2.setVisibility(INVISIBLE);
                 scoreview=2;
             }
@@ -167,6 +175,7 @@ public class CreatDrama extends Activity {
             public void onClick(View v) {
                 creat7.setVisibility(VISIBLE);
                 button4.setVisibility(VISIBLE);
+                drama7.setVisibility(VISIBLE);
                 button3.setVisibility(INVISIBLE);
                 scoreview=3;
             }
@@ -176,41 +185,42 @@ public class CreatDrama extends Activity {
             @Override
             public void onClick(View v) {
                 creat8.setVisibility(VISIBLE);
+                drama8.setVisibility(VISIBLE);
                 button4.setVisibility(INVISIBLE);
                 scoreview=4;
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                switch (scoreview){
-                    case 4:
-                        creat8.setVisibility(INVISIBLE);
-                        button4.setVisibility(VISIBLE);
-                        scoreview=3;
-                        break;
-                    case 3:
-                        creat7.setVisibility(INVISIBLE);
-                        button4.setVisibility(INVISIBLE);
-                        button3.setVisibility(VISIBLE);
-                        scoreview=2;
-                        break;
-                    case 2:
-                        creat6.setVisibility(INVISIBLE);
-                        button3.setVisibility(INVISIBLE);
-                        button2.setVisibility(VISIBLE);
-                        scoreview=1;
-                        break;
-                    case 1:
-                        creat5.setVisibility(INVISIBLE);
-                        button2.setVisibility(INVISIBLE);
-                        button1.setVisibility(VISIBLE);
-                        break;
-                }
-            }
-        });
+//        cancel.setOnClickListener(new View.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View v) {
+//                switch (scoreview){
+//                    case 4:
+//                        creat8.setVisibility(INVISIBLE);
+//                        button4.setVisibility(VISIBLE);
+//                        scoreview=3;
+//                        break;
+//                    case 3:
+//                        creat7.setVisibility(INVISIBLE);
+//                        button4.setVisibility(INVISIBLE);
+//                        button3.setVisibility(VISIBLE);
+//                        scoreview=2;
+//                        break;
+//                    case 2:
+//                        creat6.setVisibility(INVISIBLE);
+//                        button3.setVisibility(INVISIBLE);
+//                        button2.setVisibility(VISIBLE);
+//                        scoreview=1;
+//                        break;
+//                    case 1:
+//                        creat5.setVisibility(INVISIBLE);
+//                        button2.setVisibility(INVISIBLE);
+//                        button1.setVisibility(VISIBLE);
+//                        break;
+//                }
+//            }
+//        });
 
 
 
@@ -238,6 +248,28 @@ public class CreatDrama extends Activity {
             }
         });
 
+
+//        switch (i){
+//            case 4:
+//                drama5.setVisibility(INVISIBLE);
+//                drama6.setVisibility(INVISIBLE);
+//                drama7.setVisibility(INVISIBLE);
+//                drama8.setVisibility(INVISIBLE);
+//                break;
+//            case 5:
+//                drama6.setVisibility(INVISIBLE);
+//                drama7.setVisibility(INVISIBLE);
+//                drama8.setVisibility(INVISIBLE);
+//                break;
+//            case 6:
+//                drama7.setVisibility(INVISIBLE);
+//                drama8.setVisibility(INVISIBLE);
+//                break;
+//            case 7:
+//                drama8.setVisibility(INVISIBLE);
+//                break;
+//        }
+
 //        drama1.setOnClickListener(re_edit1);
 //        drama2.setOnClickListener(re_edit2);
 //        drama3.setOnClickListener(re_edit3);
@@ -245,7 +277,7 @@ public class CreatDrama extends Activity {
 
 
         //--------按下編輯1234 Button後進入拍照或是選擇照片模式----------
-        creat1.setOnClickListener(new View.OnClickListener() {
+        drama1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!TextUtils.equals("請選擇", spinner_drame_word)){
@@ -267,7 +299,8 @@ public class CreatDrama extends Activity {
             }
         });
 
-        creat2.setOnClickListener(new View.OnClickListener() {
+
+        drama2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!TextUtils.equals("請選擇", spinner_drame_word)){
@@ -288,7 +321,7 @@ public class CreatDrama extends Activity {
             }
         });
 
-        creat3.setOnClickListener(new View.OnClickListener() {
+        drama3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!TextUtils.equals("請選擇", spinner_drame_word)){
@@ -309,7 +342,7 @@ public class CreatDrama extends Activity {
             }
         });
 
-        creat4.setOnClickListener(new View.OnClickListener() {
+        drama4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!TextUtils.equals("請選擇", spinner_drame_word)){
@@ -330,7 +363,7 @@ public class CreatDrama extends Activity {
             }
         });
 
-        creat5.setOnClickListener(new View.OnClickListener() {
+        drama5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!TextUtils.equals("請選擇", spinner_drame_word)){
@@ -351,7 +384,37 @@ public class CreatDrama extends Activity {
             }
         });
 
-        creat6.setOnClickListener(new View.OnClickListener() {
+        drama5.setOnLongClickListener(new View.OnLongClickListener()
+        {
+            @Override
+            public boolean onLongClick(View v)
+            {
+                Toast.makeText(CreatDrama.this, "按下長按鈕", Toast.LENGTH_LONG).show();
+                new AlertDialog.Builder(CreatDrama.this)
+                        .setIcon(R.drawable.ic_launcher)
+                        .setTitle("隱藏情境5")
+                        .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                drama5.setVisibility(INVISIBLE);
+                                creat5.setVisibility(VISIBLE);
+                                creat6.setVisibility(INVISIBLE);
+                                creat7.setVisibility(INVISIBLE);
+                                creat8.setVisibility(INVISIBLE);
+                                button1.setVisibility(VISIBLE);
+                                button2.setVisibility(INVISIBLE);
+                                button3.setVisibility(INVISIBLE);
+                                button4.setVisibility(INVISIBLE);
+                            }
+                        })
+                        .setNegativeButton("取消",null).create()
+                        .show();
+                return true;
+            }
+        });
+
+
+        drama6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!TextUtils.equals("請選擇", spinner_drame_word)){
@@ -372,7 +435,36 @@ public class CreatDrama extends Activity {
             }
         });
 
-        creat7.setOnClickListener(new View.OnClickListener() {
+        drama6.setOnLongClickListener(new View.OnLongClickListener()
+        {
+            @Override
+            public boolean onLongClick(View v)
+            {
+                Toast.makeText(CreatDrama.this, "按下長按鈕", Toast.LENGTH_LONG).show();
+                new AlertDialog.Builder(CreatDrama.this)
+                        .setIcon(R.drawable.ic_launcher)
+                        .setTitle("隱藏情境6")
+                        .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                drama6.setVisibility(INVISIBLE);
+                                creat5.setVisibility(VISIBLE);
+                                creat6.setVisibility(VISIBLE);
+                                creat7.setVisibility(INVISIBLE);
+                                creat8.setVisibility(INVISIBLE);
+                                button1.setVisibility(INVISIBLE);
+                                button2.setVisibility(VISIBLE);
+                                button3.setVisibility(INVISIBLE);
+                                button4.setVisibility(INVISIBLE);
+                            }
+                        })
+                        .setNegativeButton("取消",null).create()
+                        .show();
+                return true;
+            }
+        });
+
+        drama7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!TextUtils.equals("請選擇", spinner_drame_word)){
@@ -393,7 +485,36 @@ public class CreatDrama extends Activity {
             }
         });
 
-        creat8.setOnClickListener(new View.OnClickListener() {
+        drama7.setOnLongClickListener(new View.OnLongClickListener()
+        {
+            @Override
+            public boolean onLongClick(View v)
+            {
+                Toast.makeText(CreatDrama.this, "按下長按鈕", Toast.LENGTH_LONG).show();
+                new AlertDialog.Builder(CreatDrama.this)
+                        .setIcon(R.drawable.ic_launcher)
+                        .setTitle("隱藏情境7")
+                        .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                drama7.setVisibility(INVISIBLE);
+                                creat5.setVisibility(VISIBLE);
+                                creat6.setVisibility(VISIBLE);
+                                creat7.setVisibility(VISIBLE);
+                                creat8.setVisibility(INVISIBLE);
+                                button1.setVisibility(INVISIBLE);
+                                button2.setVisibility(INVISIBLE);
+                                button3.setVisibility(VISIBLE);
+                                button4.setVisibility(INVISIBLE);
+                            }
+                        })
+                        .setNegativeButton("取消",null).create()
+                        .show();
+                return true;
+            }
+        });
+
+        drama8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!TextUtils.equals("請選擇", spinner_drame_word)){
@@ -414,6 +535,35 @@ public class CreatDrama extends Activity {
             }
         });
 
+        drama8.setOnLongClickListener(new View.OnLongClickListener()
+        {
+            @Override
+            public boolean onLongClick(View v)
+            {
+                Toast.makeText(CreatDrama.this, "按下長按鈕", Toast.LENGTH_LONG).show();
+                new AlertDialog.Builder(CreatDrama.this)
+                        .setIcon(R.drawable.ic_launcher)
+                        .setTitle("隱藏情境8")
+                        .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                drama8.setVisibility(INVISIBLE);
+                                creat5.setVisibility(VISIBLE);
+                                creat6.setVisibility(VISIBLE);
+                                creat7.setVisibility(VISIBLE);
+                                creat8.setVisibility(VISIBLE);
+                                button1.setVisibility(INVISIBLE);
+                                button2.setVisibility(INVISIBLE);
+                                button3.setVisibility(INVISIBLE);
+                                button4.setVisibility(VISIBLE);
+                            }
+                        })
+                        .setNegativeButton("取消",null).create()
+                        .show();
+                return true;
+            }
+        });
+
 
 
         finish_and_return.setOnClickListener(new View.OnClickListener() {
@@ -431,8 +581,36 @@ public class CreatDrama extends Activity {
         });
 
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode,KeyEvent event){
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            Toast.makeText(CreatDrama.this,"back",Toast.LENGTH_SHORT).show();
+            new AlertDialog.Builder(CreatDrama.this)
+                    .setIcon(R.drawable.ic_launcher)
+                    .setTitle("確認退出")
+                    .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            fire_final_four_frame = FirebaseStorage.getInstance().getReference().child(Student.Name).child("/Four-frame/").child(spinner_drame_word);
+                            try {
+                                Uri uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), getBitmap(view), null,null));
+                                fire_final_four_frame.putFile(uri);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            CreatDrama.this.finish();
+                        }
+                    })
+                    .setNegativeButton("取消",null).create()
+                    .show();
+            return true;
+        }
+        return super.onKeyDown(keyCode,event);
 
     }
+
 
     //--------CropImage剪裁圖片--------
     private void BringImagePicker() {
@@ -500,6 +678,7 @@ public class CreatDrama extends Activity {
 
 
     }
+
 
     //---------------重新編輯狀態導入------------------
     //第1格照片重新編輯
@@ -592,6 +771,72 @@ public class CreatDrama extends Activity {
     public static void ccc(){
         DatabaseReference fire_check_edit_exist;
         fire_check_edit_exist = FirebaseDatabase.getInstance().getReference();
+
+        fire_check_edit_exist.child("學生"+Student.Name+"號").child(spinner_drame_word).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                double[] sssttt = new double[(int) dataSnapshot.getChildrenCount()];
+                 i = sssttt.length;
+                 Log.v("COUNT", String.valueOf(i));
+                switch (i){
+                    case 4:
+                        drama5.setVisibility(INVISIBLE);
+                        drama6.setVisibility(INVISIBLE);
+                        drama7.setVisibility(INVISIBLE);
+                        drama8.setVisibility(INVISIBLE);
+                        creat5.setVisibility(VISIBLE);
+                        creat6.setVisibility(INVISIBLE);
+                        creat7.setVisibility(INVISIBLE);
+                        creat8.setVisibility(INVISIBLE);
+                        button1.setVisibility(VISIBLE);
+                        button2.setVisibility(INVISIBLE);
+                        button3.setVisibility(INVISIBLE);
+                        button4.setVisibility(INVISIBLE);
+                        break;
+                    case 5:
+                        drama6.setVisibility(INVISIBLE);
+                        drama7.setVisibility(INVISIBLE);
+                        drama8.setVisibility(INVISIBLE);
+                        creat5.setVisibility(VISIBLE);
+                        creat6.setVisibility(VISIBLE);
+                        creat7.setVisibility(INVISIBLE);
+                        creat8.setVisibility(INVISIBLE);
+                        button1.setVisibility(INVISIBLE);
+                        button2.setVisibility(VISIBLE);
+                        button3.setVisibility(INVISIBLE);
+                        button4.setVisibility(INVISIBLE);
+                        break;
+                    case 6:
+                        drama7.setVisibility(INVISIBLE);
+                        drama8.setVisibility(INVISIBLE);
+                        creat5.setVisibility(VISIBLE);
+                        creat6.setVisibility(VISIBLE);
+                        creat7.setVisibility(VISIBLE);
+                        creat8.setVisibility(INVISIBLE);
+                        button1.setVisibility(INVISIBLE);
+                        button2.setVisibility(INVISIBLE);
+                        button3.setVisibility(VISIBLE);
+                        button4.setVisibility(INVISIBLE);
+                        break;
+                    case 7:
+                        drama8.setVisibility(INVISIBLE);
+                        creat5.setVisibility(VISIBLE);
+                        creat6.setVisibility(VISIBLE);
+                        creat7.setVisibility(VISIBLE);
+                        creat8.setVisibility(VISIBLE);
+                        button1.setVisibility(INVISIBLE);
+                        button2.setVisibility(INVISIBLE);
+                        button3.setVisibility(INVISIBLE);
+                        button4.setVisibility(VISIBLE);
+                        break;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         fire_check_edit_exist.child("學生"+Student.Name+"號").child(spinner_drame_word).child("1").addValueEventListener(new ValueEventListener() {
             @Override

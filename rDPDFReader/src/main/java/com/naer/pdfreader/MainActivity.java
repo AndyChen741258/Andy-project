@@ -5,9 +5,14 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.media.RingtoneManager;
 import android.media.projection.MediaProjectionManager;
 import android.net.Uri;
 import android.os.Build;
@@ -116,6 +121,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		//plz set this line to Activity in AndroidManifes.xml:
 		//    android:configChanges="orientation|keyboardHidden|screenSize"
 		//otherwise, APP shall destroy this Activity and re-create a new Activity when rotate.
