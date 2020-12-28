@@ -52,6 +52,9 @@ animator mtrl_fab_show_motion_spec
 animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
 animator scale_with_alpha
+array switch_country
+array switch_tabs
+array switch_yn
 attr actionBarDivider
 attr actionBarItemBackground
 attr actionBarPopupTheme
@@ -330,6 +333,7 @@ attr delay_time
 attr dialogCornerRadius
 attr dialogPreferredPadding
 attr dialogTheme
+attr disableColor
 attr displayOptions
 attr divider
 attr dividerHorizontal
@@ -723,6 +727,8 @@ attr searchViewStyle
 attr seekBarStyle
 attr selectableItemBackground
 attr selectableItemBackgroundBorderless
+attr selectedColor
+attr selectedTab
 attr selectionRequired
 attr shapeAppearance
 attr shapeAppearanceLargeComponent
@@ -768,6 +774,7 @@ attr statusBarBackground
 attr statusBarForeground
 attr statusBarScrim
 attr strokeColor
+attr strokeRadius
 attr strokeWidth
 attr subMenuArrow
 attr submitBackground
@@ -782,6 +789,7 @@ attr suggestionRowLayout
 attr switchMinWidth
 attr switchPadding
 attr switchStyle
+attr switchTabs
 attr switchTextAppearance
 attr tabBackground
 attr tabContentStart
@@ -838,6 +846,7 @@ attr textEndPadding
 attr textInputLayoutFocusedRectEnabled
 attr textInputStyle
 attr textLocale
+attr textSize
 attr textStartPadding
 attr theme
 attr themeLineHeight
@@ -887,6 +896,7 @@ attr trackTint
 attr trackTintMode
 attr transitionShapeAppearance
 attr ttcIndex
+attr typeface
 attr uiCompass
 attr uiMapToolbar
 attr uiRotateGestures
@@ -1956,8 +1966,6 @@ id btn_seedrama
 id btn_select
 id btn_send
 id btn_show
-id btn_start
-id btn_stop
 id btn_talkMessage
 id btn_view
 id btn_voice
@@ -1979,6 +1987,7 @@ id buttonClear
 id buttonClick
 id buttonPanel
 id buttonSend
+id c_say
 id camera_preview
 id cancel
 id cancel_action
@@ -2002,6 +2011,7 @@ id check_voice_a
 id check_voice_b
 id checkbox
 id checked
+id chinese
 id chip
 id chip1
 id chip2
@@ -2043,6 +2053,7 @@ id curl_view
 id custom
 id customPanel
 id cut
+id d_say
 id dark
 id data_list
 id date_picker_actions
@@ -2096,6 +2107,8 @@ id dropdown_menu
 id editName
 id editText1
 id editText2
+id editText3
+id editText4
 id edit_query
 id editimage
 id end
@@ -2185,6 +2198,7 @@ id listen_ttstts
 id listview
 id listview_hint
 id loading
+id loadingPane
 id loadingPanel
 id mapView
 id marquee
@@ -2243,6 +2257,10 @@ id on
 id onTouch
 id opclbut
 id opphbut
+id option_1
+id option_2
+id option_3
+id option_4
 id order1
 id outline
 id oval
@@ -2270,6 +2288,8 @@ id place_tittle
 id placechatbot
 id playplayer1
 id playplayer2
+id playplayer3
+id playplayer4
 id practice_character
 id practice_drama_num
 id practice_drama_stu
@@ -2289,6 +2309,8 @@ id radio
 id re_dialogButton
 id recordplayer1
 id recordplayer2
+id recordplayer3
+id recordplayer4
 id recordvoice
 id rectangle
 id recycle_view
@@ -2312,6 +2334,10 @@ id savedescribe
 id savephbutton
 id say1
 id say2
+id say3
+id say4
+id say5
+id say6
 id scale
 id screen
 id scroll
@@ -2349,6 +2375,8 @@ id showTitle
 id show_message
 id show_time1
 id show_time2
+id show_time3
+id show_time4
 id showdescribescore
 id skipCollapsed
 id slide
@@ -2373,12 +2401,15 @@ id start
 id status_bar_latest_event_content
 id stopplayer1
 id stopplayer2
+id stopplayer3
+id stopplayer4
 id stretch
 id student_question
 id studentdescribe
 id submenuarrow
 id submit_area
 id surfaceView1
+id switchmultibutton
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -2459,6 +2490,7 @@ id topPanel
 id touch_outside
 id trans_correct
 id trans_speak
+id trans_speak_left
 id transition_current_scene
 id transition_layout_save
 id transition_position
@@ -2479,6 +2511,7 @@ id up
 id uptime
 id useLogo
 id userTextView
+id userTextView_left
 id usernameMessage
 id view_dual
 id view_offset_helper
@@ -2499,8 +2532,11 @@ id withinBounds
 id wrap
 id wrap_content
 id wrongTextView
+id wrongTextView_left
 id wrongWord
 id wrongWordScrollView
+id wrongWordScrollView_left
+id wrongWord_left
 id youspeak_text
 id youspeak_text2
 id youspeak_text3
@@ -2574,6 +2610,7 @@ layout activity_creat_drama
 layout activity_describe
 layout activity_dialog
 layout activity_diff
+layout activity_diff_left
 layout activity_drama_achievement
 layout activity_drama_recycle_view
 layout activity_edit_drama
@@ -2594,6 +2631,8 @@ layout bar_seek
 layout big_picture
 layout builddrama
 layout builddrama2
+layout builddrama3
+layout builddrama4
 layout cardview
 layout chat_item_left
 layout chat_item_right
@@ -2693,6 +2732,7 @@ layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
 menu crop_image_menu
+menu example_menu
 mipmap correction_icon
 mipmap good_icon
 mipmap ic_action_send
@@ -2871,6 +2911,7 @@ string status_bar_notification_info_overflow
 string title_activity_drama_recycle_view
 string title_activity_main2
 string translation
+string user_diff_left_title
 string user_diff_title
 string welcome
 string wrong_word_title
@@ -3678,6 +3719,7 @@ styleable StateListDrawable android_dither android_visible android_variablePaddi
 styleable StateListDrawableItem android_drawable
 styleable SwitchCompat android_textOn android_textOff android_thumb showText splitTrack switchMinWidth switchPadding switchTextAppearance thumbTextPadding thumbTint thumbTintMode track trackTint trackTintMode
 styleable SwitchMaterial useMaterialThemeColors
+styleable SwitchMultiButton disableColor selectedColor selectedTab strokeRadius strokeWidth switchTabs textSize typeface
 styleable TabItem android_icon android_layout android_text
 styleable TabLayout tabBackground tabContentStart tabGravity tabIconTint tabIconTintMode tabIndicator tabIndicatorAnimationDuration tabIndicatorColor tabIndicatorFullWidth tabIndicatorGravity tabIndicatorHeight tabInlineLabel tabMaxWidth tabMinWidth tabMode tabPadding tabPaddingBottom tabPaddingEnd tabPaddingStart tabPaddingTop tabRippleColor tabSelectedTextColor tabTextAppearance tabTextColor tabUnboundedRipple
 styleable TextAppearance android_textSize android_typeface android_textStyle android_textColor android_textColorHint android_textColorLink android_shadowColor android_shadowDx android_shadowDy android_shadowRadius android_fontFamily android_textFontWeight fontFamily fontVariationSettings textAllCaps textLocale

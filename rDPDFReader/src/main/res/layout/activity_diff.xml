@@ -23,7 +23,8 @@
             android:id="@+id/answerTextViewDiff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text=""
+            android:background="@drawable/textview_border"
             android:textSize="22sp" />
 
         <TextView
@@ -39,22 +40,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
+            android:background="@drawable/textview_border"
             android:textSize="22sp" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/user_diff_title"
-            android:paddingTop="10dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="18sp" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="228dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:text="@string/user_diff_title"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/chinese"
+                android:layout_width="228dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/userTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="TextView"
+            android:text=""
+            android:background="@drawable/textview_border"
             android:textSize="22sp" />
 
         <TextView
@@ -70,6 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
+            android:background="@drawable/textview_border"
             android:textSize="22sp" />
 
         <TextView
@@ -94,5 +112,6 @@
 
             </LinearLayout>
         </ScrollView>
+
     </LinearLayout>
 </RelativeLayout>

@@ -93,6 +93,7 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.11'
     implementation 'com.github.clans:fab:1.6.4'
+    compile 'lib.kingja.switchbutton:switchbutton:1.1.8'
 
     // Java V2
     implementation 'com.google.cloud:google-cloud-dialogflow:0.67.0-alpha'
@@ -105,6 +106,7 @@ dependencies {
         exclude group: 'org.json', module: 'json'
     }
     implementation 'com.github.iammannan:TranslateAPI:1.1'
+    implementation 'androidx.viewpager:viewpager:1.0.0'
     annotationProcessor 'com.google.cloud:google-cloud-translate:1.12.0'
 
 }

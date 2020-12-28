@@ -54,6 +54,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 
+import com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.api.gax.core.FixedCredentialsProvider;
@@ -95,6 +96,7 @@ import org.xml.sax.XMLReader;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -109,6 +111,7 @@ import java.lang.reflect.Field;
 
 import Firebase.GetDataFromFirebase;
 import Interface.IDataDownloadCompleted;
+import ai.api.util.StringUtils;
 import io.grpc.Metadata;
 import pl.droidsonroids.gif.GifImageView;
 
@@ -272,7 +275,14 @@ public class ChatbotActivity<MyBinder> extends Activity {
     private long[] vibrate= {0,100,200,300};
     private NotificationChannel chnnel;
     private NotificationManager mNotificationManager;
-
+    private TextView userTextView_left;
+    public static LinearLayout wrongWord_left;
+    private ScrollView wrongWordScrollView_left;
+    private TextView trans_speak_left;
+    private String[] anwerTextArray_left;
+    private String str2;
+    private TextView chinese;
+    private String trans_chinese2;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressLint("ServiceCast")
@@ -303,8 +313,6 @@ public class ChatbotActivity<MyBinder> extends Activity {
         dialogspeak_text = findViewById(R.id.dialogspeak_text);
         loading = findViewById(R.id.loading);
         btn_voice = findViewById(R.id.btn_voice);
-        btn_start = findViewById(R.id.btn_start);
-        btn_stop = findViewById(R.id.btn_stop);
 
         // init speechRecognizer
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
@@ -419,7 +427,7 @@ public class ChatbotActivity<MyBinder> extends Activity {
         btn_Notify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context,MainActivity.class);
+                Intent intent = new Intent(context,ChatbotActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 PendingIntent  PI = PendingIntent.getActivity(context,0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
@@ -535,6 +543,7 @@ public class ChatbotActivity<MyBinder> extends Activity {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "zh-TW");
         speechRecognizer.startListening(intent);
 //        }
     }
@@ -574,6 +583,7 @@ public class ChatbotActivity<MyBinder> extends Activity {
                 Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "zh-TW");
                 speechRecognizer.startListening(intent);
             }
             if (i == 7) {
@@ -730,6 +740,7 @@ public class ChatbotActivity<MyBinder> extends Activity {
             textView.setText(content);
             //textView.setText(text);
             textView.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onClick(View view) {
 //                    Intent intent = new Intent(FixedActivity.this, DiffActivity.class);
@@ -767,46 +778,47 @@ public class ChatbotActivity<MyBinder> extends Activity {
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(ChatbotActivity.this, R.style.AlertDialogStyle);
+//                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(ChatbotActivity.this, R.style.AlertDialogStyle);
                     trn_originalText = originalText;
-                    alertDialog.setTitle(getString(R.string.detail_dialog_title))
-                            .setIcon(R.mipmap.good_icon)
-                            .setMessage(getString(R.string.original) + ":\n" + originalText + "\n" + getString(R.string.translation) + ":\n" + getString(R.string.detail_dialog_translating))
-                            .setNegativeButton(getString(R.string.Listen), new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int i) {
-                                    try {
-                                        field = dialog.getClass().getSuperclass().getDeclaredField("mShowing");
-                                        field.setAccessible(true);
-                                        field.set(dialog, false);
-                                    } catch (NoSuchFieldException | IllegalAccessException e) {
-                                        e.printStackTrace();
-                                    }
-                                    TTS.speak(originalText);
-                                }
-                            })
+                    creatview_left();
+//                    alertDialog.setTitle(getString(R.string.detail_dialog_title))
+//                            .setIcon(R.mipmap.good_icon)
+//                            .setMessage(getString(R.string.original) + ":\n" + originalText + "\n" + getString(R.string.translation) + ":\n" + getString(R.string.detail_dialog_translating))
+//                            .setNegativeButton(getString(R.string.Listen), new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int i) {
+//                                    try {
+//                                        field = dialog.getClass().getSuperclass().getDeclaredField("mShowing");
+//                                        field.setAccessible(true);
+//                                        field.set(dialog, false);
+//                                    } catch (NoSuchFieldException | IllegalAccessException e) {
+//                                        e.printStackTrace();
+//                                    }
+//                                    TTS.speak(originalText);
+//                                }
+//                            })
 
-                            .setPositiveButton(getString(R.string.CANCEL), new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    try {
-                                        field = dialog.getClass().getSuperclass().getDeclaredField("mShowing");
-                                        field.setAccessible(true);
-                                        field.set(dialog, true);
-                                    } catch (NoSuchFieldException | IllegalAccessException e) {
-                                        e.printStackTrace();
-                                    }
-                                    alertDialogList = new ArrayList<AlertDialog>();
-                                }
-                            })
-                            .setMessage(getString(R.string.original) + ":\n" + originalText + "\n" + getString(R.string.translation) + ":\n" + translatedText)
+//                            .setPositiveButton(getString(R.string.CANCEL), new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    try {
+//                                        field = dialog.getClass().getSuperclass().getDeclaredField("mShowing");
+//                                        field.setAccessible(true);
+//                                        field.set(dialog, true);
+//                                    } catch (NoSuchFieldException | IllegalAccessException e) {
+//                                        e.printStackTrace();
+//                                    }
+//                                    alertDialogList = new ArrayList<AlertDialog>();
+//                                }
+//                            })
+//                            .setMessage(getString(R.string.original) + ":\n" + originalText + "\n" + getString(R.string.translation) + ":\n" + translatedText)
                             ;
-                    AlertDialog alertDialogFixed = alertDialog.create();
-                    alertDialogFixed.setCanceledOnTouchOutside(false);
-                    alertDialogFixed.show();
+//                    AlertDialog alertDialogFixed = alertDialog.create();
+//                    alertDialogFixed.setCanceledOnTouchOutside(false);
+//                    alertDialogFixed.show();
 
                     dialogList.add(originalText);
-                    alertDialogList.add(alertDialogFixed);
+//                    alertDialogList.add(alertDialogFixed);
                     trans();
 
 //                    MicrosoftTranslate.translate(FixedActivity.this, dialogList.size() - 1);
@@ -852,6 +864,59 @@ public class ChatbotActivity<MyBinder> extends Activity {
         TTS.stop();
     }
 
+    private void creatview_left () {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View diffView = inflater.inflate(R.layout.activity_diff_left, null);
+
+        userTextView_left = diffView.findViewById(R.id.userTextView_left);
+        wrongWord_left = diffView.findViewById(R.id.wrongWord_left);
+        wrongWordScrollView_left = diffView.findViewById(R.id.wrongWordScrollView_left);
+        trans_speak_left = diffView.findViewById(R.id.trans_speak_left);
+
+        userTextView_left.setText(trn_originalText);
+        userTextView_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TTS.speak(userTextView_left.getText().toString());
+            }
+        });
+        Log.v("left_user:",userTextView_left.getText().toString());
+        anwerTextArray_left = userTextView_left.getText().toString().replace(",","").replace(".","").split("\\s+");
+        Log.v("word_left:",Arrays.toString(anwerTextArray_left));
+
+
+        GetDiffWords getDiffWords = new GetDiffWords();
+        final String[] words = new String[100];
+        for (int i = 0; i < anwerTextArray_left.length; i++) {
+//            if (words[i] == null || words[i] == "") {
+//                break;
+//            }
+//            wrongWordScrollView.removeAllViews();
+            LinearLayout linearLayout = new LinearLayout(context);
+            linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+            linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            linearLayout.setVerticalGravity(Gravity.CENTER_VERTICAL);
+            TextView textView = new TextView(context);
+            textView.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 9));
+            textView.setTextSize(22);
+            textView.setText(anwerTextArray_left[i]);
+            linearLayout.addView(textView);
+            ImageButton imageButton = new ImageButton(context);
+            imageButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_voice_selector));
+            imageButton.setBackgroundColor(getResources().getColor(R.color.transparent));
+            imageButton.setOnClickListener(new TtsOnClickListener(anwerTextArray_left[i]));
+            linearLayout.addView(imageButton);
+            wrongWord_left.addView(linearLayout);
+        }
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context, R.style.AlertDialogStyle);
+        alertDialogBuilder.setIcon(R.mipmap.correction_icon);
+        alertDialogBuilder.setTitle("\t練習語句");
+        alertDialogBuilder.setView(diffView);
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void createDiffView(int diffListIndex) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View diffView = inflater.inflate(R.layout.activity_diff, null);
@@ -863,10 +928,11 @@ public class ChatbotActivity<MyBinder> extends Activity {
         wrongWordScrollView = diffView.findViewById(R.id.wrongWordScrollView);
         trans_correct = diffView.findViewById(R.id.trans_correct);
         trans_speak = diffView.findViewById(R.id.trans_speak);
+        chinese = diffView.findViewById(R.id.chinese);
 
         answerTextView.setText(intentname);
-        anwerTextArray = answerTextView.getText().toString().replace(",","").replace(".","").split("\\s+");
-        Log.v("wordss:",Arrays.toString(anwerTextArray));
+        anwerTextArray = answerTextView.getText().toString().replace(",", "").replace(".", "").split("\\s+");
+        Log.v("wordss:", Arrays.toString(anwerTextArray));
         answerTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -874,9 +940,9 @@ public class ChatbotActivity<MyBinder> extends Activity {
             }
         });
 
-        if (intentname == ""){
+        if (intentname == "") {
             trans_correct.setText("");
-        }else{
+        } else {
             trans_correct();
         }
 
@@ -938,6 +1004,31 @@ public class ChatbotActivity<MyBinder> extends Activity {
         alertDialogBuilder.setView(diffView);
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+
+        String str = usertext;
+        ArrayList list=new ArrayList();
+        for (int i = 0; i < str.length(); i++) {
+            String test = str.substring(i, i + 1);
+            if (test.matches("[\\u4E00-\\u9FA5]+")) {
+                list.add(test);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (Object s : list)
+        {
+            sb.append(s);
+        }
+        str2=sb.toString();
+        if (str2 != null){
+            trans_chinese();
+        }
+        chinese.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              TTS.speak(trans_chinese2);
+            }
+        });
+        Log.v("test_chinese2",str2);
     }
 
     private class TtsOnClickListener implements View.OnClickListener {
@@ -1123,6 +1214,7 @@ public class ChatbotActivity<MyBinder> extends Activity {
     translateAPI.setTranslateListener(new TranslateAPI.TranslateListener() {
         @Override
         public void onSuccess(String s) {
+            trans_speak_left.setText(s);
             translatedText=s;
             if(ChatbotActivity.alertDialogList.size() > 0){
                 ChatbotActivity.alertDialogList.get(ChatbotActivity.alertDialogList.size() - 1).setMessage(getString(R.string.original) + ":\n" + trn_originalText + "\n" + getString(R.string.translation) + ":\n" +translatedText);
@@ -1173,6 +1265,29 @@ public class ChatbotActivity<MyBinder> extends Activity {
             }
         });
     }
+
+    private void trans_chinese(){
+        TranslateAPI translateAPI = new TranslateAPI(
+                Language.AUTO_DETECT,
+                Language.ENGLISH,str2
+
+        );
+        translateAPI.setTranslateListener(new TranslateAPI.TranslateListener() {
+            @Override
+            public void onSuccess(String s) {
+                chinese.setText(str2+"("+s+")");
+                trans_chinese2=s;
+            }
+
+            @Override
+            public void onFailure(String s) {
+
+            }
+        });
+    }
+
+
+
 
 
 

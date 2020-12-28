@@ -4,15 +4,9 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.media.RingtoneManager;
 import android.media.projection.MediaProjectionManager;
 import android.net.Uri;
 import android.os.Build;
@@ -23,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -31,7 +24,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,11 +37,13 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 //import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.github.clans.fab.FloatingActionMenu;
 import com.github.clans.fab.FloatingActionButton;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.radaee.pdf.Global;
@@ -61,6 +55,7 @@ import com.radaee.reader.PDFViewAct;
 import java.io.File;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Random;
 
 import Model.DialogPracticBehavior;
 
@@ -117,6 +112,11 @@ public class MainActivity extends Activity implements OnClickListener {
 	//private GeofencingClient geofencingClient;//////////////
 
 	MediaProjectionManager mediaProjectionManager;
+	private DatabaseReference fire_welcome;
+	private String[] sssttt = {"a", "b", "c"};
+	private String[] st;
+	private int a;
+	private String welcome;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -262,7 +262,33 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		setContentView(layout);
 
-		//geofencingClient = LocationServices.getGeofencingClient(this); ////////////////
+		fire_welcome = FirebaseDatabase.getInstance().getReference();
+		fire_welcome.child("Other").child("welcome").addValueEventListener(new ValueEventListener() {
+			@Override
+			public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+				int i = 0;
+				sssttt = new String[(int) dataSnapshot.getChildrenCount()];
+				for (DataSnapshot each : dataSnapshot.getChildren()) {
+					sssttt[i] = each.getValue().toString();
+//                            Log.v("GET",sssttt[i]);
+					i++;
+				}
+				st = sssttt;
+				Random x = new Random();
+				a = x.nextInt(st.length);
+				Log.v("Get_main", st[a]);
+				welcome = st[a];
+				chatbot.setLabelText(welcome);
+			}
+
+			@Override
+			public void onCancelled(@NonNull DatabaseError databaseError) {
+			}
+		});
+
+
+
+		//geofencingClient = LocationServices.getGeofencingClient(this);
 	}
 
 
@@ -635,6 +661,8 @@ public class MainActivity extends Activity implements OnClickListener {
 				break;
 		}
 	}
+
+
 }
 
 

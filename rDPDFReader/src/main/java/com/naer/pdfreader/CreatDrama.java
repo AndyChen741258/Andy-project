@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
 import android.app.Activity;
@@ -39,6 +40,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,6 +54,9 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.FileNotFoundException;
 import java.security.Key;
+import java.util.ArrayList;
+
+import lib.kingja.switchbutton.SwitchMultiButton;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
@@ -110,6 +115,7 @@ public class CreatDrama extends Activity {
 
     public static boolean cantoload = false;
     private View view;
+
 
 
     @Override
@@ -191,36 +197,6 @@ public class CreatDrama extends Activity {
             }
         });
 
-//        cancel.setOnClickListener(new View.OnClickListener(){
-//
-//            @Override
-//            public void onClick(View v) {
-//                switch (scoreview){
-//                    case 4:
-//                        creat8.setVisibility(INVISIBLE);
-//                        button4.setVisibility(VISIBLE);
-//                        scoreview=3;
-//                        break;
-//                    case 3:
-//                        creat7.setVisibility(INVISIBLE);
-//                        button4.setVisibility(INVISIBLE);
-//                        button3.setVisibility(VISIBLE);
-//                        scoreview=2;
-//                        break;
-//                    case 2:
-//                        creat6.setVisibility(INVISIBLE);
-//                        button3.setVisibility(INVISIBLE);
-//                        button2.setVisibility(VISIBLE);
-//                        scoreview=1;
-//                        break;
-//                    case 1:
-//                        creat5.setVisibility(INVISIBLE);
-//                        button2.setVisibility(INVISIBLE);
-//                        button1.setVisibility(VISIBLE);
-//                        break;
-//                }
-//            }
-//        });
 
 
 
@@ -230,6 +206,8 @@ public class CreatDrama extends Activity {
 
 
 
+
+        ((SwitchMultiButton) findViewById(R.id.switchmultibutton)).setText("Drama1","Drama2","Drama3").setOnSwitchListener(onSwitchListener);
 
         //--------選擇劇本編號----------
         final String[] list = {"請選擇", "Drama_1", "Drama_2", "Drama_3"};
@@ -610,6 +588,14 @@ public class CreatDrama extends Activity {
         return super.onKeyDown(keyCode,event);
 
     }
+
+    private SwitchMultiButton.OnSwitchListener onSwitchListener = new SwitchMultiButton.OnSwitchListener() {
+        @Override
+        public void onSwitch(int position, String tabText) {
+            spinner_drame_word=tabText;
+            Toast.makeText(CreatDrama.this, tabText, Toast.LENGTH_SHORT).show();
+        }
+    };
 
 
     //--------CropImage剪裁圖片--------

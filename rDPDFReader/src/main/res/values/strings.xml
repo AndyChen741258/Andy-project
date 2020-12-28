@@ -19,6 +19,7 @@
     <string name="CANCEL">CANCEL</string>
     <string name="answer_diff_title">Correct answer</string>
     <string name="user_diff_title">Your answer</string>
+    <string name="user_diff_left_title">Your speak</string>
     <string name="wrong_word_title">Words</string>
     <string name="greeting">Hello</string>
     <string name="welcome">Welcome to Vpen System!</string>

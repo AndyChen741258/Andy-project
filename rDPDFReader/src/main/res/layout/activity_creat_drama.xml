@@ -6,12 +6,30 @@
     android:layout_height="match_parent"
     tools:context="com.naer.pdfreader.CreatDrama">
 
+
+    <lib.kingja.switchbutton.SwitchMultiButton
+        android:id="@+id/switchmultibutton"
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="35dp"
+        app:selectedColor="#e12251"
+        app:strokeRadius="14dp"
+        app:strokeWidth="2dp"
+        app:textSize="14sp" />
+
     <Spinner
         android:id="@+id/dramanumber"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="649dp"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="50dp"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/finish_and_return"
@@ -24,7 +42,8 @@
         android:drawableLeft="@drawable/save4"
         android:paddingLeft="15dp"
         android:paddingTop="5dp"
-        android:text="儲存劇本" />
+        android:text="儲存劇本"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/cancel"
@@ -35,7 +54,8 @@
         android:layout_marginStart="750dp"
         android:layout_marginTop="650dp"
         android:layout_marginEnd="15dp"
-        android:background="@drawable/cancel" />
+        android:background="@drawable/cancel"
+        android:visibility="invisible" />
 
     <ScrollView
         android:layout_width="899dp"

@@ -300,6 +300,10 @@
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\noimage2.png"
     },
     {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\layout_builddrama4.xml.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\layout\\builddrama4.xml"
+    },
+    {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_record_111.png.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\record_111.png"
     },
@@ -348,12 +352,12 @@
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\back1222.jpg"
     },
     {
-        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_startspeak.png.flat",
-        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\startspeak.png"
-    },
-    {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_noimage.png.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\noimage.png"
+    },
+    {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_startspeak.png.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\startspeak.png"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_conversation128.png.flat",
@@ -432,6 +436,10 @@
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\chat35.gif"
     },
     {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\layout_builddrama3.xml.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\layout\\builddrama3.xml"
+    },
+    {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_back.jpg.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\back.jpg"
     },
@@ -454,6 +462,10 @@
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\layout_builddrama.xml.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\layout\\builddrama.xml"
+    },
+    {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\layout_activity_diff_left.xml.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\layout\\activity_diff_left.xml"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_thisis.gif.flat",
@@ -566,6 +578,10 @@
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_boader_vocabulary_btn.xml.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\boader_vocabulary_btn.xml"
+    },
+    {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\menu_example_menu.xml.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\menu\\example_menu.xml"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\mipmap_record_icon.png.flat",
