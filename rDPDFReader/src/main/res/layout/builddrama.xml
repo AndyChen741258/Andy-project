@@ -41,6 +41,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="left">
+
                 <Button
                     android:id="@+id/recordplayer1"
                     android:layout_width="120dp"
@@ -80,12 +81,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:textSize="24dp"/>
-
             </LinearLayout>
 
             <EditText
                 android:id="@+id/editText1"
-                android:layout_width="362dp"
+                android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="22dp"

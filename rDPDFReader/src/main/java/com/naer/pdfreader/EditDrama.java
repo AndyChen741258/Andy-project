@@ -1,6 +1,7 @@
 package com.naer.pdfreader;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.DialogTitle;
 
@@ -17,21 +18,26 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.net.nsd.NsdManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -48,6 +54,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -62,7 +69,9 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import Model.DescribeData;
@@ -147,11 +156,19 @@ public class EditDrama extends Activity {
     private String info4=null;
     private EditText editText3;
     private EditText editText4;
+    private float say1_X;
+    private float say1_Y;
+    private float say2_X;
+    private float say2_Y;
+    private float say3_X;
+    private float say3_Y;
+    private float say4_X;
+    private float say4_Y;
 
     private ImageView imageView;
     private int bubble=0;
     private int choose=0;
-    private EditText re_a_line;
+    private String re_a_line;
     private boolean re_a=false;
     private EditText re_b_line;
     private boolean re_b=false;
@@ -161,9 +178,28 @@ public class EditDrama extends Activity {
     private boolean re_4=false;
     private String username;
     private MenuItem option4;
+    private MenuItem option5;
+    private MenuItem option6;
+    private MenuItem option7;
+    private MenuItem option8;
     private String textOut;
     private boolean textOut_bol=false;
-
+    private String textOut_5;
+    private boolean textOut_bol_5=false;
+    private String textOut_6;
+    private boolean textOut_bol_6=false;
+    private String textOut_7;
+    private boolean textOut_bol_7=false;
+    private String textOut_8;
+    private boolean textOut_bol_8=false;
+    private long lastPressTime;
+    private static final long DOUBLE_PRESS_INTERVAL = 250;
+    private View view;
+    private float x_touch;
+    private float y_touch;
+    private float[] lastTouchDownXY = new float[2];
+    private DatabaseReference fire_contextmenu;
+    private DatabaseReference fire_load_contextmenu;
 
     @SuppressLint({"ClickableViewAccessibility", "ResourceType"})
     @Override
@@ -193,34 +229,87 @@ public class EditDrama extends Activity {
         imageView = findViewById(R.id.editimage);
 
 
-        registerForContextMenu(say1);
-        registerForContextMenu(say2);
-        registerForContextMenu(say3);
-        registerForContextMenu(say4);
+
+//        registerForContextMenu(say1);
+//        registerForContextMenu(say2);
+//        registerForContextMenu(say3);
+//        registerForContextMenu(say4);
+
+        /// 新增泡泡框
         imageView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+
+                x_touch = lastTouchDownXY[0];
+                y_touch = lastTouchDownXY[1];
+                Log.e("Location", String.valueOf(x_touch));
+                Log.e("Location", String.valueOf(y_touch));
                 switch (bubble){
                     case 0:
+                        Log.v("第一個X位置", String.valueOf(x_touch));
+                        Log.v("第一個Y位置", String.valueOf(y_touch));
+                        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(say1.getWidth(), say1.getHeight());
+                        params.setMargins((int) x_touch, (int) y_touch, 0, 0);
+                        say1.setLayoutParams(params);
                         say1.setVisibility(VISIBLE);
                         bubble++;
                         break;
                     case 1:
+                        Log.v("第二個X位置", String.valueOf(x_touch));
+                        Log.v("第二個Y位置", String.valueOf(y_touch));
+                        params = new RelativeLayout.LayoutParams(say2.getWidth(), say2.getHeight());
+                        params.setMargins((int) x_touch, (int) y_touch, 0, 0);
+                        say2.setLayoutParams(params);
                         say2.setVisibility(VISIBLE);
                         bubble++;
                         break;
                     case 2:
-                        say3.setVisibility(VISIBLE);
-                        bubble++;
+                        new AlertDialog.Builder(EditDrama.this)
+                            .setIcon(R.drawable.ic_launcher)
+                            .setTitle("新增對話框?")
+                            .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    say3.setVisibility(VISIBLE);
+                                    bubble++;
+                                }
+                            })
+                            .setNegativeButton("取消",null).create()
+                            .show();
+                        Log.v("第三個X位置", String.valueOf(x_touch));
+                        Log.v("第三個Y位置", String.valueOf(y_touch));
+                        params = new RelativeLayout.LayoutParams(say3.getWidth(), say3.getHeight());
+                        params.setMargins((int) x_touch, (int) y_touch, 0, 0);
+                        say3.setLayoutParams(params);
                         break;
                     case 3:
-                        say4.setVisibility(VISIBLE);
-                        bubble++;
+                        new AlertDialog.Builder(EditDrama.this)
+                                .setIcon(R.drawable.ic_launcher)
+                                .setTitle("新增對話框?")
+                                .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        say4.setVisibility(VISIBLE);
+                                        bubble++;
+                                    }
+                                })
+                                .setNegativeButton("取消",null).create()
+                                .show();
+                        Log.v("第四個X位置", String.valueOf(x_touch));
+                        Log.v("第四個Y位置", String.valueOf(y_touch));
+                        params = new RelativeLayout.LayoutParams(say4.getWidth(), say4.getHeight());
+                        params.setMargins((int) x_touch, (int) y_touch, 0, 0);
+                        say4.setLayoutParams(params);
                         break;
                 }
-                return false;
+                return true;
             }
         });
+        imageView.setOnTouchListener(imageTouch);
+        say1.setOnTouchListener(say1Listener);
+        say2.setOnTouchListener(say2Listener);
+        say3.setOnTouchListener(say3Listener);
+        say4.setOnTouchListener(say4Listener);
 //        imageView.setOnLongClickListener(new View.OnLongClickListener() {
 //            @Override
 //            public boolean onLongClick(View v) {
@@ -265,8 +354,39 @@ public class EditDrama extends Activity {
         //判斷是否是更新編輯
         //若是更新編輯 則執行撈回資料的方法
         //若非更新編輯, 也就是第一次編輯 則從Creat那邊將拍好的照片放過來進行編輯
-        if(CreatDrama.edit == true){
+
+        if(CreatDrama.edit){
             returnbackdata();
+            if (say1.getText().toString()==""){
+                say1.setVisibility(INVISIBLE);
+            }
+
+            if(say2.getText().toString()==""){
+                say2.setVisibility(INVISIBLE);
+            }
+
+//            RelativeLayout.LayoutParams params2 = new RelativeLayout.LayoutParams(400, say2.getHeight());
+//            params2.setMargins((int) say2_X, (int) say2_Y, 0, 0);
+//            say2.setLayoutParams(params2);
+
+
+            if(say3.getText().toString()==""){
+                say3.setVisibility(INVISIBLE);
+            }
+
+//            RelativeLayout.LayoutParams params3 = new RelativeLayout.LayoutParams(400, say3.getHeight());
+//            params3.setMargins((int) say3_X, (int) say3_Y, 0, 0);
+//            say3.setLayoutParams(params3);
+
+
+            if (say4.getText().toString()=="") {
+                say4.setVisibility(INVISIBLE);
+            }
+
+//            RelativeLayout.LayoutParams params4 = new RelativeLayout.LayoutParams(400, say4.getHeight());
+//            params4.setMargins((int) say4_X, (int) say4_Y, 0, 0);
+//            say4.setLayoutParams(params4);
+
         }else{
             //方法一 撈回Firebase圖片(較久)
 //            fire_check_ori_exist = FirebaseStorage.getInstance().getReference()
@@ -289,10 +409,7 @@ public class EditDrama extends Activity {
             editimage.setImageURI(Uri.parse(ooo));
         }
 
-        say1.setOnTouchListener(say1Listener);
-        say2.setOnTouchListener(say2Listener);
-        say3.setOnTouchListener(say3Listener);
-        say4.setOnTouchListener(say4Listener);
+
 //        say5.setOnTouchListener(say5Listener);
 //        say6.setOnTouchListener(say6Listener);
 
@@ -303,6 +420,7 @@ public class EditDrama extends Activity {
 //                return false;
 //            }
 //        });
+
 
         adddialog1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -318,6 +436,71 @@ public class EditDrama extends Activity {
             }
         });
 
+        try {
+            fire_load_contextmenu = FirebaseDatabase.getInstance().getReference();
+            fire_load_contextmenu.child("學生" + Student.Name + "號").child(CreatDrama.spinner_drame_word).child("contextmenu")
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int i = 0;
+                            String[] sssttt = new String[(int) dataSnapshot.getChildrenCount()];
+                            for (DataSnapshot each : dataSnapshot.getChildren()) {
+                                sssttt[i] = each.getValue().toString();
+                                Log.v("GET sssttt", sssttt[i]);
+                                Log.v("GET i", String.valueOf(i));
+                                i++;
+                            }
+                            Log.v("GET i", String.valueOf(i));
+                            switch (i-1){
+                                case 0:
+                                    textOut_bol = true;
+                                    textOut=sssttt[i-1];
+                                    break;
+                                case 1:
+                                    textOut_bol = true;
+                                    textOut_bol_5 = true;
+                                    textOut=sssttt[i-2];
+                                    textOut_5=sssttt[i-1];
+                                    break;
+                                case 2:
+                                    textOut_bol = true;
+                                    textOut_bol_5 = true;
+                                    textOut_bol_6 = true;
+                                    textOut=sssttt[i-3];
+                                    textOut_5=sssttt[i-2];
+                                    textOut_6=sssttt[i-1];
+                                    break;
+                                case 3:
+                                    textOut_bol = true;
+                                    textOut_bol_5 = true;
+                                    textOut_bol_6 = true;
+                                    textOut_bol_7 = true;
+                                    textOut=sssttt[i-4];
+                                    textOut_5=sssttt[i-3];
+                                    textOut_6=sssttt[i-2];
+                                    textOut_7=sssttt[i-1];
+                                    break;
+                                case 4:
+                                    textOut_bol = true;
+                                    textOut_bol_5 = true;
+                                    textOut_bol_6 = true;
+                                    textOut_bol_7 = true;
+                                    textOut_bol_8 = true;
+                                    textOut=sssttt[i-5];
+                                    textOut_5=sssttt[i-4];
+                                    textOut_6=sssttt[i-3];
+                                    textOut_7=sssttt[i-2];
+                                    textOut_8=sssttt[i-1];
+                                    break;
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        }
+                    });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         //編輯完照片按下finishedit按鈕 將截圖傳回CreatDrama (從Firebase撈)
         finishedit.setOnClickListener(new View.OnClickListener() {
@@ -383,6 +566,7 @@ public class EditDrama extends Activity {
                                 fire_editdata.child("player6_text").setValue(say6.getText().toString());
                                 fire_editdata.child("player6_x").setValue(say6.getX());
                                 fire_editdata.child("player6_y").setValue(say6.getY());
+                                fire_editdata.child("bubble").setValue(bubble);
                                 fire_editdata.child("editFinishPhotoUri").setValue(download_url_editFinish).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
@@ -462,11 +646,10 @@ public class EditDrama extends Activity {
                 CreatDrama.cantoload = true;
 //                CreatDrama.ccc();
 
-
-
             }
         });
     }
+
 
 
 
@@ -476,9 +659,30 @@ public class EditDrama extends Activity {
 
         getMenuInflater().inflate(R.menu.example_menu,menu);
         option4 = menu.findItem(R.id.option_4);
-        if (textOut_bol==false){
-            option4.setTitle("自訂角色");;
-        }else{option4.setTitle(textOut);}
+
+        if (textOut_bol){
+            option4.setTitle(textOut);
+            menu.add(0,5,0,"自訂角色");
+            option5 = menu.findItem(5);
+            if (textOut_bol_5){
+                option5.setTitle(textOut_5);
+                menu.add(0,6,0,"自訂角色");
+                option6 = menu.findItem(6);
+                if(textOut_bol_6){
+                    option6.setTitle(textOut_6);
+                    menu.add(0,7,0,"自訂角色");
+                    option7 = menu.findItem(7);
+                    if(textOut_bol_7){
+                        option7.setTitle(textOut_7);
+                        menu.add(0,8,0,"自訂角色");
+                        option8 = menu.findItem(8);
+                        if(textOut_bol_8){
+                            option8.setTitle(textOut_8);
+                        }
+                    }
+                }
+            }
+        }
 
     }
 
@@ -512,6 +716,72 @@ public class EditDrama extends Activity {
                         break;
                 }
                 return true;
+//                info= (String) item.getTitle();
+//                Log.v("info",info);
+//                switch (choose){
+//                    case 1:
+//                        new AlertDialog.Builder(EditDrama.this)
+//                            .setIcon(R.drawable.ic_launcher)
+//                            .setTitle("隱藏"+info1)
+//                            .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    say1.setVisibility(INVISIBLE);
+//                                }
+//                            })
+//                            .setNegativeButton("取消",null).create()
+//                            .show();
+//                        bubble=0;
+//                        break;
+//                    case 2:
+//                        new AlertDialog.Builder(EditDrama.this)
+//                                .setIcon(R.drawable.ic_launcher)
+//                                .setTitle("隱藏"+info2)
+//                                .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        say2.setVisibility(INVISIBLE);
+//                                        say1.setVisibility(VISIBLE);
+//                                    }
+//                                })
+//                                .setNegativeButton("取消",null).create()
+//                                .show();
+//                        bubble=1;
+//                        break;
+//                    case 3:
+//                        new AlertDialog.Builder(EditDrama.this)
+//                                .setIcon(R.drawable.ic_launcher)
+//                                .setTitle("隱藏"+info3)
+//                                .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        say3.setVisibility(INVISIBLE);
+//                                        say2.setVisibility(VISIBLE);
+//                                        say1.setVisibility(VISIBLE);
+//                                    }
+//                                })
+//                                .setNegativeButton("取消",null).create()
+//                                .show();
+//                        bubble=2;
+//                        break;
+//                    case 4:
+//                        new AlertDialog.Builder(EditDrama.this)
+//                                .setIcon(R.drawable.ic_launcher)
+//                                .setTitle("隱藏"+info4)
+//                                .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        say4.setVisibility(INVISIBLE);
+//                                        say3.setVisibility(VISIBLE);
+//                                        say2.setVisibility(VISIBLE);
+//                                        say1.setVisibility(VISIBLE);
+//                                    }
+//                                })
+//                                .setNegativeButton("取消",null).create()
+//                                .show();
+//                        bubble=3;
+//                        break;
+//                }
             case R.id.option_2:
                 Toast.makeText(this,"Op2 selected",Toast.LENGTH_SHORT).show();
                 info= (String) item.getTitle();
@@ -568,41 +838,314 @@ public class EditDrama extends Activity {
                 return true;
             case R.id.option_4:
                 Toast.makeText(this,"Op4 selected",Toast.LENGTH_SHORT).show();
-                AlertDialog.Builder editDialog = new AlertDialog.Builder(EditDrama.this);
-                editDialog.setTitle("自訂角色");
-                editDialog.setIcon(R.drawable.ic_launcher);
+                if(!textOut_bol) {
+                    AlertDialog.Builder editDialog = new AlertDialog.Builder(EditDrama.this);
+                    editDialog.setTitle("自訂角色");
+                    editDialog.setIcon(R.drawable.ic_launcher);
 
-                final EditText editText = new EditText(EditDrama.this);
-                editDialog.setView(editText);
+                    final EditText editText = new EditText(EditDrama.this);
+                    editDialog.setView(editText);
 
-                editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                    // do something when the button is clicked
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        textOut = editText.getText().toString();
-                        textOut_bol=true;
-                        Log.v("textOut",textOut);
+                    editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                        // do something when the button is clicked
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            textOut = editText.getText().toString();
+                            textOut_bol = true;
+                            switch (choose) {
+                                case 1:
+                                    info1=textOut;
+                                    buildLinesA_Click();
+                                    break;
+                                case 2:
+                                    info2=textOut;
+                                    buildLinesB_Click();
+                                    break;
+                                case 3:
+                                    info3=textOut;
+                                    buildLines3_Click();
+                                    break;
+                                case 4:
+                                    info4=textOut;
+                                    buildLines4_Click();
+                                    break;
+                            }
+                            Log.v("textOut", textOut);
+                        }
+                    });
+                    editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        // do something when the button is clicked
+                        public void onClick(DialogInterface arg0, int arg1) {
+                        }
+                    });
+                    editDialog.show();
+                }else if(textOut_bol){
+                    switch (choose) {
+                        case 1:
+                            info1=textOut;
+                            buildLinesA_Click();
+                            break;
+                        case 2:
+                            info2=textOut;
+                            buildLinesB_Click();
+                            break;
+                        case 3:
+                            info3=textOut;
+                            buildLines3_Click();
+                            break;
+                        case 4:
+                            info4=textOut;
+                            buildLines4_Click();
+                            break;
                     }
-                });
-                editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    // do something when the button is clicked
-                    public void onClick(DialogInterface arg0, int arg1) {
-//...
+                }
+                return true;
+            case 5:
+                if(!textOut_bol_5) {
+                    AlertDialog.Builder editDialog = new AlertDialog.Builder(EditDrama.this);
+                    editDialog.setTitle("自訂角色");
+                    editDialog.setIcon(R.drawable.ic_launcher);
+
+                    final EditText editText = new EditText(EditDrama.this);
+                    editDialog.setView(editText);
+
+                    editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                        // do something when the button is clicked
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            textOut_5 = editText.getText().toString();
+                            textOut_bol_5 = true;
+                            switch (choose) {
+                                case 1:
+                                    info1=textOut_5;
+                                    buildLinesA_Click();
+                                    break;
+                                case 2:
+                                    info2=textOut_5;
+                                    buildLinesB_Click();
+                                    break;
+                                case 3:
+                                    info3=textOut_5;
+                                    buildLines3_Click();
+                                    break;
+                                case 4:
+                                    info4=textOut_5;
+                                    buildLines4_Click();
+                                    break;
+                            }
+                            Log.v("textOut_5", textOut_5);
+                        }
+                    });
+                    editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        // do something when the button is clicked
+                        public void onClick(DialogInterface arg0, int arg1) {
+                        }
+                    });
+                    editDialog.show();
+                }else if(textOut_bol_5){
+                    switch (choose) {
+                        case 1:
+                            info1=textOut_5;
+                            buildLinesA_Click();
+                            break;
+                        case 2:
+                            info2=textOut_5;
+                            buildLinesB_Click();
+                            break;
+                        case 3:
+                            info3=textOut_5;
+                            buildLines3_Click();
+                            break;
+                        case 4:
+                            info4=textOut_5;
+                            buildLines4_Click();
+                            break;
                     }
-                });
-                editDialog.show();
-//                new AlertDialog.Builder(EditDrama.this)
-//                        .setIcon(R.drawable.ic_launcher)
-//                        .setTitle("自訂角色")
-//                        .setView(edit)
-//                        .setPositiveButton("確認", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                username=edit.getText().toString();
-//                                option4.setTitle(username);
-//                            }
-//                        })
-//                        .setNegativeButton("取消",null).create()
-//                        .show();
+                }
+                return true;
+            case 6:
+                if(!textOut_bol_6) {
+                    AlertDialog.Builder editDialog = new AlertDialog.Builder(EditDrama.this);
+                    editDialog.setTitle("自訂角色");
+                    editDialog.setIcon(R.drawable.ic_launcher);
+
+                    final EditText editText = new EditText(EditDrama.this);
+                    editDialog.setView(editText);
+
+                    editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                        // do something when the button is clicked
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            textOut_6 = editText.getText().toString();
+                            textOut_bol_6 = true;
+                            switch (choose) {
+                                case 1:
+                                    info1=textOut_6;
+                                    buildLinesA_Click();
+                                    break;
+                                case 2:
+                                    info2=textOut_6;
+                                    buildLinesB_Click();
+                                    break;
+                                case 3:
+                                    info3=textOut_6;
+                                    buildLines3_Click();
+                                    break;
+                                case 4:
+                                    info4=textOut_6;
+                                    buildLines4_Click();
+                                    break;
+                            }
+                            Log.v("textOut_6", textOut_6);
+                        }
+                    });
+                    editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        // do something when the button is clicked
+                        public void onClick(DialogInterface arg0, int arg1) {
+                        }
+                    });
+                    editDialog.show();
+                }else if(textOut_bol_6){
+                    switch (choose) {
+                        case 1:
+                            info1=textOut_6;
+                            buildLinesA_Click();
+                            break;
+                        case 2:
+                            info2=textOut_6;
+                            buildLinesB_Click();
+                            break;
+                        case 3:
+                            info3=textOut_6;
+                            buildLines3_Click();
+                            break;
+                        case 4:
+                            info4=textOut_6;
+                            buildLines4_Click();
+                            break;
+                    }
+                }
+                return true;
+            case 7:
+                if(!textOut_bol_7) {
+                    AlertDialog.Builder editDialog = new AlertDialog.Builder(EditDrama.this);
+                    editDialog.setTitle("自訂角色");
+                    editDialog.setIcon(R.drawable.ic_launcher);
+
+                    final EditText editText = new EditText(EditDrama.this);
+                    editDialog.setView(editText);
+
+                    editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                        // do something when the button is clicked
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            textOut_7 = editText.getText().toString();
+                            textOut_bol_7 = true;
+                            switch (choose) {
+                                case 1:
+                                    info1=textOut_7;
+                                    buildLinesA_Click();
+                                    break;
+                                case 2:
+                                    info2=textOut_7;
+                                    buildLinesB_Click();
+                                    break;
+                                case 3:
+                                    info3=textOut_7;
+                                    buildLines3_Click();
+                                    break;
+                                case 4:
+                                    info4=textOut_7;
+                                    buildLines4_Click();
+                                    break;
+                            }
+                            Log.v("textOut_7", textOut_7);
+                        }
+                    });
+                    editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        // do something when the button is clicked
+                        public void onClick(DialogInterface arg0, int arg1) {
+                        }
+                    });
+                    editDialog.show();
+                }else if(textOut_bol_7){
+                    switch (choose) {
+                        case 1:
+                            info1=textOut_7;
+                            buildLinesA_Click();
+                            break;
+                        case 2:
+                            info2=textOut_7;
+                            buildLinesB_Click();
+                            break;
+                        case 3:
+                            info3=textOut_7;
+                            buildLines3_Click();
+                            break;
+                        case 4:
+                            info4=textOut_7;
+                            buildLines4_Click();
+                            break;
+                    }
+                }
+                return true;
+            case 8:
+                if(!textOut_bol_8) {
+                    AlertDialog.Builder editDialog = new AlertDialog.Builder(EditDrama.this);
+                    editDialog.setTitle("自訂角色");
+                    editDialog.setIcon(R.drawable.ic_launcher);
+
+                    final EditText editText = new EditText(EditDrama.this);
+                    editDialog.setView(editText);
+
+                    editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                        // do something when the button is clicked
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            textOut_8 = editText.getText().toString();
+                            textOut_bol_8 = true;
+                            switch (choose) {
+                                case 1:
+                                    info1=textOut_8;
+                                    buildLinesA_Click();
+                                    break;
+                                case 2:
+                                    info2=textOut_8;
+                                    buildLinesB_Click();
+                                    break;
+                                case 3:
+                                    info3=textOut_8;
+                                    buildLines3_Click();
+                                    break;
+                                case 4:
+                                    info4=textOut_8;
+                                    buildLines4_Click();
+                                    break;
+                            }
+                            Log.v("textOut_8", textOut_8);
+                        }
+                    });
+                    editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        // do something when the button is clicked
+                        public void onClick(DialogInterface arg0, int arg1) {
+                        }
+                    });
+                    editDialog.show();
+                }else if(textOut_bol_8){
+                    switch (choose) {
+                        case 1:
+                            info1=textOut_8;
+                            buildLinesA_Click();
+                            break;
+                        case 2:
+                            info2=textOut_8;
+                            buildLinesB_Click();
+                            break;
+                        case 3:
+                            info3=textOut_8;
+                            buildLines3_Click();
+                            break;
+                        case 4:
+                            info4=textOut_8;
+                            buildLines4_Click();
+                            break;
+                    }
+                }
                 return true;
             default:
                 return super.onContextItemSelected(item);
@@ -668,13 +1211,20 @@ public class EditDrama extends Activity {
                     }
                 })
                 .show();
-        if (re_a == true ){
-            editText1.setText(re_a_line.getText().toString());
-        }else{
-            editText1.setText("");
-        }
+//        if (re_a){
+//            editText1.setText(re_a_line);
+//        }else{
+//            editText1.setText("");
+//        }
         drama.getWindow().setDimAmount(0.05f);
         drama.show();
+
+        if(say1.getText().toString() != ""){
+            int c = say1.getText().toString().indexOf(":");
+            String s = say1.getText().toString().substring(c+1,say1.length());
+            editText1.setText(s);
+        }
+
 
 //        if(CreatDrama.edit == true){
 //            editText1.setText(re_a_line_word);}
@@ -688,22 +1238,12 @@ public class EditDrama extends Activity {
                     public void onClick(View v) {
                         //判斷台詞欄位是否為空
                         if(!(TextUtils.isEmpty(editText1.getText().toString()))){
-
-                            Integer h = 80;
-                            Integer text_length = editText1.getText().toString().length();
-                            Integer heig = text_length / 20;
-
-                            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) say1.getLayoutParams();
-                            if(text_length < 20) {
-                                params.height = h;
-                            } else {
-                                params.height = h*heig*2;
-                            }
-
-                            say1.setLayoutParams(params);
-                            re_a=true;
-                            re_a_line=editText1;
                             say1.setText(info1+":"+editText1.getText().toString());
+                            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) say1.getLayoutParams();
+                            params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                            say1.setLayoutParams(params);
+//                            re_a=true;
+//                            re_a_line=editText1.getText().toString();
                             drama.dismiss();
                             Toast.makeText(getApplicationContext(), info1+"對話已建立", Toast.LENGTH_SHORT).show();
                             findViewById(R.id.adddialog1).setEnabled(true);
@@ -870,13 +1410,19 @@ public class EditDrama extends Activity {
 
                 })
                 .show();
-        if (re_b == true ){
-            editText2.setText(re_b_line.getText().toString());
-        }else{
-            editText2.setText("");
-        }
+//        if (re_b == true ){
+//            editText2.setText(re_b_line.getText().toString());
+//        }else{
+//            editText2.setText("");
+//        }
         drama.getWindow().setDimAmount(0.05f);
         drama.show();
+
+        if(say2.getText().toString() != ""){
+            int c = say2.getText().toString().indexOf(":");
+            String s = say2.getText().toString().substring(c+1,say2.length());
+            editText2.setText(s);
+        }
 
 
 //        if(CreatDrama.edit == true){
@@ -891,21 +1437,12 @@ public class EditDrama extends Activity {
                     public void onClick(View v) {
                         //判斷台詞欄位是否為空
                         if(!(TextUtils.isEmpty(editText2.getText().toString()))){
-                            Integer h = 80;
-                            Integer text_length = editText2.getText().toString().length();
-                            Integer heig = text_length / 20;
-
-                            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) say2.getLayoutParams();
-                            if(text_length < 20) {
-                                params.height = h;
-                            } else {
-                                params.height = h*heig*2;
-                            }
-
-                            say2.setLayoutParams(params);
-                            re_b=true;
-                            re_b_line=editText2;
                             say2.setText(info2+":"+editText2.getText().toString());
+                            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) say2.getLayoutParams();
+                            params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                            say2.setLayoutParams(params);
+//                            re_b=true;
+//                            re_b_line=editText2;
                             findViewById(R.id.adddialog2).setEnabled(true);
                             drama.dismiss();
                             Toast.makeText(getApplicationContext(), info2+"對話已建立", Toast.LENGTH_SHORT).show();
@@ -919,7 +1456,7 @@ public class EditDrama extends Activity {
         record2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isPress == true){
+                if(isPress){
                     recorder = new MediaRecorder();// new出MediaRecorder物件
                     recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
                     // 設定MediaRecorder的音訊源為麥克風
@@ -1073,13 +1610,18 @@ public class EditDrama extends Activity {
 
                 })
                 .show();
-        if (re_3 == true ){
-            editText3.setText(re_3_line.getText().toString());
-        }else{
-            editText3.setText("");
-        }
+//        if (re_3 == true ){
+//            editText3.setText(re_3_line.getText().toString());
+//        }else{
+//            editText3.setText("");
+//        }
         drama.getWindow().setDimAmount(0.05f);
         drama.show();
+        if(say3.getText().toString() != ""){
+            int c = say3.getText().toString().indexOf(":");
+            String s = say3.getText().toString().substring(c+1,say3.length());
+            editText3.setText(s);
+        }
 
 
 //        if(CreatDrama.edit == true){
@@ -1094,20 +1636,12 @@ public class EditDrama extends Activity {
                     public void onClick(View v) {
                         //判斷台詞欄位是否為空
                         if(!(TextUtils.isEmpty(editText3.getText().toString()))){
-                            Integer h = 80;
-                            Integer text_length = editText3.getText().toString().length();
-                            Integer heig = text_length / 20;
-
-                            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) say3.getLayoutParams();
-                            if(text_length < 20) {
-                                params.height = h;
-                            } else {
-                                params.height = h*heig*2;
-                            }
-                            re_3=true;
-                            re_3_line=editText3;
-                            say3.setLayoutParams(params);
                             say3.setText(info3+":"+editText3.getText().toString());
+                            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) say3.getLayoutParams();
+                            params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+//                            re_3=true;
+//                            re_3_line=editText3;
+                            say3.setLayoutParams(params);
 //                            findViewById(R.id.adddialog2).setEnabled(true);
                             drama.dismiss();
                             Toast.makeText(getApplicationContext(), info3+"對話已建立", Toast.LENGTH_SHORT).show();
@@ -1274,13 +1808,19 @@ public class EditDrama extends Activity {
 
                 })
                 .show();
-        if (re_4 == true ){
-            editText4.setText(re_4_line.getText().toString());
-        }else{
-            editText4.setText("");
-        }
+//        if (re_4 == true ){
+//            editText4.setText(re_4_line.getText().toString());
+//        }else{
+//            editText4.setText("");
+//        }
         drama.getWindow().setDimAmount(0.05f);
         drama.show();
+
+        if(say4.getText().toString() != ""){
+            int c = say4.getText().toString().indexOf(":");
+            String s = say4.getText().toString().substring(c+1,say4.length());
+            editText4.setText(s);
+        }
 
 
 //        if(CreatDrama.edit == true){
@@ -1295,21 +1835,12 @@ public class EditDrama extends Activity {
                     public void onClick(View v) {
                         //判斷台詞欄位是否為空
                         if(!(TextUtils.isEmpty(editText4.getText().toString()))){
-                            Integer h = 80;
-                            Integer text_length = editText4.getText().toString().length();
-                            Integer heig = text_length / 20;
-
-                            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) say4.getLayoutParams();
-                            if(text_length < 20) {
-                                params.height = h;
-                            } else {
-                                params.height = h*heig*2;
-                            }
-
-                            say4.setLayoutParams(params);
-                            re_4=true;
-                            re_4_line=editText4;
                             say4.setText(info4+":"+editText4.getText().toString());
+                            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) say4.getLayoutParams();
+                            params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                            say4.setLayoutParams(params);
+//                            re_4=true;
+//                            re_4_line=editText4;
 //                            findViewById(R.id.adddialog2).setEnabled(true);
                             drama.dismiss();
                             Toast.makeText(getApplicationContext(), info4+"對話已建立", Toast.LENGTH_SHORT).show();
@@ -1463,6 +1994,7 @@ public class EditDrama extends Activity {
         private float x, y;    // 原本圖片存在的X,Y軸位置
         private int mx, my; // 圖片被拖曳的X ,Y軸距離長度
         private int lastX, lastY; //记录移动的最后的位置
+        private boolean first_touch = true;
 
 
         @Override
@@ -1471,74 +2003,99 @@ public class EditDrama extends Activity {
 //            if(say1.getText().toString() == null){
 //                info1=null;
 //            }
-            gestureDetector.onTouchEvent(event);
+
+           gestureDetector.onTouchEvent(event);
             switch (event.getAction()) {          //判斷觸控的動作
                 case MotionEvent.ACTION_DOWN:// 按下圖片時
                     x = event.getX();                  //觸控的X軸位置
                     y = event.getY();                  //觸控的Y軸位置
-                    return false;
+                    registerForContextMenu(say1);
+//                    if (say1.getVisibility() != VISIBLE) {
+//                        say1.setX(x);
+//                        say1.setY(y);
+//                    }
+                return false;
                 case MotionEvent.ACTION_MOVE:// 移動圖片時
-                    //getX()：是獲取當前控件(View)的座標
+                    // getX()：是獲取當前控件(View)的座標
                     //getRawX()：是獲取相對顯示螢幕左上角的座標
                     mx = (int) (event.getRawX() - x);
                     my = (int) (event.getRawY() - y);
                     setRelativeViewLocation(say1, mx, my, mx + v.getWidth(), my + v.getHeight());
-                    lastX = (int) event.getRawX();
-                    lastY = (int) event.getRawY();
+//                    lastX = (int) event.getRawX();
+//                    lastY = (int) event.getRawY();
+                    first_touch = false;
                     return false;
                 case MotionEvent.ACTION_UP:
-                    choose=1;
-//                    String ResoltTTS =say1.getText().toString();
-//                    TTS.speak(ResoltTTS);
-//                    if (info1 == null){
-//                        registerForContextMenu(say1);
-//                        new Thread() {
-//                            public void run() {
-//                                try {
-//                                    Thread.sleep(5000);
-//                                } catch (InterruptedException e) {
-//                                    // TODO Auto-generated catch block
-//                                    e.printStackTrace();
-//                                }
-//                                info1=info;
-//                                info=null;
-//                            }
-//                        }.start();
-
-//                    }
-//                    else if(say1.getText().toString() != null)
-//                    {
-//                        buildLinesA_Click();
-//                    }
-//                    else {
-//                        buildLinesA_Click();
-//                    }
+                    choose = 1;
+                    x = event.getX();
+                    y = event.getY();
+                    Log.e("say1手置放開的座標", String.valueOf(x) + " " + String.valueOf(y));
+////                    String ResoltTTS =say1.getText().toString();
+////                    TTS.speak(ResoltTTS);
+////                    if (info1 == null){
+////                        registerForContextMenu(say1);
+////                        new Thread() {
+////                            public void run() {
+////                                try {
+////                                    Thread.sleep(5000);
+////                                } catch (InterruptedException e) {
+////                                    // TODO Auto-generated catch block
+////                                    e.printStackTrace();
+////                                }
+////                                info1=info;
+////                                info=null;
+////                            }
+////                        }.start();
+////                    }
+////                    else if(say1.getText().toString() != null)
+////                    {
+////                        buildLinesA_Click();
+////                    }
+////                    else {
+////                        buildLinesA_Click();
+////                    }
                     break;
-                case MotionEvent.ACTION_POINTER_DOWN:
-                    return false;
-                case MotionEvent.ACTION_POINTER_UP:
-                    new AlertDialog.Builder(EditDrama.this)
-                            .setIcon(R.drawable.ic_launcher)
-                            .setTitle("隱藏"+info1)
-                            .setPositiveButton("確認", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    say1.setVisibility(INVISIBLE);
-                                }
-                            })
-                            .setNegativeButton("取消",null).create()
-                            .show();
-                    bubble=0;
-                    break;
+////                case MotionEvent.ACTION_POINTER_DOWN:
+////                    return false;
+////                case MotionEvent.ACTION_POINTER_UP:
+////                    new AlertDialog.Builder(EditDrama.this)
+////                            .setIcon(R.drawable.ic_launcher)
+////                            .setTitle("隱藏"+info1)
+////                            .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+////                                @Override
+////                                public void onClick(DialogInterface dialog, int which) {
+////                                    say1.setVisibility(INVISIBLE);
+////                                }
+////                            })
+////                            .setNegativeButton("取消",null).create()
+////                            .show();
+////                    bubble=0;
+////                    break;
                 case MotionEvent.ACTION_CANCEL:
-                break;
-
+                    break;
             }
             Log.e("address", String.valueOf(mx) + "~~" + String.valueOf(my)); // 記錄目前位置
             return gestureDetector.onTouchEvent(event);
         }
         final GestureDetector gestureDetector = new GestureDetector(new GestureDetector.SimpleOnGestureListener() {
 //            @Override
+//            public boolean onDoubleTap(MotionEvent e) {
+//                Log.v("Double", "double");
+//                new AlertDialog.Builder(EditDrama.this)
+//                        .setIcon(R.drawable.ic_launcher)
+//                        .setTitle("隱藏"+info1)
+//                        .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                say1.setVisibility(INVISIBLE);
+//                            }
+//                        })
+//                        .setNegativeButton("取消",null).create()
+//                        .show();
+//                bubble=0;
+//                return super.onDoubleTap(e);
+//            }
+            //            @Override
 //            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
 //                registerForContextMenu(say1);
 //                return super.onFling(e1, e2, velocityX, velocityY);
@@ -1554,7 +2111,7 @@ public class EditDrama extends Activity {
         });
         private void setRelativeViewLocation(View view, int left, int top, int right, int bottom) {
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(right - left, bottom - top);
-            Log.e("params", params.width + "~~" +Integer.toString(right) + Integer.toString(left));
+            Log.e("第一個泡泡框移動", params.width + "~~" +Integer.toString(right) + Integer.toString(left));
             params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
             params.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
             params.setMargins(left, top, 0, 0);
@@ -1562,10 +2119,12 @@ public class EditDrama extends Activity {
         }
     };
 
+
     //拖曳 B 對話框
     private View.OnTouchListener say2Listener = new View.OnTouchListener() {
         private float x, y;    // 原本圖片存在的X,Y軸位置
         private int mx, my; // 圖片被拖曳的X ,Y軸距離長度
+        private boolean first_touch = true;
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
@@ -1580,6 +2139,11 @@ public class EditDrama extends Activity {
                     x = event.getX();                  //觸控的X軸位置
                     y = event.getY();                  //觸控的Y軸位置
 //                    v.bringToFront();
+                    registerForContextMenu(say2);
+//                    if (first_touch){
+//                        say2.setX(x);
+//                        say2.setY(y);
+//                    }
                     return false;
                 case MotionEvent.ACTION_MOVE:// 移動圖片時
                     //getX()：是獲取當前控件(View)的座標
@@ -1587,6 +2151,7 @@ public class EditDrama extends Activity {
                     mx = (int) (event.getRawX() - x);
                     my = (int) (event.getRawY() - y);
                     setRelativeViewLocation(say2, mx, my, mx + v.getWidth(), my + v.getHeight());
+//                    first_touch=false;
                     return false;
                 case MotionEvent.ACTION_UP:
                     choose=2;
@@ -1616,23 +2181,23 @@ public class EditDrama extends Activity {
 ////                        buildLinesB_Click();
 ////                    }
                    break;
-                case MotionEvent.ACTION_POINTER_DOWN:
-                    return false;
-                case MotionEvent.ACTION_POINTER_UP:
-                    new AlertDialog.Builder(EditDrama.this)
-                                .setIcon(R.drawable.ic_launcher)
-                                .setTitle("隱藏"+info2)
-                                .setPositiveButton("確認", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        say2.setVisibility(INVISIBLE);
-                                        say1.setVisibility(VISIBLE);
-                                    }
-                                })
-                                .setNegativeButton("取消",null).create()
-                                .show();
-                        bubble=1;
-                        break;
+//                case MotionEvent.ACTION_POINTER_DOWN:
+//                    return false;
+//                case MotionEvent.ACTION_POINTER_UP:
+//                    new AlertDialog.Builder(EditDrama.this)
+//                                .setIcon(R.drawable.ic_launcher)
+//                                .setTitle("隱藏"+info2)
+//                                .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        say2.setVisibility(INVISIBLE);
+//                                        say1.setVisibility(VISIBLE);
+//                                    }
+//                                })
+//                                .setNegativeButton("取消",null).create()
+//                                .show();
+//                        bubble=1;
+//                        break;
                 case MotionEvent.ACTION_CANCEL:
                 break;
             }
@@ -1640,6 +2205,7 @@ public class EditDrama extends Activity {
             return gestureDetector.onTouchEvent(event);
         }
     final GestureDetector gestureDetector = new GestureDetector(new GestureDetector.SimpleOnGestureListener() {
+
 //        @Override
 //        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
 //            registerForContextMenu(say2);
@@ -1658,6 +2224,7 @@ public class EditDrama extends Activity {
 
         private void setRelativeViewLocation(View view, int left, int top, int right, int bottom) {
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(right - left, bottom - top);
+            Log.e("第二個泡泡框移動", params.width + "~~" +Integer.toString(right) + Integer.toString(left));
             params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
             params.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
             params.setMargins(left, top, 0, 0);
@@ -1670,6 +2237,7 @@ public class EditDrama extends Activity {
     private View.OnTouchListener say3Listener = new View.OnTouchListener() {
         private float x, y;    // 原本圖片存在的X,Y軸位置
         private int mx, my; // 圖片被拖曳的X ,Y軸距離長度
+        private boolean first_touch = true;
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
@@ -1684,6 +2252,11 @@ public class EditDrama extends Activity {
                     x = event.getX();                  //觸控的X軸位置
                     y = event.getY();                  //觸控的Y軸位置
 //                    v.bringToFront();
+                    registerForContextMenu(say3);
+//                    if (first_touch){
+//                        say3.setX(x);
+//                        say3.setY(y);
+//                    }
                     return false;
                 case MotionEvent.ACTION_MOVE:// 移動圖片時
                     //getX()：是獲取當前控件(View)的座標
@@ -1691,6 +2264,7 @@ public class EditDrama extends Activity {
                     mx = (int) (event.getRawX() - x);
                     my = (int) (event.getRawY() - y);
                     setRelativeViewLocation(say3, mx, my, mx + v.getWidth(), my + v.getHeight());
+//                    first_touch=false;
                     return false;
                 case MotionEvent.ACTION_UP:
                     choose=3;
@@ -1720,26 +2294,24 @@ public class EditDrama extends Activity {
 ////                        buildLinesB_Click();
 ////                    }
                     break;
-                case MotionEvent.ACTION_POINTER_DOWN:
-                    return false;
-                case MotionEvent.ACTION_POINTER_UP:
-                    new AlertDialog.Builder(EditDrama.this)
-                            .setIcon(R.drawable.ic_launcher)
-                            .setTitle("隱藏"+info3)
-                            .setPositiveButton("確認", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    say3.setVisibility(INVISIBLE);
-                                    say2.setVisibility(VISIBLE);
-                                    say1.setVisibility(VISIBLE);
-                                }
-                            })
-                            .setNegativeButton("取消",null).create()
-                            .show();
-                    bubble=2;
-                    break;
-                case MotionEvent.ACTION_CANCEL:
-                    break;
+//                case MotionEvent.ACTION_POINTER_DOWN:
+//                    return false;
+//                case MotionEvent.ACTION_POINTER_UP:
+//                    new AlertDialog.Builder(EditDrama.this)
+//                            .setIcon(R.drawable.ic_launcher)
+//                            .setTitle("隱藏"+info3)
+//                            .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    say3.setVisibility(INVISIBLE);
+//                                    say2.setVisibility(VISIBLE);
+//                                    say1.setVisibility(VISIBLE);
+//                                }
+//                            })
+//                            .setNegativeButton("取消",null).create()
+//                            .show();
+//                    bubble=2;
+//                    break;
             }
             Log.e("address", String.valueOf(mx) + "~~" + String.valueOf(my)); // 記錄目前位置
             return gestureDetector.onTouchEvent(event);
@@ -1763,6 +2335,7 @@ public class EditDrama extends Activity {
 
         private void setRelativeViewLocation(View view, int left, int top, int right, int bottom) {
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(right - left, bottom - top);
+            Log.e("第三個泡泡框移動", params.width + "~~" +Integer.toString(right) + Integer.toString(left));
             params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
             params.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
             params.setMargins(left, top, 0, 0);
@@ -1775,6 +2348,7 @@ public class EditDrama extends Activity {
     private View.OnTouchListener say4Listener = new View.OnTouchListener() {
         private float x, y;    // 原本圖片存在的X,Y軸位置
         private int mx, my; // 圖片被拖曳的X ,Y軸距離長度
+        private boolean first_touch = true;
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
@@ -1789,6 +2363,11 @@ public class EditDrama extends Activity {
                     x = event.getX();                  //觸控的X軸位置
                     y = event.getY();                  //觸控的Y軸位置
 //                    v.bringToFront();
+                    registerForContextMenu(say4);
+//                    if (first_touch){
+//                        say4.setX(x);
+//                        say4.setY(y);
+//                    }
                     return false;
                 case MotionEvent.ACTION_MOVE:// 移動圖片時
                     //getX()：是獲取當前控件(View)的座標
@@ -1796,6 +2375,7 @@ public class EditDrama extends Activity {
                     mx = (int) (event.getRawX() - x);
                     my = (int) (event.getRawY() - y);
                     setRelativeViewLocation(say4, mx, my, mx + v.getWidth(), my + v.getHeight());
+//                    first_touch=false;
                     return false;
                 case MotionEvent.ACTION_UP:
                     choose=4;
@@ -1825,25 +2405,25 @@ public class EditDrama extends Activity {
 ////                        buildLinesB_Click();
 ////                    }
                     break;
-                case MotionEvent.ACTION_POINTER_DOWN:
-                    return false;
-                case MotionEvent.ACTION_POINTER_UP:
-                    new AlertDialog.Builder(EditDrama.this)
-                            .setIcon(R.drawable.ic_launcher)
-                            .setTitle("隱藏"+info4)
-                            .setPositiveButton("確認", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    say4.setVisibility(INVISIBLE);
-                                    say3.setVisibility(VISIBLE);
-                                    say2.setVisibility(VISIBLE);
-                                    say1.setVisibility(VISIBLE);
-                                }
-                            })
-                            .setNegativeButton("取消",null).create()
-                            .show();
-                    bubble=3;
-                    break;
+//                case MotionEvent.ACTION_POINTER_DOWN:
+//                    return false;
+//                case MotionEvent.ACTION_POINTER_UP:
+//                    new AlertDialog.Builder(EditDrama.this)
+//                            .setIcon(R.drawable.ic_launcher)
+//                            .setTitle("隱藏"+info4)
+//                            .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    say4.setVisibility(INVISIBLE);
+//                                    say3.setVisibility(VISIBLE);
+//                                    say2.setVisibility(VISIBLE);
+//                                    say1.setVisibility(VISIBLE);
+//                                }
+//                            })
+//                            .setNegativeButton("取消",null).create()
+//                            .show();
+//                    bubble=3;
+//                    break;
                 case MotionEvent.ACTION_CANCEL:
                     break;
             }
@@ -1869,6 +2449,7 @@ public class EditDrama extends Activity {
 
         private void setRelativeViewLocation(View view, int left, int top, int right, int bottom) {
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(right - left, bottom - top);
+            Log.e("第四個泡泡框移動", params.width + "~~" +Integer.toString(right) + Integer.toString(left));
             params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
             params.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
             params.setMargins(left, top, 0, 0);
@@ -1876,6 +2457,42 @@ public class EditDrama extends Activity {
         }
 
     };
+
+    private View.OnTouchListener imageTouch = new View.OnTouchListener() {
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
+                lastTouchDownXY[0] = event.getX();
+                lastTouchDownXY[1] = event.getY();
+            }
+            return false;
+
+        }
+    };
+
+//    private View.OnTouchListener imageTouch = new View.OnTouchListener() {
+//
+//        @Override
+//        public boolean onTouch(View v, MotionEvent event) {
+//            switch (event.getAction()) {          //判斷觸控的動作
+//                case MotionEvent.ACTION_DOWN:// 按下圖片時
+//                    x_touch = event.getX();                  //觸控的X軸位置
+//                    y_touch = event.getY();                  //觸控的Y軸位置
+//                    break;
+//                case MotionEvent.ACTION_MOVE:// 移動圖片時
+//                    break;
+//                case MotionEvent.ACTION_CANCEL:
+//                    break;
+//            }
+//            return false;
+//        }
+//    };
+
+
+
+
+
 
     //判断Activity是否Destroy
     public static boolean isDestroy(Activity activity) {
@@ -1889,38 +2506,58 @@ public class EditDrama extends Activity {
 //    private ArrayList<StoreTheEditData> list_editdata;
 //    String push_key = fire_editdata.getKey();
     public void returnbackdata(){
-        Toast.makeText(this, CreatDrama.spinner_drame_word + " & " +CreatDrama.num , Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, CreatDrama.spinner_drame_word + " & 情境" +CreatDrama.num+"進行編輯" , Toast.LENGTH_SHORT).show();
         fire_editdata = FirebaseDatabase.getInstance().getReference()
                 .child("學生"+Student.Name+"號").child(CreatDrama.spinner_drame_word).child(Integer.toString(CreatDrama.num));
         fire_editdata.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    StoreTheEditData storeTheEditData = dataSnapshot.getValue(StoreTheEditData.class);
+                StoreTheEditData storeTheEditData = dataSnapshot.getValue(StoreTheEditData.class);
                 if(!isDestroy((Activity)editimage.getContext())){
                     Glide.with(editimage.getContext()).load(storeTheEditData.getOriginalPhotoUri()).into(editimage);
                 }
-                    say1.setVisibility(View.VISIBLE);
-                    say2.setVisibility(View.VISIBLE);
-                    say3.setVisibility(View.VISIBLE);
-                    say4.setVisibility(View.VISIBLE);
-                    say1.setText(storeTheEditData.getPlayerA_text());
-                    say2.setText(storeTheEditData.getPlayerB_text());
-                    say3.setText(storeTheEditData.getPlayer3_text());
-                    say4.setText(storeTheEditData.getPlayer4_text());
-                    say1.setX(storeTheEditData.getPlayerA_x());
-                    say1.setY(storeTheEditData.getPlayerA_y());
-                    say2.setX(storeTheEditData.getPlayerB_x());
-                    say2.setY(storeTheEditData.getPlayerB_y());
-                    say3.setX(storeTheEditData.getPlayer3_x());
-                    say3.setY(storeTheEditData.getPlayer3_y());
-                    say4.setX(storeTheEditData.getPlayer4_x());
-                    say4.setY(storeTheEditData.getPlayer4_y());
 
-                    re_a_line_word = storeTheEditData.getPlayerA_text();
-                    re_b_line_word = storeTheEditData.getPlayerB_text();
-                    re_3_line_word = storeTheEditData.getPlayer3_text();
-                    re_4_line_word = storeTheEditData.getPlayer4_text();
+                say1_X = storeTheEditData.getPlayerA_x();
+                say1_Y = storeTheEditData.getPlayerA_y();
+                RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                lp1.setMargins(Math.round(say1_X),Math.round(say1_Y), 0, 0);
+                say1.setLayoutParams(lp1);
+
+                say2_X = storeTheEditData.getPlayerB_x();
+                say2_Y = storeTheEditData.getPlayerB_y();
+                RelativeLayout.LayoutParams lp2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                lp2.setMargins(Math.round(say2_X),Math.round(say2_Y), 0, 0);
+                say2.setLayoutParams(lp2);
+
+                say3_X = storeTheEditData.getPlayer3_x();
+                say3_Y = storeTheEditData.getPlayer3_y();
+                RelativeLayout.LayoutParams lp3 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                lp3.setMargins(Math.round(say3_X),Math.round(say3_Y), 0, 0);
+                say3.setLayoutParams(lp3);
+
+                say4_X = storeTheEditData.getPlayer4_x();
+                say4_Y = storeTheEditData.getPlayer4_y();
+                RelativeLayout.LayoutParams lp4 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                lp4.setMargins(Math.round(say4_X),Math.round(say4_Y), 0, 0);
+                say4.setLayoutParams(lp4);
+
+                say1.setVisibility(VISIBLE);
+                say2.setVisibility(VISIBLE);
+                say3.setVisibility(VISIBLE);
+                say4.setVisibility(VISIBLE);
+                say1.setText(storeTheEditData.getPlayerA_text());
+                say2.setText(storeTheEditData.getPlayerB_text());
+                say3.setText(storeTheEditData.getPlayer3_text());
+                say4.setText(storeTheEditData.getPlayer4_text());
+
+
+
+                re_a_line_word = storeTheEditData.getPlayerA_text();
+                re_b_line_word = storeTheEditData.getPlayerB_text();
+                re_3_line_word = storeTheEditData.getPlayer3_text();
+                re_4_line_word = storeTheEditData.getPlayer4_text();
+
 
                 }
 
@@ -1934,4 +2571,173 @@ public class EditDrama extends Activity {
         return;
 
     };
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            Toast.makeText(EditDrama.this,"back",Toast.LENGTH_SHORT).show();
+            new AlertDialog.Builder(EditDrama.this)
+                    .setIcon(R.drawable.ic_launcher)
+                    .setTitle("編輯完畢?")
+                    .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            try {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        findViewById(R.id.loadingPanel).setVisibility(VISIBLE);
+                                    }
+                                });
+
+                                
+                                Uri uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), getBitmap(view), null,null));
+
+                                //將編輯好的照片截圖傳進Firebase
+                                fire_finishphoto = FirebaseStorage.getInstance().getReference().child(Student.Name + "/EditFinish/"
+                                        + CreatDrama.spinner_drame_word + "/" + "edit_screen"+ CreatDrama.num + ".jpeg");
+                                fire_finishphoto.putFile(uri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                                    @Override
+                                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                                        if(!task.isSuccessful()){
+                                            throw  task.getException();
+                                        }
+                                        return fire_finishphoto.getDownloadUrl();
+                                    }
+                                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Uri> task) {
+                                        Uri uri = task.getResult();
+                                        download_url_editFinish = uri.toString();
+                                    }
+                                }).continueWithTask(new Continuation<Uri, Task<Void>>() {
+                                    @Override
+                                    public Task<Void> then(@NonNull Task<Uri> task) throws Exception {
+
+                                        fire_editdata = FirebaseDatabase.getInstance().getReference()
+                                                .child("學生"+Student.Name+"號").child(CreatDrama.spinner_drame_word).child(Integer.toString(CreatDrama.num));
+
+                                        fire_contextmenu = FirebaseDatabase.getInstance().getReference()
+                                                .child("學生"+Student.Name+"號").child(CreatDrama.spinner_drame_word);
+
+                                        try {
+                                            fire_contextmenu.child("contextmenu").child("4").setValue(textOut);
+                                            fire_contextmenu.child("contextmenu").child("5").setValue(textOut_5);
+                                            fire_contextmenu.child("contextmenu").child("6").setValue(textOut_6);
+                                            fire_contextmenu.child("contextmenu").child("7").setValue(textOut_7);
+                                            fire_contextmenu.child("contextmenu").child("8").setValue(textOut_8);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        if(CreatDrama.edit){
+                                            fire_editdata.child("playerA_record").setValue(record_download_url_a);
+                                            fire_editdata.child("playerA_text").setValue(say1.getText().toString());
+                                            fire_editdata.child("playerA_x").setValue(say1.getX());
+                                            fire_editdata.child("playerA_y").setValue(say1.getY());
+                                            fire_editdata.child("playerB_record").setValue(record_download_url_b);
+                                            fire_editdata.child("playerB_text").setValue(say2.getText().toString());
+                                            fire_editdata.child("playerB_x").setValue(say2.getX());
+                                            fire_editdata.child("playerB_y").setValue(say2.getY());
+                                            fire_editdata.child("player3_record").setValue(record_download_url_3);
+                                            fire_editdata.child("player3_text").setValue(say3.getText().toString());
+                                            fire_editdata.child("player3_x").setValue(say3.getX());
+                                            fire_editdata.child("player3_y").setValue(say3.getY());
+                                            fire_editdata.child("player4_record").setValue(record_download_url_4);
+                                            fire_editdata.child("player4_text").setValue(say4.getText().toString());
+                                            fire_editdata.child("player4_x").setValue(say4.getX());
+                                            fire_editdata.child("player4_y").setValue(say4.getY());
+                                            fire_editdata.child("player5_record").setValue(record_download_url_5);
+                                            fire_editdata.child("player5_text").setValue(say5.getText().toString());
+                                            fire_editdata.child("player5_x").setValue(say5.getX());
+                                            fire_editdata.child("player5_y").setValue(say5.getY());
+                                            fire_editdata.child("player6_record").setValue(record_download_url_6);
+                                            fire_editdata.child("player6_text").setValue(say6.getText().toString());
+                                            fire_editdata.child("player6_x").setValue(say6.getX());
+                                            fire_editdata.child("player6_y").setValue(say6.getY());
+                                            fire_editdata.child("editFinishPhotoUri").setValue(download_url_editFinish).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+
+                                                        Toast.makeText(EditDrama.this, "編輯資料上傳成功", Toast.LENGTH_SHORT).show();
+                                                        CreatDrama.ccc();
+                                                        //CreatDrama.num = 0;
+                                                        new Thread(new Runnable() {
+                                                            @Override
+                                                            public void run() {
+                                                                try {
+                                                                    Thread.sleep(2000);
+                                                                    runOnUiThread(new Runnable() {
+                                                                        @Override
+                                                                        public void run() {
+                                                                            findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+                                                                        }
+                                                                    });
+                                                                } catch (InterruptedException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                            }
+                                                        }).start();
+                                                        EditDrama.this.finish();
+                                                    }else{
+                                                        Toast.makeText(EditDrama.this, "失敗", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                        }else{
+                                            //StoreTheEditData 傳入 編輯過的每一項資料
+                                            storeTheEditData = new StoreTheEditData(CreatDrama.download_url.toString(), say1.getX(), say1.getY(), say2.getX(), say2.getY(),say3.getX(), say3.getY(), say4.getX(), say4.getY(),say5.getX(), say5.getY(), say6.getX(), say6.getY(),
+                                                    say1.getText().toString(), say2.getText().toString(),record_download_url_a,record_download_url_b,say3.getText().toString(), say4.getText().toString(),record_download_url_3,record_download_url_4, say5.getText().toString(), say6.getText().toString(),record_download_url_5,record_download_url_6,
+                                                    playtimeA, playtimeB, playtime3, playtime4, playtime5, playtime6,download_url_editFinish.toString());
+
+                                            fire_editdata.setValue(storeTheEditData).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+
+                                                        Toast.makeText(EditDrama.this, "編輯資料上傳成功", Toast.LENGTH_SHORT).show();
+                                                        CreatDrama. ccc();
+                                                        //CreatDrama.num = 0;
+                                                        new Thread(new Runnable() {
+                                                            @Override
+                                                            public void run() {
+                                                                try {
+                                                                    Thread.sleep(2000);
+                                                                    runOnUiThread(new Runnable() {
+                                                                        @Override
+                                                                        public void run() {
+                                                                            findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+                                                                        }
+                                                                    });
+                                                                } catch (InterruptedException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                            }
+                                                        }).start();
+                                                        EditDrama.this.finish();
+                                                    }else{
+                                                        Toast.makeText(EditDrama.this, "失敗", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                            return null;
+                                        }
+                                        return null;
+                                    }
+                                });
+
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            CreatDrama.cantoload = true;
+                        }
+                    })
+                    .setNegativeButton("取消",null).create()
+                    .show();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

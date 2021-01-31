@@ -36,6 +36,10 @@ anim fab_slide_out_to_right
 anim mtrl_bottom_sheet_slide_in
 anim mtrl_bottom_sheet_slide_out
 anim mtrl_card_lowers_interpolator
+anim zoom_in
+anim zoom_out
+animator basket_path
+animator delete_mic_animation
 animator design_appbar_state_list_animator
 animator design_fab_hide_motion_spec
 animator design_fab_show_motion_spec
@@ -52,6 +56,7 @@ animator mtrl_fab_show_motion_spec
 animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
 animator scale_with_alpha
+array av_colors
 array switch_country
 array switch_tabs
 array switch_yn
@@ -108,6 +113,15 @@ attr autoSizeMinTextSize
 attr autoSizePresetSizes
 attr autoSizeStepGranularity
 attr autoSizeTextType
+attr av_backgroundColor
+attr av_bubblesPerLayer
+attr av_bubblesRandomizeSizes
+attr av_bubblesSize
+attr av_layersCount
+attr av_wavesColors
+attr av_wavesCount
+attr av_wavesFooterHeight
+attr av_wavesHeight
 attr background
 attr backgroundColor
 attr backgroundInsetBottom
@@ -291,6 +305,7 @@ attr counterOverflowTextAppearance
 attr counterOverflowTextColor
 attr counterTextAppearance
 attr counterTextColor
+attr counter_time_color
 attr cropAspectRatioX
 attr cropAspectRatioY
 attr cropAutoZoomEnabled
@@ -667,6 +682,7 @@ attr menu_shadowRadius
 attr menu_shadowXOffset
 attr menu_shadowYOffset
 attr menu_showShadow
+attr mic_icon
 attr minRadius
 attr minTouchTargetSize
 attr multiChoiceItemLayout
@@ -735,6 +751,13 @@ attr shapeAppearanceLargeComponent
 attr shapeAppearanceMediumComponent
 attr shapeAppearanceOverlay
 attr shapeAppearanceSmallComponent
+attr shimmer_angle
+attr shimmer_animation_duration
+attr shimmer_auto_start
+attr shimmer_color
+attr shimmer_gradient_center_color_width
+attr shimmer_mask_width
+attr shimmer_reverse_animation
 attr showAsAction
 attr showDividers
 attr showMotionSpec
@@ -744,6 +767,11 @@ attr shrinkMotionSpec
 attr singleChoiceItemLayout
 attr singleLine
 attr singleSelection
+attr slide_to_cancel_arrow
+attr slide_to_cancel_arrow_color
+attr slide_to_cancel_bounds
+attr slide_to_cancel_margin_right
+attr slide_to_cancel_text
 attr sliderStyle
 attr snackbarButtonStyle
 attr snackbarStyle
@@ -956,6 +984,11 @@ color abc_tint_switch_track
 color accent_material_dark
 color accent_material_light
 color aidialog_background
+color av_color1
+color av_color2
+color av_color3
+color av_color4
+color av_color_bg
 color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
@@ -973,6 +1006,8 @@ color cardview_light_background
 color cardview_shadow_end_color
 color cardview_shadow_start_color
 color checkbox_themeable_attribute_color
+color colorAccent
+color colorPrimary
 color colorPrimaryDark
 color common_google_signin_btn_text_dark
 color common_google_signin_btn_text_dark_default
@@ -1138,6 +1173,7 @@ color secondary_text_default_material_dark
 color secondary_text_default_material_light
 color secondary_text_disabled_material_dark
 color secondary_text_disabled_material_light
+color shimmer_color
 color switch_thumb_disabled_material_dark
 color switch_thumb_disabled_material_light
 color switch_thumb_material_dark
@@ -1151,6 +1187,9 @@ color tooltip_background_light
 color transparent
 color view_alpha_background
 color white
+dimen aar_bubble_size
+dimen aar_footer_height
+dimen aar_wave_height
 dimen abc_action_bar_content_inset_material
 dimen abc_action_bar_content_inset_with_nav
 dimen abc_action_bar_default_height_material
@@ -1508,6 +1547,13 @@ dimen tooltip_vertical_padding
 dimen tooltip_y_offset_non_touch
 dimen tooltip_y_offset_touch
 drawable a_lines
+drawable aar_ic_check
+drawable aar_ic_clear
+drawable aar_ic_pause
+drawable aar_ic_play
+drawable aar_ic_rec
+drawable aar_ic_restart
+drawable aar_ic_stop
 drawable abc_ab_share_pack_mtrl_alpha
 drawable abc_action_bar_item_background_material
 drawable abc_btn_borderless_material
@@ -1596,6 +1642,7 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable add
 drawable add_border
+drawable advertising
 drawable avd_hide_password
 drawable avd_show_password
 drawable b_lines
@@ -1697,7 +1744,11 @@ drawable hint
 drawable homework
 drawable hw_record_32
 drawable hw_record_64
+drawable ic_baseline_keyboard_voice_24
+drawable ic_baseline_menu_book_24
 drawable ic_baseline_message_24
+drawable ic_baseline_photo_24
+drawable ic_baseline_play_circle_filled_24
 drawable ic_check_black_24dp
 drawable ic_launcher
 drawable ic_mic_black_24dp
@@ -1767,6 +1818,8 @@ drawable ok_btn
 drawable pdf_custom_stamp
 drawable percent1
 drawable photo
+drawable photo_and_speaker
+drawable picture
 drawable play_hw
 drawable playvoice_333
 drawable pt_end
@@ -1779,6 +1832,12 @@ drawable record_222
 drawable record_btn
 drawable record_doalog1
 drawable recordvoice
+drawable recv_basket_animated
+drawable recv_bg_mic
+drawable recv_ic_arrow
+drawable recv_ic_delete
+drawable recv_ic_mic
+drawable recv_ic_mic_white
 drawable research128
 drawable resixe_b_36
 drawable resize_a_36
@@ -1807,6 +1866,7 @@ drawable text_dialogspeak
 drawable text_receive
 drawable text_send
 drawable textview_border
+drawable textview_border_1
 drawable textview_style
 drawable textview_youspeak
 drawable theater128
@@ -1897,6 +1957,7 @@ id action_menu_presenter
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
+id action_save
 id action_text
 id actions
 id activity_chooser_view_content
@@ -1911,6 +1972,7 @@ id always
 id annot_combo
 id annot_text
 id answerTextViewDiff
+id arrow
 id async
 id auto
 id b_say
@@ -1920,6 +1982,7 @@ id bannerTitle
 id bannerViewPager
 id barlayout
 id barrier
+id basket_img
 id beginning
 id big_pic
 id blocking
@@ -1965,7 +2028,6 @@ id btn_searchdrama
 id btn_seedrama
 id btn_select
 id btn_send
-id btn_show
 id btn_talkMessage
 id btn_view
 id btn_voice
@@ -2034,6 +2096,7 @@ id content
 id contentPanel
 id contextEditText
 id coordinator
+id counter_tv
 id creat1
 id creat2
 id creat3
@@ -2059,6 +2122,7 @@ id data_list
 id date_picker_actions
 id decor_content_parent
 id default_activity_button
+id delete
 id design_bottom_sheet
 id design_menu_item_action_area
 id design_menu_item_action_area_stub
@@ -2142,6 +2206,7 @@ id forever
 id getanswer
 id ghost_view
 id ghost_view_holder
+id glowing_mic
 id gone
 id good
 id gps_view
@@ -2268,6 +2333,7 @@ id packed
 id parallax
 id parent
 id parentPanel
+id parent_layout
 id parent_matrix
 id partialResultsTextView
 id password_toggle
@@ -2286,6 +2352,8 @@ id place
 id place_tell
 id place_tittle
 id placechatbot
+id play
+id playplayer
 id playplayer1
 id playplayer2
 id playplayer3
@@ -2307,6 +2375,8 @@ id rad_strikeout
 id rad_underline
 id radio
 id re_dialogButton
+id record
+id recordplayer
 id recordplayer1
 id recordplayer2
 id recordplayer3
@@ -2316,6 +2386,7 @@ id rectangle
 id recycle_view
 id relativelayout_keyboard
 id relativelayout_keyboardState
+id restart
 id resultTextView
 id right
 id right_icon
@@ -2368,11 +2439,13 @@ id select_dialog_listview
 id selected
 id sentence
 id share_check
+id shimmer_layout
 id shortcut
 id showCustom
 id showHome
 id showTitle
 id show_message
+id show_time
 id show_time1
 id show_time2
 id show_time3
@@ -2380,6 +2453,7 @@ id show_time4
 id showdescribescore
 id skipCollapsed
 id slide
+id slide_to_cancel
 id smallLabel
 id snackbar_action
 id snackbar_text
@@ -2398,7 +2472,9 @@ id src_in
 id src_over
 id standard
 id start
+id status
 id status_bar_latest_event_content
+id stopplayer
 id stopplayer1
 id stopplayer2
 id stopplayer3
@@ -2472,6 +2548,7 @@ id time_share_click
 id time_share_click_text
 id time_speech
 id time_speech_text
+id timer
 id tipview
 id tipview1
 id tipview2
@@ -2489,7 +2566,6 @@ id top
 id topPanel
 id touch_outside
 id trans_correct
-id trans_speak
 id trans_speak_left
 id transition_current_scene
 id transition_layout_save
@@ -2574,6 +2650,7 @@ interpolator mtrl_fast_out_linear_in
 interpolator mtrl_fast_out_slow_in
 interpolator mtrl_linear
 interpolator mtrl_linear_out_slow_in
+layout aar_activity_audio_recorder
 layout abc_action_bar_title_item
 layout abc_action_bar_up_container
 layout abc_action_menu_item_layout
@@ -2712,6 +2789,7 @@ layout photomain
 layout pop_combo
 layout pop_edit
 layout pop_view
+layout record_view_layout
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
@@ -2731,6 +2809,7 @@ layout text_view_with_line_height_from_layout
 layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
+menu aar_audio_recorder
 menu crop_image_menu
 menu example_menu
 mipmap correction_icon
@@ -2751,6 +2830,7 @@ raw arimo
 raw arimob
 raw arimobi
 raw arimoi
+raw av_workaround_1min
 raw cmaps
 raw cmyk_rgb
 raw cousine
@@ -2763,6 +2843,9 @@ raw engineerbuilding_hiowhp_bf82041d2f2a
 raw newagent_cqnfce_1fbb0504b0f8
 raw rdf008
 raw rdf013
+raw record_error
+raw record_finished
+raw record_start
 raw test_cancel
 raw test_start
 raw test_stop
@@ -2774,6 +2857,10 @@ raw umaps
 raw version_config
 string CANCEL
 string Listen
+string aar_paused
+string aar_playing
+string aar_recording
+string aar_save
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -2804,6 +2891,7 @@ string abc_toolbar_collapse_description
 string answer_diff_title
 string app_name
 string appbar_scrolling_view_behavior
+string av_app_name
 string bottom_sheet_behavior
 string btn_voice_text
 string character_counter_content_description
@@ -3670,6 +3758,7 @@ styleable FlowLayout itemSpacing lineSpacing
 styleable FontFamily fontProviderAuthority fontProviderCerts fontProviderFetchStrategy fontProviderFetchTimeout fontProviderPackage fontProviderQuery
 styleable FontFamilyFont android_font android_fontWeight android_fontStyle android_ttcIndex android_fontVariationSettings font fontStyle fontVariationSettings fontWeight ttcIndex
 styleable ForegroundLinearLayout android_foreground android_foregroundGravity foregroundInsidePadding
+styleable GLAudioVisualizationView av_backgroundColor av_bubblesPerLayer av_bubblesRandomizeSizes av_bubblesSize av_layersCount av_wavesColors av_wavesCount av_wavesFooterHeight av_wavesHeight
 styleable GifTextureView gifSource isOpaque
 styleable GifView freezesAnimation loopCount
 styleable GradientColor android_startColor android_endColor android_type android_centerX android_centerY android_gradientRadius android_tileMode android_centerColor android_startX android_startY android_endX android_endY
@@ -3702,6 +3791,8 @@ styleable NavigationView android_background android_fitsSystemWindows android_ma
 styleable PopupWindow android_popupBackground android_popupAnimationStyle overlapAnchor
 styleable PopupWindowBackgroundState state_above_anchor
 styleable RangeSlider values
+styleable RecordButton mic_icon
+styleable RecordView counter_time_color slide_to_cancel_arrow slide_to_cancel_arrow_color slide_to_cancel_bounds slide_to_cancel_margin_right slide_to_cancel_text
 styleable RecycleListView paddingBottomNoButtons paddingTopNoTitle
 styleable RecyclerView android_orientation android_clipToPadding android_descendantFocusability fastScrollEnabled fastScrollHorizontalThumbDrawable fastScrollHorizontalTrackDrawable fastScrollVerticalThumbDrawable fastScrollVerticalTrackDrawable layoutManager reverseLayout spanCount stackFromEnd
 styleable ScrimInsetsFrameLayout insetForeground
@@ -3709,6 +3800,7 @@ styleable ScrollingViewBehavior_Layout behavior_overlapTop
 styleable SearchView android_focusable android_maxWidth android_inputType android_imeOptions closeIcon commitIcon defaultQueryHint goIcon iconifiedByDefault layout queryBackground queryHint searchHintIcon searchIcon submitBackground suggestionRowLayout voiceIcon
 styleable ShapeAppearance cornerFamily cornerFamilyBottomLeft cornerFamilyBottomRight cornerFamilyTopLeft cornerFamilyTopRight cornerSize cornerSizeBottomLeft cornerSizeBottomRight cornerSizeTopLeft cornerSizeTopRight
 styleable ShapeableImageView shapeAppearance shapeAppearanceOverlay strokeColor strokeWidth
+styleable ShimmerLayout shimmer_angle shimmer_animation_duration shimmer_auto_start shimmer_color shimmer_gradient_center_color_width shimmer_mask_width shimmer_reverse_animation
 styleable SignInButton buttonSize colorScheme scopeUris
 styleable Slider android_enabled android_value android_stepSize android_valueFrom android_valueTo haloColor haloRadius labelBehavior labelStyle thumbColor thumbElevation thumbRadius tickColor tickColorActive tickColorInactive trackColor trackColorActive trackColorInactive trackHeight
 styleable Snackbar snackbarButtonStyle snackbarStyle snackbarTextViewStyle

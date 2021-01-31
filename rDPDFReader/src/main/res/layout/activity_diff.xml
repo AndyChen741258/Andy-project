@@ -71,24 +71,24 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text=""
-            android:background="@drawable/textview_border"
+            android:background="@drawable/textview_border_1"
             android:textSize="22sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Translate You Speak"
-            android:paddingTop="10dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="18sp" />
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Translate You Speak"-->
+<!--            android:paddingTop="10dp"-->
+<!--            android:textColor="@color/colorPrimaryDark"-->
+<!--            android:textSize="18sp" />-->
 
-        <TextView
-            android:id="@+id/trans_speak"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:background="@drawable/textview_border"
-            android:textSize="22sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/trans_speak"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text=""-->
+<!--            android:background="@drawable/textview_border"-->
+<!--            android:textSize="22sp" />-->
 
         <TextView
             android:id="@+id/wrongTextView"
@@ -102,7 +102,10 @@
         <ScrollView
             android:id="@+id/wrongWordScrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:fadeScrollbars="false"
+            android:scrollbarThumbVertical="@color/colorPrimaryDark"
+            android:scrollbarSize="5dp">>
 
             <LinearLayout
                 android:id="@+id/wrongWord"

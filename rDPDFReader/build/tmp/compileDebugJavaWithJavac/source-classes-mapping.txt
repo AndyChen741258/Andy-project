@@ -62,6 +62,8 @@ com/naer/pdfreader/DramaAchievement.java
  com.naer.pdfreader.DramaAchievement$9$3
  com.naer.pdfreader.DramaAchievement$9$4
  com.naer.pdfreader.DramaAchievement$9$4$1
+com/naer/pdfreader/DBHelper.java
+ com.naer.pdfreader.DBHelper
 com/naer/pdfreader/testAItext.java
  com.naer.pdfreader.testAItext
  com.naer.pdfreader.testAItext$1
@@ -229,16 +231,108 @@ com/naer/pdfreader/ConversationHomework.java
  com.naer.pdfreader.ConversationHomework$9
  com.naer.pdfreader.ConversationHomework$9$1
  com.naer.pdfreader.ConversationHomework$9$2
-Model/TimeOfSee.java
- Model.TimeOfSee
+Model/StoreTheEditData.java
+ Model.StoreTheEditData
 com/naer/pdfreader/AboutActivity.java
  com.naer.pdfreader.AboutActivity
 com/naer/pdfreader/CameraPreview.java
  com.naer.pdfreader.CameraPreview
 com/naer/pdfreader/chat.java
  com.naer.pdfreader.chat
-com/naer/pdfreader/KeyDatabase.java
- com.naer.pdfreader.KeyDatabase
+com/naer/pdfreader/EditDrama.java
+ com.naer.pdfreader.EditDrama
+ com.naer.pdfreader.EditDrama$1
+ com.naer.pdfreader.EditDrama$1$1
+ com.naer.pdfreader.EditDrama$1$2
+ com.naer.pdfreader.EditDrama$10
+ com.naer.pdfreader.EditDrama$11
+ com.naer.pdfreader.EditDrama$12
+ com.naer.pdfreader.EditDrama$13
+ com.naer.pdfreader.EditDrama$14
+ com.naer.pdfreader.EditDrama$15
+ com.naer.pdfreader.EditDrama$16
+ com.naer.pdfreader.EditDrama$17
+ com.naer.pdfreader.EditDrama$18
+ com.naer.pdfreader.EditDrama$19
+ com.naer.pdfreader.EditDrama$2
+ com.naer.pdfreader.EditDrama$20
+ com.naer.pdfreader.EditDrama$20$1
+ com.naer.pdfreader.EditDrama$20$2
+ com.naer.pdfreader.EditDrama$20$3
+ com.naer.pdfreader.EditDrama$21
+ com.naer.pdfreader.EditDrama$21$1
+ com.naer.pdfreader.EditDrama$21$2
+ com.naer.pdfreader.EditDrama$22
+ com.naer.pdfreader.EditDrama$23
+ com.naer.pdfreader.EditDrama$24
+ com.naer.pdfreader.EditDrama$25
+ com.naer.pdfreader.EditDrama$26
+ com.naer.pdfreader.EditDrama$26$1
+ com.naer.pdfreader.EditDrama$26$2
+ com.naer.pdfreader.EditDrama$26$3
+ com.naer.pdfreader.EditDrama$27
+ com.naer.pdfreader.EditDrama$27$1
+ com.naer.pdfreader.EditDrama$27$2
+ com.naer.pdfreader.EditDrama$28
+ com.naer.pdfreader.EditDrama$29
+ com.naer.pdfreader.EditDrama$3
+ com.naer.pdfreader.EditDrama$30
+ com.naer.pdfreader.EditDrama$31
+ com.naer.pdfreader.EditDrama$32
+ com.naer.pdfreader.EditDrama$32$1
+ com.naer.pdfreader.EditDrama$32$2
+ com.naer.pdfreader.EditDrama$32$3
+ com.naer.pdfreader.EditDrama$33
+ com.naer.pdfreader.EditDrama$33$1
+ com.naer.pdfreader.EditDrama$33$2
+ com.naer.pdfreader.EditDrama$34
+ com.naer.pdfreader.EditDrama$35
+ com.naer.pdfreader.EditDrama$36
+ com.naer.pdfreader.EditDrama$37
+ com.naer.pdfreader.EditDrama$38
+ com.naer.pdfreader.EditDrama$38$1
+ com.naer.pdfreader.EditDrama$38$2
+ com.naer.pdfreader.EditDrama$38$3
+ com.naer.pdfreader.EditDrama$39
+ com.naer.pdfreader.EditDrama$39$1
+ com.naer.pdfreader.EditDrama$39$2
+ com.naer.pdfreader.EditDrama$4
+ com.naer.pdfreader.EditDrama$40
+ com.naer.pdfreader.EditDrama$40$1
+ com.naer.pdfreader.EditDrama$41
+ com.naer.pdfreader.EditDrama$41$1
+ com.naer.pdfreader.EditDrama$42
+ com.naer.pdfreader.EditDrama$42$1
+ com.naer.pdfreader.EditDrama$43
+ com.naer.pdfreader.EditDrama$43$1
+ com.naer.pdfreader.EditDrama$44
+ com.naer.pdfreader.EditDrama$45
+ com.naer.pdfreader.EditDrama$46
+ com.naer.pdfreader.EditDrama$46$1
+ com.naer.pdfreader.EditDrama$46$2
+ com.naer.pdfreader.EditDrama$46$2$1
+ com.naer.pdfreader.EditDrama$46$2$1$1
+ com.naer.pdfreader.EditDrama$46$2$1$1$1
+ com.naer.pdfreader.EditDrama$46$2$2
+ com.naer.pdfreader.EditDrama$46$2$2$1
+ com.naer.pdfreader.EditDrama$46$2$2$1$1
+ com.naer.pdfreader.EditDrama$46$3
+ com.naer.pdfreader.EditDrama$46$4
+ com.naer.pdfreader.EditDrama$5
+ com.naer.pdfreader.EditDrama$5$1
+ com.naer.pdfreader.EditDrama$5$2
+ com.naer.pdfreader.EditDrama$5$2$1
+ com.naer.pdfreader.EditDrama$5$2$1$1
+ com.naer.pdfreader.EditDrama$5$2$1$1$1
+ com.naer.pdfreader.EditDrama$5$2$2
+ com.naer.pdfreader.EditDrama$5$2$2$1
+ com.naer.pdfreader.EditDrama$5$2$2$1$1
+ com.naer.pdfreader.EditDrama$5$3
+ com.naer.pdfreader.EditDrama$5$4
+ com.naer.pdfreader.EditDrama$6
+ com.naer.pdfreader.EditDrama$7
+ com.naer.pdfreader.EditDrama$8
+ com.naer.pdfreader.EditDrama$9
 com/naer/pdfreader/DramaRecycleView.java
  com.naer.pdfreader.DramaRecycleView
  com.naer.pdfreader.DramaRecycleView$1
@@ -374,49 +468,62 @@ com/naer/pdfreader/DialogActivity.java
  com.naer.pdfreader.DialogActivity$SpeechListener$1
 com/naer/pdfreader/Student.java
  com.naer.pdfreader.Student
-com/naer/pdfreader/ChatbotActivity.java
- com.naer.pdfreader.ChatbotActivity
- com.naer.pdfreader.ChatbotActivity$1
- com.naer.pdfreader.ChatbotActivity$10
- com.naer.pdfreader.ChatbotActivity$11
- com.naer.pdfreader.ChatbotActivity$12
- com.naer.pdfreader.ChatbotActivity$13
- com.naer.pdfreader.ChatbotActivity$14
- com.naer.pdfreader.ChatbotActivity$15
- com.naer.pdfreader.ChatbotActivity$16
- com.naer.pdfreader.ChatbotActivity$17
- com.naer.pdfreader.ChatbotActivity$18
- com.naer.pdfreader.ChatbotActivity$2
- com.naer.pdfreader.ChatbotActivity$3
- com.naer.pdfreader.ChatbotActivity$4
- com.naer.pdfreader.ChatbotActivity$5
- com.naer.pdfreader.ChatbotActivity$6
- com.naer.pdfreader.ChatbotActivity$7
- com.naer.pdfreader.ChatbotActivity$8
- com.naer.pdfreader.ChatbotActivity$9
- com.naer.pdfreader.ChatbotActivity$MyRecognizerListener
- com.naer.pdfreader.ChatbotActivity$MyRecognizerListener$1
- com.naer.pdfreader.ChatbotActivity$TtsOnClickListener
+com/naer/pdfreader/KeyDatabase.java
+ com.naer.pdfreader.KeyDatabase
 com/naer/pdfreader/SearchMapService.java
  com.naer.pdfreader.SearchMapService
+com/naer/pdfreader/CreatDrama.java
+ com.naer.pdfreader.CreatDrama
+ com.naer.pdfreader.CreatDrama$1
+ com.naer.pdfreader.CreatDrama$10
+ com.naer.pdfreader.CreatDrama$11
+ com.naer.pdfreader.CreatDrama$11$1
+ com.naer.pdfreader.CreatDrama$12
+ com.naer.pdfreader.CreatDrama$13
+ com.naer.pdfreader.CreatDrama$13$1
+ com.naer.pdfreader.CreatDrama$14
+ com.naer.pdfreader.CreatDrama$15
+ com.naer.pdfreader.CreatDrama$15$1
+ com.naer.pdfreader.CreatDrama$16
+ com.naer.pdfreader.CreatDrama$17
+ com.naer.pdfreader.CreatDrama$17$1
+ com.naer.pdfreader.CreatDrama$18
+ com.naer.pdfreader.CreatDrama$19
+ com.naer.pdfreader.CreatDrama$2
+ com.naer.pdfreader.CreatDrama$20
+ com.naer.pdfreader.CreatDrama$20$1
+ com.naer.pdfreader.CreatDrama$20$2
+ com.naer.pdfreader.CreatDrama$20$3
+ com.naer.pdfreader.CreatDrama$20$3$1
+ com.naer.pdfreader.CreatDrama$20$4
+ com.naer.pdfreader.CreatDrama$20$5
+ com.naer.pdfreader.CreatDrama$20$6
+ com.naer.pdfreader.CreatDrama$20$6$1
+ com.naer.pdfreader.CreatDrama$20$7
+ com.naer.pdfreader.CreatDrama$20$8
+ com.naer.pdfreader.CreatDrama$20$9
+ com.naer.pdfreader.CreatDrama$20$9$1
+ com.naer.pdfreader.CreatDrama$21
+ com.naer.pdfreader.CreatDrama$22
+ com.naer.pdfreader.CreatDrama$23
+ com.naer.pdfreader.CreatDrama$24
+ com.naer.pdfreader.CreatDrama$25
+ com.naer.pdfreader.CreatDrama$26
+ com.naer.pdfreader.CreatDrama$27
+ com.naer.pdfreader.CreatDrama$28
+ com.naer.pdfreader.CreatDrama$29
+ com.naer.pdfreader.CreatDrama$3
+ com.naer.pdfreader.CreatDrama$30
+ com.naer.pdfreader.CreatDrama$31
+ com.naer.pdfreader.CreatDrama$32
+ com.naer.pdfreader.CreatDrama$4
+ com.naer.pdfreader.CreatDrama$5
+ com.naer.pdfreader.CreatDrama$6
+ com.naer.pdfreader.CreatDrama$7
+ com.naer.pdfreader.CreatDrama$8
+ com.naer.pdfreader.CreatDrama$9
 com/naer/pdfreader/MySQLiteOpenHelper.java
  com.naer.pdfreader.MySQLiteOpenHelper
-com/naer/pdfreader/MainActivity.java
- com.naer.pdfreader.MainActivity
- com.naer.pdfreader.MainActivity$1
- com.naer.pdfreader.MainActivity$1$1
- com.naer.pdfreader.MainActivity$1$2
- com.naer.pdfreader.MainActivity$2
- com.naer.pdfreader.MainActivity$2$1
- com.naer.pdfreader.MainActivity$2$2
- com.naer.pdfreader.MainActivity$3
- com.naer.pdfreader.MainActivity$4
- com.naer.pdfreader.MainActivity$5
- com.naer.pdfreader.MainActivity$6
- com.naer.pdfreader.MainActivity$7
- com.naer.pdfreader.MainActivity$7$1
- com.naer.pdfreader.MainActivity$8
- com.naer.pdfreader.MainActivity$9
 Model/DescribeList.java
  Model.DescribeList
 com/naer/pdfreader/ConversationPractice.java
@@ -458,118 +565,51 @@ com/naer/pdfreader/diffMatchPatch.java
  com.naer.pdfreader.diffMatchPatch$LinesToCharsResult
  com.naer.pdfreader.diffMatchPatch$Operation
  com.naer.pdfreader.diffMatchPatch$Patch
-Model/StoreTheEditData.java
- Model.StoreTheEditData
-com/naer/pdfreader/CreatDrama.java
- com.naer.pdfreader.CreatDrama
- com.naer.pdfreader.CreatDrama$1
- com.naer.pdfreader.CreatDrama$10
- com.naer.pdfreader.CreatDrama$11
- com.naer.pdfreader.CreatDrama$11$1
- com.naer.pdfreader.CreatDrama$12
- com.naer.pdfreader.CreatDrama$13
- com.naer.pdfreader.CreatDrama$13$1
- com.naer.pdfreader.CreatDrama$14
- com.naer.pdfreader.CreatDrama$15
- com.naer.pdfreader.CreatDrama$15$1
- com.naer.pdfreader.CreatDrama$16
- com.naer.pdfreader.CreatDrama$17
- com.naer.pdfreader.CreatDrama$17$1
- com.naer.pdfreader.CreatDrama$18
- com.naer.pdfreader.CreatDrama$19
- com.naer.pdfreader.CreatDrama$2
- com.naer.pdfreader.CreatDrama$20
- com.naer.pdfreader.CreatDrama$21
- com.naer.pdfreader.CreatDrama$22
- com.naer.pdfreader.CreatDrama$23
- com.naer.pdfreader.CreatDrama$24
- com.naer.pdfreader.CreatDrama$25
- com.naer.pdfreader.CreatDrama$26
- com.naer.pdfreader.CreatDrama$27
- com.naer.pdfreader.CreatDrama$28
- com.naer.pdfreader.CreatDrama$29
- com.naer.pdfreader.CreatDrama$3
- com.naer.pdfreader.CreatDrama$30
- com.naer.pdfreader.CreatDrama$31
- com.naer.pdfreader.CreatDrama$32
- com.naer.pdfreader.CreatDrama$4
- com.naer.pdfreader.CreatDrama$5
- com.naer.pdfreader.CreatDrama$6
- com.naer.pdfreader.CreatDrama$7
- com.naer.pdfreader.CreatDrama$8
- com.naer.pdfreader.CreatDrama$9
-com/naer/pdfreader/EditDrama.java
- com.naer.pdfreader.EditDrama
- com.naer.pdfreader.EditDrama$1
- com.naer.pdfreader.EditDrama$10
- com.naer.pdfreader.EditDrama$11
- com.naer.pdfreader.EditDrama$11$1
- com.naer.pdfreader.EditDrama$11$2
- com.naer.pdfreader.EditDrama$11$3
- com.naer.pdfreader.EditDrama$12
- com.naer.pdfreader.EditDrama$12$1
- com.naer.pdfreader.EditDrama$12$2
- com.naer.pdfreader.EditDrama$13
- com.naer.pdfreader.EditDrama$14
- com.naer.pdfreader.EditDrama$15
- com.naer.pdfreader.EditDrama$16
- com.naer.pdfreader.EditDrama$17
- com.naer.pdfreader.EditDrama$17$1
- com.naer.pdfreader.EditDrama$17$2
- com.naer.pdfreader.EditDrama$17$3
- com.naer.pdfreader.EditDrama$18
- com.naer.pdfreader.EditDrama$18$1
- com.naer.pdfreader.EditDrama$18$2
- com.naer.pdfreader.EditDrama$19
- com.naer.pdfreader.EditDrama$2
- com.naer.pdfreader.EditDrama$20
- com.naer.pdfreader.EditDrama$21
- com.naer.pdfreader.EditDrama$22
- com.naer.pdfreader.EditDrama$23
- com.naer.pdfreader.EditDrama$23$1
- com.naer.pdfreader.EditDrama$23$2
- com.naer.pdfreader.EditDrama$23$3
- com.naer.pdfreader.EditDrama$24
- com.naer.pdfreader.EditDrama$24$1
- com.naer.pdfreader.EditDrama$24$2
- com.naer.pdfreader.EditDrama$25
- com.naer.pdfreader.EditDrama$26
- com.naer.pdfreader.EditDrama$27
- com.naer.pdfreader.EditDrama$28
- com.naer.pdfreader.EditDrama$29
- com.naer.pdfreader.EditDrama$29$1
- com.naer.pdfreader.EditDrama$29$2
- com.naer.pdfreader.EditDrama$29$3
- com.naer.pdfreader.EditDrama$3
- com.naer.pdfreader.EditDrama$30
- com.naer.pdfreader.EditDrama$30$1
- com.naer.pdfreader.EditDrama$30$2
- com.naer.pdfreader.EditDrama$31
- com.naer.pdfreader.EditDrama$31$1
- com.naer.pdfreader.EditDrama$31$2
- com.naer.pdfreader.EditDrama$32
- com.naer.pdfreader.EditDrama$32$1
- com.naer.pdfreader.EditDrama$32$2
- com.naer.pdfreader.EditDrama$33
- com.naer.pdfreader.EditDrama$33$1
- com.naer.pdfreader.EditDrama$33$2
- com.naer.pdfreader.EditDrama$34
- com.naer.pdfreader.EditDrama$34$1
- com.naer.pdfreader.EditDrama$34$2
- com.naer.pdfreader.EditDrama$35
- com.naer.pdfreader.EditDrama$4
- com.naer.pdfreader.EditDrama$4$1
- com.naer.pdfreader.EditDrama$4$2
- com.naer.pdfreader.EditDrama$4$2$1
- com.naer.pdfreader.EditDrama$4$2$1$1
- com.naer.pdfreader.EditDrama$4$2$1$1$1
- com.naer.pdfreader.EditDrama$4$2$2
- com.naer.pdfreader.EditDrama$4$2$2$1
- com.naer.pdfreader.EditDrama$4$2$2$1$1
- com.naer.pdfreader.EditDrama$4$3
- com.naer.pdfreader.EditDrama$4$4
- com.naer.pdfreader.EditDrama$5
- com.naer.pdfreader.EditDrama$6
- com.naer.pdfreader.EditDrama$7
- com.naer.pdfreader.EditDrama$8
- com.naer.pdfreader.EditDrama$9
+Model/TimeOfSee.java
+ Model.TimeOfSee
+com/naer/pdfreader/MainActivity.java
+ com.naer.pdfreader.MainActivity
+ com.naer.pdfreader.MainActivity$1
+ com.naer.pdfreader.MainActivity$1$1
+ com.naer.pdfreader.MainActivity$1$2
+ com.naer.pdfreader.MainActivity$2
+ com.naer.pdfreader.MainActivity$2$1
+ com.naer.pdfreader.MainActivity$2$2
+ com.naer.pdfreader.MainActivity$3
+ com.naer.pdfreader.MainActivity$4
+ com.naer.pdfreader.MainActivity$5
+ com.naer.pdfreader.MainActivity$6
+ com.naer.pdfreader.MainActivity$7
+ com.naer.pdfreader.MainActivity$7$1
+ com.naer.pdfreader.MainActivity$8
+ com.naer.pdfreader.MainActivity$9
+com/naer/pdfreader/ChatbotActivity.java
+ com.naer.pdfreader.ChatbotActivity
+ com.naer.pdfreader.ChatbotActivity$1
+ com.naer.pdfreader.ChatbotActivity$10
+ com.naer.pdfreader.ChatbotActivity$11
+ com.naer.pdfreader.ChatbotActivity$11$1
+ com.naer.pdfreader.ChatbotActivity$12
+ com.naer.pdfreader.ChatbotActivity$13
+ com.naer.pdfreader.ChatbotActivity$14
+ com.naer.pdfreader.ChatbotActivity$15
+ com.naer.pdfreader.ChatbotActivity$16
+ com.naer.pdfreader.ChatbotActivity$17
+ com.naer.pdfreader.ChatbotActivity$18
+ com.naer.pdfreader.ChatbotActivity$19
+ com.naer.pdfreader.ChatbotActivity$2
+ com.naer.pdfreader.ChatbotActivity$20
+ com.naer.pdfreader.ChatbotActivity$21
+ com.naer.pdfreader.ChatbotActivity$22
+ com.naer.pdfreader.ChatbotActivity$23
+ com.naer.pdfreader.ChatbotActivity$24
+ com.naer.pdfreader.ChatbotActivity$3
+ com.naer.pdfreader.ChatbotActivity$4
+ com.naer.pdfreader.ChatbotActivity$5
+ com.naer.pdfreader.ChatbotActivity$6
+ com.naer.pdfreader.ChatbotActivity$7
+ com.naer.pdfreader.ChatbotActivity$8
+ com.naer.pdfreader.ChatbotActivity$9
+ com.naer.pdfreader.ChatbotActivity$MyRecognizerListener
+ com.naer.pdfreader.ChatbotActivity$MyRecognizerListener$1
+ com.naer.pdfreader.ChatbotActivity$TtsOnClickListener

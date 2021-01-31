@@ -39,13 +39,13 @@
 
     <ImageView
         android:id="@+id/editimage"
-        android:layout_width="1184dp"
-        android:layout_height="761dp"
+        android:layout_width="1150dp"
+        android:layout_height="750dp"
         android:layout_centerVertical="true"
-        android:layout_marginStart="-73dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="0dp"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="40dp"
-        android:layout_toEndOf="@+id/adddialog1"
         android:background="@drawable/textview_border"
         app:srcCompat="@android:color/transparent" />
 
@@ -68,6 +68,10 @@
         android:background="@drawable/b_lines"
         android:visibility="invisible" />
 
+    <!--    android:drawableLeft="@drawable/resize_a_36"-->
+
+    <!--    android:drawableLeft="@drawable/resixe_b_36"-->
+
     <Button
         android:id="@+id/finishedit"
         android:layout_width="90dp"
@@ -75,25 +79,27 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginLeft="80dp"
-        android:layout_marginTop="706dp"
+        android:layout_marginTop="681dp"
         android:layout_marginEnd="1188dp"
-        android:background="@drawable/ok_btn" />
+        android:background="@drawable/ok_btn"
+        android:visibility="invisible"/>
 
-    <!--    android:drawableLeft="@drawable/resize_a_36"-->
+
 
     <TextView
         android:id="@+id/say1"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/editimage"
         android:layout_alignParentTop="true"
+        android:background="@drawable/textview_border"
         android:layout_marginStart="61dp"
         android:layout_marginLeft="70dp"
-        android:layout_marginTop="65dp"
-        android:layout_toEndOf="@+id/say2"
-        android:background="@drawable/textview_border"
+        android:layout_marginTop="89dp"
         android:gravity="center_vertical"
-        android:nestedScrollingEnabled="true"
+        android:maxLines="15"
         android:padding="8dp"
+        android:singleLine="false"
         android:textIsSelectable="true"
         android:textSize="30sp"
         android:textStyle="bold" />
@@ -102,18 +108,19 @@
         android:id="@+id/say2"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/editimage"
-        android:layout_marginTop="75dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="61dp"
         android:layout_marginLeft="70dp"
+        android:layout_marginTop="174dp"
         android:background="@drawable/textview_border"
+        android:gravity="center_vertical"
+        android:maxLines="15"
+        android:padding="8dp"
+        android:singleLine="false"
         android:textIsSelectable="true"
         android:textSize="30sp"
-        android:padding="8dp"
-        android:textStyle="bold"
-        android:singleLine="false"
-        android:maxLines="15"/>
-<!--    android:drawableLeft="@drawable/resixe_b_36"-->
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/say3"
@@ -121,15 +128,16 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/editimage"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="66dp"
+        android:layout_marginStart="58dp"
         android:layout_marginLeft="70dp"
-        android:layout_marginTop="141dp"
-        android:padding="8dp"
+        android:layout_marginTop="259dp"
         android:background="@drawable/textview_border"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:singleLine="false"
         android:textIsSelectable="true"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:singleLine="false"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/say4"
@@ -137,11 +145,11 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/editimage"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="65dp"
+        android:layout_marginStart="58dp"
         android:layout_marginLeft="70dp"
-        android:layout_marginTop="217dp"
-        android:width="1dp"
+        android:layout_marginTop="339dp"
         android:background="@drawable/textview_border"
+        android:gravity="center_vertical"
         android:padding="8dp"
         android:singleLine="false"
         android:textIsSelectable="true"
