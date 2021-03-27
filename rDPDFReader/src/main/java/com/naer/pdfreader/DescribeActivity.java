@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -17,6 +18,7 @@ import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.speech.RecognitionListener;
@@ -37,8 +39,10 @@ import android.text.method.LinkMovementMethod;
 import android.text.method.ScrollingMovementMethod;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.StrikethroughSpan;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.webkit.MimeTypeMap;
@@ -54,16 +58,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.api.client.util.Sleeper;
 import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.auth.oauth2.ServiceAccountCredentials;
@@ -94,14 +109,19 @@ import org.xml.sax.XMLReader;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -146,7 +166,7 @@ import static com.naer.pdfreader.DialogActivity.TAG;
 import com.radaee.Broadcast.MyBroadcast;
 import com.radaee.Model.StudentsNote;
 
-public class DescribeActivity extends Activity{
+public class DescribeActivity extends Activity implements OnMapReadyCallback {
 
     //描述情境操作介面
     private Button vocabulary;
@@ -249,6 +269,7 @@ public class DescribeActivity extends Activity{
     private String hw_describe_download_url = "";
     private boolean hw_isPress = true; //限制錄音按鈕僅能按一下, 等按下停止時才可以再恢復可按狀態
     private String hw_describe_Link;
+    private Button student_question;
 
     //創作戲劇時的觀看資料行為
     private DatabaseReference fire_creatdrama_behavior;
@@ -270,6 +291,9 @@ public class DescribeActivity extends Activity{
                 CheckLocation(latitude, longitude);//檢查地點是否在附近
                 Logger.d(String.format("%f, %f", location.getLatitude(), location.getLongitude()));
                 Log.d("hooooo", String.valueOf(longitude) + " : " + String.valueOf(latitude));
+                LatLng sydney = new LatLng(latitude,longitude);
+                mMap.addMarker(new MarkerOptions().position(sydney).title("Maker"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,18.0f));  
 
 //                sentence.setOnClickListener(new View.OnClickListener(){
 //                    @Override
@@ -315,12 +339,20 @@ public class DescribeActivity extends Activity{
     };
 
     private LocationManager mLocationManager;
+    private int photo_count=0;
+    private int showdescribescore_count=0;
+    private int tts_count=0;
+    private double toLng=0;
+    private double tplat=0;
+    private GoogleMap mMap;
+    private MapFragment mapFragment;
+    private TextView place_tell;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);//隱藏標題列
-        setContentView(com.naer.pdfreader.R.layout.activity_describe);
+        setContentView(R.layout.activity_describe);
 
         vocabulary = findViewById(R.id.vocabulary);
         phrase = findViewById(R.id.phrase);
@@ -339,6 +371,9 @@ public class DescribeActivity extends Activity{
 
         choose_which = findViewById(R.id.choose_which);
         choose_type = findViewById(R.id.choose_type);
+
+        student_question = findViewById(R.id.student_question);
+        place_tell = findViewById(R.id.place_tell);
 
         //--------GPS顯示地點及經緯度--------
         PlaceName = findViewById(R.id.place);
@@ -376,6 +411,21 @@ public class DescribeActivity extends Activity{
                 }
             }
         });
+
+        readInfo(Student.Name+"號學生描述情境行為紀錄");
+
+        mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map_fragment);
+        mapFragment.getMapAsync(this::onMapReady);
+
+        place_tell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LatLng sydney = new LatLng(latitude,longitude);
+                mMap.addMarker(new MarkerOptions().position(sydney).title("Maker"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,18.0f));
+            }
+        });
+
 
 
 
@@ -428,7 +478,7 @@ public class DescribeActivity extends Activity{
         Init_AIConfiguration();//初始化對話資料庫
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String date = sdf.format(new java.util.Date());
+        String date = sdf.format(new Date());
 
         fire_process_write_listen = FirebaseDatabase.getInstance().getReference().child("學生"+Student.Name+"號").child("Describe_process").child(date);
         studentdescribe.setOnClickListener(new View.OnClickListener() {
@@ -579,6 +629,7 @@ public class DescribeActivity extends Activity{
         takephoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                photo_count++;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
                     if (ContextCompat.checkSelfPermission(DescribeActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                         ActivityCompat.requestPermissions(DescribeActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -598,6 +649,7 @@ public class DescribeActivity extends Activity{
                 if(!textenable)
                 {
                     tipenable = false;
+                    showdescribescore_count++;
                     CompareSentences = studentdescribe.getText().toString().trim();
                     StartSpeechRecongizer();
                 }
@@ -609,6 +661,7 @@ public class DescribeActivity extends Activity{
         example_speach_tts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                tts_count++;
                 TTS.speak(studentdescribe.getText().toString());
                 //fire_process_write_listen.child(studentdescribe.getText().toString().replaceAll("[,|.|!|?|']", "").trim()).push().setValue("TTS");
                 fire_listen_tts_time.child(choose_type_word).child("TTStime")
@@ -1107,6 +1160,13 @@ public class DescribeActivity extends Activity{
 
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        LatLng sydney = new LatLng(121.18772685182198,24.967161421443464);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,16.0f));
+    }
+
     //事件的內建語音辨識聆聽者
     private class SpeechListener implements RecognitionListener
     {
@@ -1202,11 +1262,10 @@ public class DescribeActivity extends Activity{
                     });
                     //StudentsSpeech studentsSpeech = new StudentsSpeech(studentdescribe.getText().toString().trim(),word.trim(),score,"正確");
                     //UploadStudentsBehavior.UploadSpeech(studentsSpeech);
-                }else
-                {
+                }else{
                     double len = question.length() > response.length() ? question.length() : response.length();//比較題目與答案字串長度
                     diff_match_patch diff_match_patch_obj = new diff_match_patch();//比對的Class
-                    LinkedList<diff_match_patch.Diff> diff = diff_match_patch_obj.diff_lineMode(response, question, 3l);
+                    LinkedList<diff_match_patch.Diff> diff = diff_match_patch_obj.diff_lineMode(response, question, 31);
                     Spanned recorrect_response = Html.fromHtml(diff_match_patch_obj.diff_prettyHtml(diff),null, new Html.TagHandler() {
                         int startTag;
                         int endTag;
@@ -1330,5 +1389,74 @@ public class DescribeActivity extends Activity{
             }
         }, 1000);
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            writeInfo(Student.Name+"號學生描述情境行為紀錄","描述情境");
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public void writeInfo(String fileName, String strWrite) {
+        try {
+
+            String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+            String savePath = fullPath + File.separator + "/" + fileName + ".txt";
+
+            File file = new File(savePath);
+
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(strWrite+"\n");
+            bw.write("拍照次數:"+photo_count+"\n");
+            bw.write("TTS次數:"+tts_count+"\n");
+            bw.write("對話次數:"+showdescribescore_count+"\n");
+            bw.write("觀看劇本次數:"+see_other_clickTime+"\n");
+
+            bw.close();
+            Toast.makeText(DescribeActivity.this, "行為紀錄紀錄成功", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String readInfo(String fileName){
+
+        BufferedReader br = null;
+        String response = null;
+        try {
+            StringBuffer output = new StringBuffer();
+            String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+            String savePath = fullPath + File.separator + "/"+fileName+".txt";
+
+            br = new BufferedReader(new FileReader(savePath));
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                output.append(line +"\n");
+
+            }
+            response = output.toString();
+            photo_count= Integer.parseInt(response.substring(response.indexOf("拍照次數:")+5,response.indexOf("TTS次數:")-1));
+            tts_count= Integer.parseInt(response.substring(response.indexOf("TTS次數:")+6,response.indexOf("對話次數:")-1));
+            showdescribescore_count= Integer.parseInt(response.substring(response.indexOf("對話次數:")+5,response.indexOf("觀看劇本次數:")-1));
+            see_other_clickTime= Integer.parseInt(response.substring(response.indexOf("觀看劇本次數:")+7,response.length()-1));
+            br.close();
+            Toast.makeText(DescribeActivity.this, "行為紀錄讀取成功", Toast.LENGTH_SHORT).show();
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return response;
+    }
+
+
 
 }

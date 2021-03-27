@@ -21,11 +21,16 @@ import android.net.nsd.NsdManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
 import android.os.SystemClock;
 import android.provider.MediaStore;
+import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
+import android.speech.tts.TextToSpeech;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
@@ -39,12 +44,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,7 +72,14 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.w3c.dom.Text;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URI;
@@ -122,7 +137,7 @@ public class EditDrama extends Activity {
     private String record_download_url_4 = "";
     private String record_download_url_5 = "";
     private String record_download_url_6 = "";
-    int playtimeA = 0;
+    int playtimeA ;
     int playtimeB = 0;
     int playtime3 = 0;
     int playtime4 = 0;
@@ -200,6 +215,23 @@ public class EditDrama extends Activity {
     private float[] lastTouchDownXY = new float[2];
     private DatabaseReference fire_contextmenu;
     private DatabaseReference fire_load_contextmenu;
+    private Button btn_tts_edit;
+    private String edit_name;
+    private String[] list=new String[8];
+    private String spinner_item;
+    private String role_spinner;
+    private Button btn_speak;
+    private boolean bol_btn_speak = false;
+    private Button play1;
+    private Button play2;
+    private Button play3;
+    private Button play4;
+    private int tts_count=0;
+    private int stoptimeA=0;
+    private int stoptimeB=0;
+    private int stoptime3=0;
+    private int stoptime4=0;
+
 
     @SuppressLint({"ClickableViewAccessibility", "ResourceType"})
     @Override
@@ -211,8 +243,8 @@ public class EditDrama extends Activity {
         editimage = findViewById(R.id.editimage);
         adddialog1 = findViewById(R.id.adddialog1);
         adddialog2 = findViewById(R.id.adddialog2);
-
         finishedit = findViewById(R.id.finishedit);
+        btn_speak = findViewById(R.id.btn_speak);
         say1 = findViewById(R.id.say1);
         say2 = findViewById(R.id.say2);
         say3 = findViewById(R.id.say3);
@@ -227,6 +259,15 @@ public class EditDrama extends Activity {
         say6.setVisibility(View.INVISIBLE);
 
         imageView = findViewById(R.id.editimage);
+        TTS.init(getApplicationContext());
+
+        list[0]="請選擇";
+        list[1]="Father";
+        list[2]="Brother";
+        list[3]="Sister";
+
+        readInfo(Student.Name+"號學生創建劇本行為紀錄");
+
 
 
 
@@ -235,7 +276,10 @@ public class EditDrama extends Activity {
 //        registerForContextMenu(say3);
 //        registerForContextMenu(say4);
 
+
+
         /// 新增泡泡框
+        loadicon();
         imageView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -455,12 +499,15 @@ public class EditDrama extends Activity {
                                 case 0:
                                     textOut_bol = true;
                                     textOut=sssttt[i-1];
+                                    list[4]=sssttt[i-1];
                                     break;
                                 case 1:
                                     textOut_bol = true;
                                     textOut_bol_5 = true;
                                     textOut=sssttt[i-2];
                                     textOut_5=sssttt[i-1];
+                                    list[4]=sssttt[i-2];
+                                    list[5]=sssttt[i-1];
                                     break;
                                 case 2:
                                     textOut_bol = true;
@@ -469,6 +516,9 @@ public class EditDrama extends Activity {
                                     textOut=sssttt[i-3];
                                     textOut_5=sssttt[i-2];
                                     textOut_6=sssttt[i-1];
+                                    list[4]=sssttt[i-3];
+                                    list[5]=sssttt[i-2];
+                                    list[6]=sssttt[i-1];
                                     break;
                                 case 3:
                                     textOut_bol = true;
@@ -479,6 +529,10 @@ public class EditDrama extends Activity {
                                     textOut_5=sssttt[i-3];
                                     textOut_6=sssttt[i-2];
                                     textOut_7=sssttt[i-1];
+                                    list[4]=sssttt[i-4];
+                                    list[5]=sssttt[i-3];
+                                    list[6]=sssttt[i-2];
+                                    list[7]=sssttt[i-1];
                                     break;
                                 case 4:
                                     textOut_bol = true;
@@ -491,6 +545,11 @@ public class EditDrama extends Activity {
                                     textOut_6=sssttt[i-3];
                                     textOut_7=sssttt[i-2];
                                     textOut_8=sssttt[i-1];
+                                    list[4]=sssttt[i-5];
+                                    list[5]=sssttt[i-4];
+                                    list[6]=sssttt[i-3];
+                                    list[7]=sssttt[i-2];
+                                    list[8]=sssttt[i-1];
                                     break;
                             }
                         }
@@ -502,187 +561,427 @@ public class EditDrama extends Activity {
             e.printStackTrace();
         }
 
+
+
+
+
+//        btn_speak.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (bol_btn_speak == false){
+//                    String s1="",s2="",s3="",s4="";
+//                    Spinner spinner=new Spinner(EditDrama.this);
+//                    String[] list1 = new String[4];
+//                    int count=0;
+//
+//                    if(say1.getText().toString() != ""){
+//                        int c1 = say1.getText().toString().indexOf(":");
+//                        s1 = say1.getText().toString().substring(0,c1);
+//                        count++;
+//                        list1[0]=s1;
+//                    }
+//                    if(say2.getText().toString() != ""){
+//                        int c2 = say2.getText().toString().indexOf(":");
+//                        s2 = say2.getText().toString().substring(0,c2);
+//                        count++;
+//                        list1[1]=s2;
+//                    }
+//                    if(say3.getText().toString() != ""){
+//                        int c3 = say3.getText().toString().indexOf(":");
+//                        s3 = say3.getText().toString().substring(0,c3);
+//                        count++;
+//                        list1[2]=s3;
+//                    }
+//                    if(say4.getText().toString() != ""){
+//                        int c4 = say4.getText().toString().indexOf(":");
+//                        s4 = say4.getText().toString().substring(0,c4);
+//                        count++;
+//                        list1[3]=s4;
+//                    }
+//
+//                    String[] list2 = new String[count];
+//                    for(int i=0;i<count;i++){
+//                        if(!list1[i].matches("")){
+//                            list2[i]=list1[i];
+//                        }
+//                    }
+//
+//
+//                    AlertDialog.Builder alertdialog = new AlertDialog.Builder(EditDrama.this);
+//                    alertdialog.setTitle("選擇對話");
+//                    alertdialog .setIcon(R.drawable.ic_launcher);
+//                    ArrayAdapter<String> numberList=new ArrayAdapter<String>(EditDrama.this,
+//                            android.R.layout.simple_spinner_dropdown_item,
+//                            list2);
+//                    spinner.setAdapter(numberList);
+//                    spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {//添加事件Spinner事件監聽
+//                        @Override
+//                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                            role_spinner=spinner.getSelectedItem().toString();
+//                        }
+//                        @Override
+//                        public void onNothingSelected(AdapterView<?> adapterView) {//沒有選時
+//                        }
+//                    });
+//                    alertdialog .setView(spinner);
+//                    alertdialog .setPositiveButton("確定", new DialogInterface.OnClickListener() {
+//                        // do something when the button is clicked
+//                        public void onClick(DialogInterface arg0, int arg1) {
+//                            role_spinner=spinner.getSelectedItem().toString();
+//                            bol_btn_speak = true;
+//                        }
+//                    });
+//                    alertdialog .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                        // do something when the button is clicked
+//                        public void onClick(DialogInterface arg0, int arg1) {
+//                        }
+//                    });
+//                    alertdialog .show();
+//                    Toast.makeText(EditDrama.this,"請先選擇角色", Toast.LENGTH_SHORT).show();
+//                }else{
+//                    String s1="",s2="",s3="",s4="";
+//                    if(say1.getText().toString() != ""){
+//                        int c1 = say1.getText().toString().indexOf(":");
+//                        s1 = say1.getText().toString().substring(0,c1);
+//                        if(role_spinner.equals(s1) == false){
+//                            try {
+//                                TTS.speak(say1.getText().toString());
+//                                Toast.makeText(EditDrama.this,"角色:"+s1, Toast.LENGTH_SHORT).show();
+//                                Thread.sleep(5000);
+//                            } catch (InterruptedException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    }
+//
+//
+//
+//                    if(say2.getText().toString() != ""){
+//                        int c2 = say2.getText().toString().indexOf(":");
+//                        s2 = say2.getText().toString().substring(0,c2);
+//                        if(role_spinner.equals(s2) == false){
+//                            try {
+//                                TTS.speak(say2.getText().toString());
+//                                Toast.makeText(EditDrama.this,"角色:"+s2, Toast.LENGTH_SHORT).show();
+//                                Thread.sleep(5000);
+//                            } catch (InterruptedException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    }
+//
+//                    if(say3.getText().toString() != ""){
+//                        int c3 = say3.getText().toString().indexOf(":");
+//                        s3 = say3.getText().toString().substring(0,c3);
+//                        if(role_spinner.equals(s3) == false){
+//                            try {
+//                                TTS.speak(say3.getText().toString());
+//                                Toast.makeText(EditDrama.this,"角色:"+s3, Toast.LENGTH_SHORT).show();
+//                                Thread.sleep(5000);
+//                            } catch (InterruptedException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    }
+//
+//                    if(say4.getText().toString() != ""){
+//                        int c4 = say4.getText().toString().indexOf(":");
+//                        s4 = say4.getText().toString().substring(0,c4);
+//                        if(role_spinner.equals(s4) == false){
+//                            try {
+//                                TTS.speak(say4.getText().toString());
+//                                Toast.makeText(EditDrama.this,"角色:"+s4, Toast.LENGTH_SHORT).show();
+//                                Thread.sleep(5000);
+//                            } catch (InterruptedException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//
+//                    }
+//                    Toast.makeText(EditDrama.this,"播放結束", Toast.LENGTH_SHORT).show();
+//                }
+//
+//            }
+//        });
+
+//        btn_speak.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View v) {
+//                String s1="",s2="",s3="",s4="";
+//                Spinner spinner=new Spinner(EditDrama.this);
+//                String[] list1 = new String[4];
+//                int count=0;
+//
+//                if(say1.getText().toString() != ""){
+//                    int c1 = say1.getText().toString().indexOf(":");
+//                    s1 = say1.getText().toString().substring(0,c1);
+//                    count++;
+//                    list1[0]=s1;
+//                }
+//                if(say2.getText().toString() != ""){
+//                    int c2 = say2.getText().toString().indexOf(":");
+//                    s2 = say2.getText().toString().substring(0,c2);
+//                    count++;
+//                    list1[1]=s2;
+//                }
+//                if(say3.getText().toString() != ""){
+//                    int c3 = say3.getText().toString().indexOf(":");
+//                    s3 = say3.getText().toString().substring(0,c3);
+//                    count++;
+//                    list1[2]=s3;
+//                }
+//                if(say4.getText().toString() != ""){
+//                    int c4 = say4.getText().toString().indexOf(":");
+//                    s4 = say4.getText().toString().substring(0,c4);
+//                    count++;
+//                    list1[3]=s4;
+//                }
+//
+//                String[] list2 = new String[count];
+//                for(int i=0;i<count;i++){
+//                    if(!list1[i].matches("")){
+//                        list2[i]=list1[i];
+//                    }
+//                }
+//
+//
+//                AlertDialog.Builder alertdialog = new AlertDialog.Builder(EditDrama.this);
+//                alertdialog.setTitle("選擇對話");
+//                alertdialog .setIcon(R.drawable.ic_launcher);
+//                ArrayAdapter<String> numberList=new ArrayAdapter<String>(EditDrama.this,
+//                        android.R.layout.simple_spinner_dropdown_item,
+//                        list2);
+//                spinner.setAdapter(numberList);
+//                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {//添加事件Spinner事件監聽
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                        role_spinner=spinner.getSelectedItem().toString();
+//                    }
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> adapterView) {//沒有選時
+//                    }
+//                });
+//                alertdialog .setView(spinner);
+//                alertdialog .setPositiveButton("確定", new DialogInterface.OnClickListener() {
+//                    // do something when the button is clicked
+//                    public void onClick(DialogInterface arg0, int arg1) {
+//                        role_spinner=spinner.getSelectedItem().toString();
+//                        bol_btn_speak = true;
+//                    }
+//                });
+//                alertdialog .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                    // do something when the button is clicked
+//                    public void onClick(DialogInterface arg0, int arg1) {
+//                    }
+//                });
+//                alertdialog .show();
+//                Toast.makeText(EditDrama.this,"請選擇角色", Toast.LENGTH_SHORT).show();
+//                return false;
+//            }
+//        });
+
+
+
+
         //編輯完照片按下finishedit按鈕 將截圖傳回CreatDrama (從Firebase撈)
-        finishedit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
-                        }
-                    });
-
-
-                    Uri uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), getBitmap(view), null,null));
-
-                    //將編輯好的照片截圖傳進Firebase
-                    fire_finishphoto = FirebaseStorage.getInstance().getReference().child(Student.Name + "/EditFinish/"
-                            + CreatDrama.spinner_drame_word + "/" + "edit_screen"+ CreatDrama.num + ".jpeg");
-                    fire_finishphoto.putFile(uri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                        @Override
-                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                            if(!task.isSuccessful()){
-                                throw  task.getException();
-                            }
-                            return fire_finishphoto.getDownloadUrl();
-                        }
-                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Uri> task) {
-                            Uri uri = task.getResult();
-                            download_url_editFinish = uri.toString();
-                        }
-                    }).continueWithTask(new Continuation<Uri, Task<Void>>() {
-                        @Override
-                        public Task<Void> then(@NonNull Task<Uri> task) throws Exception {
-
-                            fire_editdata = FirebaseDatabase.getInstance().getReference()
-                                    .child("學生"+Student.Name+"號").child(CreatDrama.spinner_drame_word).child(Integer.toString(CreatDrama.num));
-
-                            if(CreatDrama.edit == true){
-                                fire_editdata.child("playerA_record").setValue(record_download_url_a);
-                                fire_editdata.child("playerA_text").setValue(say1.getText().toString());
-                                fire_editdata.child("playerA_x").setValue(say1.getX());
-                                fire_editdata.child("playerA_y").setValue(say1.getY());
-                                fire_editdata.child("playerB_record").setValue(record_download_url_b);
-                                fire_editdata.child("playerB_text").setValue(say2.getText().toString());
-                                fire_editdata.child("playerB_x").setValue(say2.getX());
-                                fire_editdata.child("playerB_y").setValue(say2.getY());
-                                fire_editdata.child("player3_record").setValue(record_download_url_3);
-                                fire_editdata.child("player3_text").setValue(say3.getText().toString());
-                                fire_editdata.child("player3_x").setValue(say3.getX());
-                                fire_editdata.child("player3_y").setValue(say3.getY());
-                                fire_editdata.child("player4_record").setValue(record_download_url_4);
-                                fire_editdata.child("player4_text").setValue(say4.getText().toString());
-                                fire_editdata.child("player4_x").setValue(say4.getX());
-                                fire_editdata.child("player4_y").setValue(say4.getY());
-                                fire_editdata.child("player5_record").setValue(record_download_url_5);
-                                fire_editdata.child("player5_text").setValue(say5.getText().toString());
-                                fire_editdata.child("player5_x").setValue(say5.getX());
-                                fire_editdata.child("player5_y").setValue(say5.getY());
-                                fire_editdata.child("player6_record").setValue(record_download_url_6);
-                                fire_editdata.child("player6_text").setValue(say6.getText().toString());
-                                fire_editdata.child("player6_x").setValue(say6.getX());
-                                fire_editdata.child("player6_y").setValue(say6.getY());
-                                fire_editdata.child("bubble").setValue(bubble);
-                                fire_editdata.child("editFinishPhotoUri").setValue(download_url_editFinish).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-
-                                            Toast.makeText(EditDrama.this, "編輯資料上傳成功", Toast.LENGTH_SHORT).show();
-                                            CreatDrama.ccc();
-                                            //CreatDrama.num = 0;
-                                            new Thread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    try {
-                                                        Thread.sleep(2000);
-                                                        runOnUiThread(new Runnable() {
-                                                            @Override
-                                                            public void run() {
-                                                                findViewById(R.id.loadingPanel).setVisibility(View.GONE);
-                                                            }
-                                                        });
-                                                    } catch (InterruptedException e) {
-                                                        e.printStackTrace();
-                                                    }
-                                                }
-                                            }).start();
-                                            EditDrama.this.finish();
-                                        }else{
-                                            Toast.makeText(EditDrama.this, "失敗", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                            }else{
-                                //StoreTheEditData 傳入 編輯過的每一項資料
-                                storeTheEditData = new StoreTheEditData(CreatDrama.download_url.toString(), say1.getX(), say1.getY(), say2.getX(), say2.getY(),say3.getX(), say3.getY(), say4.getX(), say4.getY(),say5.getX(), say5.getY(), say6.getX(), say6.getY(),
-                                        say1.getText().toString(), say2.getText().toString(),record_download_url_a,record_download_url_b,say3.getText().toString(), say4.getText().toString(),record_download_url_3,record_download_url_4, say5.getText().toString(), say6.getText().toString(),record_download_url_5,record_download_url_6,
-                                        playtimeA, playtimeB, playtime3, playtime4, playtime5, playtime6,download_url_editFinish.toString());
-
-                                fire_editdata.setValue(storeTheEditData).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-
-                                            Toast.makeText(EditDrama.this, "編輯資料上傳成功", Toast.LENGTH_SHORT).show();
-                                            CreatDrama. ccc();
-                                            //CreatDrama.num = 0;
-                                            new Thread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    try {
-                                                        Thread.sleep(2000);
-                                                        runOnUiThread(new Runnable() {
-                                                            @Override
-                                                            public void run() {
-                                                                findViewById(R.id.loadingPanel).setVisibility(View.GONE);
-                                                            }
-                                                        });
-                                                    } catch (InterruptedException e) {
-                                                        e.printStackTrace();
-                                                    }
-                                                }
-                                            }).start();
-                                            EditDrama.this.finish();
-                                        }else{
-                                            Toast.makeText(EditDrama.this, "失敗", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                                return null;
-                            }
-                            return null;
-                        }
-                    });
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                CreatDrama.cantoload = true;
-//                CreatDrama.ccc();
-
-            }
-        });
+//        finishedit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                try {
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
+//                        }
+//                    });
+//
+//
+//                    Uri uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), getBitmap(view), null,null));
+//
+//                    //將編輯好的照片截圖傳進Firebase
+//                    fire_finishphoto = FirebaseStorage.getInstance().getReference().child(Student.Name + "/EditFinish/"
+//                            + CreatDrama.spinner_drame_word + "/" + "edit_screen"+ CreatDrama.num + ".jpeg");
+//                    fire_finishphoto.putFile(uri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+//                        @Override
+//                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+//                            if(!task.isSuccessful()){
+//                                throw  task.getException();
+//                            }
+//                            return fire_finishphoto.getDownloadUrl();
+//                        }
+//                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Uri> task) {
+//                            Uri uri = task.getResult();
+//                            download_url_editFinish = uri.toString();
+//                        }
+//                    }).continueWithTask(new Continuation<Uri, Task<Void>>() {
+//                        @Override
+//                        public Task<Void> then(@NonNull Task<Uri> task) throws Exception {
+//
+//                            fire_editdata = FirebaseDatabase.getInstance().getReference()
+//                                    .child("學生"+Student.Name+"號").child(CreatDrama.spinner_drame_word).child(Integer.toString(CreatDrama.num));
+//
+//                            if(CreatDrama.edit == true){
+//                                fire_editdata.child("playerA_record").setValue(record_download_url_a);
+//                                fire_editdata.child("playerA_text").setValue(say1.getText().toString());
+//                                fire_editdata.child("playerA_x").setValue(say1.getX());
+//                                fire_editdata.child("playerA_y").setValue(say1.getY());
+//                                fire_editdata.child("playerB_record").setValue(record_download_url_b);
+//                                fire_editdata.child("playerB_text").setValue(say2.getText().toString());
+//                                fire_editdata.child("playerB_x").setValue(say2.getX());
+//                                fire_editdata.child("playerB_y").setValue(say2.getY());
+//                                fire_editdata.child("player3_record").setValue(record_download_url_3);
+//                                fire_editdata.child("player3_text").setValue(say3.getText().toString());
+//                                fire_editdata.child("player3_x").setValue(say3.getX());
+//                                fire_editdata.child("player3_y").setValue(say3.getY());
+//                                fire_editdata.child("player4_record").setValue(record_download_url_4);
+//                                fire_editdata.child("player4_text").setValue(say4.getText().toString());
+//                                fire_editdata.child("player4_x").setValue(say4.getX());
+//                                fire_editdata.child("player4_y").setValue(say4.getY());
+//                                fire_editdata.child("player5_record").setValue(record_download_url_5);
+//                                fire_editdata.child("player5_text").setValue(say5.getText().toString());
+//                                fire_editdata.child("player5_x").setValue(say5.getX());
+//                                fire_editdata.child("player5_y").setValue(say5.getY());
+//                                fire_editdata.child("player6_record").setValue(record_download_url_6);
+//                                fire_editdata.child("player6_text").setValue(say6.getText().toString());
+//                                fire_editdata.child("player6_x").setValue(say6.getX());
+//                                fire_editdata.child("player6_y").setValue(say6.getY());
+//                                fire_editdata.child("bubble").setValue(bubble);
+//                                fire_editdata.child("editFinishPhotoUri").setValue(download_url_editFinish).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                    @Override
+//                                    public void onComplete(@NonNull Task<Void> task) {
+//                                        if (task.isSuccessful()) {
+//
+//                                            Toast.makeText(EditDrama.this, "編輯資料上傳成功", Toast.LENGTH_SHORT).show();
+//                                            CreatDrama.ccc();
+//                                            //CreatDrama.num = 0;
+//                                            new Thread(new Runnable() {
+//                                                @Override
+//                                                public void run() {
+//                                                    try {
+//                                                        Thread.sleep(2000);
+//                                                        runOnUiThread(new Runnable() {
+//                                                            @Override
+//                                                            public void run() {
+//                                                                findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+//                                                            }
+//                                                        });
+//                                                    } catch (InterruptedException e) {
+//                                                        e.printStackTrace();
+//                                                    }
+//                                                }
+//                                            }).start();
+//                                            EditDrama.this.finish();
+//                                        }else{
+//                                            Toast.makeText(EditDrama.this, "失敗", Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    }
+//                                });
+//                            }else{
+//                                //StoreTheEditData 傳入 編輯過的每一項資料
+//                                storeTheEditData = new StoreTheEditData(CreatDrama.download_url.toString(), say1.getX(), say1.getY(), say2.getX(), say2.getY(),say3.getX(), say3.getY(), say4.getX(), say4.getY(),say5.getX(), say5.getY(), say6.getX(), say6.getY(),
+//                                        say1.getText().toString(), say2.getText().toString(),record_download_url_a,record_download_url_b,say3.getText().toString(), say4.getText().toString(),record_download_url_3,record_download_url_4, say5.getText().toString(), say6.getText().toString(),record_download_url_5,record_download_url_6,
+//                                        playtimeA, playtimeB, playtime3, playtime4, playtime5, playtime6,download_url_editFinish.toString());
+//
+//                                fire_editdata.setValue(storeTheEditData).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                    @Override
+//                                    public void onComplete(@NonNull Task<Void> task) {
+//                                        if (task.isSuccessful()) {
+//
+//                                            Toast.makeText(EditDrama.this, "編輯資料上傳成功", Toast.LENGTH_SHORT).show();
+//                                            CreatDrama. ccc();
+//                                            //CreatDrama.num = 0;
+//                                            new Thread(new Runnable() {
+//                                                @Override
+//                                                public void run() {
+//                                                    try {
+//                                                        Thread.sleep(2000);
+//                                                        runOnUiThread(new Runnable() {
+//                                                            @Override
+//                                                            public void run() {
+//                                                                findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+//                                                            }
+//                                                        });
+//                                                    } catch (InterruptedException e) {
+//                                                        e.printStackTrace();
+//                                                    }
+//                                                }
+//                                            }).start();
+//                                            EditDrama.this.finish();
+//                                        }else{
+//                                            Toast.makeText(EditDrama.this, "失敗", Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    }
+//                                });
+//                                return null;
+//                            }
+//                            return null;
+//                        }
+//                    });
+//
+//
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                CreatDrama.cantoload = true;
+////                CreatDrama.ccc();
+//
+//            }
+//        });
     }
-
-
 
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
 
-        getMenuInflater().inflate(R.menu.example_menu,menu);
-        option4 = menu.findItem(R.id.option_4);
+        if(v==say1 && say1.getText().toString() != ""){
+            int c = say1.getText().toString().indexOf(":");
+            edit_name = say1.getText().toString().substring(0,c);
+            getMenuInflater().inflate(R.menu.example_menu_edit,menu);
+        }else if(v==say2 && say2.getText().toString() != "") {
+            int c = say2.getText().toString().indexOf(":");
+            edit_name = say2.getText().toString().substring(0,c);
+            getMenuInflater().inflate(R.menu.example_menu_edit, menu);
+        }else if(v==say3 && say3.getText().toString() != ""){
+            int c = say3.getText().toString().indexOf(":");
+            edit_name = say3.getText().toString().substring(0,c);
+            getMenuInflater().inflate(R.menu.example_menu_edit,menu);
+        } else if(v==say4 && say4.getText().toString() != ""){
+            int c = say4.getText().toString().indexOf(":");
+            edit_name = say4.getText().toString().substring(0,c);
+            getMenuInflater().inflate(R.menu.example_menu_edit,menu);
+        }else {
+            getMenuInflater().inflate(R.menu.example_menu,menu);
+            option4 = menu.findItem(R.id.option_4);
 
-        if (textOut_bol){
-            option4.setTitle(textOut);
-            menu.add(0,5,0,"自訂角色");
-            option5 = menu.findItem(5);
-            if (textOut_bol_5){
-                option5.setTitle(textOut_5);
-                menu.add(0,6,0,"自訂角色");
-                option6 = menu.findItem(6);
-                if(textOut_bol_6){
-                    option6.setTitle(textOut_6);
-                    menu.add(0,7,0,"自訂角色");
-                    option7 = menu.findItem(7);
-                    if(textOut_bol_7){
-                        option7.setTitle(textOut_7);
-                        menu.add(0,8,0,"自訂角色");
-                        option8 = menu.findItem(8);
-                        if(textOut_bol_8){
-                            option8.setTitle(textOut_8);
+            if (textOut_bol){
+                option4.setTitle(textOut);
+                menu.add(0,5,0,"自訂角色");
+                option5 = menu.findItem(5);
+                if (textOut_bol_5){
+                    option5.setTitle(textOut_5);
+                    menu.add(0,6,0,"自訂角色");
+                    option6 = menu.findItem(6);
+                    if(textOut_bol_6){
+                        option6.setTitle(textOut_6);
+                        menu.add(0,7,0,"自訂角色");
+                        option7 = menu.findItem(7);
+                        if(textOut_bol_7){
+                            option7.setTitle(textOut_7);
+                            menu.add(0,8,0,"自訂角色");
+                            option8 = menu.findItem(8);
+                            if(textOut_bol_8){
+                                option8.setTitle(textOut_8);
+                            }
                         }
                     }
                 }
             }
         }
+
+
 
     }
 
@@ -1147,6 +1446,260 @@ public class EditDrama extends Activity {
                     }
                 }
                 return true;
+
+            case R.id.option_edit_0:
+                AlertDialog.Builder editDialog = new AlertDialog.Builder(EditDrama.this);
+                editDialog.setTitle("新增角色");
+                editDialog.setIcon(R.drawable.ic_launcher);
+
+                final EditText editText = new EditText(EditDrama.this);
+                editDialog.setView(editText);
+                editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    // do something when the button is clicked
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        switch (choose) {
+                            case 1:
+                                info1 = editText.getText().toString();
+                                info = null;
+                                buildLinesA_Click();
+                                break;
+                            case 2:
+                                info2 = editText.getText().toString();
+                                info = null;
+                                buildLinesB_Click();
+                                break;
+                            case 3:
+                                info3 = editText.getText().toString();
+                                info = null;
+                                buildLines3_Click();
+                                break;
+                            case 4:
+                                info4 = editText.getText().toString();
+                                info = null;
+                                buildLines4_Click();
+                                break;
+                        }
+                    }
+                });
+                editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    // do something when the button is clicked
+                    public void onClick(DialogInterface arg0, int arg1) {
+                    }
+                });
+                editDialog.show();
+                return  true;
+            case R.id.option_edit_1:
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(EditDrama.this);
+                alertDialog.setTitle("編輯角色名稱");
+                alertDialog.setIcon(R.drawable.ic_launcher);
+                Spinner spinner = new Spinner(EditDrama.this);
+                String[] s = {""};
+                int x=0;
+
+                for(int i=0;i<list.length;i++){
+                    if (list[i] == null){
+                        x=i;
+                        break;
+                    }
+                }
+
+                final String[] list1 = new String[x];
+                for(int i=0;i<list.length;i++){
+                    if (list[i] != null){
+                        list1[i]=list[i];
+                    }else {
+                        break;
+                    }
+                }
+
+                ArrayAdapter<String> numberList=new ArrayAdapter<String>(EditDrama.this,
+                        android.R.layout.simple_spinner_dropdown_item,
+                        list1);
+                spinner.setAdapter(numberList);
+                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {//添加事件Spinner事件監聽
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        spinner_item=spinner.getSelectedItem().toString();
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {//沒有選時
+                    }
+                });
+                alertDialog.setView(spinner);
+                alertDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    // do something when the button is clicked
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        s[0] = spinner_item;
+                        switch (choose) {
+                            case 1:
+                                info1 = s[0];
+                                info = null;
+                                buildLinesA_Click();
+                                break;
+                            case 2:
+                                info2 = s[0];
+                                info = null;
+                                buildLinesB_Click();
+                                break;
+                            case 3:
+                                info3 = s[0];
+                                info = null;
+                                buildLines3_Click();
+                                break;
+                            case 4:
+                                info4 = s[0];
+                                info = null;
+                                buildLines4_Click();
+                                break;
+                        }
+                    }
+                });
+                alertDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    // do something when the button is clicked
+                    public void onClick(DialogInterface arg0, int arg1) {
+                    }
+                });
+                alertDialog.show();
+                return true;
+            case R.id.option_edit_2:
+                switch (choose) {
+                    case 1:
+                        info1=edit_name;
+                        buildLinesA_Click();
+                        break;
+                    case 2:
+                        info2=edit_name;
+                        buildLinesB_Click();
+                        break;
+                    case 3:
+                        info3=edit_name;
+                        buildLines3_Click();
+                        break;
+                    case 4:
+                        info4=edit_name;
+                        buildLines4_Click();
+                        break;
+                }
+                return true;
+
+            case R.id.option_edit_3:
+                switch (choose) {
+                    case 1:
+                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(CreatDrama.spinner_drame_word+"/"+pathword_a);
+                        playtimeA = playtimeA + 1;;
+                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Link = uri.toString();
+                                Toast.makeText(EditDrama.this, Link, Toast.LENGTH_SHORT).show();
+                                player = new MediaPlayer();
+                                try {
+                                    player.setDataSource(Link);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                try {
+                                    player.prepare();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                player.start();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                Toast.makeText(EditDrama.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        break;
+                    case 2:
+                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(CreatDrama.spinner_drame_word+"/"+pathword_b);
+                        playtimeB += 1;
+                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Link = uri.toString();
+                                Toast.makeText(EditDrama.this, Link, Toast.LENGTH_SHORT).show();
+                                player = new MediaPlayer();
+                                try {
+                                    player.setDataSource(Link);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                try {
+                                    player.prepare();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                player.start();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                Toast.makeText(EditDrama.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        break;
+                    case 3:
+                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(CreatDrama.spinner_drame_word+"/"+pathword_3);
+                        playtime3 += 1;
+                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Link = uri.toString();
+                                Toast.makeText(EditDrama.this, Link, Toast.LENGTH_SHORT).show();
+                                player = new MediaPlayer();
+                                try {
+                                    player.setDataSource(Link);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                try {
+                                    player.prepare();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                player.start();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                Toast.makeText(EditDrama.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        break;
+                    case 4:
+                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(CreatDrama.spinner_drame_word+"/"+pathword_4);
+                        playtime4 += 1;
+                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Link = uri.toString();
+                                Toast.makeText(EditDrama.this, Link, Toast.LENGTH_SHORT).show();
+                                player = new MediaPlayer();
+                                try {
+                                    player.setDataSource(Link);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                try {
+                                    player.prepare();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                player.start();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                Toast.makeText(EditDrama.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        break;
+                }
+
+                return true;
+
             default:
                 return super.onContextItemSelected(item);
         }
@@ -1184,8 +1737,9 @@ public class EditDrama extends Activity {
         editText1= (EditText) (v.findViewById(R.id.editText1));
         final Button record1 = (v.findViewById(R.id.recordplayer1));
         final Button stop1 = (v.findViewById(R.id.stopplayer1));
-        final Button play1 = (v.findViewById(R.id.playplayer1));
+        play1 = (v.findViewById(R.id.playplayer1));
         final TextView showtime1 = (v.findViewById(R.id.show_time1));
+        final Button btn_tts1=(v.findViewById(R.id.btn_tts1));
 
         final Handler handler = new Handler();
         final Runnable runnable = new Runnable() {
@@ -1223,13 +1777,22 @@ public class EditDrama extends Activity {
             int c = say1.getText().toString().indexOf(":");
             String s = say1.getText().toString().substring(c+1,say1.length());
             editText1.setText(s);
+
+            btn_tts1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tts_count++;
+                    TTS.speak(s);
+                }
+            });
         }
+
+
+
 
 
 //        if(CreatDrama.edit == true){
 //            editText1.setText(re_a_line_word);}
-
-
 
 
         drama.getButton(AlertDialog.BUTTON_POSITIVE)
@@ -1247,11 +1810,13 @@ public class EditDrama extends Activity {
                             drama.dismiss();
                             Toast.makeText(getApplicationContext(), info1+"對話已建立", Toast.LENGTH_SHORT).show();
                             findViewById(R.id.adddialog1).setEnabled(true);
+                            loadicon();
                         }else {
                             Toast.makeText(getApplicationContext(), "請輸入完整", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+
 
         //角色A對話錄音開始
         record1.setOnClickListener(new View.OnClickListener() {
@@ -1296,6 +1861,7 @@ public class EditDrama extends Activity {
             @Override
             public void onClick(View view) {
                 if(isPress == false){
+                    stoptimeA++;
                     recorder.stop();// 停止燒錄
                     Toast.makeText(EditDrama.this, "停止錄音"+info1+"對話", Toast.LENGTH_SHORT).show();
                     handler.removeCallbacks(runnable);
@@ -1342,7 +1908,7 @@ public class EditDrama extends Activity {
         play1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                playtimeA += 1;
+                playtimeA = playtimeA + 1;
                 fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
@@ -1380,8 +1946,9 @@ public class EditDrama extends Activity {
         editText2 = (EditText) (v.findViewById(R.id.editText2));
         final Button record2 = (v.findViewById(R.id.recordplayer2));
         final Button stop2 = (v.findViewById(R.id.stopplayer2));
-        final Button play2 = (v.findViewById(R.id.playplayer2));
+        play2 = (v.findViewById(R.id.playplayer2));
         final TextView showtime2 = (v.findViewById(R.id.show_time2));
+        final Button btn_tts2 = (v.findViewById(R.id.btn_tts2));
 
         final Handler handler = new Handler();
         final Runnable runnable = new Runnable() {
@@ -1422,6 +1989,14 @@ public class EditDrama extends Activity {
             int c = say2.getText().toString().indexOf(":");
             String s = say2.getText().toString().substring(c+1,say2.length());
             editText2.setText(s);
+
+            btn_tts2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tts_count++;
+                    TTS.speak(s);
+                }
+            });
         }
 
 
@@ -1446,6 +2021,7 @@ public class EditDrama extends Activity {
                             findViewById(R.id.adddialog2).setEnabled(true);
                             drama.dismiss();
                             Toast.makeText(getApplicationContext(), info2+"對話已建立", Toast.LENGTH_SHORT).show();
+                            loadicon();
                         }else {
                             Toast.makeText(getApplicationContext(), "請輸入完整", Toast.LENGTH_SHORT).show();
                         }
@@ -1495,6 +2071,7 @@ public class EditDrama extends Activity {
             @Override
             public void onClick(View view) {
                 if(isPress == false){
+                    stoptimeB++;
                     recorder.stop();// 停止燒錄
                     Toast.makeText(EditDrama.this, "停止錄音"+info2+"對話", Toast.LENGTH_SHORT).show();
 
@@ -1580,8 +2157,9 @@ public class EditDrama extends Activity {
         editText3 = (EditText) (v.findViewById(R.id.editText3));
         final Button record3 = (v.findViewById(R.id.recordplayer3));
         final Button stop3 = (v.findViewById(R.id.stopplayer3));
-        final Button play3 = (v.findViewById(R.id.playplayer3));
+        play3 = (v.findViewById(R.id.playplayer3));
         final TextView showtime3 = (v.findViewById(R.id.show_time3));
+        final Button btn_tts3 = (v.findViewById(R.id.btn_tts3));
 
         final Handler handler = new Handler();
         final Runnable runnable = new Runnable() {
@@ -1621,6 +2199,13 @@ public class EditDrama extends Activity {
             int c = say3.getText().toString().indexOf(":");
             String s = say3.getText().toString().substring(c+1,say3.length());
             editText3.setText(s);
+            btn_tts3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tts_count++;
+                    TTS.speak(s);
+                }
+            });
         }
 
 
@@ -1645,6 +2230,7 @@ public class EditDrama extends Activity {
 //                            findViewById(R.id.adddialog2).setEnabled(true);
                             drama.dismiss();
                             Toast.makeText(getApplicationContext(), info3+"對話已建立", Toast.LENGTH_SHORT).show();
+                            loadicon();
                         }else {
                             Toast.makeText(getApplicationContext(), "請輸入完整", Toast.LENGTH_SHORT).show();
                         }
@@ -1694,6 +2280,7 @@ public class EditDrama extends Activity {
             @Override
             public void onClick(View view) {
                 if(isPress == false){
+                    stoptime3++;
                     recorder.stop();// 停止燒錄
                     Toast.makeText(EditDrama.this, "停止錄音"+info3+"對話", Toast.LENGTH_SHORT).show();
 
@@ -1778,8 +2365,9 @@ public class EditDrama extends Activity {
         editText4 = (EditText) (v.findViewById(R.id.editText4));
         final Button record4 = (v.findViewById(R.id.recordplayer4));
         final Button stop4 = (v.findViewById(R.id.stopplayer4));
-        final Button play4 = (v.findViewById(R.id.playplayer4));
+        play4 = (v.findViewById(R.id.playplayer4));
         final TextView showtime4 = (v.findViewById(R.id.show_time4));
+        final Button btn_tts4 = (v.findViewById(R.id.btn_tts4));
 
         final Handler handler = new Handler();
         final Runnable runnable = new Runnable() {
@@ -1820,6 +2408,13 @@ public class EditDrama extends Activity {
             int c = say4.getText().toString().indexOf(":");
             String s = say4.getText().toString().substring(c+1,say4.length());
             editText4.setText(s);
+            btn_tts4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tts_count++;
+                    TTS.speak(s);
+                }
+            });
         }
 
 
@@ -1843,6 +2438,7 @@ public class EditDrama extends Activity {
 //                            re_4_line=editText4;
 //                            findViewById(R.id.adddialog2).setEnabled(true);
                             drama.dismiss();
+                            loadicon();
                             Toast.makeText(getApplicationContext(), info4+"對話已建立", Toast.LENGTH_SHORT).show();
                         }else {
                             Toast.makeText(getApplicationContext(), "請輸入完整", Toast.LENGTH_SHORT).show();
@@ -1893,6 +2489,7 @@ public class EditDrama extends Activity {
             @Override
             public void onClick(View view) {
                 if(isPress == false){
+                    stoptime4++;
                     recorder.stop();// 停止燒錄
                     Toast.makeText(EditDrama.this, "停止錄音"+info4+"對話", Toast.LENGTH_SHORT).show();
 
@@ -1941,7 +2538,7 @@ public class EditDrama extends Activity {
         play4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                playtimeB += 1;
+                playtime4 += 1;
                 fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
@@ -2517,6 +3114,11 @@ public class EditDrama extends Activity {
                 if(!isDestroy((Activity)editimage.getContext())){
                     Glide.with(editimage.getContext()).load(storeTheEditData.getOriginalPhotoUri()).into(editimage);
                 }
+                playtimeA= storeTheEditData.getPlayerA_playtime();
+                Log.v("測試1", String.valueOf(playtimeA));
+                playtimeB= storeTheEditData.getPlayerB_playtime();
+                playtime3= storeTheEditData.getPlayer3_playtime();
+                playtime4= storeTheEditData.getPlayer4_playtime();
 
                 say1_X = storeTheEditData.getPlayerA_x();
                 say1_Y = storeTheEditData.getPlayerA_y();
@@ -2542,14 +3144,31 @@ public class EditDrama extends Activity {
                 lp4.setMargins(Math.round(say4_X),Math.round(say4_Y), 0, 0);
                 say4.setLayoutParams(lp4);
 
-                say1.setVisibility(VISIBLE);
-                say2.setVisibility(VISIBLE);
-                say3.setVisibility(VISIBLE);
-                say4.setVisibility(VISIBLE);
-                say1.setText(storeTheEditData.getPlayerA_text());
-                say2.setText(storeTheEditData.getPlayerB_text());
-                say3.setText(storeTheEditData.getPlayer3_text());
-                say4.setText(storeTheEditData.getPlayer4_text());
+                if(storeTheEditData.getPlayerA_text().equals("") == false){
+                    say1.setVisibility(VISIBLE);
+                    say1.setText(storeTheEditData.getPlayerA_text());
+                }
+                if(storeTheEditData.getPlayerB_text().equals("") == false){
+                    say2.setVisibility(VISIBLE);
+                    say2.setText(storeTheEditData.getPlayerB_text());
+                }
+                if(storeTheEditData.getPlayer3_text().equals("") == false){
+                    say3.setVisibility(VISIBLE);
+                    say3.setText(storeTheEditData.getPlayer3_text());
+                }
+                if(storeTheEditData.getPlayer4_text().equals("") == false){
+                    say4.setVisibility(VISIBLE);
+                    say4.setText(storeTheEditData.getPlayer4_text());
+                }
+
+//                say1.setVisibility(VISIBLE);
+//                say2.setVisibility(VISIBLE);
+//                say3.setVisibility(VISIBLE);
+//                say4.setVisibility(VISIBLE);
+//                say1.setText(storeTheEditData.getPlayerA_text());
+//                say2.setText(storeTheEditData.getPlayerB_text());
+//                say3.setText(storeTheEditData.getPlayer3_text());
+//                say4.setText(storeTheEditData.getPlayer4_text());
 
 
 
@@ -2631,26 +3250,33 @@ public class EditDrama extends Activity {
                                         }
 
                                         if(CreatDrama.edit){
+                                            fire_editdata.child("playerA_playtime").setValue(playtimeA);
+                                            Log.v("測試", String.valueOf(playtimeA));
                                             fire_editdata.child("playerA_record").setValue(record_download_url_a);
                                             fire_editdata.child("playerA_text").setValue(say1.getText().toString());
                                             fire_editdata.child("playerA_x").setValue(say1.getX());
                                             fire_editdata.child("playerA_y").setValue(say1.getY());
+                                            fire_editdata.child("playerB_playtime").setValue(playtimeB);
                                             fire_editdata.child("playerB_record").setValue(record_download_url_b);
                                             fire_editdata.child("playerB_text").setValue(say2.getText().toString());
                                             fire_editdata.child("playerB_x").setValue(say2.getX());
                                             fire_editdata.child("playerB_y").setValue(say2.getY());
+                                            fire_editdata.child("player3_playtime").setValue(playtime3);
                                             fire_editdata.child("player3_record").setValue(record_download_url_3);
                                             fire_editdata.child("player3_text").setValue(say3.getText().toString());
                                             fire_editdata.child("player3_x").setValue(say3.getX());
                                             fire_editdata.child("player3_y").setValue(say3.getY());
+                                            fire_editdata.child("player4_playtime").setValue(playtime4);
                                             fire_editdata.child("player4_record").setValue(record_download_url_4);
                                             fire_editdata.child("player4_text").setValue(say4.getText().toString());
                                             fire_editdata.child("player4_x").setValue(say4.getX());
                                             fire_editdata.child("player4_y").setValue(say4.getY());
+                                            fire_editdata.child("player5_playtime").setValue(playtime5);
                                             fire_editdata.child("player5_record").setValue(record_download_url_5);
                                             fire_editdata.child("player5_text").setValue(say5.getText().toString());
                                             fire_editdata.child("player5_x").setValue(say5.getX());
                                             fire_editdata.child("player5_y").setValue(say5.getY());
+                                            fire_editdata.child("player6_playtime").setValue(playtime6);
                                             fire_editdata.child("player6_record").setValue(record_download_url_6);
                                             fire_editdata.child("player6_text").setValue(say6.getText().toString());
                                             fire_editdata.child("player6_x").setValue(say6.getX());
@@ -2736,8 +3362,134 @@ public class EditDrama extends Activity {
                     })
                     .setNegativeButton("取消",null).create()
                     .show();
+            writeInfo(Student.Name+"號學生創建劇本行為紀錄","創建劇本");
             return true;
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    public void registerForContextMenu(View view) {
+        if (view == say1  ) {
+            view.setOnCreateContextMenuListener(this);
+        }
+        if (view == say2 ) {
+            view.setOnCreateContextMenuListener(this);
+        }
+        if (view == say3 ) {
+            view.setOnCreateContextMenuListener(this);
+        }
+        if (view == say4 ) {
+            view.setOnCreateContextMenuListener(this);
+        }
+    }
+
+    private void loadicon(){
+        final String pathword_a = Student.Name + "_" + CreatDrama.spinner_drame_word + "_" + CreatDrama.num + "_" + "A.amr";
+        final String pathword_b = Student.Name + "_" + CreatDrama.spinner_drame_word + "_" + CreatDrama.num + "_" + "B.amr";
+        final String pathword_3 = Student.Name + "_" + CreatDrama.spinner_drame_word + "_" + CreatDrama.num + "_" + "3.amr";
+        final String pathword_4 = Student.Name + "_" + CreatDrama.spinner_drame_word + "_" + CreatDrama.num + "_" + "4.amr";
+        final File f_a=new File("/sdcard/" + pathword_a);
+        final File f_b=new File("/sdcard/" + pathword_b);
+        final File f_3=new File("/sdcard/" + pathword_3);
+        final File f_4=new File("/sdcard/" + pathword_4);
+        if(f_a.exists())
+        {
+            Drawable drawable1 = getResources().getDrawable(R.drawable.advertising);
+            drawable1.setBounds(0, 0, 40,40);
+            say1.setCompoundDrawables(null, null,drawable1, null);
+        }
+        if(f_b.exists())
+        {
+            Drawable drawable1 = getResources().getDrawable(R.drawable.advertising);
+            drawable1.setBounds(0, 0, 40,40);
+            say2.setCompoundDrawables(null, null,drawable1, null);
+        }
+        if(f_3.exists())
+        {
+            Drawable drawable1 = getResources().getDrawable(R.drawable.advertising);
+            drawable1.setBounds(0, 0, 40,40);
+            say3.setCompoundDrawables(null, null,drawable1, null);
+        }
+        if(f_4.exists())
+        {
+            Drawable drawable1 = getResources().getDrawable(R.drawable.advertising);
+            drawable1.setBounds(0, 0, 40,40);
+            say4.setCompoundDrawables(null, null,drawable1, null);
+        }
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        TTS.stop();
+    }
+
+
+
+    public void writeInfo(String fileName, String strWrite) {
+        try {
+
+            String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+            String savePath = fullPath + File.separator + "/" + fileName + ".txt";
+
+            File file = new File(savePath);
+
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(strWrite+"\n");
+            bw.write("聆聽A次數:"+playtimeA+"\n");
+            bw.write("聆聽B次數:"+playtimeB+"\n");
+            bw.write("聆聽C次數:"+playtime3+"\n");
+            bw.write("聆聽D次數:"+playtime4+"\n");
+            bw.write("A錄音次數:"+stoptimeA+"\n");
+            bw.write("B錄音次數:"+stoptimeB+"\n");
+            bw.write("C錄音次數:"+stoptime3+"\n");
+            bw.write("D錄音次數:"+stoptime4+"\n");
+            bw.write("TTS次數:"+tts_count+"\n");
+
+            bw.close();
+            Toast.makeText(EditDrama.this, "行為紀錄紀錄成功", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String readInfo(String fileName){
+
+        BufferedReader br = null;
+        String response = null;
+        try {
+            StringBuffer output = new StringBuffer();
+            String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+            String savePath = fullPath + File.separator + "/"+fileName+".txt";
+
+            br = new BufferedReader(new FileReader(savePath));
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                output.append(line +"\n");
+
+            }
+            response = output.toString();
+            stoptimeA= Integer.parseInt(response.substring(response.indexOf("A錄音次數:")+6,response.indexOf("B錄音次數:")-1));
+            stoptimeB= Integer.parseInt(response.substring(response.indexOf("B錄音次數:")+6,response.indexOf("C錄音次數:")-1));
+            stoptime3= Integer.parseInt(response.substring(response.indexOf("C錄音次數:")+6,response.indexOf("D錄音次數:")-1));
+            stoptime4= Integer.parseInt(response.substring(response.indexOf("D錄音次數:")+6,response.indexOf("TTS次數:")-1));
+            tts_count= Integer.parseInt(response.substring(response.indexOf("TTS次數:")+6,response.length()-1));
+            br.close();
+            Toast.makeText(EditDrama.this, "行為紀錄讀取成功", Toast.LENGTH_SHORT).show();
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return response;
+    }
+
 }

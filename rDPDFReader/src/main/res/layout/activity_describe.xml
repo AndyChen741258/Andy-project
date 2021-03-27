@@ -288,6 +288,7 @@
         android:layout_marginTop="30dp"
         android:layout_toEndOf="@+id/example_speech_tts"
         android:gravity="left"
+        android:visibility="invisible"
         android:orientation="horizontal">
 
         <Spinner
@@ -348,7 +349,18 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/example_speech_tts"
-        android:background="@drawable/hint" />
+        android:background="@drawable/hint"
+        android:visibility="invisible"/>
+
+    <fragment
+        android:id="@+id/map_fragment"
+        class="com.google.android.gms.maps.MapFragment"
+        android:layout_width="599dp"
+        android:layout_height="325dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="72dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toEndOf="@+id/example_speech_tts" />
 
 
 </RelativeLayout>

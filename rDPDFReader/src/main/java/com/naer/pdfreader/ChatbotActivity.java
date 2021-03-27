@@ -88,10 +88,14 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import org.xml.sax.XMLReader;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -219,7 +223,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                 Logger.d(String.format("%f, %f", location.getLatitude(), location.getLongitude()));
                 Log.d("hooooo", String.valueOf(longitude) + " : " + String.valueOf(latitude));
 
-//                sentence.setOnClickListener(new View.OnClickListener(){
+//                sentencesetOnClickListener(new View.OnClickListener(){
 //                    @Override
 //                    public void onClick(View view) {
 //                        test1.setText(latitude.toString());
@@ -304,6 +308,12 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
     private String test="nul";
     private int test_user;
     private FileOutputStream outputStream;
+    private final Date now = new Date();
+    private String date;
+    private int chatbot_tts_count=0;
+    private int chatbot_text_tts_count=0;
+    private int record_count=0;
+    private int takephoto_count=0;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -390,7 +400,11 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
         getchildcount();//取得聊天總數
         Log.v("test_user", String.valueOf(user));
 
+        //取得現在時間(日期)
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        date = sdf.format(new java.util.Date());
 
+        readInfo(Student.Name+"號學生聊天機器人行為紀錄");
 
 
 
@@ -659,25 +673,6 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                 setAspectRatio(12,12).
                 start(ChatbotActivity.this);
     }
-
-    private Bitmap getBitmap(View view) throws Exception {
-        View screenView = getWindow().getDecorView();
-        screenView.setDrawingCacheEnabled(true);
-        screenView.buildDrawingCache(); //獲取螢幕整張圖片
-        Bitmap bitmap = screenView.getDrawingCache();
-        if (bitmap != null) {
-            //需要擷取的長和寬
-            int outWidth = takephoto.getWidth();
-            int outHeight = takephoto.getHeight(); //獲取需要截圖部分的在螢幕上的座標(view的左上角座標)
-            int[] viewLocationArray = new int[2];
-            takephoto.getLocationOnScreen(viewLocationArray); //從螢幕整張圖片中擷取指定區域
-            bitmap = Bitmap.createBitmap(bitmap,
-                    viewLocationArray[0], viewLocationArray[1],
-                    outWidth, outHeight);
-        }
-        return bitmap;
-    }
-
 
 
 //    public void random() {
@@ -1233,9 +1228,11 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
         final Button record = (diffView.findViewById(R.id.recordplayer));
         final Button stop = (diffView.findViewById(R.id.stopplayer));
         final Button play = (diffView.findViewById(R.id.playplayer));
+        final Button btn_tts_chatbot_left = (diffView.findViewById(R.id.btn_tts_chatbot_left));
         final TextView showtime = (diffView.findViewById(R.id.show_time));
         takephoto = (diffView.findViewById(R.id.takephoto));
         final String pathword = Student.Name + "_" + trn_originalText + ".amr";
+        final String img_pathword = "Image_" + Student.Name + "_" + trn_originalText + ".jpg";
 
         final Handler handler = new Handler();
         final Runnable runnable = new Runnable() {
@@ -1255,9 +1252,29 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                 TTS.speak(userTextView_left.getText().toString());
             }
         });
+        btn_tts_chatbot_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chatbot_tts_count++;
+                TTS.speak(userTextView_left.getText().toString());
+            }
+        });
         Log.v("left_user:",userTextView_left.getText().toString());
         anwerTextArray_left = userTextView_left.getText().toString().replace(",","").replace(".","").split("\\s+");
         Log.v("word_left:",Arrays.toString(anwerTextArray_left));
+
+        try{
+            File f_photo=new File("/sdcard/Pictures/MyPicFolder/" + img_pathword);
+            if(f_photo.exists())
+            {
+                takephoto.setImageURI(Uri.fromFile(f_photo));
+            }
+            Log.v("檢查uri",f_photo.toString());
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(ChatbotActivity.this,"讀取照片檔錯誤",Toast.LENGTH_SHORT).show();
+        }
+
 
         record.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1308,6 +1325,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                     recorder.release(); // 燒錄完成一定要釋放資源
                     recorder = null;
                     isPress = true;
+                    record_count++;
                 }else{
                     Toast.makeText(ChatbotActivity.this, "要先錄音哦！", Toast.LENGTH_SHORT).show();
                 }
@@ -1366,7 +1384,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                 } else {  //拍照
                     BringImagePicker();
                 }
-
+                takephoto_count++;
                 return false;
             }
         });
@@ -1386,16 +1404,24 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
             linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             linearLayout.setVerticalGravity(Gravity.CENTER_VERTICAL);
             TextView textView = new TextView(context);
-            textView.setLayoutParams(new LinearLayout.LayoutParams(5, LinearLayout.LayoutParams.WRAP_CONTENT, 9));
+            textView.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 9));
             textView.setTextSize(30);
             textView.setText(anwerTextArray_left[i]+"\n"+"\n");
             linearLayout.addView(textView);
             ImageButton imageButton = new ImageButton(context);
-            imageButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_play_circle_filled_black_24dp));
+            imageButton.setImageDrawable(getResources().getDrawable(R.drawable.chatbot_player));
             imageButton.setBackgroundColor(getResources().getColor(R.color.transparent));
-            imageButton.setPaddingRelative(0,0,50,0);
-            imageButton.setOnClickListener(new TtsOnClickListener(anwerTextArray_left[i]));
+            imageButton.setPaddingRelative(0,0,55,0);
             linearLayout.addView(imageButton);
+//            imageButton.setOnClickListener(new TtsOnClickListener(anwerTextArray_left[i]));
+            int finalI = i;
+            imageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TTS.speak(anwerTextArray_left[finalI]);
+                    chatbot_text_tts_count++;
+                }
+            });
             wrongWord_left.addView(linearLayout);
         }
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context, R.style.AlertDialogStyle);
@@ -1420,7 +1446,14 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
         trans_correct = diffView.findViewById(R.id.trans_correct);
 //        trans_speak = diffView.findViewById(R.id.trans_speak);
         chinese = diffView.findViewById(R.id.chinese);
+        final Button btn_tts_chatbot = diffView.findViewById(R.id.btn_tts_chatbot);
+        btn_tts_chatbot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                TTS.speak(answerTextView.getText().toString());
+            }
+        });
         answerTextView.setText("\t"+intentname);
         anwerTextArray = answerTextView.getText().toString().replace(",", "").replace(".", "").split("\\s+");
         Log.v("wordss:", Arrays.toString(anwerTextArray));
@@ -1436,6 +1469,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
         } else {
             trans_correct();
         }
+
 
         diffMatchPatch diff_matchPatch_obj = new diffMatchPatch();
         LinkedList<diffMatchPatch.Diff> diffListUser = diff_matchPatch_obj.diff_wordMode(usertext.replaceAll("[,|.|!|?|']", "").trim().replaceAll(" +", " ").toLowerCase(), intentname.replaceAll("[,|.|!|?|']", "").trim().replaceAll(" +", " ").toLowerCase());
@@ -1460,6 +1494,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                         output.setSpan(new StrikethroughSpan(), startTag, endTag, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     }
                 }
+                Log.v("測試",tag);
             }
         });
         userTextView.setText(recorrect_response);
@@ -1483,11 +1518,12 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
             textView.setText(anwerTextArray[i]+"\n"+"\n");
             linearLayout.addView(textView);
             ImageButton imageButton = new ImageButton(context);
-            imageButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_play_circle_filled_black_24dp));
+            imageButton.setImageDrawable(getResources().getDrawable(R.drawable.chatbot_player));
             imageButton.setBackgroundColor(getResources().getColor(R.color.transparent));
             imageButton.setPaddingRelative(0,0,50,0);
             linearLayout.addView(imageButton);
             imageButton.setOnClickListener(new TtsOnClickListener(anwerTextArray[i]));
+
             wrongWord.addView(linearLayout);
         }
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context, R.style.AlertDialogStyle);
@@ -1812,7 +1848,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
               Toast.makeText(ChatbotActivity.this, "取得學生次數錯誤", Toast.LENGTH_SHORT).show();
           }
       }
-      if(chatbot ==0) {
+      if(chatbot==0) {
           try {
               final FirebaseDatabase database = FirebaseDatabase.getInstance();
               DatabaseReference db = database.getReference().child("學生" + Student.Name + "號").child("Chatbot data").child("Chatbotsay");
@@ -1937,20 +1973,69 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                 e.printStackTrace();
                 Toast.makeText(ChatbotActivity.this,"儲存記錄錯誤",Toast.LENGTH_SHORT).show();
             }
+            writeInfo(Student.Name+"號學生聊天機器人行為紀錄","聊天機器人");
         }
         return super.onKeyDown(keyCode, event);
     }
 
+    public void writeInfo(String fileName, String strWrite) {
+        try {
 
+            String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+            String savePath = fullPath + File.separator + "/" + fileName + ".txt";
 
+            File file = new File(savePath);
 
+            if (!file.exists()) {
+                file.createNewFile();
+            }
 
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(strWrite+"\n");
+            bw.write("字節次數:"+chatbot_text_tts_count+"\n");
+            bw.write("TTS次數:"+chatbot_tts_count+"\n");
+            bw.write("錄音次數:"+record_count+"\n");
+            bw.write("拍照次數:"+takephoto_count+"\n");
 
+            bw.close();
+            Toast.makeText(ChatbotActivity.this, "行為紀錄紀錄成功", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public String readInfo(String fileName){
 
+        BufferedReader br = null;
+        String response = null;
+        try {
+            StringBuffer output = new StringBuffer();
+            String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+            String savePath = fullPath + File.separator + "/"+fileName+".txt";
 
+            br = new BufferedReader(new FileReader(savePath));
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                output.append(line +"\n");
 
-
+            }
+            response = output.toString();
+            chatbot_text_tts_count= Integer.parseInt(response.substring(response.indexOf("字節次數:")+5,response.indexOf("TTS次數:")-1));
+            chatbot_tts_count= Integer.parseInt(response.substring(response.indexOf("TTS次數:")+6,response.indexOf("錄音次數:")-1));
+            record_count= Integer.parseInt(response.substring(response.indexOf("錄音次數:")+5,response.indexOf("拍照次數:")-1));
+            takephoto_count= Integer.parseInt(response.substring(response.indexOf("拍照次數:")+5,response.length()-1));
+            br.close();
+            Toast.makeText(ChatbotActivity.this, "行為紀錄讀取成功", Toast.LENGTH_SHORT).show();
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return response;
+    }
 
 
 

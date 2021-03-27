@@ -58,6 +58,7 @@ import java.text.SimpleDateFormat;
 import java.util.Random;
 
 import Model.DialogPracticBehavior;
+import lib.kingja.switchbutton.SwitchMultiButton;
 
 public class MainActivity extends Activity implements OnClickListener {
 	private Button m_btn_file;
@@ -469,17 +470,19 @@ public class MainActivity extends Activity implements OnClickListener {
 			Student.Name = Name.getText().toString();//設定學生名稱
 			LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
 			final View v = inflater.inflate(R.layout.activity_choose_practicr_part, null);
-			final TextView way_text = v.findViewById(R.id.way_text);
-			final Spinner practice_way = v.findViewById(R.id.practice_way);
+//			final TextView way_text = v.findViewById(R.id.way_text);
+//			final Spinner practice_way = v.findViewById(R.id.practice_way);
+//			final Spinner practice_drama_num = v.findViewById(R.id.practice_drama_num);
+			final SwitchMultiButton switchMultiButton2 = v.findViewById(R.id.switchmultibutton2);
+			final SwitchMultiButton switchMultiButton3 = v.findViewById(R.id.switchmultibutton3);
 			final TextView drama_text = v.findViewById(R.id.drama_text);
 			final Spinner practice_drama_stu = v.findViewById(R.id.practice_drama_stu);
-			final Spinner practice_drama_num = v.findViewById(R.id.practice_drama_num);
 			final TextView character_text = v.findViewById(R.id.character_text);
 			final Spinner practice_character = v.findViewById(R.id.practice_character);
 			final ImageView choose_drama_photo = v.findViewById(R.id.choose_drama_photo);
 
 			drama_text.setVisibility(View.INVISIBLE);
-			practice_drama_num.setVisibility(View.INVISIBLE);
+			switchMultiButton3.setVisibility(View.INVISIBLE);
 			practice_drama_stu.setVisibility(View.INVISIBLE);
 			character_text.setVisibility(View.INVISIBLE);
 			practice_character.setVisibility(View.INVISIBLE);
@@ -499,35 +502,53 @@ public class MainActivity extends Activity implements OnClickListener {
 					.show();
 
 			//--------選擇練習模式----------
-			final String[] way_list = {"課本對話練習", "劇本對話練習"};
-			ArrayAdapter<String> way = new ArrayAdapter<String>(MainActivity.this,
-					android.R.layout.simple_spinner_dropdown_item,
-					way_list);
-			practice_way.setAdapter(way);
-			practice_way.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {//添加事件Spinner事件監聽
+			switchMultiButton2.setText("課本對話練習", "劇本對話練習").setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
 				@Override
-				public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-					way_word = practice_way.getSelectedItem().toString();
+				public void onSwitch(int position, String tabText) {
+					way_word = tabText;
 					if (way_word.equals("劇本對話練習")) {
 						drama_text.setVisibility(View.VISIBLE);
 						practice_drama_stu.setVisibility(View.VISIBLE);
-						practice_drama_num.setVisibility(View.VISIBLE);
+						switchMultiButton3.setVisibility(View.VISIBLE);
 						choose_drama_photo.setVisibility(View.VISIBLE);
 					} else {
 						drama_text.setVisibility(View.INVISIBLE);
 						practice_drama_stu.setVisibility(View.INVISIBLE);
-						practice_drama_num.setVisibility(View.INVISIBLE);
+						switchMultiButton3.setVisibility(View.INVISIBLE);
 						choose_drama_photo.setVisibility(View.INVISIBLE);
 
 					}
-
-				}
-
-				@Override
-				public void onNothingSelected(AdapterView<?> adapterView) {//沒有選時
-					way_word = practice_way.getSelectedItem().toString();
+					Toast.makeText(MainActivity.this, tabText, Toast.LENGTH_SHORT).show();
 				}
 			});
+//			ArrayAdapter<String> way = new ArrayAdapter<String>(MainActivity.this,
+//					android.R.layout.simple_spinner_dropdown_item,
+//					way_list);
+//			practice_way.setAdapter(way);
+//			practice_way.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {//添加事件Spinner事件監聽
+//				@Override
+//				public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//					way_word = practice_way.getSelectedItem().toString();
+//					if (way_word.equals("劇本對話練習")) {
+//						drama_text.setVisibility(View.VISIBLE);
+//						practice_drama_stu.setVisibility(View.VISIBLE);
+//						practice_drama_num.setVisibility(View.VISIBLE);
+//						choose_drama_photo.setVisibility(View.VISIBLE);
+//					} else {
+//						drama_text.setVisibility(View.INVISIBLE);
+//						practice_drama_stu.setVisibility(View.INVISIBLE);
+//						practice_drama_num.setVisibility(View.INVISIBLE);
+//						choose_drama_photo.setVisibility(View.INVISIBLE);
+//
+//					}
+//
+//				}
+//
+//				@Override
+//				public void onNothingSelected(AdapterView<?> adapterView) {//沒有選時
+//					way_word = practice_way.getSelectedItem().toString();
+//				}
+//			});
 
 			//--------選擇劇本內容----------
 			final String[] drama_list1 = {"Student Number", "111", "01", "4", "06", "10", "32", "36", "40", "43"};
@@ -549,15 +570,10 @@ public class MainActivity extends Activity implements OnClickListener {
 				}
 			});
 
-			final String[] drama_list2 = {"Drama_1", "Drama_2", "Drama_3"};
-			ArrayAdapter<String> drama2 = new ArrayAdapter<String>(MainActivity.this,
-					android.R.layout.simple_spinner_dropdown_item,
-					drama_list2);
-			practice_drama_num.setAdapter(drama2);
-			practice_drama_num.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {//添加事件Spinner事件監聽
+			switchMultiButton3.setText("Drama_1","Drama_2","Drama_3").setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
 				@Override
-				public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-					drama_word_num = practice_drama_num.getSelectedItem().toString();
+				public void onSwitch(int position, String tabText) {
+					drama_word_num = tabText;
 					character_text.setVisibility(View.VISIBLE);
 					practice_character.setVisibility(View.VISIBLE);
 					if ((!drama_word_stu.equals("Student Number")) && way_word.equals("劇本對話練習")) {
@@ -573,13 +589,41 @@ public class MainActivity extends Activity implements OnClickListener {
 					} else {
 						Toast.makeText(MainActivity.this, "你沒有選擇同學的座號哦!", Toast.LENGTH_SHORT).show();
 					}
-				}
-
-				@Override
-				public void onNothingSelected(AdapterView<?> adapterView) {//沒有選時
-					drama_word_num = practice_drama_num.getSelectedItem().toString();
+					Toast.makeText(MainActivity.this, tabText, Toast.LENGTH_SHORT).show();
 				}
 			});
+
+//			final String[] drama_list2 = {"Drama_1", "Drama_2", "Drama_3"};
+//			ArrayAdapter<String> drama2 = new ArrayAdapter<String>(MainActivity.this,
+//					android.R.layout.simple_spinner_dropdown_item,
+//					drama_list2);
+//			practice_drama_num.setAdapter(drama2);
+//			practice_drama_num.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {//添加事件Spinner事件監聽
+//				@Override
+//				public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//					drama_word_num = practice_drama_num.getSelectedItem().toString();
+//					character_text.setVisibility(View.VISIBLE);
+//					practice_character.setVisibility(View.VISIBLE);
+//					if ((!drama_word_stu.equals("Student Number")) && way_word.equals("劇本對話練習")) {
+//						fire_ph = FirebaseStorage.getInstance().getReference().child(drama_word_stu).child("Four-frame").child(drama_word_num);
+//						fire_ph.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+//							@Override
+//							public void onComplete(@NonNull Task<Uri> task) {
+//								Uri uri = task.getResult();
+//								Glide.with(choose_drama_photo.getContext()).load(uri).into(choose_drama_photo);
+//								choose_drama_photo.setVisibility(View.VISIBLE);
+//							}
+//						});
+//					} else {
+//						Toast.makeText(MainActivity.this, "你沒有選擇同學的座號哦!", Toast.LENGTH_SHORT).show();
+//					}
+//				}
+//
+//				@Override
+//				public void onNothingSelected(AdapterView<?> adapterView) {//沒有選時
+//					drama_word_num = practice_drama_num.getSelectedItem().toString();
+//				}
+//			});
 
 			//--------選擇腳色----------
 			final String[] character_list = {"A", "B"};

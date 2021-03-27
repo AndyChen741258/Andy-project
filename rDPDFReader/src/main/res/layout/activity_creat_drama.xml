@@ -9,7 +9,7 @@
 
     <lib.kingja.switchbutton.SwitchMultiButton
         android:id="@+id/switchmultibutton"
-        android:layout_width="500dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -68,7 +68,7 @@
         android:layout_toEndOf="@+id/switchmultibutton"
         android:background="@drawable/record_btn"
         android:drawableLeft="@drawable/ic_baseline_menu_book_24"
-        android:text="刪除劇本名稱"
+        android:text="編輯劇本名稱"
         android:textSize="20dp" />
 
     <ScrollView

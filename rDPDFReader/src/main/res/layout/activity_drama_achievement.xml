@@ -32,31 +32,331 @@
         android:layout_marginLeft="50dp"
         android:layout_marginTop="50dp"/>
 
-    <Spinner
-        android:id="@+id/drama_dramawork_num"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/drama_stu_num"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="50dp"/>
 
-    <ImageView
-        android:id="@+id/drama_four_image"
+
+<!--    <Spinner-->
+<!--        android:id="@+id/drama_dramawork_num"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_toEndOf="@+id/drama_stu_num"-->
+<!--        android:layout_marginLeft="50dp"-->
+<!--        android:layout_marginTop="50dp"/>-->
+
+    <lib.kingja.switchbutton.SwitchMultiButton
+        android:id="@+id/switchmultibutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="50dp"
+        android:layout_toEndOf="@+id/drama_stu_num"
+        android:paddingBottom="5dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="5dp"
+        app:selectedColor="#000000"
+        app:selectedTab="1"
+        app:strokeRadius="5dp"
+        app:strokeWidth="1dp"
+        app:textSize="18sp"/>
+
+
+    <ScrollView
+        android:id="@+id/scrollview"
         android:layout_width="900dp"
-        android:layout_height="650dp"
-        android:layout_below="@+id/drama_stu_num"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        app:srcCompat="@android:color/transparent" />
+        android:layout_height="630dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="200dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/creat1"
+                android:layout_width="65dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="50dp" />
+
+            <ImageView
+                android:id="@+id/drama1"
+                android:layout_width="800dp"
+                android:layout_height="600dp"
+                android:layout_marginLeft="140dp"
+                android:layout_marginTop="-70dp"
+                android:background="@drawable/noimage"
+                app:srcCompat="@android:color/transparent" />
+
+            <TextView
+                android:id="@+id/creat2"
+                android:layout_width="65dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:text="2"
+                android:textSize="50dp" />
+
+            <ImageView
+                android:id="@+id/drama2"
+                android:layout_width="800dp"
+                android:layout_height="600dp"
+                android:layout_marginLeft="140dp"
+                android:layout_marginTop="-70dp"
+                android:background="@drawable/noimage"
+                app:srcCompat="@android:color/transparent" />
+
+            <TextView
+                android:id="@+id/creat3"
+                android:layout_width="65dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:text="3"
+                android:textSize="50dp" />
+
+            <ImageView
+                android:id="@+id/drama3"
+                android:layout_width="800dp"
+                android:layout_height="600dp"
+                android:layout_marginLeft="140dp"
+                android:layout_marginTop="-70dp"
+                android:background="@drawable/noimage"
+                app:srcCompat="@android:color/transparent" />
+
+            <TextView
+                android:id="@+id/creat4"
+                android:layout_width="65dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:text="4"
+                android:textSize="50dp" />
+
+            <ImageView
+                android:id="@+id/drama4"
+                android:layout_width="800dp"
+                android:layout_height="600dp"
+                android:layout_marginLeft="140dp"
+                android:layout_marginTop="-70dp"
+                android:background="@drawable/noimage"
+                app:srcCompat="@android:color/transparent" />
+
+            <TextView
+                android:id="@+id/creat5"
+                android:layout_width="65dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:text="5"
+                android:textSize="50dp" />
+
+            <ImageView
+                android:id="@+id/drama5"
+                android:layout_width="800dp"
+                android:layout_height="600dp"
+                android:layout_marginLeft="140dp"
+                android:layout_marginTop="-70dp"
+                android:background="@drawable/noimage"
+                android:visibility="invisible"
+                app:srcCompat="@android:color/transparent" />
+
+            <TextView
+                android:id="@+id/creat6"
+                android:layout_width="65dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:text="6"
+                android:textSize="50dp"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/drama6"
+                android:layout_width="800dp"
+                android:layout_height="600dp"
+                android:layout_marginLeft="140dp"
+                android:layout_marginTop="-70dp"
+                android:background="@drawable/noimage"
+                android:visibility="invisible"
+                app:srcCompat="@android:color/transparent" />
+
+            <TextView
+                android:id="@+id/creat7"
+                android:layout_width="65dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:text="7"
+                android:textSize="50dp"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/drama7"
+                android:layout_width="800dp"
+                android:layout_height="600dp"
+                android:layout_marginLeft="140dp"
+                android:layout_marginTop="-70dp"
+                android:background="@drawable/noimage"
+                android:visibility="invisible"
+                app:srcCompat="@android:color/transparent" />
+
+            <TextView
+                android:id="@+id/creat8"
+                android:layout_width="65dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:text="8"
+                android:textSize="50dp"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/drama8"
+                android:layout_width="800dp"
+                android:layout_height="600dp"
+                android:layout_marginLeft="140dp"
+                android:layout_marginTop="-70dp"
+                android:background="@drawable/noimage"
+                android:visibility="invisible"
+                app:srcCompat="@android:color/transparent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+
+            </FrameLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+<!--    <ImageView-->
+<!--        android:id="@+id/drama_four_image"-->
+<!--        android:layout_width="900dp"-->
+<!--        android:layout_height="650dp"-->
+<!--        android:layout_below="@+id/drama_stu_num"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        app:srcCompat="@android:color/transparent" />-->
 
     <Button
         android:id="@+id/btn_searchdrama"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_toEndOf="@+id/drama_dramawork_num"
+        android:layout_toEndOf="@+id/switchmultibutton"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/ic_search_black_24dp"/>
+        android:background="@drawable/ic_search_black_24dp"
+        android:visibility="invisible"/>
+
+
+
+
+
+
+
+    <TextView
+        android:id="@+id/showcorrect"
+        android:layout_width="900dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="200dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/speak_score_background"
+        android:textIsSelectable="true"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/practice_say"
+        android:layout_width="900dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="200dp"
+        android:layout_marginBottom="140dp"
+        android:background="@drawable/textview_border"
+        android:textIsSelectable="true"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/practice_say_left"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_below="@+id/scrollview"
+        android:layout_marginStart="-240dp"
+        android:layout_marginTop="-210dp"
+        android:layout_toEndOf="@+id/practice_say"
+        android:background="@drawable/ic_baseline_chevron_left_24" />
+
+    <Button
+        android:id="@+id/practice_say_right"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_below="@+id/scrollview"
+        android:layout_marginStart="-150dp"
+        android:layout_marginTop="-210dp"
+        android:layout_toEndOf="@+id/practice_say"
+        android:background="@drawable/ic_baseline_chevron_right_24" />
+
+    <Button
+        android:id="@+id/btn_speak"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="582.5dp"
+        android:layout_toEndOf="@+id/practice_say_right"
+        android:background="@drawable/ic_baseline_play_circle_filled_24" />
+
+    <Button
+        android:id="@+id/getanswer"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="665dp"
+        android:layout_toEndOf="@+id/showcorrect"
+        android:background="@drawable/recordvoice"
+        android:visibility="visible" />
+
 
     <Button
         android:id="@+id/drama_voice_1_a"
@@ -64,9 +364,10 @@
         android:layout_height="50dp"
         android:layout_below="@+id/drama_stu_num"
         android:layout_marginTop="100dp"
-        android:layout_toStartOf="@+id/drama_four_image"
+        android:layout_toStartOf="@+id/scrollView"
         android:layout_marginRight="10dp"
-        android:background="@drawable/voice_a"/>
+        android:background="@drawable/voice_a"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/drama_voice_1_b"
@@ -74,29 +375,32 @@
         android:layout_height="50dp"
         android:layout_below="@+id/drama_stu_num"
         android:layout_marginTop="200dp"
-        android:layout_toStartOf="@+id/drama_four_image"
+        android:layout_toStartOf="@+id/scrollView"
         android:layout_marginRight="10dp"
-        android:background="@drawable/voice_b"/>
+        android:background="@drawable/voice_b"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/drama_voice_2_a"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_below="@+id/drama_stu_num"
-        android:layout_toEndOf="@+id/drama_four_image"
+        android:layout_toEndOf="@+id/scrollView"
         android:layout_marginTop="100dp"
         android:layout_marginLeft="10dp"
-        android:background="@drawable/voice_a"/>
+        android:background="@drawable/voice_a"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/drama_voice_2_b"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_below="@+id/drama_stu_num"
-        android:layout_toEndOf="@+id/drama_four_image"
+        android:layout_toEndOf="@+id/scrollView"
         android:layout_marginTop="200dp"
         android:layout_marginLeft="10dp"
-        android:background="@drawable/voice_b"/>
+        android:background="@drawable/voice_b"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/drama_voice_3_a"
@@ -104,9 +408,10 @@
         android:layout_height="50dp"
         android:layout_below="@+id/drama_stu_num"
         android:layout_marginTop="430dp"
-        android:layout_toStartOf="@+id/drama_four_image"
+        android:layout_toStartOf="@+id/scrollView"
         android:layout_marginRight="10dp"
-        android:background="@drawable/voice_a"/>
+        android:background="@drawable/voice_a"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/drama_voice_3_b"
@@ -114,29 +419,55 @@
         android:layout_height="50dp"
         android:layout_below="@+id/drama_stu_num"
         android:layout_marginTop="530dp"
-        android:layout_toStartOf="@+id/drama_four_image"
+        android:layout_toStartOf="@+id/scrollView"
         android:layout_marginRight="10dp"
-        android:background="@drawable/voice_b"/>
+        android:background="@drawable/voice_b"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/drama_voice_4_a"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_below="@+id/drama_stu_num"
-        android:layout_toEndOf="@+id/drama_four_image"
+        android:layout_toEndOf="@+id/scrollView"
         android:layout_marginTop="430dp"
         android:layout_marginLeft="10dp"
-        android:background="@drawable/voice_a"/>
+        android:background="@drawable/voice_a"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/drama_voice_4_b"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_below="@+id/drama_stu_num"
-        android:layout_toEndOf="@+id/drama_four_image"
+        android:layout_toEndOf="@+id/scrollView"
         android:layout_marginTop="530dp"
         android:layout_marginLeft="10dp"
-        android:background="@drawable/voice_b"/>
+        android:background="@drawable/voice_b"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/place_tittle"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="183dp"
+        android:text="目前位置:"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/placechatbot"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/place_tittle"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="51dp"
+        android:layout_marginEnd="10dp"
+        android:text=""
+        android:textSize="20dp" />
+
 
 
 

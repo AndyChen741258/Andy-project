@@ -140,6 +140,10 @@
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\ic_search_black_24dp.xml"
     },
     {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\layout_activity_role.xml.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\layout\\activity_role.xml"
+    },
+    {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_keyboard_voice_24.xml.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\ic_baseline_keyboard_voice_24.xml"
     },
@@ -162,6 +166,10 @@
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\mipmap_ic_action_send.png.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\mipmap\\ic_action_send.png"
+    },
+    {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\layout_btn_speake.xml.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\layout\\btn_speake.xml"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_photo_24.xml.flat",
@@ -248,12 +256,12 @@
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\voice_b.xml"
     },
     {
-        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\layout_activity_choose_practicr_part.xml.flat",
-        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\layout\\activity_choose_practicr_part.xml"
-    },
-    {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_record_doalog1.png.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\record_doalog1.png"
+    },
+    {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\layout_activity_choose_practicr_part.xml.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\layout\\activity_choose_practicr_part.xml"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_theater128.png.flat",
@@ -276,6 +284,10 @@
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\ic_check_black_24dp.xml"
     },
     {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_chatbot_player.png.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable-xhdpi\\chatbot_player.png"
+    },
+    {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_ic_play_circle_filled_black_24dp.xml.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\ic_play_circle_filled_black_24dp.xml"
     },
@@ -290,6 +302,10 @@
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\layout_chat_item_right.xml.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\layout\\chat_item_right.xml"
+    },
+    {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_choosing.png.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable-xhdpi\\choosing.png"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\mipmap_photo_icon.png.flat",
@@ -314,6 +330,10 @@
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\raw_test_stop.mp3.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\raw\\test_stop.mp3"
+    },
+    {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\menu_example_menu_edit.xml.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\menu\\example_menu_edit.xml"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_noimage2.png.flat",
@@ -404,6 +424,10 @@
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\mipmap\\keyboard_icon.png"
     },
     {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_chevron_right_24_black.xml.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\ic_baseline_chevron_right_24_black.xml"
+    },
+    {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\layout_activity_edit_drama.xml.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\layout\\activity_edit_drama.xml"
     },
@@ -446,6 +470,10 @@
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\layout_activity_test2.xml.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\layout\\activity_test2.xml"
+    },
+    {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_chevron_left_24.xml.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\ic_baseline_chevron_left_24.xml"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\layout_activity_diff.xml.flat",
@@ -588,6 +616,10 @@
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
     },
     {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_chevron_right_24.xml.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\ic_baseline_chevron_right_24.xml"
+    },
+    {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_loading.gif.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\loading.gif"
     },
@@ -652,12 +684,16 @@
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\view_alpha_selector.xml"
     },
     {
-        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_scan.png.flat",
-        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\scan.png"
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_chevron_left_24_black.xml.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\ic_baseline_chevron_left_24_black.xml"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_chat95.gif.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\chat95.gif"
+    },
+    {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_scan.png.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\scan.png"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\raw_test_start.wav.flat",

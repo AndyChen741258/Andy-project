@@ -515,6 +515,7 @@ public class ConversationPractice extends Activity {
                     }
 
                     // set user text
+
 //                        String[] diff = new String[3];
 //                        if (questioning == false) {
 //                            similarity = BestDiff.getFamiliarity(FixedActivity.this, 0, questionId, queryText, diff);

@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:2:1-120:12
-INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:2:1-120:12
-INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:2:1-120:12
-INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:2:1-120:12
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:2:1-127:12
+INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:2:1-127:12
+INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:2:1-127:12
+INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:2:1-127:12
 MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-31:12
 MERGED from [com.github.adrielcafe:AndroidAudioRecorder:0.3.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\c624bc88c513f6f9d6fb46e3110e3468\jetified-AndroidAudioRecorder-0.3.0\AndroidManifest.xml:2:1-18:12
 MERGED from [lib.kingja.switchbutton:switchbutton:1.1.8] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\bfa960d43f34c4fd2dad92cea3d9a4cd\jetified-switchbutton-1.1.8\AndroidManifest.xml:18:1-33:12
@@ -88,9 +88,9 @@ MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\Louis\.gradle\caches
 MERGED from [com.google.firebase:firebase-database-collection:17.0.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\a255000cbb23121da81fc438865f1f30\jetified-firebase-database-collection-17.0.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\9f12f5c230fcbfd07d6048a57b1d9006\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [io.supercharge:shimmerlayout:2.1.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\e8f24af3f559af0bc769931d658a09f2\jetified-shimmerlayout-2.1.0\AndroidManifest.xml:2:1-14:12
-INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:2:1-120:12
-INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:2:1-120:12
-INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:2:1-120:12
+INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:2:1-127:12
+INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:2:1-127:12
+INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:2:1-127:12
 	package
 		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:4:5-33
 		INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml
@@ -108,9 +108,9 @@ INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\Andr
 		INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml
 uses-sdk
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:10:5-11:469
-INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:10:5-11:469
-INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:10:5-11:469
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:8:5-475
+INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:8:5-475
+INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:8:5-475
 MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [com.github.adrielcafe:AndroidAudioRecorder:0.3.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\c624bc88c513f6f9d6fb46e3110e3468\jetified-AndroidAudioRecorder-0.3.0\AndroidManifest.xml:7:5-9:41
@@ -279,118 +279,118 @@ MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\Louis\.
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\9f12f5c230fcbfd07d6048a57b1d9006\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [io.supercharge:shimmerlayout:2.1.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\e8f24af3f559af0bc769931d658a09f2\jetified-shimmerlayout-2.1.0\AndroidManifest.xml:8:5-10:41
 MERGED from [io.supercharge:shimmerlayout:2.1.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\e8f24af3f559af0bc769931d658a09f2\jetified-shimmerlayout-2.1.0\AndroidManifest.xml:8:5-10:41
-INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:10:5-11:469
-INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:10:5-11:469
+INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:8:5-475
+INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:8:5-475
 	tools:overrideLibrary
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:11:9-466
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:8:15-472
 	android:targetSdkVersion
 		INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:10:5-11:469
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:8:5-475
 		INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:10:5-11:469
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:8:5-475
 		INJECTED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml
-uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:13:5-81
-MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:5-81
-MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:5-81
-MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-81
-MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-81
-MERGED from [com.kailashdabhi:om-recorder:1.1.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\2f974fb7fe77b0e79d547166c4beb05e\jetified-om-recorder-1.1.0\AndroidManifest.xml:10:5-81
-MERGED from [com.kailashdabhi:om-recorder:1.1.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\2f974fb7fe77b0e79d547166c4beb05e\jetified-om-recorder-1.1.0\AndroidManifest.xml:10:5-81
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:13:22-78
-uses-permission#android.permission.INTERNET
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:14:5-67
-MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:5-67
-MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:5-67
-MERGED from [com.firebase:geofire-android:2.1.2] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\71a1ec0a7eed54a3c2e2ea03c02a881a\jetified-geofire-android-2.1.2\AndroidManifest.xml:4:3-64
-MERGED from [com.firebase:geofire-android:2.1.2] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\71a1ec0a7eed54a3c2e2ea03c02a881a\jetified-geofire-android-2.1.2\AndroidManifest.xml:4:3-64
-MERGED from [com.google.firebase:firebase-storage:18.1.1] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\11c39cddbc3bc7dfa11a34ce764ee4a8\jetified-firebase-storage-18.1.1\AndroidManifest.xml:27:5-67
-MERGED from [com.google.firebase:firebase-storage:18.1.1] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\11c39cddbc3bc7dfa11a34ce764ee4a8\jetified-firebase-storage-18.1.1\AndroidManifest.xml:27:5-67
-MERGED from [com.firebaseui:firebase-ui-database:4.3.2] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\276ebabf8c9040c6e5ea155c1cbd183d\jetified-firebase-ui-database-4.3.2\AndroidManifest.xml:11:5-67
-MERGED from [com.firebaseui:firebase-ui-database:4.3.2] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\276ebabf8c9040c6e5ea155c1cbd183d\jetified-firebase-ui-database-4.3.2\AndroidManifest.xml:11:5-67
-MERGED from [com.google.firebase:firebase-database:18.0.1] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\e935721b454bd124207593dcc3a9263f\jetified-firebase-database-18.0.1\AndroidManifest.xml:26:5-67
-MERGED from [com.google.firebase:firebase-database:18.0.1] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\e935721b454bd124207593dcc3a9263f\jetified-firebase-database-18.0.1\AndroidManifest.xml:26:5-67
-MERGED from [com.github.iammannan:TranslateAPI:1.1] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\0d72c4eed648471fa2a879e14391c987\jetified-TranslateAPI-1.1\AndroidManifest.xml:11:5-67
-MERGED from [com.github.iammannan:TranslateAPI:1.1] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\0d72c4eed648471fa2a879e14391c987\jetified-TranslateAPI-1.1\AndroidManifest.xml:11:5-67
-MERGED from [com.google.android.gms:play-services-maps:16.0.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\76b3c879e2385cb8b5df2e313a2e70d5\jetified-play-services-maps-16.0.0\AndroidManifest.xml:24:5-67
-MERGED from [com.google.android.gms:play-services-maps:16.0.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\76b3c879e2385cb8b5df2e313a2e70d5\jetified-play-services-maps-16.0.0\AndroidManifest.xml:24:5-67
-MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\5e789f448de01b1b9908b26ecfa7ee99\jetified-play-services-measurement-api-17.6.0\AndroidManifest.xml:22:5-67
-MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\5e789f448de01b1b9908b26ecfa7ee99\jetified-play-services-measurement-api-17.6.0\AndroidManifest.xml:22:5-67
-MERGED from [com.google.firebase:firebase-installations:16.3.2] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\b6ee6fa84be9dcc7e1dcf91e16809c40\jetified-firebase-installations-16.3.2\AndroidManifest.xml:11:5-67
-MERGED from [com.google.firebase:firebase-installations:16.3.2] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\b6ee6fa84be9dcc7e1dcf91e16809c40\jetified-firebase-installations-16.3.2\AndroidManifest.xml:11:5-67
-MERGED from [com.google.android.gms:play-services-measurement:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\cbc49409d199103b883e7088f68cc2af\jetified-play-services-measurement-17.6.0\AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\cbc49409d199103b883e7088f68cc2af\jetified-play-services-measurement-17.6.0\AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\7f954025718c2f1b804209c4c9b40bb1\jetified-play-services-measurement-impl-17.6.0\AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\7f954025718c2f1b804209c4c9b40bb1\jetified-play-services-measurement-impl-17.6.0\AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\232b38cec41e8a7527697659c61a3f58\jetified-play-services-measurement-sdk-api-17.6.0\AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\232b38cec41e8a7527697659c61a3f58\jetified-play-services-measurement-sdk-api-17.6.0\AndroidManifest.xml:23:5-67
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:14:22-64
-supports-screens
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:16:5-22:40
-	android:largeScreens
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:18:9-36
-	android:smallScreens
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:21:9-36
-	android:normalScreens
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:19:9-37
-	android:xlargeScreens
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:22:9-37
-	android:resizeable
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:20:9-34
-	android:anyDensity
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:17:9-34
-uses-permission#android.permission.RECORD_AUDIO
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:24:5-71
-MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:5-71
-MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:5-71
-MERGED from [com.kailashdabhi:om-recorder:1.1.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\2f974fb7fe77b0e79d547166c4beb05e\jetified-om-recorder-1.1.0\AndroidManifest.xml:9:5-71
-MERGED from [com.kailashdabhi:om-recorder:1.1.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\2f974fb7fe77b0e79d547166c4beb05e\jetified-om-recorder-1.1.0\AndroidManifest.xml:9:5-71
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:24:22-68
-uses-permission#android.permission.CAMERA
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:25:5-65
-MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:14:5-65
-MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:14:5-65
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:25:22-62
-uses-feature#android.hardware.camera
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:28:5-60
-MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:5-60
-MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:5-60
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:28:19-57
-uses-feature#android.hardware.camera.autofocus
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:29:5-70
-MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:5-70
-MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:5-70
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:29:19-67
-uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:31:5-80
-MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:13:5-80
-MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:13:5-80
-MERGED from [com.kailashdabhi:om-recorder:1.1.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\2f974fb7fe77b0e79d547166c4beb05e\jetified-om-recorder-1.1.0\AndroidManifest.xml:11:5-80
-MERGED from [com.kailashdabhi:om-recorder:1.1.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\2f974fb7fe77b0e79d547166c4beb05e\jetified-om-recorder-1.1.0\AndroidManifest.xml:11:5-80
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:31:22-77
-uses-permission#android.permission.READ_PHONE_STATE
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:33:5-75
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:33:22-72
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:34:5-79
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:14:5-79
 	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:34:22-76
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:14:22-76
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:15:5-81
+MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:5-81
+MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:5-81
+MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-81
+MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-81
+MERGED from [com.kailashdabhi:om-recorder:1.1.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\2f974fb7fe77b0e79d547166c4beb05e\jetified-om-recorder-1.1.0\AndroidManifest.xml:10:5-81
+MERGED from [com.kailashdabhi:om-recorder:1.1.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\2f974fb7fe77b0e79d547166c4beb05e\jetified-om-recorder-1.1.0\AndroidManifest.xml:10:5-81
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:15:22-78
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:16:5-67
+MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:5-67
+MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:5-67
+MERGED from [com.firebase:geofire-android:2.1.2] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\71a1ec0a7eed54a3c2e2ea03c02a881a\jetified-geofire-android-2.1.2\AndroidManifest.xml:4:3-64
+MERGED from [com.firebase:geofire-android:2.1.2] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\71a1ec0a7eed54a3c2e2ea03c02a881a\jetified-geofire-android-2.1.2\AndroidManifest.xml:4:3-64
+MERGED from [com.google.firebase:firebase-storage:18.1.1] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\11c39cddbc3bc7dfa11a34ce764ee4a8\jetified-firebase-storage-18.1.1\AndroidManifest.xml:27:5-67
+MERGED from [com.google.firebase:firebase-storage:18.1.1] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\11c39cddbc3bc7dfa11a34ce764ee4a8\jetified-firebase-storage-18.1.1\AndroidManifest.xml:27:5-67
+MERGED from [com.firebaseui:firebase-ui-database:4.3.2] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\276ebabf8c9040c6e5ea155c1cbd183d\jetified-firebase-ui-database-4.3.2\AndroidManifest.xml:11:5-67
+MERGED from [com.firebaseui:firebase-ui-database:4.3.2] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\276ebabf8c9040c6e5ea155c1cbd183d\jetified-firebase-ui-database-4.3.2\AndroidManifest.xml:11:5-67
+MERGED from [com.google.firebase:firebase-database:18.0.1] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\e935721b454bd124207593dcc3a9263f\jetified-firebase-database-18.0.1\AndroidManifest.xml:26:5-67
+MERGED from [com.google.firebase:firebase-database:18.0.1] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\e935721b454bd124207593dcc3a9263f\jetified-firebase-database-18.0.1\AndroidManifest.xml:26:5-67
+MERGED from [com.github.iammannan:TranslateAPI:1.1] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\0d72c4eed648471fa2a879e14391c987\jetified-TranslateAPI-1.1\AndroidManifest.xml:11:5-67
+MERGED from [com.github.iammannan:TranslateAPI:1.1] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\0d72c4eed648471fa2a879e14391c987\jetified-TranslateAPI-1.1\AndroidManifest.xml:11:5-67
+MERGED from [com.google.android.gms:play-services-maps:16.0.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\76b3c879e2385cb8b5df2e313a2e70d5\jetified-play-services-maps-16.0.0\AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.gms:play-services-maps:16.0.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\76b3c879e2385cb8b5df2e313a2e70d5\jetified-play-services-maps-16.0.0\AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\5e789f448de01b1b9908b26ecfa7ee99\jetified-play-services-measurement-api-17.6.0\AndroidManifest.xml:22:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\5e789f448de01b1b9908b26ecfa7ee99\jetified-play-services-measurement-api-17.6.0\AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-installations:16.3.2] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\b6ee6fa84be9dcc7e1dcf91e16809c40\jetified-firebase-installations-16.3.2\AndroidManifest.xml:11:5-67
+MERGED from [com.google.firebase:firebase-installations:16.3.2] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\b6ee6fa84be9dcc7e1dcf91e16809c40\jetified-firebase-installations-16.3.2\AndroidManifest.xml:11:5-67
+MERGED from [com.google.android.gms:play-services-measurement:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\cbc49409d199103b883e7088f68cc2af\jetified-play-services-measurement-17.6.0\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\cbc49409d199103b883e7088f68cc2af\jetified-play-services-measurement-17.6.0\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\7f954025718c2f1b804209c4c9b40bb1\jetified-play-services-measurement-impl-17.6.0\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\7f954025718c2f1b804209c4c9b40bb1\jetified-play-services-measurement-impl-17.6.0\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\232b38cec41e8a7527697659c61a3f58\jetified-play-services-measurement-sdk-api-17.6.0\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\232b38cec41e8a7527697659c61a3f58\jetified-play-services-measurement-sdk-api-17.6.0\AndroidManifest.xml:23:5-67
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:16:22-64
+supports-screens
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:18:5-24:40
+	android:largeScreens
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:20:9-36
+	android:smallScreens
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:23:9-36
+	android:normalScreens
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:21:9-37
+	android:xlargeScreens
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:24:9-37
+	android:resizeable
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:22:9-34
+	android:anyDensity
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:19:9-34
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:26:5-71
+MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:5-71
+MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:5-71
+MERGED from [com.kailashdabhi:om-recorder:1.1.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\2f974fb7fe77b0e79d547166c4beb05e\jetified-om-recorder-1.1.0\AndroidManifest.xml:9:5-71
+MERGED from [com.kailashdabhi:om-recorder:1.1.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\2f974fb7fe77b0e79d547166c4beb05e\jetified-om-recorder-1.1.0\AndroidManifest.xml:9:5-71
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:26:22-68
+uses-permission#android.permission.CAMERA
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:27:5-65
+MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:14:5-65
+MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:14:5-65
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:27:22-62
+uses-feature#android.hardware.camera
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:30:5-60
+MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:5-60
+MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:5-60
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:30:19-57
+uses-feature#android.hardware.camera.autofocus
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:31:5-70
+MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:5-70
+MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:5-70
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:31:19-67
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:33:5-80
+MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:13:5-80
+MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:13:5-80
+MERGED from [com.kailashdabhi:om-recorder:1.1.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\2f974fb7fe77b0e79d547166c4beb05e\jetified-om-recorder-1.1.0\AndroidManifest.xml:11:5-80
+MERGED from [com.kailashdabhi:om-recorder:1.1.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\2f974fb7fe77b0e79d547166c4beb05e\jetified-om-recorder-1.1.0\AndroidManifest.xml:11:5-80
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:33:22-77
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:35:5-75
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:35:22-72
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:35:5-81
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:36:5-81
 	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:35:22-78
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:36:22-78
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:38:5-78
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:39:5-79
 MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-79
 MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-79
 MERGED from [com.google.firebase:firebase-storage:18.1.1] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\11c39cddbc3bc7dfa11a34ce764ee4a8\jetified-firebase-storage-18.1.1\AndroidManifest.xml:26:5-79
@@ -410,13 +410,13 @@ MERGED from [com.google.android.gms:play-services-measurement-impl:17.6.0] C:\Us
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\232b38cec41e8a7527697659c61a3f58\jetified-play-services-measurement-sdk-api-17.6.0\AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\232b38cec41e8a7527697659c61a3f58\jetified-play-services-measurement-sdk-api-17.6.0\AndroidManifest.xml:24:5-79
 	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:38:22-76
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:39:22-76
 uses-permission#android.permission.VIBRATE
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:39:5-66
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:40:5-66
 	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:39:22-63
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:40:22-63
 uses-permission#android.permission.WAKE_LOCK
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:40:5-68
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:41:5-68
 MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\5e789f448de01b1b9908b26ecfa7ee99\jetified-play-services-measurement-api-17.6.0\AndroidManifest.xml:24:5-68
 MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\5e789f448de01b1b9908b26ecfa7ee99\jetified-play-services-measurement-api-17.6.0\AndroidManifest.xml:24:5-68
 MERGED from [com.google.android.gms:play-services-measurement:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\cbc49409d199103b883e7088f68cc2af\jetified-play-services-measurement-17.6.0\AndroidManifest.xml:25:5-68
@@ -426,9 +426,9 @@ MERGED from [com.google.android.gms:play-services-measurement-impl:17.6.0] C:\Us
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\232b38cec41e8a7527697659c61a3f58\jetified-play-services-measurement-sdk-api-17.6.0\AndroidManifest.xml:25:5-68
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.6.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\232b38cec41e8a7527697659c61a3f58\jetified-play-services-measurement-sdk-api-17.6.0\AndroidManifest.xml:25:5-68
 	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:40:22-65
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:41:22-65
 application
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:42:5-115:19
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:43:5-125:19
 MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:23:5-29:19
 MERGED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:23:5-29:19
 MERGED from [com.github.adrielcafe:AndroidAudioRecorder:0.3.0] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\c624bc88c513f6f9d6fb46e3110e3468\jetified-AndroidAudioRecorder-0.3.0\AndroidManifest.xml:11:5-16:19
@@ -504,165 +504,165 @@ MERGED from [io.supercharge:shimmerlayout:2.1.0] C:\Users\Louis\.gradle\caches\t
 	android:supportsRtl
 		ADDED from [lib.kingja.switchbutton:switchbutton:1.1.8] C:\Users\Louis\.gradle\caches\transforms-2\files-2.1\bfa960d43f34c4fd2dad92cea3d9a4cd\jetified-switchbutton-1.1.8\AndroidManifest.xml:30:9-35
 	android:label
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:45:9-41
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:46:9-41
 	android:icon
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:44:9-45
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:45:9-45
 	android:allowBackup
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:43:9-35
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:44:9-35
 	android:theme
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:46:9-40
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:47:9-40
 	android:usesCleartextTraffic
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:47:9-44
-activity#com.naer.pdfreader.GetDataShow
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:48:9-49
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:48:19-46
-activity#com.naer.pdfreader.ConversationHomework
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:49:9-58
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:49:19-55
-activity#com.naer.pdfreader.ChatbotActivity
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:50:9-52:47
-	android:theme
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:52:13-44
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:51:13-44
-activity#com.naer.pdfreader.ConversationPractice
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:53:9-58
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:53:19-55
-activity#com.naer.pdfreader.ChoosePracticrPart
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:54:9-56
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:54:19-53
-activity#com.naer.pdfreader.DramaAchievement
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:55:9-54
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:55:19-51
-activity#com.naer.pdfreader.testAItext
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:56:9-48
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:56:19-45
-activity#com.naer.pdfreader.EditDrama
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:57:9-47
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:57:19-44
-activity#com.naer.pdfreader.CreatDrama
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:58:9-48
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:58:19-45
-activity#com.naer.pdfreader.TestAc
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:59:9-44
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:59:19-41
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:48:9-44
 meta-data#com.google.android.geo.API_KEY
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:61:9-63:71
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:58:9-60:71
 	android:value
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:63:13-68
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:60:13-68
 	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:62:13-58
-activity#com.naer.pdfreader.MainActivity
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:65:9-76:20
-	android:screenOrientation
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:69:13-50
-	android:label
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:68:13-45
-	android:windowSoftInputMode
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:70:13-54
-	android:configChanges
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:67:13-74
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:59:13-58
+activity#com.naer.pdfreader.GetDataShow
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:62:9-49
 	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:66:13-41
-intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:71:13-75:29
-action#android.intent.action.MAIN
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:72:17-69
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:62:19-46
+activity#com.naer.pdfreader.ConversationHomework
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:63:9-58
 	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:72:25-66
-category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:74:17-77
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:74:27-74
-activity#com.radaee.reader.PDFNavAct
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:77:9-80:48
-	android:label
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:80:13-45
-	android:configChanges
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:79:13-74
-	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:78:13-55
-activity#com.radaee.reader.PDFViewAct
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:81:9-85:57
-	android:windowSoftInputMode
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:85:13-54
-	android:configChanges
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:83:13-74
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:63:19-55
+activity#com.naer.pdfreader.ChatbotActivity
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:64:9-66:47
 	android:theme
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:84:13-60
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:66:13-44
 	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:82:13-56
-activity#com.naer.pdfreader.PDFGLViewAct
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:86:9-89:63
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:65:13-44
+activity#com.naer.pdfreader.ConversationPractice
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:67:9-58
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:67:19-55
+activity#com.naer.pdfreader.ChoosePracticrPart
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:68:9-56
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:68:19-53
+activity#com.naer.pdfreader.DramaAchievement
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:69:9-54
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:69:19-51
+activity#com.naer.pdfreader.testAItext
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:70:9-48
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:70:19-45
+activity#com.naer.pdfreader.EditDrama
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:71:9-47
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:71:19-44
+activity#com.naer.pdfreader.CreatDrama
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:72:9-48
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:72:19-45
+activity#com.naer.pdfreader.TestAc
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:73:9-44
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:73:19-41
+activity#com.naer.pdfreader.MainActivity
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:74:9-85:20
+	android:screenOrientation
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:78:13-50
+	android:label
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:77:13-45
+	android:windowSoftInputMode
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:79:13-54
+	android:configChanges
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:76:13-74
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:75:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:80:13-84:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:81:17-69
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:81:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:83:17-77
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:83:27-74
+activity#com.radaee.reader.PDFNavAct
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:86:9-89:48
+	android:label
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:89:13-45
 	android:configChanges
 		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:88:13-74
-	android:theme
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:89:13-60
 	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:87:13-41
-activity#com.radaee.reader.PDFCurlViewAct
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:90:9-93:63
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:87:13-55
+activity#com.radaee.reader.PDFViewAct
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:90:9-94:57
+	android:windowSoftInputMode
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:94:13-54
 	android:configChanges
 		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:92:13-74
 	android:theme
 		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:93:13-60
 	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:91:13-60
-activity#com.naer.pdfreader.AboutActivity
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:94:9-97:63
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:91:13-56
+activity#com.naer.pdfreader.PDFGLViewAct
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:95:9-98:63
 	android:configChanges
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:96:13-74
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:97:13-74
 	android:theme
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:97:13-60
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:98:13-60
 	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:95:13-42
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:96:13-41
+activity#com.radaee.reader.PDFCurlViewAct
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:99:9-102:63
+	android:configChanges
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:101:13-74
+	android:theme
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:102:13-60
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:100:13-60
+activity#com.naer.pdfreader.AboutActivity
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:103:9-106:63
+	android:configChanges
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:105:13-74
+	android:theme
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:106:13-60
+	android:name
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:104:13-42
 activity#com.naer.pdfreader.DialogActivity
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:98:9-100:60
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:107:9-109:60
 	android:label
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:100:13-57
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:109:13-57
 	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:99:13-43
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:108:13-43
 activity#com.naer.pdfreader.PhotoActivity
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:101:9-51
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:110:9-51
 	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:101:19-48
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:110:19-48
 activity#com.naer.pdfreader.ImageListActivity
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:102:9-55
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:111:9-55
 	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:102:19-52
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:111:19-52
 activity#com.naer.pdfreader.DramaRecycleView
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:103:9-105:73
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:112:9-114:73
 	android:label
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:105:13-70
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:114:13-70
 	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:104:13-45
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:113:13-45
 activity#com.naer.pdfreader.DescribeActivity
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:106:9-108:55
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:115:9-117:55
 	android:windowSoftInputMode
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:108:13-52
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:117:13-52
 	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:107:13-45
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:116:13-45
 activity#com.theartofdev.edmodo.cropper.CropImageActivity
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:109:9-111:59
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:118:9-120:59
 	android:theme
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:111:13-56
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:120:13-56
 	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:110:13-76
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:119:13-76
 service#com.naer.pdfreader.MyService
-ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:113:9-69
+ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:122:9-124:38
 	android:enabled
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:113:44-66
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:124:13-35
 	android:name
-		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:113:18-43
+		ADDED from C:\Users\Louis\Desktop\Vpen\RDPDFReader3\rDPDFReader\src\main\AndroidManifest.xml:123:13-38
 receiver#com.radaee.Broadcast.MyBroadcast
 ADDED from [:viewLib] C:\Users\Louis\Desktop\Vpen\RDPDFReader3\viewLib\build\intermediates\library_manifest\debug\AndroidManifest.xml:24:9-28:20
 	android:name

@@ -1693,6 +1693,8 @@ drawable chat35
 drawable chat55
 drawable chat75
 drawable chat95
+drawable chatbot_player
+drawable choosing
 drawable cinema128
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
@@ -1744,6 +1746,10 @@ drawable hint
 drawable homework
 drawable hw_record_32
 drawable hw_record_64
+drawable ic_baseline_chevron_left_24
+drawable ic_baseline_chevron_left_24_black
+drawable ic_baseline_chevron_right_24
+drawable ic_baseline_chevron_right_24_black
 drawable ic_baseline_keyboard_voice_24
 drawable ic_baseline_menu_book_24
 drawable ic_baseline_message_24
@@ -2028,7 +2034,14 @@ id btn_searchdrama
 id btn_seedrama
 id btn_select
 id btn_send
+id btn_speak
 id btn_talkMessage
+id btn_tts1
+id btn_tts2
+id btn_tts3
+id btn_tts4
+id btn_tts_chatbot
+id btn_tts_chatbot_left
 id btn_view
 id btn_voice
 id button1
@@ -2149,9 +2162,7 @@ id drama5
 id drama6
 id drama7
 id drama8
-id drama_dramawork_num
 id drama_example_photo
-id drama_four_image
 id drama_four_num
 id drama_name
 id drama_practice_photo
@@ -2169,6 +2180,7 @@ id drama_voice_4_b
 id dramanumber
 id dropdown_menu
 id editName
+id editText
 id editText1
 id editText2
 id editText3
@@ -2266,6 +2278,7 @@ id loading
 id loadingPane
 id loadingPanel
 id mapView
+id map_fragment
 id marquee
 id masked
 id matrix
@@ -2326,6 +2339,10 @@ id option_1
 id option_2
 id option_3
 id option_4
+id option_edit_0
+id option_edit_1
+id option_edit_2
+id option_edit_3
 id order1
 id outline
 id oval
@@ -2359,11 +2376,12 @@ id playplayer2
 id playplayer3
 id playplayer4
 id practice_character
-id practice_drama_num
 id practice_drama_stu
+id practice_say
 id practice_say_1
 id practice_say_2
-id practice_way
+id practice_say_left
+id practice_say_right
 id preview
 id progress_circular
 id progress_horizontal
@@ -2416,6 +2434,7 @@ id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
 id scrollable
+id scrollview
 id search_badge
 id search_bar
 id search_button
@@ -2450,6 +2469,7 @@ id show_time1
 id show_time2
 id show_time3
 id show_time4
+id showcorrect
 id showdescribescore
 id skipCollapsed
 id slide
@@ -2462,6 +2482,7 @@ id snapMargins
 id spacer
 id speak_text
 id spinner
+id spinner2
 id spinner_std
 id spinner_work
 id split_action_bar
@@ -2486,6 +2507,8 @@ id submenuarrow
 id submit_area
 id surfaceView1
 id switchmultibutton
+id switchmultibutton2
+id switchmultibutton3
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -2517,7 +2540,6 @@ id textSpeech
 id textStart
 id textView
 id textView1
-id textView12
 id textView2
 id textView6
 id text_hint
@@ -2695,6 +2717,7 @@ layout activity_get_data_show
 layout activity_image_list
 layout activity_main
 layout activity_photo
+layout activity_role
 layout activity_test
 layout activity_test2
 layout activity_test_aitext
@@ -2706,6 +2729,7 @@ layout bar_cmd
 layout bar_find
 layout bar_seek
 layout big_picture
+layout btn_speake
 layout builddrama
 layout builddrama2
 layout builddrama3
@@ -2812,6 +2836,7 @@ layout text_view_without_line_height
 menu aar_audio_recorder
 menu crop_image_menu
 menu example_menu
+menu example_menu_edit
 mipmap correction_icon
 mipmap good_icon
 mipmap ic_action_send
@@ -2998,6 +3023,7 @@ string search_menu_title
 string status_bar_notification_info_overflow
 string title_activity_drama_recycle_view
 string title_activity_main2
+string title_activity_maps
 string translation
 string user_diff_left_title
 string user_diff_title

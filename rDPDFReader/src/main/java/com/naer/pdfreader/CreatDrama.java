@@ -122,7 +122,7 @@ public class CreatDrama extends Activity {
     private boolean drama1_edit = false;
     private SwitchMultiButton  switchmultibutton;
 
-    private String[] Drama = new String[3];
+    private final String[] Drama = new String[3];
     private DatabaseReference fire_dramaname;
     private Button delete;
 
@@ -221,6 +221,34 @@ public class CreatDrama extends Activity {
         Drama[0] = "Drama1";
         Drama[1] = "Drama2";
         Drama[2] = "Drama3";
+
+        try {
+            DatabaseReference fire_load_dramaname = FirebaseDatabase.getInstance().getReference();
+            fire_load_dramaname.child("學生" + Student.Name + "號").child("DramaName")
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int i = 0;
+                            String[] sssttt = new String[(int) dataSnapshot.getChildrenCount()];
+                            for (DataSnapshot each : dataSnapshot.getChildren()) {
+                                sssttt[i] = each.getValue().toString();
+                                Drama[i]=sssttt[i];
+                                Log.v("檢查st", Drama[i]);
+                                Log.v("檢查i", String.valueOf(i));
+                                i++;
+                            }
+                                switchmultibutton
+                                        .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ");
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        }
+                    });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        switchmultibutton.setOnSwitchListener(onSwitchListener);
 //        try {
 //            final FirebaseDatabase database = FirebaseDatabase.getInstance();
 //            DatabaseReference db = database.getReference().child("學生" + Student.Name + "號").child("DramaName");
@@ -245,7 +273,7 @@ public class CreatDrama extends Activity {
 //        }catch (Exception e) {
 //            e.printStackTrace();
 //        }
-        switchmultibutton.setText("Drama1","Drama2","Drama3").setOnSwitchListener(onSwitchListener);
+
 
         //--------選擇劇本編號----------
         final String[] list = {"請選擇", "Drama_1", "Drama_2", "Drama_3"};
@@ -651,127 +679,154 @@ public class CreatDrama extends Activity {
             switch (position){
                 case 0:
                     Log.v("tabtext",tabText);
-                    if(tabText == "Drama1"){
-                        AlertDialog.Builder editDialog = new AlertDialog.Builder(CreatDrama.this);
-                        editDialog.setTitle("編輯劇本名稱");
-                        editDialog.setIcon(R.drawable.ic_launcher);
-
-                        final EditText editText = new EditText(CreatDrama.this);
-                        editDialog.setView(editText);
-                        editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                            // do something when the button is clicked
-                            public void onClick(DialogInterface arg0, int arg1) {
-                                Drama[0] = editText.getText().toString();
-                                switchmultibutton.setText(Drama[0], Drama[1],Drama[2]);
-                            }
-                        });
-                        editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                            // do something when the button is clicked
-                            public void onClick(DialogInterface arg0, int arg1) {
-                            }
-                        });
-                        editDialog.show();
-                    }
+//                    if(tabText == "                    Drama1                   "){
+//                        AlertDialog.Builder editDialog = new AlertDialog.Builder(CreatDrama.this);
+//                        editDialog.setTitle("編輯劇本名稱");
+//                        editDialog.setIcon(R.drawable.ic_launcher);
+//
+//                        final EditText editText = new EditText(CreatDrama.this);
+//                        editDialog.setView(editText);
+//                        editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+//                            // do something when the button is clicked
+//                            public void onClick(DialogInterface arg0, int arg1) {
+//                                Drama[0] = editText.getText().toString();
+//                                switchmultibutton
+//                                        .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ");
+//                            }
+//                        });
+//                        editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                            // do something when the button is clicked
+//                            public void onClick(DialogInterface arg0, int arg1) {
+//                            }
+//                        });
+//                        editDialog.show();
+//                    }
 
                     delete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            new AlertDialog.Builder(CreatDrama.this)
-                                    .setIcon(R.drawable.ic_launcher)
-                                    .setTitle("清除劇本名稱?")
-                                    .setPositiveButton("確認", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            Drama[0] = "Drama1";
-                                            switchmultibutton.setText(Drama[0], Drama[1],Drama[2]);
-                                        }
-                                    })
-                                    .setNegativeButton("取消",null).create()
-                                    .show();
+                            AlertDialog.Builder editDialog = new AlertDialog.Builder(CreatDrama.this);
+                            editDialog.setTitle("編輯劇本名稱");
+                            editDialog.setIcon(R.drawable.ic_launcher);
+
+                            final EditText editText = new EditText(CreatDrama.this);
+                            editDialog.setView(editText);
+                            editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                // do something when the button is clicked
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    Drama[0] = editText.getText().toString();
+                                    switchmultibutton
+                                            .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ");
+                                }
+                            });
+                            editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                // do something when the button is clicked
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                }
+                            });
+                            editDialog.show();
                         }
                     });
 
                     spinner_drame_word="Drama1";
                     break;
                 case 1:
-                    if(tabText == "Drama2"){
-                        AlertDialog.Builder editDialog = new AlertDialog.Builder(CreatDrama.this);
-                        editDialog.setTitle("編輯劇本名稱");
-                        editDialog.setIcon(R.drawable.ic_launcher);
-
-                        final EditText editText = new EditText(CreatDrama.this);
-                        editDialog.setView(editText);
-                        editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                            // do something when the button is clicked
-                            public void onClick(DialogInterface arg0, int arg1) {
-                                Drama[1] = editText.getText().toString();
-                                switchmultibutton.setText(Drama[0], Drama[1],Drama[2]);
-                            }
-                        });
-                        editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                            // do something when the button is clicked
-                            public void onClick(DialogInterface arg0, int arg1) {
-                            }
-                        });
-                        editDialog.show();
-                    }
+//                    if(tabText == "                    Drama2                   "){
+//                        AlertDialog.Builder editDialog = new AlertDialog.Builder(CreatDrama.this);
+//                        editDialog.setTitle("編輯劇本名稱");
+//                        editDialog.setIcon(R.drawable.ic_launcher);
+//
+//                        final EditText editText = new EditText(CreatDrama.this);
+//                        editDialog.setView(editText);
+//                        editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+//                            // do something when the button is clicked
+//                            public void onClick(DialogInterface arg0, int arg1) {
+//                                Drama[1] = editText.getText().toString();
+//                                switchmultibutton
+//                                        .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ");
+//                            }
+//                        });
+//                        editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                            // do something when the button is clicked
+//                            public void onClick(DialogInterface arg0, int arg1) {
+//                            }
+//                        });
+//                        editDialog.show();
+//                    }
                         delete.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                new AlertDialog.Builder(CreatDrama.this)
-                                        .setIcon(R.drawable.ic_launcher)
-                                        .setTitle("清除劇本名稱?")
-                                        .setPositiveButton("確認", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                Drama[1] = "Drama2";
-                                                switchmultibutton.setText(Drama[0], Drama[1],Drama[2]);
-                                            }
-                                        })
-                                        .setNegativeButton("取消",null).create()
-                                        .show();
+                                AlertDialog.Builder editDialog = new AlertDialog.Builder(CreatDrama.this);
+                                editDialog.setTitle("編輯劇本名稱");
+                                editDialog.setIcon(R.drawable.ic_launcher);
+
+                                final EditText editText = new EditText(CreatDrama.this);
+                                editDialog.setView(editText);
+                                editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                    // do something when the button is clicked
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        Drama[1] = editText.getText().toString();
+                                        switchmultibutton
+                                                .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ");
+                                    }
+                                });
+                                editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                    // do something when the button is clicked
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                    }
+                                });
+                                editDialog.show();
                             }
                         });
 
                     spinner_drame_word="Drama2";
                     break;
                 case 2:
-                    if(tabText == "Drama3"){
-                        AlertDialog.Builder editDialog = new AlertDialog.Builder(CreatDrama.this);
-                        editDialog.setTitle("編輯劇本名稱");
-                        editDialog.setIcon(R.drawable.ic_launcher);
-
-                        final EditText editText = new EditText(CreatDrama.this);
-                        editDialog.setView(editText);
-                        editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                            // do something when the button is clicked
-                            public void onClick(DialogInterface arg0, int arg1) {
-                                Drama[2] = editText.getText().toString();
-                                switchmultibutton.setText(Drama[0], Drama[1],Drama[2]);
-                            }
-                        });
-                        editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                            // do something when the button is clicked
-                            public void onClick(DialogInterface arg0, int arg1) {
-                            }
-                        });
-                        editDialog.show();
-                    }
+//                    if(tabText == "                    Drama3                   "){
+//                        AlertDialog.Builder editDialog = new AlertDialog.Builder(CreatDrama.this);
+//                        editDialog.setTitle("編輯劇本名稱");
+//                        editDialog.setIcon(R.drawable.ic_launcher);
+//
+//                        final EditText editText = new EditText(CreatDrama.this);
+//                        editDialog.setView(editText);
+//                        editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+//                            // do something when the button is clicked
+//                            public void onClick(DialogInterface arg0, int arg1) {
+//                                Drama[2] = editText.getText().toString();
+//                                switchmultibutton
+//                                        .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ");
+//                            }
+//                        });
+//                        editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                            // do something when the button is clicked
+//                            public void onClick(DialogInterface arg0, int arg1) {
+//                            }
+//                        });
+//                        editDialog.show();
+//                    }
                         delete.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                new AlertDialog.Builder(CreatDrama.this)
-                                        .setIcon(R.drawable.ic_launcher)
-                                        .setTitle("清除劇本名稱?")
-                                        .setPositiveButton("確認", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                Drama[2] = "Drama3";
-                                                switchmultibutton.setText(Drama[0], Drama[1],Drama[2]);
-                                            }
-                                        })
-                                        .setNegativeButton("取消",null).create()
-                                        .show();
+                                AlertDialog.Builder editDialog = new AlertDialog.Builder(CreatDrama.this);
+                                editDialog.setTitle("編輯劇本名稱");
+                                editDialog.setIcon(R.drawable.ic_launcher);
+
+                                final EditText editText = new EditText(CreatDrama.this);
+                                editDialog.setView(editText);
+                                editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                    // do something when the button is clicked
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        Drama[2] = editText.getText().toString();
+                                        switchmultibutton
+                                                .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ");
+                                    }
+                                });
+                                editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                    // do something when the button is clicked
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                    }
+                                });
+                                editDialog.show();
                             }
                         });
                     spinner_drame_word="Drama3";
@@ -950,8 +1005,8 @@ public class CreatDrama extends Activity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 double[] sssttt = new double[(int) dataSnapshot.getChildrenCount()];
                  i = sssttt.length;
-                 Log.v("COUNT", String.valueOf(i));
-                switch (i){
+                 Log.v("COUNT", String.valueOf(i-1));
+                switch (i-1){
                     case 1:
                         drama5.setVisibility(INVISIBLE);
                         drama6.setVisibility(INVISIBLE);
