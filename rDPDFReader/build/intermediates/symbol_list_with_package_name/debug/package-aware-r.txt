@@ -993,6 +993,10 @@ color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
 color background_material_light
+color black
+color black1
+color blue
+color blue1
 color bright_foreground_disabled_material_dark
 color bright_foreground_disabled_material_light
 color bright_foreground_inverse_material_dark
@@ -1007,6 +1011,7 @@ color cardview_shadow_end_color
 color cardview_shadow_start_color
 color checkbox_themeable_attribute_color
 color colorAccent
+color colorBtpn
 color colorPrimary
 color colorPrimaryDark
 color common_google_signin_btn_text_dark
@@ -1696,6 +1701,7 @@ drawable chat95
 drawable chatbot_player
 drawable choosing
 drawable cinema128
+drawable close
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -1720,6 +1726,7 @@ drawable conversation128
 drawable crop_image_menu_flip
 drawable crop_image_menu_rotate_left
 drawable crop_image_menu_rotate_right
+drawable cross
 drawable cube
 drawable design_bottom_navigation_item_background
 drawable design_fab_background
@@ -1734,6 +1741,7 @@ drawable english_word
 drawable explorer128
 drawable fab_add
 drawable file03
+drawable filter
 drawable folder
 drawable folder0
 drawable folder1
@@ -1741,6 +1749,7 @@ drawable folder2
 drawable folder_1_128
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable gradient
 drawable gray_radius
 drawable hint
 drawable homework
@@ -1753,6 +1762,7 @@ drawable ic_baseline_chevron_right_24_black
 drawable ic_baseline_keyboard_voice_24
 drawable ic_baseline_menu_book_24
 drawable ic_baseline_message_24
+drawable ic_baseline_notes_24
 drawable ic_baseline_photo_24
 drawable ic_baseline_play_circle_filled_24
 drawable ic_check_black_24dp
@@ -1783,6 +1793,8 @@ drawable listen_tts
 drawable listening_tts
 drawable loading
 drawable main_file_btn
+drawable markasec
+drawable markdsec
 drawable material_ic_calendar_black_24dp
 drawable material_ic_clear_black_24dp
 drawable material_ic_edit_black_24dp
@@ -1790,6 +1802,7 @@ drawable material_ic_keyboard_arrow_left_black_24dp
 drawable material_ic_keyboard_arrow_right_black_24dp
 drawable material_ic_menu_arrow_down_black_24dp
 drawable material_ic_menu_arrow_up_black_24dp
+drawable menu
 drawable menu_back
 drawable mic
 drawable mic_control
@@ -1804,6 +1817,8 @@ drawable mtrl_popupmenu_background
 drawable mtrl_popupmenu_background_dark
 drawable mtrl_tabs_default_indicator
 drawable mydata
+drawable nameasec
+drawable namedsec
 drawable navigation_empty_icon
 drawable next
 drawable noimage
@@ -1855,6 +1870,7 @@ drawable save_drama_btn
 drawable savefile
 drawable scan
 drawable screenshot1
+drawable search
 drawable search_main_btn
 drawable share
 drawable sound_accuracy
@@ -1890,6 +1906,9 @@ id ALT
 id Agent
 id BOTTOM_END
 id BOTTOM_START
+id Button1
+id Button2
+id Button3
 id CTRL
 id CropOverlayView
 id CropProgressBar
@@ -1964,12 +1983,14 @@ id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
 id action_save
+id action_search
 id action_text
 id actions
 id activity_chooser_view_content
 id add
 id adddialog1
 id adddialog2
+id addmarker
 id adjust_height
 id adjust_width
 id alertTitle
@@ -2067,6 +2088,10 @@ id camera_preview
 id cancel
 id cancel_action
 id cancel_button
+id card
+id card2
+id card3
+id card4
 id cardphoto
 id center
 id centerCrop
@@ -2197,6 +2222,7 @@ id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
 id fab_item1
+id fab_item2
 id fab_label
 id fab_menu
 id fade
@@ -2204,6 +2230,7 @@ id fill
 id fill_horizontal
 id fill_vertical
 id filled
+id filter
 id finish_and_return
 id finishedit
 id fitCenter
@@ -2255,12 +2282,16 @@ id invisible
 id italic
 id item_image
 id item_touch_helper_previous_elevation
+id iv_champion1
+id iv_champion2
+id iv_champion3
 id lab_content
 id lab_page
 id lab_subj
 id labeled
 id largeLabel
 id layout
+id layout_champion
 id left
 id light
 id line1
@@ -2282,6 +2313,8 @@ id map_fragment
 id marquee
 id masked
 id matrix
+id maxim
+id maximum
 id media_actions
 id message
 id mic
@@ -2289,6 +2322,7 @@ id micButton
 id micContainer
 id middle
 id mini
+id minimum
 id month_grid
 id month_navigation_bar
 id month_navigation_fragment_toggle
@@ -2392,6 +2426,7 @@ id rad_squiggly
 id rad_strikeout
 id rad_underline
 id radio
+id rank
 id re_dialogButton
 id record
 id recordplayer
@@ -2401,7 +2436,12 @@ id recordplayer3
 id recordplayer4
 id recordvoice
 id rectangle
+id recycle
+id recycle2
+id recycle3
+id recycle4
 id recycle_view
+id recycler_view
 id relativelayout_keyboard
 id relativelayout_keyboardState
 id restart
@@ -2479,6 +2519,8 @@ id snackbar_action
 id snackbar_text
 id snap
 id snapMargins
+id sortOnMarks
+id sortOnName
 id spacer
 id speak_text
 id spinner
@@ -2501,7 +2543,6 @@ id stopplayer2
 id stopplayer3
 id stopplayer4
 id stretch
-id student_question
 id studentdescribe
 id submenuarrow
 id submit_area
@@ -2524,11 +2565,14 @@ id talkmessage_gif
 id telldramanum
 id tellstunum
 id terrain
+id test2_spinner
 id test_checkbox_android_button_tint
 id test_checkbox_app_button_tint
 id test_radiobutton_android_button_tint
 id test_radiobutton_app_button_tint
+id test_spinner
 id text
+id text1
 id text2
 id textEnd
 id textQuery
@@ -2553,6 +2597,7 @@ id textinput_helper_text
 id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
+id textview
 id time
 id time_describe
 id time_describe_text
@@ -2579,6 +2624,7 @@ id titleDividerNoCustom
 id titleTextView
 id titleView
 id title_template
+id toolbar
 id toolbarMessage
 id toolbar_play
 id toolbar_record
@@ -2596,6 +2642,8 @@ id transition_scene_layoutid_cache
 id transition_transform
 id tv
 id tvImageName
+id tv_subtitle
+id tv_title
 id txtImageName
 id txt_content
 id txt_find
@@ -2715,6 +2763,7 @@ layout activity_drama_recycle_view
 layout activity_edit_drama
 layout activity_get_data_show
 layout activity_image_list
+layout activity_leaderboard
 layout activity_main
 layout activity_photo
 layout activity_role
@@ -2722,6 +2771,7 @@ layout activity_test
 layout activity_test2
 layout activity_test_aitext
 layout aidialog
+layout alert_dialog
 layout banner
 layout bar_act
 layout bar_annot
@@ -2738,6 +2788,7 @@ layout cardview
 layout chat_item_left
 layout chat_item_right
 layout check_homework
+layout content_scrolling
 layout crop_image_activity
 layout crop_image_view
 layout custom_dialog
@@ -2762,6 +2813,8 @@ layout dlg_text
 layout fragment_messagechat
 layout give_the_hint
 layout image_item
+layout list_layout
+layout marker_infowindow
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
 layout mtrl_alert_dialog_title
@@ -2837,6 +2890,7 @@ menu aar_audio_recorder
 menu crop_image_menu
 menu example_menu
 menu example_menu_edit
+menu menu_main
 mipmap correction_icon
 mipmap good_icon
 mipmap ic_action_send
@@ -2971,7 +3025,9 @@ string hello_world
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
 string item1
+string item2
 string item_view_role_description
+string leaderboard_name
 string material_slider_range_end
 string material_slider_range_start
 string mtrl_badge_numberless_content_description
@@ -3009,6 +3065,7 @@ string mtrl_picker_toggle_to_calendar_input_mode
 string mtrl_picker_toggle_to_day_selection
 string mtrl_picker_toggle_to_text_input_mode
 string mtrl_picker_toggle_to_year_selection
+string no_result_found
 string non_empty_query
 string original
 string password_toggle_content_description
@@ -3044,6 +3101,8 @@ style ApiAi_FullScreenDialog
 style ApiAi_Microphone
 style AppBaseTheme
 style AppTheme
+style AppTheme_NoActionBar
+style AppTheme_PopupOverlay
 style Base_AlertDialog_AppCompat
 style Base_AlertDialog_AppCompat_Light
 style Base_Animation_AppCompat_Dialog
@@ -3275,6 +3334,7 @@ style MaterialAlertDialog_MaterialComponents_Title_Panel_CenterStacked
 style MaterialAlertDialog_MaterialComponents_Title_Text
 style MaterialAlertDialog_MaterialComponents_Title_Text_CenterStacked
 style MenuStyle
+style MyAction
 style Platform_AppCompat
 style Platform_AppCompat_Light
 style Platform_MaterialComponents

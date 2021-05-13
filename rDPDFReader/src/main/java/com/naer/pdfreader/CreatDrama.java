@@ -120,9 +120,16 @@ public class CreatDrama extends Activity {
     public static boolean cantoload = false;
     private View view;
     private boolean drama1_edit = false;
+    private boolean drama2_edit = false;
+    private boolean drama3_edit = false;
+    private boolean drama4_edit = false;
+    private boolean drama5_edit = false;
+    private boolean drama6_edit = false;
+    private boolean drama7_edit = false;
+    private boolean drama8_edit = false;
     private SwitchMultiButton  switchmultibutton;
 
-    private final String[] Drama = new String[3];
+    private final String[] Drama = new String[4];
     private DatabaseReference fire_dramaname;
     private Button delete;
 
@@ -221,6 +228,7 @@ public class CreatDrama extends Activity {
         Drama[0] = "Drama1";
         Drama[1] = "Drama2";
         Drama[2] = "Drama3";
+        Drama[3] = "Drama4";
 
         try {
             DatabaseReference fire_load_dramaname = FirebaseDatabase.getInstance().getReference();
@@ -238,7 +246,7 @@ public class CreatDrama extends Activity {
                                 i++;
                             }
                                 switchmultibutton
-                                        .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ");
+                                        .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ","                   "+Drama[3]+"                   ");
                         }
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -354,7 +362,7 @@ public class CreatDrama extends Activity {
         drama2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!TextUtils.equals("請選擇", spinner_drame_word)){
+                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama2_edit){
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
                         if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(CreatDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -366,7 +374,10 @@ public class CreatDrama extends Activity {
                     }
                     num = 2;
                     edit = false;
-                }else{
+                    drama2_edit = true;
+                }else if(drama2_edit){
+                    re_edit2();
+                } else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -375,7 +386,7 @@ public class CreatDrama extends Activity {
         drama3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!TextUtils.equals("請選擇", spinner_drame_word)){
+                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama3_edit){
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
                         if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(CreatDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -387,7 +398,10 @@ public class CreatDrama extends Activity {
                     }
                     num = 3;
                     edit = false;
-                }else{
+                    drama3_edit = true;
+                }else if(drama3_edit){
+                    re_edit3();
+                } else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -396,7 +410,7 @@ public class CreatDrama extends Activity {
         drama4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!TextUtils.equals("請選擇", spinner_drame_word)){
+                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama4_edit){
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
                         if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(CreatDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -408,6 +422,9 @@ public class CreatDrama extends Activity {
                     }
                     num = 4;
                     edit = false;
+                    drama4_edit = true;
+                }else if(drama4_edit){
+                    re_edit4();
                 }else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
                 }
@@ -417,7 +434,7 @@ public class CreatDrama extends Activity {
         drama5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!TextUtils.equals("請選擇", spinner_drame_word)){
+                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama5_edit){
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
                         if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(CreatDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -429,6 +446,9 @@ public class CreatDrama extends Activity {
                     }
                     num = 5;
                     edit = false;
+                    drama5_edit = true;
+                }else if(drama5_edit){
+                    re_edit5();
                 }else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
                 }
@@ -468,7 +488,7 @@ public class CreatDrama extends Activity {
         drama6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!TextUtils.equals("請選擇", spinner_drame_word)){
+                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama6_edit){
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
                         if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(CreatDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -480,7 +500,10 @@ public class CreatDrama extends Activity {
                     }
                     num = 6;
                     edit = false;
-                }else{
+                    drama6_edit = true;
+                }else if(drama6_edit){
+                    re_edit6();
+                } else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -518,7 +541,7 @@ public class CreatDrama extends Activity {
         drama7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!TextUtils.equals("請選擇", spinner_drame_word)){
+                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama7_edit){
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
                         if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(CreatDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -530,7 +553,10 @@ public class CreatDrama extends Activity {
                     }
                     num = 7;
                     edit = false;
-                }else{
+                    drama7_edit = true;
+                }else if(drama7_edit){
+                    re_edit7();
+                } else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -568,7 +594,7 @@ public class CreatDrama extends Activity {
         drama8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!TextUtils.equals("請選擇", spinner_drame_word)){
+                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama8_edit){
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
                         if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(CreatDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -580,7 +606,10 @@ public class CreatDrama extends Activity {
                     }
                     num = 8;
                     edit = false;
-                }else{
+                    drama8_edit = true;
+                }else if(drama8_edit){
+                    re_edit8();
+                } else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -647,13 +676,29 @@ public class CreatDrama extends Activity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             fire_final_four_frame = FirebaseStorage.getInstance().getReference().child(Student.Name).child("/Four-frame/").child(spinner_drame_word);
-                            fire_dramaname = FirebaseDatabase.getInstance().getReference().child("學生"+Student.Name+"號").child("DramaName");
+                            fire_dramaname = FirebaseDatabase.getInstance().getReference();
                             try {
                                 Map<String,Object> childUpdates=new HashMap<>();
                                 childUpdates.put("1",Drama[0]);
                                 childUpdates.put("2",Drama[1]);
                                 childUpdates.put("3",Drama[2]);
-                                fire_dramaname.updateChildren(childUpdates);
+                                childUpdates.put("4",Drama[3]);
+                                fire_dramaname.child("學生"+Student.Name+"號").child("DramaName").updateChildren(childUpdates);
+                                for(int i=0;i<4;i++){
+                                    if(Drama[i].equals("Playground")){
+                                        fire_dramaname.child("Other").child("stu_drama").child("Playground").child(Student.Name).setValue("Playground");
+                                    }else if(Drama[i].equals("Classroom")){
+                                        fire_dramaname.child("Other").child("stu_drama").child("Classroom").child(Student.Name).setValue("Classroom");
+                                    }else if(Drama[i].equals("Home")){
+                                        fire_dramaname.child("Other").child("stu_drama").child("Home").child(Student.Name).setValue("Home");
+                                    }else if(Drama[i].equals("Supermarket")){
+                                        fire_dramaname.child("Other").child("stu_drama").child("Supermarket").child(Student.Name).setValue("Supermarket");
+                                    }else if(Drama[i].equals("Park")){
+                                        fire_dramaname.child("Other").child("stu_drama").child("Park").child(Student.Name).setValue("Park");
+                                    } else if(Drama[i].equals("Other")){
+                                        fire_dramaname.child("Other").child("stu_drama").child("Other").child(Student.Name).setValue("Other");
+                                    }
+                                }
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -663,6 +708,7 @@ public class CreatDrama extends Activity {
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
+
                             CreatDrama.this.finish();
                         }
                     })
@@ -714,9 +760,9 @@ public class CreatDrama extends Activity {
                             editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                 // do something when the button is clicked
                                 public void onClick(DialogInterface arg0, int arg1) {
-                                    Drama[0] = editText.getText().toString();
+                                    Drama[0] = editText.getText().toString().trim();
                                     switchmultibutton
-                                            .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ");
+                                            .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ","                   "+Drama[3]+"                   ");
                                 }
                             });
                             editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -765,9 +811,9 @@ public class CreatDrama extends Activity {
                                 editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                     // do something when the button is clicked
                                     public void onClick(DialogInterface arg0, int arg1) {
-                                        Drama[1] = editText.getText().toString();
+                                        Drama[1] = editText.getText().toString().trim();
                                         switchmultibutton
-                                                .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ");
+                                                .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ","                   "+Drama[3]+"                   ");
                                     }
                                 });
                                 editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -816,9 +862,9 @@ public class CreatDrama extends Activity {
                                 editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                     // do something when the button is clicked
                                     public void onClick(DialogInterface arg0, int arg1) {
-                                        Drama[2] = editText.getText().toString();
+                                        Drama[2] = editText.getText().toString().trim();
                                         switchmultibutton
-                                                .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ");
+                                                .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ","                   "+Drama[3]+"                   ");
                                     }
                                 });
                                 editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -831,6 +877,35 @@ public class CreatDrama extends Activity {
                         });
                     spinner_drame_word="Drama3";
                     break;
+
+                case 3:
+                    delete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AlertDialog.Builder editDialog = new AlertDialog.Builder(CreatDrama.this);
+                            editDialog.setTitle("編輯劇本名稱");
+                            editDialog.setIcon(R.drawable.ic_launcher);
+
+                            final EditText editText = new EditText(CreatDrama.this);
+                            editDialog.setView(editText);
+                            editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                // do something when the button is clicked
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    Drama[3] = editText.getText().toString().trim();
+                                    switchmultibutton
+                                            .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ","                   "+Drama[3]+"                   ");
+                                }
+                            });
+                            editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                // do something when the button is clicked
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                }
+                            });
+                            editDialog.show();
+                        }
+                    });
+
+                    spinner_drame_word="Drama4";
             }
             Log.v("position", String.valueOf(position));
             try {
@@ -923,57 +998,100 @@ public class CreatDrama extends Activity {
         }else{
             Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
         }
-    };
-//
-//    //第2格照片重新編輯
-//    private View.OnClickListener re_edit2 = new View.OnClickListener(){
-//        @Override
-//        public void onClick(View view) {
-//            if(!TextUtils.equals("請選擇", spinner_drame_word)){
-//                edit = true;
-//                num = 2;
-//                image_name = drama1.toString();
-//                Intent intent = new Intent(CreatDrama.this, EditDrama.class);
-//                startActivity(intent);
-//            }else{
-//                Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    };
-//
-//    //第3格照片重新編輯
-//    private View.OnClickListener re_edit3 = new View.OnClickListener(){
-//        @Override
-//        public void onClick(View view) {
-//            if(!TextUtils.equals("請選擇", spinner_drame_word)){
-//                edit = true;
-//                num = 3;
-//                image_name = drama1.toString();
-//                Intent intent = new Intent(CreatDrama.this, EditDrama.class);
-//                startActivity(intent);
-//            }else{
-//                Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
-//            }
-//
-//
-//        }
-//    };
-//
-//    //第4格照片重新編輯
-//    private View.OnClickListener re_edit4 = new View.OnClickListener(){
-//        @Override
-//        public void onClick(View view) {
-//            if(!TextUtils.equals("請選擇", spinner_drame_word)){
-//                edit = true;
-//                num = 4;
-//                image_name = drama1.toString();
-//                Intent intent = new Intent(CreatDrama.this, EditDrama.class);
-//                startActivity(intent);
-//            }else{
-//                Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    };
+    }
+    //第2格照片重新編輯
+    private  void re_edit2(){
+        if(!TextUtils.equals("請選擇", spinner_drame_word)){
+            edit = true;
+            num = 2;
+            image_name = drama1.toString();
+            Intent intent = new Intent(CreatDrama.this, EditDrama.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    //第3格照片重新編輯
+    private  void re_edit3(){
+        if(!TextUtils.equals("請選擇", spinner_drame_word)){
+            edit = true;
+            num = 3;
+            image_name = drama1.toString();
+            Intent intent = new Intent(CreatDrama.this, EditDrama.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //第4格照片重新編輯
+    private  void re_edit4(){
+        if(!TextUtils.equals("請選擇", spinner_drame_word)){
+            edit = true;
+            num = 4;
+            image_name = drama1.toString();
+            Intent intent = new Intent(CreatDrama.this, EditDrama.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //第5格照片重新編輯
+    private  void re_edit5(){
+        if(!TextUtils.equals("請選擇", spinner_drame_word)){
+            edit = true;
+            num = 5;
+            image_name = drama1.toString();
+            Intent intent = new Intent(CreatDrama.this, EditDrama.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //第6格照片重新編輯
+    private  void re_edit6(){
+        if(!TextUtils.equals("請選擇", spinner_drame_word)){
+            edit = true;
+            num = 6;
+            image_name = drama1.toString();
+            Intent intent = new Intent(CreatDrama.this, EditDrama.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //第7格照片重新編輯
+    private  void re_edit7(){
+        if(!TextUtils.equals("請選擇", spinner_drame_word)){
+            edit = true;
+            num = 7;
+            image_name = drama1.toString();
+            Intent intent = new Intent(CreatDrama.this, EditDrama.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //第8格照片重新編輯
+    private  void re_edit8(){
+        if(!TextUtils.equals("請選擇", spinner_drame_word)){
+            edit = true;
+            num = 8;
+            image_name = drama1.toString();
+            Intent intent = new Intent(CreatDrama.this, EditDrama.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
     private Bitmap getBitmap(View view) throws Exception {
         View screenView = getWindow().getDecorView();
@@ -1005,8 +1123,7 @@ public class CreatDrama extends Activity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 double[] sssttt = new double[(int) dataSnapshot.getChildrenCount()];
                  i = sssttt.length;
-                 Log.v("COUNT", String.valueOf(i-1));
-                switch (i-1){
+                switch (i-2){
                     case 1:
                         drama5.setVisibility(INVISIBLE);
                         drama6.setVisibility(INVISIBLE);
@@ -1097,7 +1214,7 @@ public class CreatDrama extends Activity {
                         button1.setVisibility(INVISIBLE);
                         button2.setVisibility(INVISIBLE);
                         button3.setVisibility(INVISIBLE);
-                        button4.setVisibility(VISIBLE);
+                        button4.setVisibility(INVISIBLE);
                         break;
                 }
             }

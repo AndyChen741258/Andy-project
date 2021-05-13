@@ -24,6 +24,9 @@
     <string name="greeting">Hello</string>
     <string name="welcome">Welcome to Vpen System!</string>
     <string name="item1">Chatbot</string>
+    <string name="item2">Rank</string>
     <string name="title_activity_maps">Map</string>
+    <string name="leaderboard_name">LEADERBOARD</string>
+    <string name="no_result_found">No Result Found</string>
 
 </resources>

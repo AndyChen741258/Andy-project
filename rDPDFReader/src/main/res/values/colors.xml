@@ -8,4 +8,9 @@
     <color name="orangeRed">#d46043</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="lightBlue">#E8ECEF</color>
+    <color name="colorBtpn">#f58220</color>
+    <color name="blue1">#846D61</color>
+    <color name="blue">#ECE4DF</color>
+    <color name="black">#02090C</color>
+    <color name="black1">#4C4D4F</color>
 </resources>

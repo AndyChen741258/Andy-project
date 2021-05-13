@@ -3115,7 +3115,6 @@ public class EditDrama extends Activity {
                     Glide.with(editimage.getContext()).load(storeTheEditData.getOriginalPhotoUri()).into(editimage);
                 }
                 playtimeA= storeTheEditData.getPlayerA_playtime();
-                Log.v("測試1", String.valueOf(playtimeA));
                 playtimeB= storeTheEditData.getPlayerB_playtime();
                 playtime3= storeTheEditData.getPlayer3_playtime();
                 playtime4= storeTheEditData.getPlayer4_playtime();
@@ -3451,6 +3450,26 @@ public class EditDrama extends Activity {
             bw.write("C錄音次數:"+stoptime3+"\n");
             bw.write("D錄音次數:"+stoptime4+"\n");
             bw.write("TTS次數:"+tts_count+"\n");
+
+            try {
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference db = database.getReference().child("學生"+Student.Name+"號").child("Student data").child("EditDrama");
+                DatabaseReference db2 = database.getReference().child("Other").child("stu_data").child("EditDrama");
+                db.child("listenA").setValue(playtimeA);
+                db.child("listenB").setValue(playtimeB);
+                db.child("listenC").setValue(playtime3);
+                db.child("listenD").setValue(playtime4);
+                db.child("recordA").setValue(stoptimeA);
+                db.child("recordB").setValue(stoptimeB);
+                db.child("recordC").setValue(stoptime3);
+                db.child("recordD").setValue(stoptime4);
+                db.child("TTS").setValue(tts_count);
+                db2.child(Student.Name).setValue(tts_count+stoptimeA+stoptimeB+stoptime3+stoptime4);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(EditDrama.this, "儲存錯誤", Toast.LENGTH_SHORT).show();
+            }
 
             bw.close();
             Toast.makeText(EditDrama.this, "行為紀錄紀錄成功", Toast.LENGTH_SHORT).show();

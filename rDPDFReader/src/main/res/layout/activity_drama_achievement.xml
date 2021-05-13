@@ -30,7 +30,8 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="50dp"
+        android:visibility="invisible"/>
 
 
 
@@ -58,7 +59,8 @@
         app:selectedTab="1"
         app:strokeRadius="5dp"
         app:strokeWidth="1dp"
-        app:textSize="18sp"/>
+        app:textSize="18sp"
+        android:visibility="invisible"/>
 
 
     <ScrollView
@@ -283,10 +285,24 @@
         android:visibility="invisible"/>
 
 
+    <Spinner
+        android:id="@+id/test_spinner"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="35dp" />
 
-
-
-
+    <Spinner
+        android:id="@+id/test2_spinner"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="35dp"
+        android:layout_toEndOf="@+id/test_spinner"
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/showcorrect"

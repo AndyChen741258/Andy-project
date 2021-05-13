@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.projection.MediaProjectionManager;
 import android.net.Uri;
 import android.os.Build;
@@ -23,6 +24,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -32,6 +34,7 @@ import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 import com.github.clans.fab.FloatingActionMenu;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -61,6 +64,7 @@ import Model.DialogPracticBehavior;
 import lib.kingja.switchbutton.SwitchMultiButton;
 
 public class MainActivity extends Activity implements OnClickListener {
+	private MainActivity context;
 	private Button m_btn_file;
 	private Button m_btn_asset;
 	private Button m_btn_sdcard;
@@ -108,6 +112,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	public static boolean isFromMain = false;
 	FloatingActionMenu floatingActionMenu;
 	FloatingActionButton chatbot;
+	FloatingActionButton rank;
 
 
 	//private GeofencingClient geofencingClient;//////////////
@@ -118,6 +123,12 @@ public class MainActivity extends Activity implements OnClickListener {
 	private String[] st;
 	private int a;
 	private String welcome;
+	private int score=0;
+	private int lastScore=0;
+	private int best1=0;
+	private int best2=0;
+	private int best3=0;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -169,7 +180,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		btn_hw.setOnClickListener(this);
 		btn_review.setOnClickListener(this);
 		chatbot = (FloatingActionButton) layout.findViewById(R.id.fab_item1);
+		rank = (FloatingActionButton) layout.findViewById(R.id.fab_item2);
 		chatbot.setOnClickListener(this);
+		rank.setOnClickListener(this);
 //		chatbot.setOnClickListener(new View.OnClickListener(){
 //			@Override
 //			public void onClick(View view){
@@ -219,7 +232,6 @@ public class MainActivity extends Activity implements OnClickListener {
 					@Override
 					public void onFailure(@NonNull Exception exception) {
 						Link = "";
-
 					}
 				});
 			}
@@ -275,6 +287,7 @@ public class MainActivity extends Activity implements OnClickListener {
 					i++;
 				}
 				st = sssttt;
+
 				Random x = new Random();
 				a = x.nextInt(st.length);
 				Log.v("Get_main", st[a]);
@@ -424,6 +437,10 @@ public class MainActivity extends Activity implements OnClickListener {
 			else if (arg0 == chatbot) {
 				Student.Name = Name.getText().toString();
 				Intent intent = new Intent(this, ChatbotActivity.class);
+				startActivity(intent);
+			}else if (arg0 == rank) {
+				Student.Name = Name.getText().toString();
+				Intent intent = new Intent(this, Leaderboard.class);
 				startActivity(intent);
 			}
 		} else {
@@ -705,6 +722,10 @@ public class MainActivity extends Activity implements OnClickListener {
 				break;
 		}
 	}
+
+
+
+
 
 
 }

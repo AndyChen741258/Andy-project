@@ -2,9 +2,11 @@ package com.naer.pdfreader;
 
 import android.app.Activity;
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -43,6 +45,7 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.StrikethroughSpan;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.webkit.MimeTypeMap;
@@ -52,7 +55,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,6 +67,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdate;
@@ -70,13 +76,16 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.animation.ImageMatrixProperty;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.api.client.util.Sleeper;
 import com.google.api.gax.core.FixedCredentialsProvider;
@@ -105,6 +114,7 @@ import com.orhanobut.logger.Logger;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import org.slf4j.event.SubstituteLoggingEvent;
 import org.xml.sax.XMLReader;
 
 import java.io.BufferedInputStream;
@@ -129,6 +139,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -156,6 +167,7 @@ import ai.api.model.AIResponse;
 import ai.api.model.ResponseMessage;
 import ai.api.model.Result;
 import ai.api.ui.AIButton;
+import lib.kingja.switchbutton.SwitchMultiButton;
 
 
 import static android.view.View.INVISIBLE;
@@ -163,12 +175,15 @@ import static android.view.View.generateViewId;
 import static com.naer.pdfreader.DialogActivity.LOCATION_UPDATE_MIN_DISTANCE;
 import static com.naer.pdfreader.DialogActivity.LOCATION_UPDATE_MIN_TIME;
 import static com.naer.pdfreader.DialogActivity.TAG;
+import static com.naer.pdfreader.DramaAchievement.count;
+
 import com.radaee.Broadcast.MyBroadcast;
 import com.radaee.Model.StudentsNote;
 
-public class DescribeActivity extends Activity implements OnMapReadyCallback {
+public class DescribeActivity extends Activity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
 
     //描述情境操作介面
+    private Context context;
     private Button vocabulary;
     private Button phrase;
     private Button sentence;
@@ -204,7 +219,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
 
     //--------自動提示TextView------------
     private AutoCompleteTextView studentdescribe;
-    private  String[] autoStrs = {"a", "b", "c"};
+    private String[] autoStrs = {"a", "b", "c"};
     private GetDataFromFirebase getDataFromFirebase;
     private List<String> SentencesList;
     ArrayAdapter<String> adapter;
@@ -217,7 +232,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
     public boolean textenable = false;
     public boolean tipenable = false;
     private static String CompareSentences = null;//設定比較的句子
-    private static String PureSentences= null;//純句子
+    private static String PureSentences = null;//純句子
     private String encourage;
 
     //-------定義FireBase------------
@@ -269,7 +284,6 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
     private String hw_describe_download_url = "";
     private boolean hw_isPress = true; //限制錄音按鈕僅能按一下, 等按下停止時才可以再恢復可按狀態
     private String hw_describe_Link;
-    private Button student_question;
 
     //創作戲劇時的觀看資料行為
     private DatabaseReference fire_creatdrama_behavior;
@@ -279,6 +293,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
     int creat_see_other = 0;
 
 
+
     private LocationListener mLocationListener = new LocationListener() {
 
         @Override
@@ -286,14 +301,13 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
             final Date now = new Date();
             android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm", now);
             if (location != null) {
+                int firstMarker = 0;
                 longitude = location.getLongitude();   //取得經度
                 latitude = location.getLatitude();    //取得緯度
                 CheckLocation(latitude, longitude);//檢查地點是否在附近
                 Logger.d(String.format("%f, %f", location.getLatitude(), location.getLongitude()));
                 Log.d("hooooo", String.valueOf(longitude) + " : " + String.valueOf(latitude));
-                LatLng sydney = new LatLng(latitude,longitude);
-                mMap.addMarker(new MarkerOptions().position(sydney).title("Maker"));
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,18.0f));  
+
 
 //                sentence.setOnClickListener(new View.OnClickListener(){
 //                    @Override
@@ -339,21 +353,32 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
     };
 
     private LocationManager mLocationManager;
-    private int photo_count=0;
-    private int showdescribescore_count=0;
-    private int tts_count=0;
-    private double toLng=0;
-    private double tplat=0;
+    private int photo_count = 0;
+    private int showdescribescore_count = 0;
+    private int tts_count = 0;
+    private double toLng = 0;
+    private double tplat = 0;
     private GoogleMap mMap;
     private MapFragment mapFragment;
     private TextView place_tell;
+    private Button addmarker;
+    private boolean firstmarker = false;
+    private boolean bol_correctmarker = false;
+    //地圖定位點總數
+    private int marker_count;
+    private int int_marker=0;
+    private String[] marker_left = new String[25];
+    private String[] marker_right = new String[25];
+    private String[] marker_name = new String[25];
+    private String[] marker_time = new String[25];
+    private String situation_word;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);//隱藏標題列
         setContentView(R.layout.activity_describe);
-
         vocabulary = findViewById(R.id.vocabulary);
         phrase = findViewById(R.id.phrase);
         sentence = findViewById(R.id.sentence);
@@ -372,8 +397,9 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
         choose_which = findViewById(R.id.choose_which);
         choose_type = findViewById(R.id.choose_type);
 
-        student_question = findViewById(R.id.student_question);
         place_tell = findViewById(R.id.place_tell);
+
+        addmarker = findViewById(R.id.addmarker);
 
         //--------GPS顯示地點及經緯度--------
         PlaceName = findViewById(R.id.place);
@@ -402,37 +428,84 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
                     toolbar_stop.setVisibility(View.VISIBLE);
                     toolbar_play.setVisibility(View.VISIBLE); //設置顯示
                     isShowOrNot = true;
-                }else {
+                } else {
                     week1_hw_record.setVisibility(INVISIBLE);
                     toolbar_record.setVisibility(INVISIBLE);
                     toolbar_stop.setVisibility(INVISIBLE);
                     toolbar_play.setVisibility(INVISIBLE); //設置隱藏
-                    isShowOrNot  = false;
+                    isShowOrNot = false;
                 }
             }
         });
 
-        readInfo(Student.Name+"號學生描述情境行為紀錄");
+        readInfo(Student.Name + "號學生描述情境行為紀錄");
 
+        //地圖
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map_fragment);
         mapFragment.getMapAsync(this::onMapReady);
 
-        place_tell.setOnClickListener(new View.OnClickListener() {
+        
+
+
+        addmarker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LatLng sydney = new LatLng(latitude,longitude);
-                mMap.addMarker(new MarkerOptions().position(sydney).title("Maker"));
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,18.0f));
+                AlertDialog.Builder spinnerDialog = new AlertDialog.Builder(DescribeActivity.this);
+                spinnerDialog.setTitle("選擇定位點");
+                spinnerDialog.setIcon(R.drawable.ic_launcher);
+                //情境選單
+                final String[] stunum_list = new String[] {"playground", "classroom", "home"};
+                final Spinner situation_num = new Spinner(DescribeActivity.this);
+                ArrayAdapter<String> stu_numberList=new ArrayAdapter<String>(DescribeActivity.this,
+                        android.R.layout.simple_spinner_dropdown_item, stunum_list);
+                situation_num.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                situation_num.setAdapter(stu_numberList);
+                situation_num.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {//添加事件Spinner事件監聽
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        situation_word = situation_num.getSelectedItem().toString();
+                        
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {//沒有選時
+                        situation_word = situation_num.getSelectedItem().toString();
+                    }
+                });
+
+
+                spinnerDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    // do something when the button is clicked
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        LatLng sydney = new LatLng(latitude, longitude);
+                        //取得現在時間(日期)
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        String date = sdf.format(new java.util.Date());
+                        mMap.addMarker(new MarkerOptions()
+                                .position(sydney)
+                                .title(situation_word)
+                                .snippet("日期:"+date+"\n"+"座號:"+Student.Name));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 18.0f));
+                        marker_left [int_marker]= String.valueOf(latitude);
+                        marker_right [int_marker]= String.valueOf(longitude);
+                        marker_name [int_marker]= situation_word;
+                        marker_time [int_marker] = date;
+                        int_marker++;
+                    }
+                });
+                spinnerDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    // do something when the button is clicked
+                    public void onClick(DialogInterface arg0, int arg1) {
+                    }
+                });
+                spinnerDialog.setView(situation_num);
+                spinnerDialog.show();
             }
         });
 
 
-
-
-
         //--------錄音作業選單--------
-        final String[] activity1_list = {"Homework_1_1","Homework_1_2","Homework_1_3","Homework_2_1", "Homework_2_2", "Homework_3_1", "Homework_4_1"};
-        ArrayAdapter<String> hwList=new ArrayAdapter<String>(DescribeActivity.this,
+        final String[] activity1_list = {"Homework_1_1", "Homework_1_2", "Homework_1_3", "Homework_2_1", "Homework_2_2", "Homework_3_1", "Homework_4_1"};
+        ArrayAdapter<String> hwList = new ArrayAdapter<String>(DescribeActivity.this,
                 android.R.layout.simple_spinner_dropdown_item,
                 activity1_list);
         week1_hw_record.setAdapter(hwList);
@@ -441,6 +514,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 hw1_list_word = week1_hw_record.getSelectedItem().toString();
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {//沒有選時
                 hw1_list_word = week1_hw_record.getSelectedItem().toString();
@@ -448,10 +522,9 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
         });
 
 
-
         //--------選擇紀錄類型 單字 片語 句子----------
         final String[] choose_list = {"Vocabulary", "Phrase", "Sentence"};
-        ArrayAdapter<String> typeList=new ArrayAdapter<String>(DescribeActivity.this,
+        ArrayAdapter<String> typeList = new ArrayAdapter<String>(DescribeActivity.this,
                 android.R.layout.simple_spinner_dropdown_item,
                 choose_list);
         choose_type.setAdapter(typeList);
@@ -460,6 +533,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 choose_type_word = choose_type.getSelectedItem().toString();
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {//沒有選時
                 choose_type_word = choose_type.getSelectedItem().toString();
@@ -470,7 +544,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
         studentdescribe = (AutoCompleteTextView) findViewById(R.id.studentdescribe);
 
         //new ArrayAdapter物件並將autoStr字串陣列傳入studentdescribe中(初始化)(後面第481行在塞新的值)
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line,autoStrs);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, autoStrs);
         studentdescribe.setAdapter(adapter);
 
         TTS.init(getApplicationContext());
@@ -480,7 +554,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String date = sdf.format(new Date());
 
-        fire_process_write_listen = FirebaseDatabase.getInstance().getReference().child("學生"+Student.Name+"號").child("Describe_process").child(date);
+        fire_process_write_listen = FirebaseDatabase.getInstance().getReference().child("學生" + Student.Name + "號").child("Describe_process").child(date);
         studentdescribe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -490,7 +564,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
 
         //戲劇觀看紀錄行為firebase初始化
         fire_creatdrama_behavior = FirebaseDatabase.getInstance().getReference()
-                .child("學生"+Student.Name+"號").child("CreateDrama_Behavior").child(date);
+                .child("學生" + Student.Name + "號").child("CreateDrama_Behavior").child(date);
 
 
         select_alltext.setOnClickListener(new View.OnClickListener() {
@@ -516,11 +590,11 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
                 fire_vocabulary.child(PlaceName.getText().toString()).child("vocabulary").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        int i =0;
-                        sssttt = new String [(int)dataSnapshot.getChildrenCount()];
-                        for(DataSnapshot each : dataSnapshot.getChildren()){
-                                sssttt[i] = each.getValue().toString();
-                                i++;
+                        int i = 0;
+                        sssttt = new String[(int) dataSnapshot.getChildrenCount()];
+                        for (DataSnapshot each : dataSnapshot.getChildren()) {
+                            sssttt[i] = each.getValue().toString();
+                            i++;
                         }
                         String[] st = sssttt;
                         ArrayAdapter list_ref = new ArrayAdapter(DescribeActivity.this, android.R.layout.simple_list_item_1, st);
@@ -530,13 +604,14 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                                 int index = studentdescribe.getSelectionStart();
                                 Editable sss = studentdescribe.getText();
-                                sss.insert(index, st[i]+" ");
+                                sss.insert(index, st[i] + " ");
 
                                 //創作戲劇時觀看的資料內容
                                 fire_creatdrama_behavior.child("Vocabulary").push().setValue(st[i]);
                             }
                         });
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
@@ -556,9 +631,9 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
                 fire_vocabulary.child(PlaceName.getText().toString()).child("phrase").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        int i =0;
-                        sssttt = new String [(int)dataSnapshot.getChildrenCount()];
-                        for(DataSnapshot each : dataSnapshot.getChildren()){
+                        int i = 0;
+                        sssttt = new String[(int) dataSnapshot.getChildrenCount()];
+                        for (DataSnapshot each : dataSnapshot.getChildren()) {
                             sssttt[i] = each.getValue().toString();
                             i++;
                         }
@@ -570,13 +645,14 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                                 int index = studentdescribe.getSelectionStart();
                                 Editable sss = studentdescribe.getText();
-                                sss.insert(index, st[i]+" ");
+                                sss.insert(index, st[i] + " ");
 
                                 //創作戲劇時觀看的資料內容
                                 fire_creatdrama_behavior.child("Phrase").push().setValue(st[i]);
                             }
                         });
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
@@ -596,9 +672,9 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
                 fire_vocabulary.child(PlaceName.getText().toString()).child("sentence").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        int i =0;
-                        sssttt = new String [(int)dataSnapshot.getChildrenCount()];
-                        for(DataSnapshot each : dataSnapshot.getChildren()){
+                        int i = 0;
+                        sssttt = new String[(int) dataSnapshot.getChildrenCount()];
+                        for (DataSnapshot each : dataSnapshot.getChildren()) {
                             sssttt[i] = each.getValue().toString();
                             i++;
                         }
@@ -610,7 +686,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                                 int index = studentdescribe.getSelectionStart();
                                 Editable sss = studentdescribe.getText();
-                                sss.insert(index, st[i]+" ");
+                                sss.insert(index, st[i] + " ");
 //                                studentdescribe.append(st[i]+" ");
 
                                 //創作戲劇時觀看的資料內容
@@ -618,6 +694,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
                             }
                         });
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
@@ -646,8 +723,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
         recordvoice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!textenable)
-                {
+                if (!textenable) {
                     tipenable = false;
                     showdescribescore_count++;
                     CompareSentences = studentdescribe.getText().toString().trim();
@@ -680,7 +756,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
         toolbar_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(hw_isPress == true){
+                if (hw_isPress == true) {
                     recorder = new MediaRecorder();// new出MediaRecorder物件
                     recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
                     // 設定MediaRecorder的音訊源為麥克風
@@ -696,7 +772,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
                     try {
                         recorder.prepare();// 準備錄製
                         recorder.start();// 開始錄製
-                        Toast.makeText(DescribeActivity.this, "開始錄音"+ hw1_list_word, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DescribeActivity.this, "開始錄音" + hw1_list_word, Toast.LENGTH_SHORT).show();
 
                     } catch (IllegalStateException e) {
                         e.printStackTrace();
@@ -705,25 +781,23 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
                     }
 
                     hw_isPress = false;
-                }else{
+                } else {
                     Toast.makeText(DescribeActivity.this, "你已經正在錄音囉！", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
 
-
-
         toolbar_stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(hw_isPress == false){
+                if (hw_isPress == false) {
                     hw_describe_pathword = Student.Name + "_" + hw1_list_word + ".amr";
                     fire_hw_describe_record = FirebaseStorage.getInstance().getReference()
                             .child(Student.Name).child(hw1_list_word + "/" + hw_describe_pathword);
 
                     recorder.stop();// 停止燒錄
-                    Toast.makeText(DescribeActivity.this, "停止錄音"+ hw1_list_word , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DescribeActivity.this, "停止錄音" + hw1_list_word, Toast.LENGTH_SHORT).show();
 
                     //上傳錄音檔至Firebase, 路徑為:"座號/Homework_1_1", 檔名為"學生座號_Homework_1_1.amr"
                     //並使用continueWithTask接回錄音檔url, 當按下播放鍵可以聽見錄音
@@ -732,8 +806,8 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
                     fire_hw_describe_record.putFile(hw_describe_recoed_file).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                         @Override
                         public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                            if(!task.isSuccessful()){
-                                throw  task.getException();
+                            if (!task.isSuccessful()) {
+                                throw task.getException();
                             }
                             return fire_hw_describe_record.getDownloadUrl();
                         }
@@ -755,7 +829,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
                     recorder = null;
 
                     hw_isPress = true;
-                }else{
+                } else {
                     Toast.makeText(DescribeActivity.this, "要先錄音哦！", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -795,7 +869,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
 
     }
 
-    public void sentenceClick(final View view){
+    public void sentenceClick(final View view) {
         see_other_clickTime++;
 
         creat_see_other++;
@@ -807,21 +881,21 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
     }
 
     //初始化描述情境資料庫
-    private void initDescribeData(){
+    private void initDescribeData() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String date = sdf.format(new java.util.Date());
 
         fire_describedata = FirebaseDatabase.getInstance().getReference()
-                .child("學生"+Student.Name+"號").child("DescribeData").child(date);
+                .child("學生" + Student.Name + "號").child("DescribeData").child(date);
 
 //        fire_speechdata = FirebaseDatabase.getInstance().getReference()
 //                .child("學生"+Student.Name+"號").child("SpeechData").child(date);
 
         fire_speechdata = FirebaseDatabase.getInstance().getReference()
-                .child("學生"+Student.Name+"號").child("DescribeData").child(date);
+                .child("學生" + Student.Name + "號").child("DescribeData").child(date);
 
         fire_listen_tts_time = FirebaseDatabase.getInstance().getReference()
-                .child("學生"+Student.Name+"號").child("DescribeData").child(date);
+                .child("學生" + Student.Name + "號").child("DescribeData").child(date);
 
         fire_vocabulary = FirebaseDatabase.getInstance().getReference();
 
@@ -832,7 +906,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
     private void BringImagePicker() {
         CropImage.activity().
                 setGuidelines(CropImageView.Guidelines.ON).
-                setAspectRatio(1,1).
+                setAspectRatio(1, 1).
                 start(DescribeActivity.this);
 
     }
@@ -852,7 +926,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
             if (resultCode == RESULT_OK) {
                 Uri imageUri = result.getUri();
                 photo.setImageURI(imageUri);
-                Bitmap bitmap = decodeUriiAsBimap(this,imageUri);
+                Bitmap bitmap = decodeUriiAsBimap(this, imageUri);
                 String dd = System.currentTimeMillis() + ".jpeg";
                 fire_picture = FirebaseStorage.getInstance().getReference().child("DescribeImage/" + dd);
 
@@ -860,8 +934,8 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
                 fire_picture.putFile(imageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                     @Override
                     public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                        if(!task.isSuccessful()){
-                            throw  task.getException();
+                        if (!task.isSuccessful()) {
+                            throw task.getException();
                         }
                         return fire_picture.getDownloadUrl();
                     }
@@ -874,35 +948,36 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
                 }).continueWithTask(new Continuation<Uri, Task<Void>>() {
                     @Override
                     public Task<Void> then(@NonNull Task<Uri> task) throws Exception {
-                            String push_key = fire_describedata.push().getKey();
+                        String push_key = fire_describedata.push().getKey();
 
-                            //這一步Task當按下儲存鈕時才存所有資料進FireBase
-                           savedescribe.setOnClickListener(new View.OnClickListener() {
-                               @Override
-                               public void onClick(View view) {
-                                   DescribeData describeData = new DescribeData(
-                                           "學生"+Student.Name+"號",
-                                           PlaceName.getText().toString(),
-                                           studentdescribe.getText().toString(),
-                                           download_url
-                                   );
-                                   DescribeClickTime describeClickTime = new DescribeClickTime(
-                                           vocabulary_clickTime, phrase_clickTime, sentence_clickTime, see_other_clickTime);
+                        //這一步Task當按下儲存鈕時才存所有資料進FireBase
+                        savedescribe.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                DescribeData describeData = new DescribeData(
+                                        "學生" + Student.Name + "號",
+                                        PlaceName.getText().toString(),
+                                        studentdescribe.getText().toString(),
+                                        download_url
+                                );
+                                DescribeClickTime describeClickTime = new DescribeClickTime(
+                                        vocabulary_clickTime, phrase_clickTime, sentence_clickTime, see_other_clickTime);
 
-                                   fire_describedata.child(choose_type_word).child(push_key).child("Content").setValue(describeData); //紀錄描述內容
-                                   fire_describedata.child(choose_type_word).child(push_key).child("ClickTime").setValue(describeClickTime); //記錄過程中各個點擊次數
-                                   Toast.makeText(DescribeActivity.this, "情境描述已儲存", Toast.LENGTH_SHORT).show();
+                                fire_describedata.child(choose_type_word).child(push_key).child("Content").setValue(describeData); //紀錄描述內容
+                                fire_describedata.child(choose_type_word).child(push_key).child("ClickTime").setValue(describeClickTime); //記錄過程中各個點擊次數
+                                Toast.makeText(DescribeActivity.this, "情境描述已儲存", Toast.LENGTH_SHORT).show();
 
-                                   //儲存完就將此頁面關閉 並開啟觀看介面
+                                //儲存完就將此頁面關閉 並開啟觀看介面
 //                                   isWantToLearn = false;
-                                   Intent intent = new Intent();
-                                   intent.setClass(DescribeActivity.this, DramaRecycleView.class);
-                                   startActivity(intent);
-                                   DescribeActivity.this.finish();
+                                Intent intent = new Intent();
+                                intent.setClass(DescribeActivity.this, DramaRecycleView.class);
+                                startActivity(intent);
+                                DescribeActivity.this.finish();
+                                writeInfo(Student.Name+"號學生描述情境行為紀錄","描述情境");
 
-                               }
-                           });
-                           return null;
+                            }
+                        });
+                        return null;
                     }
                 });
                 Toast.makeText(this, imageUri.toString(), Toast.LENGTH_SHORT).show();
@@ -953,31 +1028,43 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
                         }
                     }, 5000);
                 }
-                PlaceName.setText((keyDatabase.Place));
+                if (!bol_correctmarker) {
+                    PlaceName.setText((keyDatabase.Place));
+                }
+
 
                 //抓到PlaceName後，讀取相對應的資料塞進String陣列中，在Adapter進AutoCompleteTextview中
                 fire_vocabulary.child(PlaceName.getText().toString()).child("sentence").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         int i = 0;
-                        autoStrs= new String [(int)dataSnapshot.getChildrenCount()];   //若擺在for迴圈中會每一次都洗掉 抓不到值 null
-                        for(DataSnapshot each : dataSnapshot.getChildren()){
+                        autoStrs = new String[(int) dataSnapshot.getChildrenCount()];   //若擺在for迴圈中會每一次都洗掉 抓不到值 null
+                        for (DataSnapshot each : dataSnapshot.getChildren()) {
                             autoStrs[i] = each.getValue().toString();
                             i++;
                         }
                         String[] auto = autoStrs;
-                        adapter = new ArrayAdapter<String>(DescribeActivity.this, android.R.layout.simple_dropdown_item_1line,auto);
+                        adapter = new ArrayAdapter<String>(DescribeActivity.this, android.R.layout.simple_dropdown_item_1line, auto);
                         studentdescribe.setAdapter(adapter);
                     }
+
                     @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) { }
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
                 });
             }
         }
 
-        if (Unidentified_List.size() == 0) {
+        if (Unidentified_List.size() == 0 && bol_correctmarker == false) {
             PlaceName.setText("Other");
         }
+
+        if (PlaceName.getText().toString().equals("") == false && firstmarker == false) {
+            LatLng sydney = new LatLng(latitude, longitude);
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 18.0f));
+            firstmarker = true;
+        }
+
     }
 
     //定位
@@ -987,8 +1074,9 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
         boolean isNetworkEnabled = mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
         Location location = null;
-        if (!(isGPSEnabled || isNetworkEnabled)){}
-            //(Carol) Snackbar.make(mMapView, com.naer.pdfreader.R.string.error_location_provider, Snackbar.LENGTH_INDEFINITE).show();
+        if (!(isGPSEnabled || isNetworkEnabled)) {
+        }
+        //(Carol) Snackbar.make(mMapView, com.naer.pdfreader.R.string.error_location_provider, Snackbar.LENGTH_INDEFINITE).show();
         else {
             if (isNetworkEnabled) {
                 if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -1021,7 +1109,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
                 location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             }
         }
-        if (location != null){
+        if (location != null) {
             //(Carol) drawMarker(location);
         }
 
@@ -1037,10 +1125,10 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
     //開啟內建語音辨識 用事件方式
     private void StartSpeechRecongizer() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"en-US");
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE,"en-US");
-        intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS,3);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "en-US");
+        intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3);
         speechRecognizer.startListening(intent);
     }
 
@@ -1087,7 +1175,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
         try {
             InputStream stream = getResources().openRawResource(R.raw.newagent_cqnfce_1fbb0504b0f8);
             GoogleCredentials credentials = GoogleCredentials.fromStream(stream);
-            String projectId = ((ServiceAccountCredentials)credentials).getProjectId();
+            String projectId = ((ServiceAccountCredentials) credentials).getProjectId();
 
             SessionsSettings.Builder settingsBuilder = SessionsSettings.newBuilder();
             SessionsSettings sessionsSettings = settingsBuilder.setCredentialsProvider(FixedCredentialsProvider.create(credentials)).build();
@@ -1150,11 +1238,11 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
 //
 //    }
 
-    public void callbackV2(DetectIntentResponse response){
-        if(response != null){
+    public void callbackV2(DetectIntentResponse response) {
+        if (response != null) {
             String reply = response.getQueryResult().getFulfillmentText();
 
-        }else{
+        } else {
             Log.d(TAG, "REPLY IS NULL");
         }
 
@@ -1163,9 +1251,139 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng sydney = new LatLng(121.18772685182198,24.967161421443464);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,16.0f));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        mMap.setMyLocationEnabled(true);
+        mMap.setOnMyLocationButtonClickListener(this);
+        mMap.setOnMyLocationClickListener(this);
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                final TextView textView = new TextView(DescribeActivity.this);
+                textView.setText("確認選擇定位點"+"\t"+marker.getTitle()+"\t"+"?");
+                textView.setTextSize(30);
+                new AlertDialog.Builder(DescribeActivity.this)
+                        .setIcon(R.drawable.ic_launcher)
+                        .setTitle("確認位置")
+                        .setView(textView)
+                        .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                int c1 = marker.getTitle().indexOf("_");
+                                String s1 = marker.getTitle().substring(c1+1);
+                                PlaceName.setText(s1);
+                                bol_correctmarker = true;
+                            }
+                        })
+                        .setNegativeButton("取消", null).create()
+                        .show();
+            }
+        });
+
+        mMap.setOnInfoWindowLongClickListener(new GoogleMap.OnInfoWindowLongClickListener() {
+            @Override
+            public void onInfoWindowLongClick(Marker marker) {
+                final TextView textView = new TextView(DescribeActivity.this);
+                textView.setText("確認刪除定位點"+"\t"+marker.getTitle()+"\t"+"?");
+                textView.setTextSize(30);
+                new AlertDialog.Builder(DescribeActivity.this)
+                        .setIcon(R.drawable.ic_launcher)
+                        .setTitle("刪除位置")
+                        .setView(textView)
+                        .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                bol_correctmarker = false;
+                                marker.remove();
+                            }
+                        })
+                        .setNegativeButton("取消", null).create()
+                        .show();
+            }
+        });
+
+        try {
+            DatabaseReference fire_marker = FirebaseDatabase.getInstance().getReference();
+            fire_marker.child("Other").child("marker_gps").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        marker_count = (int) dataSnapshot.child("location_name").getChildrenCount();
+                        for (int i=0;i<marker_count;i++){
+                            double location_left = (double) dataSnapshot.child("location_left").child(String.valueOf(i+1)).getValue();
+                            double location_right = (double) dataSnapshot.child("location_right").child(String.valueOf(i+1)).getValue();
+                            String location_name = (String) dataSnapshot.child("location_name").child(String.valueOf(i+1)).getValue();
+                            String location_number = (String) dataSnapshot.child("location_number").child(String.valueOf(i+1)).getValue();
+                            String location_time = (String) dataSnapshot.child("location_time").child(String.valueOf(i+1)).getValue();
+                            LatLng sydney = new LatLng(location_left,location_right);
+                            mMap.addMarker(new MarkerOptions().position(sydney)
+                                    .title(location_name)
+                                    .snippet("日期:"+location_time+"\n"+"座號:"+location_number)
+                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                        }
+                    } else {
+                        Log.e(TAG, "onDataChange: No data");
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(DescribeActivity.this, "取得Marker錯誤", Toast.LENGTH_SHORT).show();
+        }
+
+        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+
+            @Override
+            public View getInfoWindow(Marker marker) {
+
+                return null;
+            }
+
+            @Override
+            public View getInfoContents(Marker marker) {
+                View v = getLayoutInflater().inflate(R.layout.marker_infowindow, null);
+                v.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
+                TextView tvTitle = (TextView) v.findViewById(R.id.tv_title);
+                TextView tvSubTitle = (TextView) v.findViewById(R.id.tv_subtitle);
+
+                tvTitle.setText(marker.getTitle());
+                tvSubTitle.setText(marker.getSnippet());
+                return v;
+            }
+        });
+
+
+//        LatLng sydney = new LatLng(121.18772685182198,24.967161421443464);
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,18.0f));
     }
+
+    @Override
+    public void onMyLocationClick(@NonNull Location location) {
+        Toast.makeText(this, "位置資訊\n" + location, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public boolean onMyLocationButtonClick() {
+        Toast.makeText(this, "現在目前位置", Toast.LENGTH_SHORT).show();
+        // Return false so that we don't consume the event and the default behavior still occurs
+        // (the camera animates to the user's current position).
+        return false;
+    }
+
 
     //事件的內建語音辨識聆聽者
     private class SpeechListener implements RecognitionListener
@@ -1393,7 +1611,19 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            writeInfo(Student.Name+"號學生描述情境行為紀錄","描述情境");
+            try {
+                final DatabaseReference fire_marker = FirebaseDatabase.getInstance().getReference();
+                for(int i=1;i<=int_marker;i++){
+                    fire_marker.child("Other").child("marker_gps").child("location_left").child(String.valueOf(marker_count+i)).setValue(Double.parseDouble(marker_left[i-1]));
+                    fire_marker.child("Other").child("marker_gps").child("location_right").child(String.valueOf(marker_count+i)).setValue(Double.parseDouble(marker_right[i-1]));
+                    fire_marker.child("Other").child("marker_gps").child("location_name").child(String.valueOf(marker_count+i)).setValue(marker_name[i-1]);
+                    fire_marker.child("Other").child("marker_gps").child("location_number").child(String.valueOf(marker_count+i)).setValue(Student.Name);
+                    fire_marker.child("Other").child("marker_gps").child("location_time").child(String.valueOf(marker_count+i)).setValue(marker_time[i-1]);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                Toast.makeText(DescribeActivity.this, "儲存Marker錯誤", Toast.LENGTH_SHORT).show();
+            }
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -1417,6 +1647,22 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
             bw.write("TTS次數:"+tts_count+"\n");
             bw.write("對話次數:"+showdescribescore_count+"\n");
             bw.write("觀看劇本次數:"+see_other_clickTime+"\n");
+
+            try {
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference db = database.getReference().child("學生"+Student.Name+"號").child("Student data").child("Describe");
+                DatabaseReference db2 = database.getReference().child("Other").child("stu_data").child("Describe");
+                db.child("Take Picture").setValue(photo_count);
+                db.child("TTS").setValue(tts_count);
+                db.child("Conversation").setValue(showdescribescore_count);
+                db.child("SeeDrama").setValue(see_other_clickTime);
+                db2.child(Student.Name).setValue(photo_count+showdescribescore_count);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(DescribeActivity.this, "儲存錯誤", Toast.LENGTH_SHORT).show();
+            }
+
 
             bw.close();
             Toast.makeText(DescribeActivity.this, "行為紀錄紀錄成功", Toast.LENGTH_SHORT).show();
@@ -1457,6 +1703,31 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback {
         return response;
     }
 
-
+//    public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+//
+//        private Activity context;
+//
+//        public CustomInfoWindowAdapter(Activity context){
+//            this.context = context;
+//        }
+//
+//        @Override
+//        public View getInfoWindow(Marker marker) {
+//            return null;
+//        }
+//
+//        @Override
+//        public View getInfoContents(Marker marker) {
+//            View view = context.getLayoutInflater().inflate(R.layout.custominfowindow, null);
+//
+//            TextView tvTitle = (TextView) view.findViewById(R.id.tv_title);
+//            TextView tvSubTitle = (TextView) view.findViewById(R.id.tv_subtitle);
+//
+//            tvTitle.setText(marker.getTitle());
+//            tvSubTitle.setText(marker.getSnippet());
+//
+//            return view;
+//        }
+//    }
 
 }

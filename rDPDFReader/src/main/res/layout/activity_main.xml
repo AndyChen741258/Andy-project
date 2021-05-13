@@ -288,7 +288,7 @@
         android:background="@drawable/main_file_btn"
         android:onClick="conversationClick"
         android:text="對話練習"
-        android:textSize="24dp"/>
+        android:textSize="24dp" />
 
     <Button
         android:id="@+id/btn_review"
@@ -331,6 +331,14 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_message_24"
             app:fab_label="@string/item1"
+            app:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_item2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_notes_24"
+            app:fab_label="@string/item2"
             app:fab_size="mini" />
 
     </com.github.clans.fab.FloatingActionMenu>

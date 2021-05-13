@@ -181,7 +181,7 @@ public class DramaRecycleView extends Activity{
 
 
         //--------------------------選擇觀看他人的 哪個地點---------------------------------
-        final String[] place_list = {"playground", "classroom", "Other"};
+        final String[] place_list = {"playground", "classroom","home","Other"};
         ArrayAdapter<String> place=new ArrayAdapter<String>(DramaRecycleView.this,
                 android.R.layout.simple_spinner_dropdown_item,
                 place_list);
@@ -233,6 +233,7 @@ public class DramaRecycleView extends Activity{
                         }
                         mAdapter = new CardViewData(list_id, list_describe, DramaRecycleView.this);
                         recyclerView.setAdapter(mAdapter);
+                        recyclerView.scrollToPosition(mAdapter.getItemCount()-1);
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
