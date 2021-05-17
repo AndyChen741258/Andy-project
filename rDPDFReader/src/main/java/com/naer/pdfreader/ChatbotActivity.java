@@ -1479,7 +1479,11 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                 TTS.speak(answerTextView.getText().toString());
             }
         });
-        answerTextView.setText("\t"+intentname);
+        if(intentname == null){
+            Toast.makeText(ChatbotActivity.this,"請先與機器人對話", Toast.LENGTH_SHORT).show();
+        }else{
+            answerTextView.setText("\t"+intentname);
+        }
         anwerTextArray = answerTextView.getText().toString().replace(",", "").replace(".", "").split("\\s+");
         Log.v("wordss:", Arrays.toString(anwerTextArray));
         answerTextView.setOnClickListener(new View.OnClickListener() {
@@ -1489,15 +1493,18 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
             }
         });
 
-        if (intentname == "") {
+        String intentname_text;
+
+        if (intentname == null) {
             trans_correct.setText("");
+            intentname_text = "";
         } else {
             trans_correct();
+            intentname_text = intentname;
         }
 
-
         diffMatchPatch diff_matchPatch_obj = new diffMatchPatch();
-        LinkedList<diffMatchPatch.Diff> diffListUser = diff_matchPatch_obj.diff_wordMode(usertext.replaceAll("[,|.|!|?|']", "").trim().replaceAll(" +", " ").toLowerCase(), intentname.replaceAll("[,|.|!|?|']", "").trim().replaceAll(" +", " ").toLowerCase());
+        LinkedList<diffMatchPatch.Diff> diffListUser = diff_matchPatch_obj.diff_wordMode(usertext.replaceAll("[,|.|!|?|']", "").trim().replaceAll(" +", " ").toLowerCase(), intentname_text.replaceAll("[,|.|!|?|']", "").trim().replaceAll(" +", " ").toLowerCase());
 
         // change tag <u> to real del line
         String htmlDiff = diff_matchPatch_obj.diff_prettyHtml(diffListUser);
@@ -1519,7 +1526,6 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                         output.setSpan(new StrikethroughSpan(), startTag, endTag, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     }
                 }
-                Log.v("測試",tag);
             }
         });
         userTextView.setText(recorrect_response);

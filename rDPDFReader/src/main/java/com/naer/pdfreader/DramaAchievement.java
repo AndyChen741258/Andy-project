@@ -3,6 +3,7 @@ package com.naer.pdfreader;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DownloadManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -15,6 +16,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.media.MediaPlayer;
+import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -46,6 +48,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -70,14 +73,28 @@ import com.orhanobut.logger.Logger;
 
 import org.xml.sax.XMLReader;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 import java.text.BreakIterator;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -89,6 +106,8 @@ import Others.diff_match_patch;
 import io.grpc.netty.shaded.io.netty.handler.ssl.JdkApplicationProtocolNegotiator;
 import lib.kingja.switchbutton.SwitchMultiButton;
 
+import static android.os.Environment.DIRECTORY_DOWNLOADS;
+import static android.os.Environment.DIRECTORY_MUSIC;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static com.naer.pdfreader.DialogActivity.LOCATION_UPDATE_MIN_DISTANCE;
@@ -189,6 +208,11 @@ public class DramaAchievement extends Activity {
     private Spinner test_spinner;
     private Spinner test2_spinner;
     private String select_string;
+    //第一次進聆聽錄音布林
+    private boolean drama_record1;
+    private boolean drama_record2;
+    private boolean drama_record3;
+    private boolean drama_record4;
 
 
     @Override
@@ -344,6 +368,10 @@ public class DramaAchievement extends Activity {
                                         }catch (Exception e){
                                             e.printStackTrace();
                                         }
+                                        drama_record1=false;
+                                        drama_record2=false;
+                                        drama_record3=false;
+                                        drama_record4=false;
                                     }
                                     @Override
                                     public void onNothingSelected(AdapterView<?> adapterView) {//沒有選時
@@ -1626,6 +1654,11 @@ public class DramaAchievement extends Activity {
                         drama1.setOnTouchListener(new View.OnTouchListener() {
                             @Override
                             public boolean onTouch(View v, MotionEvent event) {
+                                drama_record1 = false;
+                                drama_record2 = false;
+                                drama_record3 = false;
+                                drama_record4 = false;
+
                                 StoreTheEditData storeTheEditData = dataSnapshot.getValue(StoreTheEditData.class);
                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24_black);
@@ -1672,6 +1705,10 @@ public class DramaAchievement extends Activity {
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                 Toast.makeText(DramaAchievement.this, "最後一句", Toast.LENGTH_SHORT).show();
                                             }
+                                            drama_record1 = false;
+                                            drama_record2 = false;
+                                            drama_record3 = false;
+                                            drama_record4 = false;
                                         }
                                     });
                                     practice_say_left.setOnClickListener(new View.OnClickListener() {
@@ -1692,6 +1729,10 @@ public class DramaAchievement extends Activity {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 Toast.makeText(DramaAchievement.this, "第一句", Toast.LENGTH_SHORT).show();
                                             }
+                                            drama_record1 = false;
+                                            drama_record2 = false;
+                                            drama_record3 = false;
+                                            drama_record4 = false;
                                         }
                                     });
 
@@ -1700,139 +1741,154 @@ public class DramaAchievement extends Activity {
                                         public void onClick(View v) {
                                             int x=0;
                                             for(int i=0;i<s.length;i++){
-                                                Log.v("測試",s[i]);
-                                                Log.v("測試1",practice_say.getText().toString().trim());
                                                 if(practice_say.getText().toString().trim().equals(s[i].trim()) == true){
                                                     x=i;
                                                 }
                                             }
                                             switch(x){
                                                 case 0:
-                                                    pathword_a = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 1 + "_" + "A.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_a);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record1){
+                                                        pathword_a = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 1 + "_" + "A.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_a);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record1 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 1:
-                                                    pathword_b = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 1 + "_" + "B.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_b);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record2){
+                                                        pathword_b = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 1 + "_" + "B.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_b);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record2 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 2:
-                                                    pathword_3 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 1 + "_" + "3.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_3);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record3){
+                                                        pathword_3 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 1 + "_" + "3.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_3);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record3 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 3:
-                                                    pathword_4 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 1 + "_" + "4.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_4);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record4) {
+                                                        pathword_4 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 1 + "_" + "4.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_4);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record4 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                             }
-//                                            if (practice_say.getText().toString().trim().equals(s[0]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[1]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[2]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[3]) == true) {
-//
-//
+
                                         }
                                     });
 
@@ -1880,6 +1936,10 @@ public class DramaAchievement extends Activity {
                         drama2.setOnTouchListener(new View.OnTouchListener() {
                             @Override
                             public boolean onTouch(View v, MotionEvent event) {
+                                drama_record1 = false;
+                                drama_record2 = false;
+                                drama_record3 = false;
+                                drama_record4 = false;
                                 StoreTheEditData storeTheEditData = dataSnapshot.getValue(StoreTheEditData.class);
                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24_black);
@@ -1926,6 +1986,10 @@ public class DramaAchievement extends Activity {
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                 Toast.makeText(DramaAchievement.this, "最後一句", Toast.LENGTH_SHORT).show();
                                             }
+                                            drama_record1 = false;
+                                            drama_record2 = false;
+                                            drama_record3 = false;
+                                            drama_record4 = false;
                                         }
                                     });
                                     practice_say_left.setOnClickListener(new View.OnClickListener() {
@@ -1946,6 +2010,10 @@ public class DramaAchievement extends Activity {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 Toast.makeText(DramaAchievement.this, "第一句", Toast.LENGTH_SHORT).show();
                                             }
+                                            drama_record1 = false;
+                                            drama_record2 = false;
+                                            drama_record3 = false;
+                                            drama_record4 = false;
                                         }
                                     });
 
@@ -1960,13 +2028,15 @@ public class DramaAchievement extends Activity {
                                                     x=i;
                                                 }
                                             }
-                                            switch(x){
+                                            switch(x) {
                                                 case 0:
-                                                    pathword_a = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 2 + "_" + "A.amr";
+                                                    if (!drama_record1){
+                                                        pathword_a = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 2 + "_" + "A.amr";
                                                     fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_a);
                                                     fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                                         @Override
                                                         public void onSuccess(Uri uri) {
+                                                            drama_record1 = true;
                                                             Link = uri.toString();
                                                             Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
                                                             player = new MediaPlayer();
@@ -1989,93 +2059,115 @@ public class DramaAchievement extends Activity {
                                                             Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                         }
                                                     });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 1:
-                                                    pathword_b = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 2 + "_" + "B.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_b);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record2) {
+                                                        pathword_b = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 2 + "_" + "B.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_b);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record2 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 2:
-                                                    pathword_3 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 2 + "_" + "3.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_3);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record3) {
+                                                        pathword_3 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 2 + "_" + "3.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_3);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record3 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 3:
-                                                    pathword_4 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 2 + "_" + "4.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_4);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record4) {
+                                                        pathword_4 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 2 + "_" + "4.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_4);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record4 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                             }
 //                                            if (practice_say.getText().toString().trim().equals(s[0]) == true) {
@@ -2125,6 +2217,10 @@ public class DramaAchievement extends Activity {
                         drama3.setOnTouchListener(new View.OnTouchListener() {
                             @Override
                             public boolean onTouch(View v, MotionEvent event) {
+                                drama_record1 = false;
+                                drama_record2 = false;
+                                drama_record3 = false;
+                                drama_record4 = false;
                                 StoreTheEditData storeTheEditData = dataSnapshot.getValue(StoreTheEditData.class);
                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24_black);
@@ -2171,6 +2267,10 @@ public class DramaAchievement extends Activity {
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                 Toast.makeText(DramaAchievement.this, "最後一句", Toast.LENGTH_SHORT).show();
                                             }
+                                            drama_record1 = false;
+                                            drama_record2 = false;
+                                            drama_record3 = false;
+                                            drama_record4 = false;
                                         }
                                     });
                                     practice_say_left.setOnClickListener(new View.OnClickListener() {
@@ -2191,6 +2291,10 @@ public class DramaAchievement extends Activity {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 Toast.makeText(DramaAchievement.this, "第一句", Toast.LENGTH_SHORT).show();
                                             }
+                                            drama_record1 = false;
+                                            drama_record2 = false;
+                                            drama_record3 = false;
+                                            drama_record4 = false;
                                         }
                                     });
 
@@ -2205,120 +2309,144 @@ public class DramaAchievement extends Activity {
                                             }
                                             switch(x){
                                                 case 0:
-                                                    pathword_a = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 3 + "_" + "A.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_a);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record1) {
+                                                        pathword_a = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 3 + "_" + "A.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_a);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record1 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 1:
-                                                    pathword_b = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 3 + "_" + "B.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_b);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record2) {
+                                                        pathword_b = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 3 + "_" + "B.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_b);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record2 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 2:
-                                                    pathword_3 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 3 + "_" + "3.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_3);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record3) {
+                                                        pathword_3 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 3 + "_" + "3.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_3);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record3 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else {
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 3:
-                                                    pathword_4 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 3 + "_" + "4.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_4);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record4) {
+                                                        pathword_4 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 3 + "_" + "4.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_4);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record4 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                             }
 //                                            if (practice_say.getText().toString().trim().equals(s[0]) == true) {
@@ -2369,6 +2497,10 @@ public class DramaAchievement extends Activity {
                         drama4.setOnTouchListener(new View.OnTouchListener() {
                             @Override
                             public boolean onTouch(View v, MotionEvent event) {
+                                drama_record1 = false;
+                                drama_record2 = false;
+                                drama_record3 = false;
+                                drama_record4 = false;
                                 StoreTheEditData storeTheEditData = dataSnapshot.getValue(StoreTheEditData.class);
                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24_black);
@@ -2415,6 +2547,10 @@ public class DramaAchievement extends Activity {
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                 Toast.makeText(DramaAchievement.this, "最後一句", Toast.LENGTH_SHORT).show();
                                             }
+                                            drama_record1 = false;
+                                            drama_record2 = false;
+                                            drama_record3 = false;
+                                            drama_record4 = false;
                                         }
                                     });
                                     practice_say_left.setOnClickListener(new View.OnClickListener() {
@@ -2435,6 +2571,10 @@ public class DramaAchievement extends Activity {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 Toast.makeText(DramaAchievement.this, "第一句", Toast.LENGTH_SHORT).show();
                                             }
+                                            drama_record1 = false;
+                                            drama_record2 = false;
+                                            drama_record3 = false;
+                                            drama_record4 = false;
                                         }
                                     });
 
@@ -2449,120 +2589,144 @@ public class DramaAchievement extends Activity {
                                             }
                                             switch(x){
                                                 case 0:
-                                                    pathword_a = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 4 + "_" + "A.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_a);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record1) {
+                                                        pathword_a = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 4 + "_" + "A.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_a);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record1 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 1:
-                                                    pathword_b = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 4 + "_" + "B.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_b);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record2) {
+                                                        pathword_b = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 4 + "_" + "B.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_b);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record2 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else {
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 2:
-                                                    pathword_3 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 4 + "_" + "3.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_3);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record3) {
+                                                        pathword_3 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 4 + "_" + "3.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_3);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record3=true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 3:
-                                                    pathword_4 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 4 + "_" + "4.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_4);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record4) {
+                                                        pathword_4 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 4 + "_" + "4.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_4);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record4 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                             }
 //                                            if (practice_say.getText().toString().trim().equals(s[0]) == true) {
@@ -2612,6 +2776,10 @@ public class DramaAchievement extends Activity {
                          drama5.setOnTouchListener(new View.OnTouchListener() {
                              @Override
                              public boolean onTouch(View v, MotionEvent event) {
+                                 drama_record1 = false;
+                                 drama_record2 = false;
+                                 drama_record3 = false;
+                                 drama_record4 = false;
                                  StoreTheEditData storeTheEditData = dataSnapshot.getValue(StoreTheEditData.class);
                                  practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                  practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24_black);
@@ -2658,6 +2826,10 @@ public class DramaAchievement extends Activity {
                                                  practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                  Toast.makeText(DramaAchievement.this, "最後一句", Toast.LENGTH_SHORT).show();
                                              }
+                                             drama_record1 = false;
+                                             drama_record2 = false;
+                                             drama_record3 = false;
+                                             drama_record4 = false;
                                          }
                                      });
                                      practice_say_left.setOnClickListener(new View.OnClickListener() {
@@ -2678,6 +2850,10 @@ public class DramaAchievement extends Activity {
                                                  practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                  Toast.makeText(DramaAchievement.this, "第一句", Toast.LENGTH_SHORT).show();
                                              }
+                                             drama_record1 = false;
+                                             drama_record2 = false;
+                                             drama_record3 = false;
+                                             drama_record4 = false;
                                          }
                                      });
                                      btn_speak.setOnClickListener(new View.OnClickListener() {
@@ -2689,122 +2865,146 @@ public class DramaAchievement extends Activity {
                                                      x=i;
                                                  }
                                              }
-                                             switch(x){
+                                             switch(x) {
                                                  case 0:
-                                                     pathword_a = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 5 + "_" + "A.amr";
-                                                     fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_a);
-                                                     fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                         @Override
-                                                         public void onSuccess(Uri uri) {
-                                                             Link = uri.toString();
-                                                             Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                             player = new MediaPlayer();
-                                                             try {
-                                                                 player.setDataSource(Link);
-                                                             } catch (IOException e) {
-                                                                 e.printStackTrace();
+                                                     if (!drama_record1) {
+                                                         pathword_a = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 5 + "_" + "A.amr";
+                                                         fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_a);
+                                                         fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                             @Override
+                                                             public void onSuccess(Uri uri) {
+                                                                 drama_record1 = true;
+                                                                 Link = uri.toString();
+                                                                 Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                 player = new MediaPlayer();
+                                                                 try {
+                                                                     player.setDataSource(Link);
+                                                                 } catch (IOException e) {
+                                                                     e.printStackTrace();
+                                                                 }
+                                                                 try {
+                                                                     player.prepare();
+                                                                 } catch (IOException e) {
+                                                                     e.printStackTrace();
+                                                                 }
+                                                                 player.start();
+                                                                 listen_record_count++;
                                                              }
-                                                             try {
-                                                                 player.prepare();
-                                                             } catch (IOException e) {
-                                                                 e.printStackTrace();
+                                                         }).addOnFailureListener(new OnFailureListener() {
+                                                             @Override
+                                                             public void onFailure(@NonNull Exception exception) {
+                                                                 Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                              }
-                                                             player.start();
-                                                             listen_record_count++;
-                                                         }
-                                                     }).addOnFailureListener(new OnFailureListener() {
-                                                         @Override
-                                                         public void onFailure(@NonNull Exception exception) {
-                                                             Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                         }
-                                                     });
+                                                         });
+                                                     }else {
+                                                         player.start();
+                                                         listen_record_count++;
+                                                     }
                                                      break;
                                                  case 1:
-                                                     pathword_b = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 5 + "_" + "B.amr";
-                                                     fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_b);
-                                                     fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                         @Override
-                                                         public void onSuccess(Uri uri) {
-                                                             Link = uri.toString();
-                                                             Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                             player = new MediaPlayer();
-                                                             try {
-                                                                 player.setDataSource(Link);
-                                                             } catch (IOException e) {
-                                                                 e.printStackTrace();
+                                                     if(!drama_record2) {
+                                                         pathword_b = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 5 + "_" + "B.amr";
+                                                         fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_b);
+                                                         fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                             @Override
+                                                             public void onSuccess(Uri uri) {
+                                                                 drama_record2=true;
+                                                                 Link = uri.toString();
+                                                                 Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                 player = new MediaPlayer();
+                                                                 try {
+                                                                     player.setDataSource(Link);
+                                                                 } catch (IOException e) {
+                                                                     e.printStackTrace();
+                                                                 }
+                                                                 try {
+                                                                     player.prepare();
+                                                                 } catch (IOException e) {
+                                                                     e.printStackTrace();
+                                                                 }
+                                                                 player.start();
+                                                                 listen_record_count++;
                                                              }
-                                                             try {
-                                                                 player.prepare();
-                                                             } catch (IOException e) {
-                                                                 e.printStackTrace();
+                                                         }).addOnFailureListener(new OnFailureListener() {
+                                                             @Override
+                                                             public void onFailure(@NonNull Exception exception) {
+                                                                 Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                              }
-                                                             player.start();
-                                                             listen_record_count++;
-                                                         }
-                                                     }).addOnFailureListener(new OnFailureListener() {
-                                                         @Override
-                                                         public void onFailure(@NonNull Exception exception) {
-                                                             Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                         }
-                                                     });
+                                                         });
+                                                     }else {
+                                                         player.start();
+                                                         listen_record_count++;
+                                                     }
                                                      break;
                                                  case 2:
-                                                     pathword_3 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 5 + "_" + "3.amr";
-                                                     fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_3);
-                                                     fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                         @Override
-                                                         public void onSuccess(Uri uri) {
-                                                             Link = uri.toString();
-                                                             Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                             player = new MediaPlayer();
-                                                             try {
-                                                                 player.setDataSource(Link);
-                                                             } catch (IOException e) {
-                                                                 e.printStackTrace();
+                                                     if(!drama_record3) {
+                                                         pathword_3 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 5 + "_" + "3.amr";
+                                                         fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_3);
+                                                         fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                             @Override
+                                                             public void onSuccess(Uri uri) {
+                                                                 drama_record3 = true;
+                                                                 Link = uri.toString();
+                                                                 Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                 player = new MediaPlayer();
+                                                                 try {
+                                                                     player.setDataSource(Link);
+                                                                 } catch (IOException e) {
+                                                                     e.printStackTrace();
+                                                                 }
+                                                                 try {
+                                                                     player.prepare();
+                                                                 } catch (IOException e) {
+                                                                     e.printStackTrace();
+                                                                 }
+                                                                 player.start();
+                                                                 listen_record_count++;
                                                              }
-                                                             try {
-                                                                 player.prepare();
-                                                             } catch (IOException e) {
-                                                                 e.printStackTrace();
+                                                         }).addOnFailureListener(new OnFailureListener() {
+                                                             @Override
+                                                             public void onFailure(@NonNull Exception exception) {
+                                                                 Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                              }
-                                                             player.start();
-                                                             listen_record_count++;
-                                                         }
-                                                     }).addOnFailureListener(new OnFailureListener() {
-                                                         @Override
-                                                         public void onFailure(@NonNull Exception exception) {
-                                                             Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                         }
-                                                     });
+                                                         });
+                                                     }else{
+                                                         player.start();
+                                                         listen_record_count++;
+                                                     }
                                                      break;
                                                  case 3:
-                                                     pathword_4 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 5 + "_" + "4.amr";
-                                                     fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_4);
-                                                     fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                         @Override
-                                                         public void onSuccess(Uri uri) {
-                                                             Link = uri.toString();
-                                                             Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                             player = new MediaPlayer();
-                                                             try {
-                                                                 player.setDataSource(Link);
-                                                             } catch (IOException e) {
-                                                                 e.printStackTrace();
+                                                     if(!drama_record4) {
+                                                         pathword_4 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 5 + "_" + "4.amr";
+                                                         fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_4);
+                                                         fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                             @Override
+                                                             public void onSuccess(Uri uri) {
+                                                                 drama_record4 = true;
+                                                                 Link = uri.toString();
+                                                                 Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                 player = new MediaPlayer();
+                                                                 try {
+                                                                     player.setDataSource(Link);
+                                                                 } catch (IOException e) {
+                                                                     e.printStackTrace();
+                                                                 }
+                                                                 try {
+                                                                     player.prepare();
+                                                                 } catch (IOException e) {
+                                                                     e.printStackTrace();
+                                                                 }
+                                                                 player.start();
+                                                                 listen_record_count++;
                                                              }
-                                                             try {
-                                                                 player.prepare();
-                                                             } catch (IOException e) {
-                                                                 e.printStackTrace();
+                                                         }).addOnFailureListener(new OnFailureListener() {
+                                                             @Override
+                                                             public void onFailure(@NonNull Exception exception) {
+                                                                 Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                              }
-                                                             player.start();
-                                                             listen_record_count++;
-                                                         }
-                                                     }).addOnFailureListener(new OnFailureListener() {
-                                                         @Override
-                                                         public void onFailure(@NonNull Exception exception) {
-                                                             Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                         }
-                                                     });
+                                                         });
+                                                     }else{
+                                                         player.start();
+                                                         listen_record_count++;
+                                                     }
                                                      break;
                                              }
 //                                            if (practice_say.getText().toString().trim().equals(s[0]) == true) {
@@ -2854,6 +3054,10 @@ public class DramaAchievement extends Activity {
                         drama6.setOnTouchListener(new View.OnTouchListener() {
                             @Override
                             public boolean onTouch(View v, MotionEvent event) {
+                                drama_record1 = false;
+                                drama_record2 = false;
+                                drama_record3 = false;
+                                drama_record4 = false;
                                 StoreTheEditData storeTheEditData = dataSnapshot.getValue(StoreTheEditData.class);
                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24_black);
@@ -2900,6 +3104,10 @@ public class DramaAchievement extends Activity {
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                 Toast.makeText(DramaAchievement.this, "最後一句", Toast.LENGTH_SHORT).show();
                                             }
+                                            drama_record1 = false;
+                                            drama_record2 = false;
+                                            drama_record3 = false;
+                                            drama_record4 = false;
                                         }
                                     });
                                     practice_say_left.setOnClickListener(new View.OnClickListener() {
@@ -2920,6 +3128,10 @@ public class DramaAchievement extends Activity {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 Toast.makeText(DramaAchievement.this, "第一句", Toast.LENGTH_SHORT).show();
                                             }
+                                            drama_record1 = false;
+                                            drama_record2 = false;
+                                            drama_record3 = false;
+                                            drama_record4 = false;
                                         }
                                     });
 
@@ -2934,120 +3146,144 @@ public class DramaAchievement extends Activity {
                                             }
                                             switch(x){
                                                 case 0:
-                                                    pathword_a = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 6 + "_" + "A.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_a);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record1) {
+                                                        pathword_a = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 6 + "_" + "A.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_a);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record1 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else {
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 1:
-                                                    pathword_b = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 6 + "_" + "B.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_b);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record2) {
+                                                        pathword_b = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 6 + "_" + "B.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_b);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record2 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else {
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 2:
-                                                    pathword_3 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 6 + "_" + "3.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_3);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record3) {
+                                                        pathword_3 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 6 + "_" + "3.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_3);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record3 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 3:
-                                                    pathword_4 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 6 + "_" + "4.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_4);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record4) {
+                                                        pathword_4 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 6 + "_" + "4.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_4);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record4 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                             }
 //                                            if (practice_say.getText().toString().trim().equals(s[0]) == true) {
@@ -3096,6 +3332,10 @@ public class DramaAchievement extends Activity {
                         drama7.setOnTouchListener(new View.OnTouchListener() {
                             @Override
                             public boolean onTouch(View v, MotionEvent event) {
+                                drama_record1 = false;
+                                drama_record2 = false;
+                                drama_record3 = false;
+                                drama_record4 = false;
                                 StoreTheEditData storeTheEditData = dataSnapshot.getValue(StoreTheEditData.class);
                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24_black);
@@ -3142,6 +3382,10 @@ public class DramaAchievement extends Activity {
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                 Toast.makeText(DramaAchievement.this, "最後一句", Toast.LENGTH_SHORT).show();
                                             }
+                                            drama_record1 = false;
+                                            drama_record2 = false;
+                                            drama_record3 = false;
+                                            drama_record4 = false;
                                         }
                                     });
                                     practice_say_left.setOnClickListener(new View.OnClickListener() {
@@ -3162,6 +3406,10 @@ public class DramaAchievement extends Activity {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 Toast.makeText(DramaAchievement.this, "第一句", Toast.LENGTH_SHORT).show();
                                             }
+                                            drama_record1 = false;
+                                            drama_record2 = false;
+                                            drama_record3 = false;
+                                            drama_record4 = false;
                                         }
                                     });
 
@@ -3176,120 +3424,144 @@ public class DramaAchievement extends Activity {
                                             }
                                             switch(x){
                                                 case 0:
-                                                    pathword_a = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 7 + "_" + "A.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_a);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record1) {
+                                                        pathword_a = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 7 + "_" + "A.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_a);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record1 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else {
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 1:
-                                                    pathword_b = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 7 + "_" + "B.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_b);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record2) {
+                                                        pathword_b = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 7 + "_" + "B.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_b);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record2 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 2:
-                                                    pathword_3 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 7 + "_" + "3.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_3);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record3) {
+                                                        pathword_3 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 7 + "_" + "3.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_3);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record3 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else {
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 3:
-                                                    pathword_4 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 7 + "_" + "4.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_4);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record4) {
+                                                        pathword_4 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 7 + "_" + "4.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_4);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record4=true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                             }
 //                                            if (practice_say.getText().toString().trim().equals(s[0]) == true) {
@@ -3337,6 +3609,10 @@ public class DramaAchievement extends Activity {
                         drama8.setOnTouchListener(new View.OnTouchListener() {
                             @Override
                             public boolean onTouch(View v, MotionEvent event) {
+                                drama_record1 = false;
+                                drama_record2 = false;
+                                drama_record3 = false;
+                                drama_record4 = false;
                                 StoreTheEditData storeTheEditData = dataSnapshot.getValue(StoreTheEditData.class);
                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24_black);
@@ -3383,6 +3659,10 @@ public class DramaAchievement extends Activity {
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                 Toast.makeText(DramaAchievement.this, "最後一句", Toast.LENGTH_SHORT).show();
                                             }
+                                            drama_record1 = false;
+                                            drama_record2 = false;
+                                            drama_record3 = false;
+                                            drama_record4 = false;
                                         }
                                     });
                                     practice_say_left.setOnClickListener(new View.OnClickListener() {
@@ -3403,6 +3683,10 @@ public class DramaAchievement extends Activity {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 Toast.makeText(DramaAchievement.this, "第一句", Toast.LENGTH_SHORT).show();
                                             }
+                                            drama_record1 = false;
+                                            drama_record2 = false;
+                                            drama_record3 = false;
+                                            drama_record4 = false;
                                         }
                                     });
 
@@ -3417,120 +3701,144 @@ public class DramaAchievement extends Activity {
                                             }
                                             switch(x){
                                                 case 0:
-                                                    pathword_a = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 8 + "_" + "A.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_a);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record1){
+                                                        pathword_a = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 8 + "_" + "A.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_a);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record1 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 1:
-                                                    pathword_b = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 8 + "_" + "B.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_b);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record2) {
+                                                        pathword_b = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 8 + "_" + "B.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_b);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record2 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 2:
-                                                    pathword_3 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 8 + "_" + "3.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_3);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record3) {
+                                                        pathword_3 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 8 + "_" + "3.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_3);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record3 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else{
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                                 case 3:
-                                                    pathword_4 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 8 + "_" + "4.amr";
-                                                    fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_4);
-                                                    fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-                                                            Link = uri.toString();
-                                                            Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
-                                                            player = new MediaPlayer();
-                                                            try {
-                                                                player.setDataSource(Link);
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                    if(!drama_record4) {
+                                                        pathword_4 = drama_studentNumber_word + "_" + drama_dramaNumber_word + "_" + 8 + "_" + "4.amr";
+                                                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(drama_studentNumber_word).child(drama_dramaNumber_word + "/" + pathword_4);
+                                                        fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                            @Override
+                                                            public void onSuccess(Uri uri) {
+                                                                drama_record4 = true;
+                                                                Link = uri.toString();
+                                                                Toast.makeText(DramaAchievement.this, Link, Toast.LENGTH_SHORT).show();
+                                                                player = new MediaPlayer();
+                                                                try {
+                                                                    player.setDataSource(Link);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                try {
+                                                                    player.prepare();
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                player.start();
+                                                                listen_record_count++;
                                                             }
-                                                            try {
-                                                                player.prepare();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception exception) {
+                                                                Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
                                                             }
-                                                            player.start();
-                                                            listen_record_count++;
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception exception) {
-                                                            Toast.makeText(DramaAchievement.this, "檔案載入失敗", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
+                                                        });
+                                                    }else {
+                                                        player.start();
+                                                        listen_record_count++;
+                                                    }
                                                     break;
                                             }
 //                                            if (practice_say.getText().toString().trim().equals(s[0]) == true) {
@@ -3975,21 +4283,27 @@ public class DramaAchievement extends Activity {
         return response;
     }
 
+    public void downloadFiles(Context context,String fileName,String fileExtension,String destinationDirectory,String url) {
 
-    private void Updatevalue (String key){
-//        String[] test=new String[];
-//        String get_test= key.substring(1,key.length()-1);
-//        String[] test_array =get_test.split(",");
-//        for (int i=0;i<test_array.length;i++){
-//            int x =test_array[i].trim().indexOf("=");
-//            test[i]=test_array[i].trim().substring(0,x);
-//            Log.v("測試",test[i]);
-//            Log.v("測試",test[i]);
-//        }
-//        Log.v("測試","執行");
-//        test2_spinner.setVisibility(VISIBLE);
-//        ArrayAdapter<String> test_list=new ArrayAdapter<String>(DramaAchievement.this,
-//                android.R.layout.simple_spinner_dropdown_item, test);
-//        test2_spinner.setAdapter(test_list);
+        DownloadManager downloadManager = (DownloadManager)context.getSystemService(Context.DOWNLOAD_SERVICE);
+        Uri uri = Uri.parse(url);
+        DownloadManager.Request request = new DownloadManager.Request(uri);
+        request.setDestinationInExternalFilesDir(context,destinationDirectory,fileName+fileExtension);
+        downloadManager.enqueue(request);
+
     }
+
+    public static void copy(File src, File dst) throws IOException {
+        try (InputStream in = new FileInputStream(src)) {
+            try (OutputStream out = new FileOutputStream(dst)) {
+                // Transfer bytes from in to out
+                byte[] buf = new byte[1024];
+                int len;
+                while ((len = in.read(buf)) > 0) {
+                    out.write(buf, 0, len);
+                }
+            }
+        }
+    }
+
 }

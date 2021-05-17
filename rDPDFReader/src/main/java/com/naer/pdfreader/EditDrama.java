@@ -294,6 +294,9 @@ public class EditDrama extends Activity {
                         Log.v("第一個Y位置", String.valueOf(y_touch));
                         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(say1.getWidth(), say1.getHeight());
                         params.setMargins((int) x_touch, (int) y_touch, 0, 0);
+                        if(params.width<100){
+                            params.width=400;
+                        }
                         say1.setLayoutParams(params);
                         say1.setVisibility(VISIBLE);
                         bubble++;
@@ -301,9 +304,12 @@ public class EditDrama extends Activity {
                     case 1:
                         Log.v("第二個X位置", String.valueOf(x_touch));
                         Log.v("第二個Y位置", String.valueOf(y_touch));
-                        params = new RelativeLayout.LayoutParams(say2.getWidth(), say2.getHeight());
-                        params.setMargins((int) x_touch, (int) y_touch, 0, 0);
-                        say2.setLayoutParams(params);
+                        RelativeLayout.LayoutParams params2= new RelativeLayout.LayoutParams(say2.getWidth(), say2.getHeight());
+                        params2.setMargins((int) x_touch, (int) y_touch, 0, 0);
+                        if(params2.width<100){
+                            params2.width=400;
+                        }
+                        say2.setLayoutParams(params2);
                         say2.setVisibility(VISIBLE);
                         bubble++;
                         break;
@@ -314,6 +320,14 @@ public class EditDrama extends Activity {
                             .setPositiveButton("確認", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    Log.v("第四個的寬3", String.valueOf(say3.getWidth()));
+                                    Log.v("第四個的長3", String.valueOf(say3.getHeight()));
+                                    RelativeLayout.LayoutParams params3 = new RelativeLayout.LayoutParams(say3.getWidth(), say3.getHeight());
+                                    params3.setMargins((int) x_touch, (int) y_touch, 0, 0);
+                                    if(params3.width<100){
+                                        params3.width=400;
+                                    }
+                                    say3.setLayoutParams(params3);
                                     say3.setVisibility(VISIBLE);
                                     bubble++;
                                 }
@@ -322,9 +336,7 @@ public class EditDrama extends Activity {
                             .show();
                         Log.v("第三個X位置", String.valueOf(x_touch));
                         Log.v("第三個Y位置", String.valueOf(y_touch));
-                        params = new RelativeLayout.LayoutParams(say3.getWidth(), say3.getHeight());
-                        params.setMargins((int) x_touch, (int) y_touch, 0, 0);
-                        say3.setLayoutParams(params);
+
                         break;
                     case 3:
                         new AlertDialog.Builder(EditDrama.this)
@@ -333,17 +345,22 @@ public class EditDrama extends Activity {
                                 .setPositiveButton("確認", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
+                                        Log.v("第四個X位置", String.valueOf(x_touch));
+                                        Log.v("第四個Y位置", String.valueOf(y_touch));
+                                        Log.v("第四個的寬", String.valueOf(say4.getWidth()));
+                                        Log.v("第四個的長", String.valueOf(say4.getHeight()));
+                                        RelativeLayout.LayoutParams params4 = new RelativeLayout.LayoutParams(say4.getWidth(), say4.getHeight());
+                                        if(params4.width<100){
+                                            params4.width=400;
+                                        }
+                                        params4.setMargins((int) x_touch, (int) y_touch, 0, 0);
+                                        say4.setLayoutParams(params4);
                                         say4.setVisibility(VISIBLE);
                                         bubble++;
                                     }
                                 })
                                 .setNegativeButton("取消",null).create()
                                 .show();
-                        Log.v("第四個X位置", String.valueOf(x_touch));
-                        Log.v("第四個Y位置", String.valueOf(y_touch));
-                        params = new RelativeLayout.LayoutParams(say4.getWidth(), say4.getHeight());
-                        params.setMargins((int) x_touch, (int) y_touch, 0, 0);
-                        say4.setLayoutParams(params);
                         break;
                 }
                 return true;

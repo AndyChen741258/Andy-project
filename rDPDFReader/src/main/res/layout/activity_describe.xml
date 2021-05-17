@@ -45,7 +45,7 @@
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/place"
         android:text="現在要做的學習紀錄是: "
         android:gravity="center"
@@ -57,7 +57,7 @@
         android:layout_height="50dp"
         android:layout_toRightOf="@+id/choose_which"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="20dp"/>
 
     <Button
         android:id="@+id/vocabulary"
@@ -96,10 +96,11 @@
     <ImageView
         android:id="@+id/photo"
         android:layout_width="300dp"
-        android:layout_height="400dp"
-        android:layout_alignTop="@+id/vocabulary"
+        android:layout_height="300dp"
+        android:layout_below="@+id/choose_type"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="55dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="45dp"
         android:layout_toEndOf="@+id/listview"
         android:background="@drawable/noimage2"
@@ -273,7 +274,7 @@
         android:layout_height="60dp"
         android:layout_toEndOf="@+id/choose_type"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/record_btn"
         android:drawableRight="@drawable/hw_record_32"
         android:paddingRight="5dp"
@@ -283,13 +284,14 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/showdescribescore"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="30dp"
-        android:layout_toEndOf="@+id/example_speech_tts"
+        android:layout_below="@+id/photo"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="10dp"
         android:gravity="left"
-        android:visibility="invisible"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="visible">
 
         <Spinner
             android:id="@+id/week1_hw_record"
@@ -357,6 +359,7 @@
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_below="@+id/photo"
+        android:layout_marginTop="100dp"
         android:text="新增"
         android:layout_toEndOf="@+id/map_fragment" />
 

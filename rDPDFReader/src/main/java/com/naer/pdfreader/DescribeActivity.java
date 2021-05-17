@@ -413,7 +413,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
         toolbar_stop = findViewById(R.id.toolbar_stop);
         toolbar_play = findViewById(R.id.toolbar_play);
         //初始化隱藏
-        toolbar_show.setVisibility(INVISIBLE);
+//        toolbar_show.setVisibility(INVISIBLE);
         week1_hw_record.setVisibility(INVISIBLE);
         toolbar_record.setVisibility(INVISIBLE);
         toolbar_stop.setVisibility(INVISIBLE);
@@ -423,6 +423,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
             @Override
             public void onClick(View view) {
                 if (isShowOrNot == false) {
+                    Log.v("測試","執行");
                     week1_hw_record.setVisibility(View.VISIBLE);
                     toolbar_record.setVisibility(View.VISIBLE);
                     toolbar_stop.setVisibility(View.VISIBLE);
@@ -706,7 +707,6 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
         takephoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                photo_count++;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
                     if (ContextCompat.checkSelfPermission(DescribeActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                         ActivityCompat.requestPermissions(DescribeActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -925,6 +925,8 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
                 Uri imageUri = result.getUri();
+                photo_count++;
+                photo.setBackground(null);
                 photo.setImageURI(imageUri);
                 Bitmap bitmap = decodeUriiAsBimap(this, imageUri);
                 String dd = System.currentTimeMillis() + ".jpeg";

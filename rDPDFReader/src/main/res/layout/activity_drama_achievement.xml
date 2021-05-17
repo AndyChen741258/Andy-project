@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="90dp"
-        android:text="請選擇座號"
+        android:text="請選擇劇本"
         android:textSize="24sp" />
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_toEndOf="@+id/tellstunum"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="130dp"
-        android:text="請選擇劇本"
+        android:text="請選擇座號"
         android:textSize="24sp" />
 
     <Spinner
