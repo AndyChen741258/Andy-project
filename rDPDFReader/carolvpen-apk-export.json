@@ -1,5 +1,10 @@
 {
-  "latestVersion": "0.0.1",
-  "latestVersionCode": 1,
-  "url": "http://google.com/",
+  "latestVersion": "1.0.2",
+  "latestVersionCode": 2,
+  "url": "https://google.com",
+  "releaseNotes": [
+    "- First evolution",
+    "- Second evolution",
+    "- Bug fixes"
+  ]
 }

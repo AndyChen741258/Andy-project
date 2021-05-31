@@ -4,10 +4,16 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
 import android.media.projection.MediaProjectionManager;
 import android.net.Uri;
 import android.os.Build;
@@ -31,6 +37,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationCompat.Builder;
 
 import com.bumptech.glide.Glide;
 import com.github.clans.fab.FloatingActionMenu;
@@ -38,7 +46,6 @@ import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.AppUpdaterUtils;
 import com.github.javiersantos.appupdater.enums.AppUpdaterError;
 import com.github.javiersantos.appupdater.enums.Display;
-import com.github.javiersantos.appupdater.enums.Duration;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.github.javiersantos.appupdater.objects.Update;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -143,38 +150,38 @@ public class MainActivity extends Activity implements OnClickListener {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		AppUpdater appUpdater = new AppUpdater(this)
 				.setDisplay(Display.NOTIFICATION)
-				.setUpdateFrom(UpdateFrom.GITHUB)
-				.setGitHubUserAndRepo("ewp200894", "RDPDFReader3")
+				.setUpdateFrom(UpdateFrom.JSON)
+				.setUpdateJSON("https://raw.githubusercontent.com/ewp200894/RDPDFReader3/master/rDPDFReader/carolvpen-apk-export.json")
 				.setTitleOnUpdateAvailable("Update available")
 				.setContentOnUpdateAvailable("Check out the latest version available of my app!")
 				.setTitleOnUpdateNotAvailable("Update not available")
 				.setContentOnUpdateNotAvailable("No update available. Check for updates again later!")
 				.setButtonUpdate("Update now?")
 				.setButtonDismiss("Maybe later")
-				.setButtonDoNotShowAgain(null)
+				.setButtonDoNotShowAgain("Huh, not interested")
 				.setIcon(R.drawable.ic_baseline_cloud_download_24) // Notification icon
-				.setCancelable(false);
+				.setCancelable(false); // Dialog could not be dismissable
 		appUpdater.start();
 
 		AppUpdaterUtils appUpdaterUtils = new AppUpdaterUtils(this)
-				.setUpdateFrom(UpdateFrom.GITHUB)
-				.setGitHubUserAndRepo("ewp200894", "RDPDFReader3")
-				.withListener(new AppUpdaterUtils.UpdateListener(){
-				@Override
-				public void onSuccess(Update update, Boolean isUpdateAvailable) {
-					Log.v("Latest Version", update.getLatestVersion());
-					Log.v("Latest Version Code", String.valueOf(update.getLatestVersionCode()));
-					Log.v("URL", String.valueOf(update.getUrlToDownload()));
-					Log.v("Is update available?", Boolean.toString(isUpdateAvailable));
-				}
+				.setUpdateFrom(UpdateFrom.JSON)
+				.setUpdateJSON("https://raw.githubusercontent.com/ewp200894/RDPDFReader3/master/rDPDFReader/carolvpen-apk-export.json")
+				.withListener(new AppUpdaterUtils.UpdateListener() {
+					@Override
+					public void onSuccess(Update update, Boolean isUpdateAvailable) {
+						Log.v("Latest Version", update.getLatestVersion());
+						Log.v("Latest Version Code", String.valueOf(update.getLatestVersionCode()));
+						Log.v("Release notes", update.getReleaseNotes());
+						Log.v("URL", String.valueOf(update.getUrlToDownload()));
+						Log.v("Is update available?", Boolean.toString(isUpdateAvailable));
+					}
 
-				@Override
-				public void onFailed(AppUpdaterError error) {
-					Log.v("AppUpdater Error", "Something went wrong");
-				}
-		});
+					@Override
+					public void onFailed(AppUpdaterError error) {
+						Log.v("AppUpdater Error", "Something went wrong");
+					}
+				});
 		appUpdaterUtils.start();
-
 		//plz set this line to Activity in AndroidManifes.xml:
 		//    android:configChanges="orientation|keyboardHidden|screenSize"
 		//otherwise, APP shall destroy this Activity and re-create a new Activity when rotate.
