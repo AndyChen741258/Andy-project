@@ -362,6 +362,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
     private MapFragment mapFragment;
     private TextView place_tell;
     private Button addmarker;
+    //地圖自訂定位點
     private boolean firstmarker = false;
     private boolean bol_correctmarker = false;
     //地圖定位點總數

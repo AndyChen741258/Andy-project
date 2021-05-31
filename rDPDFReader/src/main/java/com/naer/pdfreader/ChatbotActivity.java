@@ -59,6 +59,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.api.client.util.Sleeper;
 import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.auth.oauth2.ServiceAccountCredentials;
@@ -110,6 +111,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
+import java.util.Timer;
 import java.util.UUID;
 
 import pl.droidsonroids.gif.GifImageView;
@@ -891,15 +893,14 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
             ArrayList resultList = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
             int score = (int) (bundle.getFloatArray(SpeechRecognizer.CONFIDENCE_SCORES)[0] * 100);
             queryText = resultList.get(0).toString();
-            int user_speak=user+1;
-            try{
-                final FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference db=database.getReference().child("學生" + Student.Name + "號");
-                db.child("Chatbot data").child("Usersay").child(String.valueOf(user_speak)).setValue(queryText.replace(",","__"));
-            }catch (Exception e){
-                e.printStackTrace();
-                Toast.makeText(ChatbotActivity.this,"儲存使用者口說錯誤",Toast.LENGTH_SHORT).show();
-            }
+//            try{
+//                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+//                DatabaseReference db=database.getReference().child("學生" + Student.Name + "號");
+//                db.child("Chatbot data").child("Usersay").child(String.valueOf(user_speak)).setValue(queryText.replace(",","__"));
+//            }catch (Exception e){
+//                e.printStackTrace();
+//                Toast.makeText(ChatbotActivity.this,"儲存使用者口說錯誤",Toast.LENGTH_SHORT).show();
+//            }
             Log.d(TAG, "Recognizer onResults: " + queryText);
             usersaycount++;
             if(queryText != null){
@@ -992,12 +993,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                             questioning = false;
                         }
 
-
                         addChat(queryText, 0);
-
-
-
-
 
                         // set user text
                         String[] diff = new String[3];
@@ -1018,18 +1014,21 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                         } catch (Exception e) {
                             options = "";
                         }
-                        Log.v("測試", String.valueOf(chatbot));
 
                         addChat(speech, 1);
-                        int chabot_speak=chatbot+1;
+
                         try{
                             final FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference db=database.getReference().child("學生" + Student.Name + "號");
-                            db.child("Chatbot data").child("Chatbotsay").child(String.valueOf(chabot_speak)).setValue(speech.replace(",","__"));
+                            db.child("Chatbot data").child("Usersay").child(String.valueOf(user+1)).setValue(queryText.replace(",","__"));
+                            db.child("Chatbot data").child("Chatbotsay").child(String.valueOf(chatbot+1)).setValue(response.getQueryResult()
+                                    .getFulfillmentText().replace(",","__"));
                         }catch (Exception e){
                             e.printStackTrace();
-                            Toast.makeText(ChatbotActivity.this,"儲存機器人口說錯誤",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ChatbotActivity.this,"儲存對話錯誤",Toast.LENGTH_SHORT).show();
                         }
+
+
                     }
                 }
             };

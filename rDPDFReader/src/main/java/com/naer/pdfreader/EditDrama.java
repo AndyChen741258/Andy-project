@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -32,7 +33,12 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.GestureDetector;
@@ -1790,19 +1796,27 @@ public class EditDrama extends Activity {
         drama.getWindow().setDimAmount(0.05f);
         drama.show();
 
+
+
         if(say1.getText().toString() != ""){
             int c = say1.getText().toString().indexOf(":");
             String s = say1.getText().toString().substring(c+1,say1.length());
             editText1.setText(s);
+        }
 
+        try {
             btn_tts1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     tts_count++;
-                    TTS.speak(s);
+                    TTS.speak(editText1.getText().toString());
                 }
             });
+        }catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "請輸入句子", Toast.LENGTH_SHORT).show();
         }
+
 
 
 
@@ -1818,7 +1832,15 @@ public class EditDrama extends Activity {
                     public void onClick(View v) {
                         //判斷台詞欄位是否為空
                         if(!(TextUtils.isEmpty(editText1.getText().toString()))){
-                            say1.setText(info1+":"+editText1.getText().toString());
+                            SpannableStringBuilder spb = new SpannableStringBuilder();
+                            String lyrics1 = info1.trim();
+                            String lyrics2 = ":";
+                            String lyrics3 = editText1.getText().toString().trim();
+                            spb.append(lyrics1);
+                            spb.setSpan(new ForegroundColorSpan(Color.RED),0,lyrics1.length(),Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            spb.append(lyrics2);
+                            spb.append(lyrics3);
+                            say1.setText(spb);
                             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) say1.getLayoutParams();
                             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
                             say1.setLayoutParams(params);
@@ -2006,14 +2028,19 @@ public class EditDrama extends Activity {
             int c = say2.getText().toString().indexOf(":");
             String s = say2.getText().toString().substring(c+1,say2.length());
             editText2.setText(s);
+        }
 
+        try {
             btn_tts2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     tts_count++;
-                    TTS.speak(s);
+                    TTS.speak(editText2.getText().toString());
                 }
             });
+        }catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "請輸入句子", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -2029,7 +2056,15 @@ public class EditDrama extends Activity {
                     public void onClick(View v) {
                         //判斷台詞欄位是否為空
                         if(!(TextUtils.isEmpty(editText2.getText().toString()))){
-                            say2.setText(info2+":"+editText2.getText().toString());
+                            SpannableStringBuilder spb = new SpannableStringBuilder();
+                            String lyrics1 = info2.trim();
+                            String lyrics2 = ":";
+                            String lyrics3 = editText2.getText().toString().trim();
+                            spb.append(lyrics1);
+                            spb.setSpan(new ForegroundColorSpan(Color.RED),0,lyrics1.length(),Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            spb.append(lyrics2);
+                            spb.append(lyrics3);
+                            say2.setText(spb);
                             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) say2.getLayoutParams();
                             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
                             say2.setLayoutParams(params);
@@ -2216,13 +2251,19 @@ public class EditDrama extends Activity {
             int c = say3.getText().toString().indexOf(":");
             String s = say3.getText().toString().substring(c+1,say3.length());
             editText3.setText(s);
+        }
+
+        try {
             btn_tts3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     tts_count++;
-                    TTS.speak(s);
+                    TTS.speak(editText3.getText().toString());
                 }
             });
+        }catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "請輸入句子", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -2238,7 +2279,15 @@ public class EditDrama extends Activity {
                     public void onClick(View v) {
                         //判斷台詞欄位是否為空
                         if(!(TextUtils.isEmpty(editText3.getText().toString()))){
-                            say3.setText(info3+":"+editText3.getText().toString());
+                            SpannableStringBuilder spb = new SpannableStringBuilder();
+                            String lyrics1 = info3.trim();
+                            String lyrics2 = ":";
+                            String lyrics3 = editText3.getText().toString().trim();
+                            spb.append(lyrics1);
+                            spb.setSpan(new ForegroundColorSpan(Color.RED),0,lyrics1.length(),Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            spb.append(lyrics2);
+                            spb.append(lyrics3);
+                            say3.setText(spb);
                             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) say3.getLayoutParams();
                             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
 //                            re_3=true;
@@ -2425,13 +2474,19 @@ public class EditDrama extends Activity {
             int c = say4.getText().toString().indexOf(":");
             String s = say4.getText().toString().substring(c+1,say4.length());
             editText4.setText(s);
+        }
+
+        try {
             btn_tts4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     tts_count++;
-                    TTS.speak(s);
+                    TTS.speak(editText4.getText().toString());
                 }
             });
+        }catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "請輸入句子", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -2447,7 +2502,15 @@ public class EditDrama extends Activity {
                     public void onClick(View v) {
                         //判斷台詞欄位是否為空
                         if(!(TextUtils.isEmpty(editText4.getText().toString()))){
-                            say4.setText(info4+":"+editText4.getText().toString());
+                            SpannableStringBuilder spb = new SpannableStringBuilder();
+                            String lyrics1 = info4.trim();
+                            String lyrics2 = ":";
+                            String lyrics3 = editText4.getText().toString().trim();
+                            spb.append(lyrics1);
+                            spb.setSpan(new ForegroundColorSpan(Color.RED),0,lyrics1.length(),Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            spb.append(lyrics2);
+                            spb.append(lyrics3);
+                            say4.setText(spb);
                             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) say4.getLayoutParams();
                             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
                             say4.setLayoutParams(params);
@@ -3162,19 +3225,55 @@ public class EditDrama extends Activity {
 
                 if(storeTheEditData.getPlayerA_text().equals("") == false){
                     say1.setVisibility(VISIBLE);
-                    say1.setText(storeTheEditData.getPlayerA_text());
+                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                    int i=storeTheEditData.getPlayerA_text().indexOf(":");
+                    String lyrics1 = storeTheEditData.getPlayerA_text().substring(0,i).trim();
+                    String lyrics2 = ":";
+                    String lyrics3 = storeTheEditData.getPlayerA_text().substring(i+1).trim();
+                    spb.append(lyrics1);
+                    spb.setSpan(new ForegroundColorSpan(Color.RED),0,lyrics1.length(),Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    spb.append(lyrics2);
+                    spb.append(lyrics3);
+                    say1.setText(spb);
                 }
                 if(storeTheEditData.getPlayerB_text().equals("") == false){
                     say2.setVisibility(VISIBLE);
-                    say2.setText(storeTheEditData.getPlayerB_text());
+                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                    int i=storeTheEditData.getPlayerB_text().indexOf(":");
+                    String lyrics1 = storeTheEditData.getPlayerB_text().substring(0,i).trim();
+                    String lyrics2 = ":";
+                    String lyrics3 = storeTheEditData.getPlayerB_text().substring(i+1).trim();
+                    spb.append(lyrics1);
+                    spb.setSpan(new ForegroundColorSpan(Color.RED),0,lyrics1.length(),Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    spb.append(lyrics2);
+                    spb.append(lyrics3);
+                    say2.setText(spb);
                 }
                 if(storeTheEditData.getPlayer3_text().equals("") == false){
                     say3.setVisibility(VISIBLE);
-                    say3.setText(storeTheEditData.getPlayer3_text());
+                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                    int i=storeTheEditData.getPlayer3_text().indexOf(":");
+                    String lyrics1 = storeTheEditData.getPlayer3_text().substring(0,i).trim();
+                    String lyrics2 = ":";
+                    String lyrics3 = storeTheEditData.getPlayer3_text().substring(i+1).trim();
+                    spb.append(lyrics1);
+                    spb.setSpan(new ForegroundColorSpan(Color.RED),0,lyrics1.length(),Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    spb.append(lyrics2);
+                    spb.append(lyrics3);
+                    say3.setText(spb);
                 }
                 if(storeTheEditData.getPlayer4_text().equals("") == false){
                     say4.setVisibility(VISIBLE);
-                    say4.setText(storeTheEditData.getPlayer4_text());
+                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                    int i=storeTheEditData.getPlayer4_text().indexOf(":");
+                    String lyrics1 = storeTheEditData.getPlayer4_text().substring(0,i).trim();
+                    String lyrics2 = ":";
+                    String lyrics3 = storeTheEditData.getPlayer4_text().substring(i+1).trim();
+                    spb.append(lyrics1);
+                    spb.setSpan(new ForegroundColorSpan(Color.RED),0,lyrics1.length(),Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    spb.append(lyrics2);
+                    spb.append(lyrics3);
+                    say4.setText(spb);
                 }
 
 //                say1.setVisibility(VISIBLE);

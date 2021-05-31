@@ -1759,6 +1759,7 @@ drawable ic_baseline_chevron_left_24
 drawable ic_baseline_chevron_left_24_black
 drawable ic_baseline_chevron_right_24
 drawable ic_baseline_chevron_right_24_black
+drawable ic_baseline_cloud_download_24
 drawable ic_baseline_keyboard_voice_24
 drawable ic_baseline_menu_book_24
 drawable ic_baseline_message_24
@@ -1766,6 +1767,7 @@ drawable ic_baseline_notes_24
 drawable ic_baseline_photo_24
 drawable ic_baseline_play_circle_filled_24
 drawable ic_check_black_24dp
+drawable ic_clear_all_white_24dp
 drawable ic_launcher
 drawable ic_mic_black_24dp
 drawable ic_mic_off_black_24dp
@@ -1778,6 +1780,8 @@ drawable ic_person_outline_black_24dp
 drawable ic_play_circle_filled_black_24dp
 drawable ic_search_black_24dp
 drawable ic_search_black_64dp
+drawable ic_stat_name
+drawable ic_system_update_white_24dp
 drawable ic_text_fields_black_24dp
 drawable icon_keyboard_selector
 drawable icon_keyboardgone_selector
@@ -2970,6 +2974,18 @@ string abc_toolbar_collapse_description
 string answer_diff_title
 string app_name
 string appbar_scrolling_view_behavior
+string appupdater_btn_disable
+string appupdater_btn_dismiss
+string appupdater_btn_update
+string appupdater_channel
+string appupdater_channel_name
+string appupdater_update_available
+string appupdater_update_available_description_dialog
+string appupdater_update_available_description_dialog_before_release_notes
+string appupdater_update_available_description_notification
+string appupdater_update_available_description_snackbar
+string appupdater_update_not_available
+string appupdater_update_not_available_description
 string av_app_name
 string bottom_sheet_behavior
 string btn_voice_text
@@ -3006,6 +3022,7 @@ string crop_image_menu_rotate_left
 string crop_image_menu_rotate_right
 string default_aidialog_title
 string default_web_client_id
+string define_appupdater
 string detail_dialog_title
 string detail_dialog_translating
 string error_icon_content_description
@@ -3028,6 +3045,14 @@ string item1
 string item2
 string item_view_role_description
 string leaderboard_name
+string library_appupdater_author
+string library_appupdater_authorWebsite
+string library_appupdater_isOpenSource
+string library_appupdater_libraryDescription
+string library_appupdater_libraryName
+string library_appupdater_libraryWebsite
+string library_appupdater_licenseId
+string library_appupdater_repositoryLink
 string material_slider_range_end
 string material_slider_range_start
 string mtrl_badge_numberless_content_description

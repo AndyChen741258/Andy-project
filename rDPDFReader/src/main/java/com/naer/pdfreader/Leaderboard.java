@@ -297,7 +297,7 @@ public class Leaderboard extends Activity implements SearchView.OnQueryTextListe
                             }
 
                             String name = namearray3[z];
-                            int mark = (int) ((marks[z]*0.3)+(marks2[z]*0.5)+(marks3[z]*0.2));
+                            int mark = (int) ((marks[z]*0.25)+(marks2[z]*0.4)+(marks3[z]*0.35));
                             Student student = new Student();
                             student.setName(name);
                             student.setMarks(mark);

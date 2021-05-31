@@ -107,6 +107,7 @@ public class DramaRecycleView extends Activity{
                     }
                     mAdapter = new CardViewData(list_id, list_describe, DramaRecycleView.this);
                     recyclerView.setAdapter(mAdapter);
+                    recyclerView.scrollToPosition(mAdapter.getItemCount()-1);
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -158,6 +159,8 @@ public class DramaRecycleView extends Activity{
                                     }
                                     mAdapter = new CardViewData(list_id, list_describe, DramaRecycleView.this);
                                     recyclerView.setAdapter(mAdapter);
+                                    recyclerView.scrollToPosition(mAdapter.getItemCount()-1);
+
                                 }
                             }
                             @Override

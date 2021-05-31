@@ -22,6 +22,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Looper;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -51,6 +52,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
 import com.bumptech.glide.Glide;
+import com.fasterxml.jackson.core.json.DupDetector;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -96,9 +98,12 @@ import java.nio.channels.ReadableByteChannel;
 import java.text.BreakIterator;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import Model.SpeechData;
 import Model.StoreTheEditData;
@@ -213,6 +218,40 @@ public class DramaAchievement extends Activity {
     private boolean drama_record2;
     private boolean drama_record3;
     private boolean drama_record4;
+    //學生完整記錄布林
+    private boolean say1;
+    private boolean say2;
+    private boolean say3;
+    private boolean say4;
+    private boolean finish_drama1;
+    private boolean finish_drama2;
+    private boolean finish_drama3;
+    private boolean finish_drama4;
+    private boolean finish_drama5;
+    private boolean finish_drama6;
+    private boolean finish_drama7;
+    private boolean finish_drama8;
+    private int x;
+    //完整練習次數
+    private int all_finish=0;
+    //口說準確率資料庫
+    private DatabaseReference fire_speechdata;
+    //時間倒數
+    private int tt = 15;
+    private Timer timer;
+    private int first_listen_record_count=0;
+    private int first_tts_count=0;
+    private int first_speak_count=0;
+    private int first_one_count=0;
+    private SimpleDateFormat sdf;
+    private String date;
+    private boolean bol_60 = false;
+    //分段練習紀錄
+    private boolean one_speak = false;
+    private boolean one_listen = false;;
+    private int one_count = 0;
+    //目前情境編號
+    private int drama_number=0;
 
 
     @Override
@@ -276,6 +315,17 @@ public class DramaAchievement extends Activity {
 
         readInfo(Student.Name+"號學生觀看練習劇本行為紀錄");
 
+        //取得現在時間
+       sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+//        String date = sdf.format(new java.util.Date());
+//        Calendar c = Calendar.getInstance();
+//        c.setTime(new java.util.Date());
+//        c.add(Calendar.SECOND, 5);// 今天+5秒
+//        String date_test = sdf.format(c.getTime());
+        bol_60 = false;
+//        time();
+
+
         final String[] drama_string = {"Playground","Classroom","Home","Other"};
         ArrayAdapter<String> drama_list=new ArrayAdapter<String>(DramaAchievement.this,
                 android.R.layout.simple_spinner_dropdown_item, drama_string);
@@ -334,6 +384,14 @@ public class DramaAchievement extends Activity {
                                 test2_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {//添加事件Spinner事件監聽
                                     @Override
                                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                        finish_drama1 = false;
+                                        finish_drama2 = false;
+                                        finish_drama3 = false;
+                                        finish_drama4 = false;
+                                        finish_drama5 = false;
+                                        finish_drama6 = false;
+                                        finish_drama7 = false;
+                                        finish_drama8 = false;
                                         Drama[0] = "Drama1";
                                         Drama[1] = "Drama2";
                                         Drama[2] = "Drama3";
@@ -410,18 +468,6 @@ public class DramaAchievement extends Activity {
 
         //初始化聆聽者
        InitSpeechRecognizer();
-        getanswer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int c2 = practice_say.getText().toString().indexOf(":");
-                String s2 = practice_say.getText().toString().substring(c2+1,practice_say.length());
-                CompareSentences = s2;
-                StartSpeechRecongizer();
-            }
-        });
-
-
-
 
 
 
@@ -1566,10 +1612,16 @@ public class DramaAchievement extends Activity {
         fire_check_edit_exist.child("學生"+drama_studentNumber_word+"號").child(drama_dramaNumber_word).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                x = 0;
+                for (DataSnapshot each : dataSnapshot.getChildren()) {
+                    if(each.getKey().equals("contextmenu") == false){
+                        x++;
+                    }
+                }
                 double[] sssttt = new double[(int) dataSnapshot.getChildrenCount()];
                 i = sssttt.length;
-                Log.v("COUNT", String.valueOf(i-1));
-                switch (i-1){
+                Log.v("測試", String.valueOf(x));
+                switch (i-2){
                     case 1:
                         drama5.setVisibility(INVISIBLE);
                         drama6.setVisibility(INVISIBLE);
@@ -1654,10 +1706,14 @@ public class DramaAchievement extends Activity {
                         drama1.setOnTouchListener(new View.OnTouchListener() {
                             @Override
                             public boolean onTouch(View v, MotionEvent event) {
+                                drama_number=1;
+                                one_listen = false;
+                                one_speak = false;
                                 drama_record1 = false;
                                 drama_record2 = false;
                                 drama_record3 = false;
                                 drama_record4 = false;
+
 
                                 StoreTheEditData storeTheEditData = dataSnapshot.getValue(StoreTheEditData.class);
                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
@@ -1685,6 +1741,10 @@ public class DramaAchievement extends Activity {
                                 }
 
                                 if(s[0].equals("")==false) {
+                                    say1 = false;
+                                    say2 = false;
+                                    say3 = false;
+                                    say4 = false;
                                     practice_say.setText("\t"+s[0]);
                                     choose=0;
                                     practice_say_right.setOnClickListener(new View.OnClickListener() {
@@ -1700,6 +1760,8 @@ public class DramaAchievement extends Activity {
                                                     practice_say.setTextColor(Color.rgb(0,0,0));
                                                 }
                                                 choose++;
+                                                one_listen = false;
+                                                one_speak = false;
                                             }else{
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24_black);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
@@ -1724,6 +1786,8 @@ public class DramaAchievement extends Activity {
                                                     practice_say.setTextColor(Color.rgb(0,0,0));
                                                 }
                                                 choose--;
+                                                one_listen = false;
+                                                one_speak = false;
                                             } else {
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24_black);
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
@@ -1768,7 +1832,24 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama1");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
 
                                                         }).addOnFailureListener(new OnFailureListener() {
@@ -1779,7 +1860,24 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama1");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 1:
@@ -1804,7 +1902,24 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama1");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -1814,7 +1929,24 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama1");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 2:
@@ -1839,7 +1971,24 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama1");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -1849,7 +1998,24 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama1");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 3:
@@ -1874,7 +2040,24 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama1");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -1884,14 +2067,87 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama1");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
+                                                        one_listen = true;
+                                                    }
+                                                    break;
+                                            }
+                                            if(one_speak){
+                                                one_count++;
+                                                one_speak = false;
+                                                one_listen = false;
+                                            }
+                                        }
+                                    });
+
+                                    getanswer.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            if(practice_say.getText().toString().equals("") == false){
+                                                one_speak = true;
+                                                int c2 = practice_say.getText().toString().indexOf(":");
+                                                String s2 = practice_say.getText().toString().substring(c2+1,practice_say.length());
+                                                CompareSentences = s2;
+                                                StartSpeechRecongizer();
+                                            }
+
+                                            switch (choose) {
+                                                case 0:
+                                                    say1 = true;
+                                                    break;
+                                                case 1:
+                                                    say2 = true;
+                                                    break;
+                                                case 2:
+                                                    say3 = true;
+                                                    break;
+                                                case 3:
+                                                    say4 = true;
+                                                    break;
+                                            }
+
+                                            switch (s.length){
+                                                case 2:
+                                                    if(say1 ==true && say2 == true){
+                                                        finish_drama1=true;
+                                                    }
+                                                    break;
+                                                case 3:
+                                                    if(say1 ==true && say2 == true && say3 == true){
+                                                        finish_drama1=true;
+                                                    }
+                                                    break;
+                                                case 4:
+                                                    if(say1 ==true && say2 == true && say3 == true && say4 == true){
+                                                        finish_drama1=true;
                                                     }
                                                     break;
                                             }
 
+                                            if(one_listen){
+                                                one_count++;
+                                                one_speak = false;
+                                                one_listen = false;
+                                            }
+
                                         }
                                     });
-
                                 }
                                 count = 0;
                                 Toast.makeText(DramaAchievement.this,"已選擇第一分鏡",Toast.LENGTH_SHORT).show();
@@ -1936,6 +2192,9 @@ public class DramaAchievement extends Activity {
                         drama2.setOnTouchListener(new View.OnTouchListener() {
                             @Override
                             public boolean onTouch(View v, MotionEvent event) {
+                                drama_number=2;
+                                one_listen = false;
+                                one_speak = false;
                                 drama_record1 = false;
                                 drama_record2 = false;
                                 drama_record3 = false;
@@ -1966,6 +2225,10 @@ public class DramaAchievement extends Activity {
                                 }
 
                                 if(s[0].equals("")==false) {
+                                    say1 = false;
+                                    say2 = false;
+                                    say3 = false;
+                                    say4 = false;
                                     practice_say.setText("\t"+s[0]);
                                     choose=0;
                                     practice_say_right.setOnClickListener(new View.OnClickListener() {
@@ -1981,6 +2244,8 @@ public class DramaAchievement extends Activity {
                                                     practice_say.setTextColor(Color.rgb(0,0,0));
                                                 }
                                                 choose++;
+                                                one_listen = false;
+                                                one_speak = false;
                                             }else{
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24_black);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
@@ -2005,6 +2270,8 @@ public class DramaAchievement extends Activity {
                                                     practice_say.setTextColor(Color.rgb(0,0,0));
                                                 }
                                                 choose--;
+                                                one_listen = false;
+                                                one_speak = false;
                                             } else {
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24_black);
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
@@ -2016,8 +2283,6 @@ public class DramaAchievement extends Activity {
                                             drama_record4 = false;
                                         }
                                     });
-
-
 
                                     btn_speak.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -2052,6 +2317,7 @@ public class DramaAchievement extends Activity {
                                                             }
                                                             player.start();
                                                             listen_record_count++;
+                                                            one_listen = true;
                                                         }
                                                     }).addOnFailureListener(new OnFailureListener() {
                                                         @Override
@@ -2062,6 +2328,7 @@ public class DramaAchievement extends Activity {
                                                     }else{
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 1:
@@ -2087,6 +2354,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -2097,6 +2365,7 @@ public class DramaAchievement extends Activity {
                                                     }else{
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 2:
@@ -2122,6 +2391,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -2132,6 +2402,7 @@ public class DramaAchievement extends Activity {
                                                     }else{
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 3:
@@ -2157,6 +2428,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -2167,20 +2439,71 @@ public class DramaAchievement extends Activity {
                                                     }else{
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                             }
-//                                            if (practice_say.getText().toString().trim().equals(s[0]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[1]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[2]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[3]) == true) {
-//
-//
+                                            if(one_speak){
+                                                one_count++;
+                                                one_speak = false;
+                                                one_listen = false;
+                                            }
                                         }
                                     });
+
+                                    getanswer.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            if(practice_say.getText().toString().equals("") == false){
+                                                one_speak=true;
+                                                int c2 = practice_say.getText().toString().indexOf(":");
+                                                String s2 = practice_say.getText().toString().substring(c2+1,practice_say.length());
+                                                CompareSentences = s2;
+                                                StartSpeechRecongizer();
+                                            }
+
+                                            switch (choose) {
+                                                case 0:
+                                                    say1 = true;
+                                                    break;
+                                                case 1:
+                                                    say2 = true;
+                                                    break;
+                                                case 2:
+                                                    say3 = true;
+                                                    break;
+                                                case 3:
+                                                    say4 = true;
+                                                    break;
+                                            }
+
+                                            switch (s.length){
+                                                case 2:
+                                                    if(say1 ==true && say2 == true){
+                                                        finish_drama2=true;
+                                                    }
+                                                    break;
+                                                case 3:
+                                                    if(say1 ==true && say2 == true && say3 == true){
+                                                        finish_drama2=true;
+                                                    }
+                                                    break;
+                                                case 4:
+                                                    if(say1 ==true && say2 == true && say3 == true && say4 == true){
+                                                        finish_drama2=true;
+                                                    }
+                                                    break;
+                                            }
+
+                                            if(one_listen){
+                                                one_count++;
+                                                one_speak = false;
+                                                one_listen = false;
+                                            }
+                                        }
+                                    });
+
+
                                 }
                                 count = 0;
                                 Toast.makeText(DramaAchievement.this,"已選擇第二分鏡",Toast.LENGTH_SHORT).show();
@@ -2217,6 +2540,9 @@ public class DramaAchievement extends Activity {
                         drama3.setOnTouchListener(new View.OnTouchListener() {
                             @Override
                             public boolean onTouch(View v, MotionEvent event) {
+                                drama_number=3;
+                                one_listen = false;
+                                one_speak = false;
                                 drama_record1 = false;
                                 drama_record2 = false;
                                 drama_record3 = false;
@@ -2247,6 +2573,10 @@ public class DramaAchievement extends Activity {
                                 }
 
                                 if(s[0].equals("")==false) {
+                                    say1 = false;
+                                    say2 = false;
+                                    say3 = false;
+                                    say4 = false;
                                     practice_say.setText("\t"+s[0]);
                                     choose=0;
                                     practice_say_right.setOnClickListener(new View.OnClickListener() {
@@ -2262,6 +2592,8 @@ public class DramaAchievement extends Activity {
                                                     practice_say.setTextColor(Color.rgb(0,0,0));
                                                 }
                                                 choose++;
+                                                one_listen = false;
+                                                one_speak = false;
                                             }else{
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24_black);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
@@ -2286,6 +2618,8 @@ public class DramaAchievement extends Activity {
                                                     practice_say.setTextColor(Color.rgb(0,0,0));
                                                 }
                                                 choose--;
+                                                one_listen = false;
+                                                one_speak = false;
                                             } else {
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24_black);
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
@@ -2331,6 +2665,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -2341,6 +2676,7 @@ public class DramaAchievement extends Activity {
                                                     }else{
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 1:
@@ -2366,6 +2702,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -2376,6 +2713,7 @@ public class DramaAchievement extends Activity {
                                                     }else{
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 2:
@@ -2401,6 +2739,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -2411,6 +2750,7 @@ public class DramaAchievement extends Activity {
                                                     }else {
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 3:
@@ -2436,6 +2776,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -2446,18 +2787,65 @@ public class DramaAchievement extends Activity {
                                                     }else{
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                             }
-//                                            if (practice_say.getText().toString().trim().equals(s[0]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[1]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[2]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[3]) == true) {
-//
-//
+                                            if(one_speak){
+                                                one_count++;
+                                                one_speak = false;
+                                                one_listen = false;
+                                            }
+                                        }
+                                    });
+                                    getanswer.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            if(practice_say.getText().toString().equals("") == false){
+                                                one_speak = true;
+                                                int c2 = practice_say.getText().toString().indexOf(":");
+                                                String s2 = practice_say.getText().toString().substring(c2+1,practice_say.length());
+                                                CompareSentences = s2;
+                                                StartSpeechRecongizer();
+                                            }
+
+                                            switch (choose) {
+                                                case 0:
+                                                    say1 = true;
+                                                    break;
+                                                case 1:
+                                                    say2 = true;
+                                                    break;
+                                                case 2:
+                                                    say3 = true;
+                                                    break;
+                                                case 3:
+                                                    say4 = true;
+                                                    break;
+                                            }
+
+                                            switch (s.length){
+                                                case 2:
+                                                    if(say1 ==true && say2 == true){
+                                                        finish_drama3=true;
+                                                    }
+                                                    break;
+                                                case 3:
+                                                    if(say1 ==true && say2 == true && say3 == true){
+                                                        finish_drama3=true;
+                                                    }
+                                                    break;
+                                                case 4:
+                                                    if(say1 ==true && say2 == true && say3 == true && say4 == true){
+                                                        finish_drama3=true;
+                                                    }
+                                                    break;
+                                            }
+                                            if(one_listen){
+                                                one_count++;
+                                                one_speak = false;
+                                                one_listen = false;
+                                            }
                                         }
                                     });
 
@@ -2497,6 +2885,9 @@ public class DramaAchievement extends Activity {
                         drama4.setOnTouchListener(new View.OnTouchListener() {
                             @Override
                             public boolean onTouch(View v, MotionEvent event) {
+                                drama_number=4;
+                                one_listen = false;
+                                one_speak = false;
                                 drama_record1 = false;
                                 drama_record2 = false;
                                 drama_record3 = false;
@@ -2527,6 +2918,10 @@ public class DramaAchievement extends Activity {
                                 }
 
                                 if(s[0].equals("")==false) {
+                                    say1 = false;
+                                    say2 = false;
+                                    say3 = false;
+                                    say4 = false;
                                     practice_say.setText("\t"+s[0]);
                                     choose=0;
                                     practice_say_right.setOnClickListener(new View.OnClickListener() {
@@ -2542,6 +2937,8 @@ public class DramaAchievement extends Activity {
                                                     practice_say.setTextColor(Color.rgb(0,0,0));
                                                 }
                                                 choose++;
+                                                one_listen = false;
+                                                one_speak = false;
                                             }else{
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24_black);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
@@ -2566,6 +2963,8 @@ public class DramaAchievement extends Activity {
                                                     practice_say.setTextColor(Color.rgb(0,0,0));
                                                 }
                                                 choose--;
+                                                one_listen = false;
+                                                one_speak = false;
                                             } else {
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24_black);
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
@@ -2611,6 +3010,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -2621,6 +3021,7 @@ public class DramaAchievement extends Activity {
                                                     }else{
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 1:
@@ -2646,6 +3047,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -2656,6 +3058,7 @@ public class DramaAchievement extends Activity {
                                                     }else {
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 2:
@@ -2681,6 +3084,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -2691,6 +3095,7 @@ public class DramaAchievement extends Activity {
                                                     }else{
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 3:
@@ -2716,6 +3121,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -2726,18 +3132,72 @@ public class DramaAchievement extends Activity {
                                                     }else{
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                             }
-//                                            if (practice_say.getText().toString().trim().equals(s[0]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[1]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[2]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[3]) == true) {
-//
-//
+                                            if(one_speak){
+                                                one_count++;
+                                                one_speak = false;
+                                                one_listen = false;
+                                            }
+                                        }
+                                    });
+                                    getanswer.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            if(practice_say.getText().toString().equals("") == false){
+                                                one_speak = true;
+                                                int c2 = practice_say.getText().toString().indexOf(":");
+                                                String s2 = practice_say.getText().toString().substring(c2+1,practice_say.length());
+                                                CompareSentences = s2;
+                                                StartSpeechRecongizer();
+                                            }
+
+                                            switch (choose) {
+                                                case 0:
+                                                    say1 = true;
+                                                    break;
+                                                case 1:
+                                                    say2 = true;
+                                                    break;
+                                                case 2:
+                                                    say3 = true;
+                                                    break;
+                                                case 3:
+                                                    say4 = true;
+                                                    break;
+                                            }
+
+                                            switch (s.length){
+                                                case 2:
+                                                    if(say1 ==true && say2 == true){
+                                                        finish_drama4=true;
+                                                    }
+                                                    break;
+                                                case 3:
+                                                    if(say1 ==true && say2 == true && say3 == true){
+                                                        finish_drama4=true;
+                                                    }
+                                                    break;
+                                                case 4:
+                                                    if(say1 ==true && say2 == true && say3 == true && say4 == true){
+                                                        finish_drama4=true;
+                                                    }
+                                                    break;
+                                            }
+
+                                            if(x == 4 && finish_drama4 == true && finish_drama3
+                                                    == true && finish_drama2 == true && finish_drama1 == true){
+                                                all_finish++;
+                                            }
+
+                                            if(one_listen){
+                                                one_count++;
+                                                one_speak = false;
+                                                one_listen = false;
+                                            }
+
                                         }
                                     });
 
@@ -2771,11 +3231,15 @@ public class DramaAchievement extends Activity {
                 if(dataSnapshot.exists()){
                     String[] s1 = new String[4];
                     drama5.setVisibility(VISIBLE);
+                    creat5.setVisibility(VISIBLE);
                     drama5.setEnabled(true);
                      try{
                          drama5.setOnTouchListener(new View.OnTouchListener() {
                              @Override
                              public boolean onTouch(View v, MotionEvent event) {
+                                 drama_number=5;
+                                 one_listen = false;
+                                 one_speak = false;
                                  drama_record1 = false;
                                  drama_record2 = false;
                                  drama_record3 = false;
@@ -2806,6 +3270,10 @@ public class DramaAchievement extends Activity {
                                  }
 
                                  if(s[0].equals("")==false) {
+                                     say1 = false;
+                                     say2 = false;
+                                     say3 = false;
+                                     say4 = false;
                                      practice_say.setText("\t"+s[0]);
                                      choose=0;
                                      practice_say_right.setOnClickListener(new View.OnClickListener() {
@@ -2821,6 +3289,8 @@ public class DramaAchievement extends Activity {
                                                      practice_say.setTextColor(Color.rgb(0,0,0));
                                                  }
                                                  choose++;
+                                                 one_listen = false;
+                                                 one_speak = false;
                                              }else{
                                                  practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24_black);
                                                  practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
@@ -2845,6 +3315,8 @@ public class DramaAchievement extends Activity {
                                                      practice_say.setTextColor(Color.rgb(0,0,0));
                                                  }
                                                  choose--;
+                                                 one_listen = false;
+                                                 one_speak = false;
                                              } else {
                                                  practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24_black);
                                                  practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
@@ -2889,6 +3361,7 @@ public class DramaAchievement extends Activity {
                                                                  }
                                                                  player.start();
                                                                  listen_record_count++;
+                                                                 one_listen = true;
                                                              }
                                                          }).addOnFailureListener(new OnFailureListener() {
                                                              @Override
@@ -2899,6 +3372,7 @@ public class DramaAchievement extends Activity {
                                                      }else {
                                                          player.start();
                                                          listen_record_count++;
+                                                         one_listen = true;
                                                      }
                                                      break;
                                                  case 1:
@@ -2924,6 +3398,7 @@ public class DramaAchievement extends Activity {
                                                                  }
                                                                  player.start();
                                                                  listen_record_count++;
+                                                                 one_listen = true;
                                                              }
                                                          }).addOnFailureListener(new OnFailureListener() {
                                                              @Override
@@ -2934,6 +3409,7 @@ public class DramaAchievement extends Activity {
                                                      }else {
                                                          player.start();
                                                          listen_record_count++;
+                                                         one_listen = true;
                                                      }
                                                      break;
                                                  case 2:
@@ -2959,6 +3435,7 @@ public class DramaAchievement extends Activity {
                                                                  }
                                                                  player.start();
                                                                  listen_record_count++;
+                                                                 one_listen = true;
                                                              }
                                                          }).addOnFailureListener(new OnFailureListener() {
                                                              @Override
@@ -2969,6 +3446,7 @@ public class DramaAchievement extends Activity {
                                                      }else{
                                                          player.start();
                                                          listen_record_count++;
+                                                         one_listen = true;
                                                      }
                                                      break;
                                                  case 3:
@@ -2994,6 +3472,7 @@ public class DramaAchievement extends Activity {
                                                                  }
                                                                  player.start();
                                                                  listen_record_count++;
+                                                                 one_listen = true;
                                                              }
                                                          }).addOnFailureListener(new OnFailureListener() {
                                                              @Override
@@ -3004,18 +3483,71 @@ public class DramaAchievement extends Activity {
                                                      }else{
                                                          player.start();
                                                          listen_record_count++;
+                                                         one_listen = true;
                                                      }
                                                      break;
                                              }
-//                                            if (practice_say.getText().toString().trim().equals(s[0]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[1]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[2]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[3]) == true) {
-//
-//
+                                             if(one_speak){
+                                                 one_count++;
+                                                 one_speak = false;
+                                                 one_listen = false;
+                                             }
+                                         }
+                                     });
+                                     getanswer.setOnClickListener(new View.OnClickListener() {
+                                         @Override
+                                         public void onClick(View view) {
+                                             if(practice_say.getText().toString().equals("") == false){
+                                                 one_speak = true;
+                                                 int c2 = practice_say.getText().toString().indexOf(":");
+                                                 String s2 = practice_say.getText().toString().substring(c2+1,practice_say.length());
+                                                 CompareSentences = s2;
+                                                 StartSpeechRecongizer();
+                                             }
+
+                                             switch (choose) {
+                                                 case 0:
+                                                     say1 = true;
+                                                     break;
+                                                 case 1:
+                                                     say2 = true;
+                                                     break;
+                                                 case 2:
+                                                     say3 = true;
+                                                     break;
+                                                 case 3:
+                                                     say4 = true;
+                                                     break;
+                                             }
+
+                                             switch (s.length){
+                                                 case 2:
+                                                     if(say1 ==true && say2 == true){
+                                                         finish_drama5=true;
+                                                     }
+                                                     break;
+                                                 case 3:
+                                                     if(say1 ==true && say2 == true && say3 == true){
+                                                         finish_drama5=true;
+                                                     }
+                                                     break;
+                                                 case 4:
+                                                     if(say1 ==true && say2 == true && say3 == true && say4 == true){
+                                                         finish_drama5=true;
+                                                     }
+                                                     break;
+                                             }
+
+                                             if(x == 5 && finish_drama5 == true && finish_drama4 == true && finish_drama3
+                                                     == true && finish_drama2 == true && finish_drama1 == true){
+                                                 all_finish++;
+                                             }
+
+                                             if(one_listen){
+                                                 one_count++;
+                                                 one_speak = false;
+                                                 one_listen = false;
+                                             }
                                          }
                                      });
 
@@ -3049,11 +3581,15 @@ public class DramaAchievement extends Activity {
                 if(dataSnapshot.exists()){
                     String[] s1 = new String[4];
                     drama6.setVisibility(VISIBLE);
+                    creat6.setVisibility(VISIBLE);
                     drama6.setEnabled(true);
                     try{
                         drama6.setOnTouchListener(new View.OnTouchListener() {
                             @Override
                             public boolean onTouch(View v, MotionEvent event) {
+                                drama_number=6;
+                                one_listen = false;
+                                one_speak = false;
                                 drama_record1 = false;
                                 drama_record2 = false;
                                 drama_record3 = false;
@@ -3084,6 +3620,10 @@ public class DramaAchievement extends Activity {
                                 }
 
                                 if(s[0].equals("")==false) {
+                                    say1 = false;
+                                    say2 = false;
+                                    say3 = false;
+                                    say4 = false;
                                     practice_say.setText("\t"+s[0]);
                                     choose=0;
                                     practice_say_right.setOnClickListener(new View.OnClickListener() {
@@ -3099,6 +3639,8 @@ public class DramaAchievement extends Activity {
                                                     practice_say.setTextColor(Color.rgb(0,0,0));
                                                 }
                                                 choose++;
+                                                one_listen = false;
+                                                one_speak = false;
                                             }else{
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24_black);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
@@ -3123,6 +3665,8 @@ public class DramaAchievement extends Activity {
                                                     practice_say.setTextColor(Color.rgb(0,0,0));
                                                 }
                                                 choose--;
+                                                one_listen = false;
+                                                one_speak = false;
                                             } else {
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24_black);
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
@@ -3168,6 +3712,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -3178,6 +3723,7 @@ public class DramaAchievement extends Activity {
                                                     }else {
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 1:
@@ -3203,6 +3749,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -3213,6 +3760,7 @@ public class DramaAchievement extends Activity {
                                                     }else {
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 2:
@@ -3238,6 +3786,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -3248,6 +3797,7 @@ public class DramaAchievement extends Activity {
                                                     }else{
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 3:
@@ -3273,6 +3823,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -3283,18 +3834,72 @@ public class DramaAchievement extends Activity {
                                                     }else{
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                             }
-//                                            if (practice_say.getText().toString().trim().equals(s[0]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[1]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[2]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[3]) == true) {
-//
-//
+                                            if(one_speak){
+                                                one_count++;
+                                                one_speak = false;
+                                                one_listen = false;
+                                            }
+                                        }
+                                    });
+                                    getanswer.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            if(practice_say.getText().toString().equals("") == false){
+                                                one_speak = true;
+                                                int c2 = practice_say.getText().toString().indexOf(":");
+                                                String s2 = practice_say.getText().toString().substring(c2+1,practice_say.length());
+                                                CompareSentences = s2;
+                                                StartSpeechRecongizer();
+                                            }
+
+                                            switch (choose) {
+                                                case 0:
+                                                    say1 = true;
+                                                    break;
+                                                case 1:
+                                                    say2 = true;
+                                                    break;
+                                                case 2:
+                                                    say3 = true;
+                                                    break;
+                                                case 3:
+                                                    say4 = true;
+                                                    break;
+                                            }
+
+                                            switch (s.length){
+                                                case 2:
+                                                    if(say1 ==true && say2 == true){
+                                                        finish_drama6=true;
+                                                    }
+                                                    break;
+                                                case 3:
+                                                    if(say1 ==true && say2 == true && say3 == true){
+                                                        finish_drama6=true;
+                                                    }
+                                                    break;
+                                                case 4:
+                                                    if(say1 ==true && say2 == true && say3 == true && say4 == true){
+                                                        finish_drama6=true;
+                                                    }
+                                                    break;
+                                            }
+
+                                            if(x == 6 && finish_drama6 == true && finish_drama5 == true && finish_drama4 == true && finish_drama3
+                                                    == true && finish_drama2 == true && finish_drama1 == true){
+                                                all_finish++;
+                                            }
+
+                                            if(one_listen){
+                                                one_count++;
+                                                one_speak = false;
+                                                one_listen = false;
+                                            }
+
                                         }
                                     });
                                 }
@@ -3327,11 +3932,15 @@ public class DramaAchievement extends Activity {
                 if(dataSnapshot.exists()){
                     String[] s1 = new String[4];
                     drama7.setVisibility(VISIBLE);
+                    creat7.setVisibility(VISIBLE);
                     drama7.setEnabled(true);
                     try{
                         drama7.setOnTouchListener(new View.OnTouchListener() {
                             @Override
                             public boolean onTouch(View v, MotionEvent event) {
+                                drama_number=7;
+                                one_listen = false;
+                                one_speak = false;
                                 drama_record1 = false;
                                 drama_record2 = false;
                                 drama_record3 = false;
@@ -3362,6 +3971,10 @@ public class DramaAchievement extends Activity {
                                 }
 
                                 if(s[0].equals("")==false) {
+                                    say1 = false;
+                                    say2 = false;
+                                    say3 = false;
+                                    say4 = false;
                                     practice_say.setText("\t"+s[0]);
                                     choose=0;
                                     practice_say_right.setOnClickListener(new View.OnClickListener() {
@@ -3377,6 +3990,8 @@ public class DramaAchievement extends Activity {
                                                     practice_say.setTextColor(Color.rgb(0,0,0));
                                                 }
                                                 choose++;
+                                                one_listen = false;
+                                                one_speak = false;
                                             }else{
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24_black);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
@@ -3401,6 +4016,8 @@ public class DramaAchievement extends Activity {
                                                     practice_say.setTextColor(Color.rgb(0,0,0));
                                                 }
                                                 choose--;
+                                                one_listen = false;
+                                                one_speak = false;
                                             } else {
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24_black);
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
@@ -3446,6 +4063,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -3456,6 +4074,7 @@ public class DramaAchievement extends Activity {
                                                     }else {
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 1:
@@ -3481,6 +4100,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -3491,6 +4111,7 @@ public class DramaAchievement extends Activity {
                                                     }else{
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 2:
@@ -3516,6 +4137,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -3526,6 +4148,7 @@ public class DramaAchievement extends Activity {
                                                     }else {
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 3:
@@ -3551,6 +4174,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -3561,18 +4185,72 @@ public class DramaAchievement extends Activity {
                                                     }else{
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                             }
-//                                            if (practice_say.getText().toString().trim().equals(s[0]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[1]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[2]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[3]) == true) {
-//
-//
+                                            if(one_speak){
+                                                one_count++;
+                                                one_speak = false;
+                                                one_listen = false;
+                                            }
+                                        }
+                                    });
+                                    getanswer.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            if(practice_say.getText().toString().equals("") == false){
+                                                one_speak = true;
+                                                int c2 = practice_say.getText().toString().indexOf(":");
+                                                String s2 = practice_say.getText().toString().substring(c2+1,practice_say.length());
+                                                CompareSentences = s2;
+                                                StartSpeechRecongizer();
+                                            }
+
+                                            switch (choose) {
+                                                case 0:
+                                                    say1 = true;
+                                                    break;
+                                                case 1:
+                                                    say2 = true;
+                                                    break;
+                                                case 2:
+                                                    say3 = true;
+                                                    break;
+                                                case 3:
+                                                    say4 = true;
+                                                    break;
+                                            }
+
+                                            switch (s.length){
+                                                case 2:
+                                                    if(say1 ==true && say2 == true){
+                                                        finish_drama7=true;
+                                                    }
+                                                    break;
+                                                case 3:
+                                                    if(say1 ==true && say2 == true && say3 == true){
+                                                        finish_drama7=true;
+                                                    }
+                                                    break;
+                                                case 4:
+                                                    if(say1 ==true && say2 == true && say3 == true && say4 == true){
+                                                        finish_drama7=true;
+                                                    }
+                                                    break;
+                                            }
+
+                                            if(x == 7 && finish_drama7 == true && finish_drama6 == true && finish_drama5 == true && finish_drama4 == true && finish_drama3
+                                                    == true && finish_drama2 == true && finish_drama1 == true){
+                                                all_finish++;
+                                            }
+
+                                            if(one_listen){
+                                                one_count++;
+                                                one_speak = false;
+                                                one_listen = false;
+                                            }
+
                                         }
                                     });
                                 }
@@ -3604,11 +4282,15 @@ public class DramaAchievement extends Activity {
                 if(dataSnapshot.exists()){
                     String[] s1 = new String[4];
                     drama8.setVisibility(VISIBLE);
+                    creat8.setVisibility(VISIBLE);
                     drama8.setEnabled(true);
                     try{
                         drama8.setOnTouchListener(new View.OnTouchListener() {
                             @Override
                             public boolean onTouch(View v, MotionEvent event) {
+                                drama_number=8;
+                                one_listen = false;
+                                one_speak = false;
                                 drama_record1 = false;
                                 drama_record2 = false;
                                 drama_record3 = false;
@@ -3639,6 +4321,10 @@ public class DramaAchievement extends Activity {
                                 }
 
                                 if(s[0].equals("")==false) {
+                                    say1 = false;
+                                    say2 = false;
+                                    say3 = false;
+                                    say4 = false;
                                     practice_say.setText("\t"+s[0]);
                                     choose=0;
                                     practice_say_right.setOnClickListener(new View.OnClickListener() {
@@ -3654,6 +4340,8 @@ public class DramaAchievement extends Activity {
                                                     practice_say.setTextColor(Color.rgb(0,0,0));
                                                 }
                                                 choose++;
+                                                one_listen = false;
+                                                one_speak = false;
                                             }else{
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24_black);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
@@ -3678,6 +4366,8 @@ public class DramaAchievement extends Activity {
                                                     practice_say.setTextColor(Color.rgb(0,0,0));
                                                 }
                                                 choose--;
+                                                one_listen = false;
+                                                one_speak = false;
                                             } else {
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24_black);
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
@@ -3723,6 +4413,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -3733,6 +4424,7 @@ public class DramaAchievement extends Activity {
                                                     }else{
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 1:
@@ -3758,6 +4450,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -3768,6 +4461,7 @@ public class DramaAchievement extends Activity {
                                                     }else{
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 2:
@@ -3793,6 +4487,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -3803,6 +4498,7 @@ public class DramaAchievement extends Activity {
                                                     }else{
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                                 case 3:
@@ -3828,6 +4524,7 @@ public class DramaAchievement extends Activity {
                                                                 }
                                                                 player.start();
                                                                 listen_record_count++;
+                                                                one_listen = true;
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                             @Override
@@ -3838,18 +4535,72 @@ public class DramaAchievement extends Activity {
                                                     }else {
                                                         player.start();
                                                         listen_record_count++;
+                                                        one_listen = true;
                                                     }
                                                     break;
                                             }
-//                                            if (practice_say.getText().toString().trim().equals(s[0]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[1]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[2]) == true) {
-//
-//                                            } else if (practice_say.getText().toString().trim().equals(s[3]) == true) {
-//
-//
+                                            if(one_speak){
+                                                one_count++;
+                                                one_speak = false;
+                                                one_listen = false;
+                                            }
+                                        }
+                                    });
+                                    getanswer.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            if(practice_say.getText().toString().equals("") == false){
+                                                one_speak = true;
+                                                int c2 = practice_say.getText().toString().indexOf(":");
+                                                String s2 = practice_say.getText().toString().substring(c2+1,practice_say.length());
+                                                CompareSentences = s2;
+                                                StartSpeechRecongizer();
+                                            }
+
+                                            switch (choose) {
+                                                case 0:
+                                                    say1 = true;
+                                                    break;
+                                                case 1:
+                                                    say2 = true;
+                                                    break;
+                                                case 2:
+                                                    say3 = true;
+                                                    break;
+                                                case 3:
+                                                    say4 = true;
+                                                    break;
+                                            }
+
+                                            switch (s.length){
+                                                case 2:
+                                                    if(say1 ==true && say2 == true){
+                                                        finish_drama8=true;
+                                                    }
+                                                    break;
+                                                case 3:
+                                                    if(say1 ==true && say2 == true && say3 == true){
+                                                        finish_drama8=true;
+                                                    }
+                                                    break;
+                                                case 4:
+                                                    if(say1 ==true && say2 == true && say3 == true && say4 == true){
+                                                        finish_drama8=true;
+                                                    }
+                                                    break;
+                                            }
+
+                                            if(x == 8 && finish_drama8 == true && finish_drama7 == true && finish_drama6 == true && finish_drama5 == true && finish_drama4 == true && finish_drama3
+                                                    == true && finish_drama2 == true && finish_drama1 == true){
+                                                all_finish++;
+                                            }
+
+                                            if(one_listen){
+                                                one_count++;
+                                                one_speak = false;
+                                                one_listen = false;
+                                            }
+
                                         }
                                     });
                                 }
@@ -3950,8 +4701,13 @@ public class DramaAchievement extends Activity {
                         showdescribescore.append(Html.fromHtml("<br> <font color= #FFA500 >" + score + "%</font>"));
                         showdescribescore.append("\n很厲害欸! 快90%了，再試試看吧！");
                     }
-
-
+                    try {
+                        fire_speechdata = FirebaseDatabase.getInstance().getReference().child("學生" + Student.Name + "號").child("DramaAchievement");
+                        fire_speechdata.child("SpeechData").child("Score").push().setValue(score);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(DramaAchievement.this, "儲存口說分數錯誤", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     double len = question.length() > response.length() ? question.length() : response.length();//比較題目與答案字串長度
                     diffMatchPatch diff_match_patch_obj = new diffMatchPatch();//比對的Class
@@ -4007,6 +4763,33 @@ public class DramaAchievement extends Activity {
                     showdescribescore.append(Html.fromHtml("<br> <font color=\"" + color + "\">" + similarity + "%</font>"));
                     showdescribescore.append(encourage);
                     Toast.makeText(DramaAchievement.this, showdescribescore.getText().toString(), Toast.LENGTH_SHORT).show();
+                    try {
+                        final String date = sdf.format(new java.util.Date());
+                        final DatabaseReference fire_timeclick = FirebaseDatabase.getInstance().getReference().child("學生" + Student.Name + "號").child("Student data")
+                                .child("點擊行為").child("DramaAchievement").child("口說練習");
+                        fire_timeclick.child(date).child("Score").setValue(similarity);
+                        fire_speechdata = FirebaseDatabase.getInstance().getReference().child("學生" + Student.Name + "號").child("DramaAchievement");
+                        fire_speechdata.child("SpeechData").child("Score").push().setValue(similarity);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(DramaAchievement.this, "儲存口說分數錯誤", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                try {
+                    final String date = sdf.format(new java.util.Date());
+                    final DatabaseReference fire_timeclick = FirebaseDatabase.getInstance().getReference().child("學生" + Student.Name + "號").child("Student data")
+                            .child("點擊行為").child("DramaAchievement").child("口說練習");
+                    fire_timeclick.child(date).child("Drama Name").setValue(select_string);
+                    fire_timeclick.child(date).child("Student number").setValue(drama_studentNumber_word);
+                    fire_timeclick.child(date).child("Drama Number").setValue("Drama"+drama_number);
+                    fire_timeclick.child(date).child("Correct Text").setValue(CompareSentences);
+                    fire_timeclick.child(date).child("User say").setValue(word);
+                    fire_speechdata = FirebaseDatabase.getInstance().getReference().child("學生" + Student.Name + "號").child("DramaAchievement");
+                    fire_speechdata.child("SpeechData").child("Usersay").push().setValue(word);
+                    fire_speechdata.child("SpeechData").child("correctText").push().setValue(CompareSentences);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(DramaAchievement.this, "儲存口說跟正確答案錯誤", Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -4021,6 +4804,14 @@ public class DramaAchievement extends Activity {
 
         }
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        speechRecognizer.stopListening();
+        speechRecognizer.destroy();
+    }
+
 
     @Override
     protected void onDestroy() {
@@ -4205,6 +4996,7 @@ public class DramaAchievement extends Activity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK){
             writeInfo(Student.Name+"號學生觀看練習劇本行為紀錄","觀看劇本");
+            bol_60 = true;
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -4227,6 +5019,8 @@ public class DramaAchievement extends Activity {
             bw.write("聆聽錄音次數:"+listen_record_count+"\n");
             bw.write("TTS次數:"+tts_count+"\n");
             bw.write("口說次數:"+speak_count+"\n");
+            bw.write("完整練習次數:"+all_finish+"\n");
+            bw.write("分段練習次數:"+one_count+"\n");
 
             try {
                 final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -4235,7 +5029,11 @@ public class DramaAchievement extends Activity {
                 db.child("Listen record").setValue(listen_record_count);
                 db.child("TTS").setValue(tts_count);
                 db.child("Speak count").setValue(speak_count);
-                db2.child(Student.Name).setValue(speak_count);
+                db.child("All Drama count").setValue(all_finish);
+                db.child("One exercise count").setValue(one_count);
+                int all_finish_coin = all_finish*10;
+                int one_finish_coin = one_count*5;
+                db2.child(Student.Name).setValue(all_finish_coin+speak_count+one_finish_coin);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -4243,8 +5041,6 @@ public class DramaAchievement extends Activity {
             }
 
             bw.close();
-
-
 
             Toast.makeText(DramaAchievement.this, "行為紀錄紀錄成功", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
@@ -4270,7 +5066,9 @@ public class DramaAchievement extends Activity {
             response = output.toString();
             listen_record_count= Integer.parseInt(response.substring(response.indexOf("聆聽錄音次數:")+7,response.indexOf("TTS次數:")-1));
             tts_count= Integer.parseInt(response.substring(response.indexOf("TTS次數:")+6,response.indexOf("口說次數:")-1));
-            speak_count= Integer.parseInt(response.substring(response.indexOf("口說次數:")+5,response.length()-1));
+            speak_count= Integer.parseInt(response.substring(response.indexOf("口說次數:")+5,response.indexOf("完整練習次數:")-1));
+            all_finish= Integer.parseInt(response.substring(response.indexOf("完整練習次數:")+7,response.indexOf("分段練習次數:")-1));
+            one_count = Integer.parseInt(response.substring(response.indexOf("分段練習次數:")+7,response.length()-1));
             br.close();
             Toast.makeText(DramaAchievement.this, "行為紀錄讀取成功", Toast.LENGTH_SHORT).show();
         } catch(FileNotFoundException e) {
@@ -4283,27 +5081,49 @@ public class DramaAchievement extends Activity {
         return response;
     }
 
-    public void downloadFiles(Context context,String fileName,String fileExtension,String destinationDirectory,String url) {
-
-        DownloadManager downloadManager = (DownloadManager)context.getSystemService(Context.DOWNLOAD_SERVICE);
-        Uri uri = Uri.parse(url);
-        DownloadManager.Request request = new DownloadManager.Request(uri);
-        request.setDestinationInExternalFilesDir(context,destinationDirectory,fileName+fileExtension);
-        downloadManager.enqueue(request);
-
-    }
-
-    public static void copy(File src, File dst) throws IOException {
-        try (InputStream in = new FileInputStream(src)) {
-            try (OutputStream out = new FileOutputStream(dst)) {
-                // Transfer bytes from in to out
-                byte[] buf = new byte[1024];
-                int len;
-                while ((len = in.read(buf)) > 0) {
-                    out.write(buf, 0, len);
-                }
-            }
-        }
-    }
+//    public void time(){
+//        //取得現在時間
+//        tt = 15;
+//        timer = new Timer();
+//        final TimerTask task = new TimerTask() {
+//            @Override
+//            public void run() {
+//                if(!bol_60){
+//                    if(tt==15){
+//                        first_listen_record_count=listen_record_count;
+//                        first_tts_count=tts_count;
+//                        first_speak_count=speak_count;
+//                        first_one_count=one_count;
+//                        sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+//                        date = sdf.format(new java.util.Date());
+//                    }
+//                    tt--;
+//                    if(tt<1){
+//                        try{
+//                            //上傳60秒內的點擊行為
+//                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference();
+//                            fire_60sec_student_data.child("學生"+Student.Name+"號").child("Student data")
+//                                    .child("60").child("DramaAchievement").child(date).child("Listen record").setValue(listen_record_count-first_listen_record_count);
+//                            fire_60sec_student_data.child("學生"+Student.Name+"號").child("Student data")
+//                                    .child("60").child("DramaAchievement").child(date).child("Speak count").setValue(speak_count-first_speak_count);
+//                            fire_60sec_student_data.child("學生"+Student.Name+"號").child("Student data")
+//                                    .child("60").child("DramaAchievement").child(date).child("TTS").setValue(tts_count-first_tts_count);
+//                            fire_60sec_student_data.child("學生"+Student.Name+"號").child("Student data")
+//                                    .child("60").child("DramaAchievement").child(date).child("Drama name").setValue(select_string);
+//                            fire_60sec_student_data.child("學生"+Student.Name+"號").child("Student data")
+//                                    .child("60").child("DramaAchievement").child(date).child("Student number").setValue(drama_studentNumber_word);
+//                            //分段練習劇本次數
+//                            fire_60sec_student_data.child("學生"+Student.Name+"號").child("Student data")
+//                                    .child("60").child("DramaAchievement").child(date).child("One exercise").setValue(one_count-first_one_count);
+//                            tt=15;
+//                        }catch (Exception e){
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }
+//            }
+//        };
+//        timer.schedule(task,1000,1000);
+//    }
 
 }
