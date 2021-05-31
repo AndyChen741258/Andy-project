@@ -149,9 +149,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		AppUpdater appUpdater = new AppUpdater(this)
+				.setDisplay(Display.SNACKBAR)
+				.setDisplay(Display.DIALOG)
 				.setDisplay(Display.NOTIFICATION)
-				.setUpdateFrom(UpdateFrom.JSON)
-				.setUpdateJSON("https://raw.githubusercontent.com/ewp200894/RDPDFReader3/master/rDPDFReader/carolvpen-apk-export.json")
+				.setUpdateFrom(UpdateFrom.GITHUB)
+				.setGitHubUserAndRepo("ewp200894", "RDPDFReader3")
 				.setTitleOnUpdateAvailable("Update available")
 				.setContentOnUpdateAvailable("Check out the latest version available of my app!")
 				.setTitleOnUpdateNotAvailable("Update not available")
@@ -160,18 +162,19 @@ public class MainActivity extends Activity implements OnClickListener {
 				.setButtonDismiss("Maybe later")
 				.setButtonDoNotShowAgain("Huh, not interested")
 				.setIcon(R.drawable.ic_baseline_cloud_download_24) // Notification icon
-				.setCancelable(false); // Dialog could not be dismissable
+				.setCancelable(false)
+				.showEvery(5)
+				.showAppUpdated(true); // Dialog could not be dismissable
 		appUpdater.start();
 
 		AppUpdaterUtils appUpdaterUtils = new AppUpdaterUtils(this)
-				.setUpdateFrom(UpdateFrom.JSON)
-				.setUpdateJSON("https://raw.githubusercontent.com/ewp200894/RDPDFReader3/master/rDPDFReader/carolvpen-apk-export.json")
+				.setUpdateFrom(UpdateFrom.GITHUB)
+				.setGitHubUserAndRepo("ewp200894", "RDPDFReader3")
 				.withListener(new AppUpdaterUtils.UpdateListener() {
 					@Override
 					public void onSuccess(Update update, Boolean isUpdateAvailable) {
 						Log.v("Latest Version", update.getLatestVersion());
 						Log.v("Latest Version Code", String.valueOf(update.getLatestVersionCode()));
-						Log.v("Release notes", update.getReleaseNotes());
 						Log.v("URL", String.valueOf(update.getUrlToDownload()));
 						Log.v("Is update available?", Boolean.toString(isUpdateAvailable));
 					}
