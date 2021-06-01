@@ -1,7 +1,7 @@
 <AppUpdater>
   <update>
-    <latestVersion>1.0</latestVersion>
-    <latestVersionCode>1</latestVersionCode>
+    <latestVersion>1.1</latestVersion>
+    <latestVersionCode>2</latestVersionCode>
     <url>https://github.com/ewp200894/RDPDFReader3/releases</url>
   </update>
 </AppUpdater>
