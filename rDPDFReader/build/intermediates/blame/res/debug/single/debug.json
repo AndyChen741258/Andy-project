@@ -24,24 +24,24 @@
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\light_veneer.png"
     },
     {
-        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_explorer128.png.flat",
-        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\explorer128.png"
-    },
-    {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\mipmap_keyboard_icon_pressed.png.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\mipmap\\keyboard_icon_pressed.png"
+    },
+    {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_explorer128.png.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\explorer128.png"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_add_border.xml.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\add_border.xml"
     },
     {
-        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_re_edit.png.flat",
-        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\re_edit.png"
-    },
-    {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_save4.png.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\save4.png"
+    },
+    {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_re_edit.png.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\re_edit.png"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_letter_b.png.flat",
@@ -64,12 +64,12 @@
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable-hdpi\\en_gl_r2_c6.jpg"
     },
     {
-        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_ic_mic_off_black_24dp.xml.flat",
-        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\ic_mic_off_black_24dp.xml"
-    },
-    {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_leavespattern11.png.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\leavespattern11.png"
+    },
+    {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_ic_mic_off_black_24dp.xml.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\ic_mic_off_black_24dp.xml"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_text_dialogspeak.xml.flat",
@@ -132,12 +132,12 @@
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\ic_baseline_play_circle_filled_24.xml"
     },
     {
-        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_question.png.flat",
-        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\question.png"
-    },
-    {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable-v24_search.png.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable-v24\\search.png"
+    },
+    {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_question.png.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\question.png"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\mipmap_good_icon.png.flat",
@@ -196,8 +196,16 @@
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\save2.png"
     },
     {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_leaderboard.png.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable-xhdpi\\leaderboard.png"
+    },
+    {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\layout_activity_leaderboard.xml.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\layout\\activity_leaderboard.xml"
+    },
+    {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_line4.png.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable-xhdpi\\line4.png"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\menu_example_menu_edit.xml.flat",
@@ -230,6 +238,10 @@
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_share.png.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\share.png"
+    },
+    {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_ic_baseline_pause_24.xml.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\ic_baseline_pause_24.xml"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_startspeak.png.flat",
@@ -330,6 +342,10 @@
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_cancel.png.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable-ldpi\\cancel.png"
+    },
+    {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\layout_video.xml.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\layout\\video.xml"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_sound_accuracy.png.flat",
@@ -504,6 +520,10 @@
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\raw\\engineerbuilding_hiowhp_bf82041d2f2a.json"
     },
     {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\layout_imageview.xml.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\layout\\imageview.xml"
+    },
+    {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_screenshot1.png.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\screenshot1.png"
     },
@@ -546,6 +566,10 @@
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_chatbot_player.png.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable-xhdpi\\chatbot_player.png"
+    },
+    {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_line1.png.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable-xhdpi\\line1.png"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\layout_give_the_hint.xml.flat",
@@ -644,6 +668,10 @@
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\menu\\menu_main.xml"
     },
     {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_line3.png.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable-xhdpi\\line3.png"
+    },
+    {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_background_left_selector.xml.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable-mdpi\\background_left_selector.xml"
     },
@@ -698,6 +726,10 @@
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_voice_a.xml.flat",
         "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable\\voice_a.xml"
+    },
+    {
+        "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_line2.png.flat",
+        "source": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\src\\main\\res\\drawable-xhdpi\\line2.png"
     },
     {
         "merged": "C:\\Users\\Louis\\Desktop\\Vpen\\RDPDFReader3\\rDPDFReader\\build\\intermediates\\res\\merged\\debug\\drawable_textview_border.xml.flat",

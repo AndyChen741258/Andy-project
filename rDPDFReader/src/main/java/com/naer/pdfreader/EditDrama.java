@@ -4,13 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.DialogTitle;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -63,6 +67,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -77,6 +82,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import org.w3c.dom.Text;
 
@@ -89,6 +96,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URI;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -101,6 +109,7 @@ import ai.api.model.ResponseMessage;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
+import static com.naer.pdfreader.CreatDrama.spinner_drame_word;
 import static com.naer.pdfreader.DialogActivity.TAG;
 
 public class EditDrama extends Activity {
@@ -120,13 +129,13 @@ public class EditDrama extends Activity {
     private EditText editText2;
 
     //角色 A 錄音儲存檔名
-    private String pathword_a = Student.Name + "_" + CreatDrama.spinner_drame_word + "_" + CreatDrama.num + "_" + "A.amr";
+    private String pathword_a = Student.Name + "_" + spinner_drame_word + "_" + CreatDrama.num + "_" + "A.amr";
     //角色 B 錄音儲存檔名
-    private String pathword_b = Student.Name + "_" + CreatDrama.spinner_drame_word + "_" + CreatDrama.num + "_" + "B.amr";
-    private String pathword_3 = Student.Name + "_" + CreatDrama.spinner_drame_word + "_" + CreatDrama.num + "_" + "3.amr";
-    private String pathword_4 = Student.Name + "_" + CreatDrama.spinner_drame_word + "_" + CreatDrama.num + "_" + "4.amr";
-    private String pathword_5 = Student.Name + "_" + CreatDrama.spinner_drame_word + "_" + CreatDrama.num + "_" + "5.amr";
-    private String pathword_6 = Student.Name + "_" + CreatDrama.spinner_drame_word + "_" + CreatDrama.num + "_" + "6.amr";
+    private String pathword_b = Student.Name + "_" + spinner_drame_word + "_" + CreatDrama.num + "_" + "B.amr";
+    private String pathword_3 = Student.Name + "_" + spinner_drame_word + "_" + CreatDrama.num + "_" + "3.amr";
+    private String pathword_4 = Student.Name + "_" + spinner_drame_word + "_" + CreatDrama.num + "_" + "4.amr";
+    private String pathword_5 = Student.Name + "_" + spinner_drame_word + "_" + CreatDrama.num + "_" + "5.amr";
+    private String pathword_6 = Student.Name + "_" + spinner_drame_word + "_" + CreatDrama.num + "_" + "6.amr";
 
     //-------------錄音功能--------------
     private MediaRecorder recorder;
@@ -237,6 +246,9 @@ public class EditDrama extends Activity {
     private int stoptimeB=0;
     private int stoptime3=0;
     private int stoptime4=0;
+    private SimpleDateFormat sdf;
+
+
 
 
     @SuppressLint({"ClickableViewAccessibility", "ResourceType"})
@@ -267,12 +279,14 @@ public class EditDrama extends Activity {
         imageView = findViewById(R.id.editimage);
         TTS.init(getApplicationContext());
 
-        list[0]="請選擇";
-        list[1]="Father";
-        list[2]="Brother";
-        list[3]="Sister";
+        list[0]="Father";
+        list[1]="Brother";
+        list[2]="Sister";
 
         readInfo(Student.Name+"號學生創建劇本行為紀錄");
+
+        //取得現在時間
+        sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 
 
 
@@ -304,7 +318,11 @@ public class EditDrama extends Activity {
                             params.width=400;
                         }
                         say1.setLayoutParams(params);
+                        Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                        drawable.setBounds(0, 0, 40,40);
+                        say1.setCompoundDrawables(drawable,null,null, null);
                         say1.setVisibility(VISIBLE);
+                        loadicon();
                         bubble++;
                         break;
                     case 1:
@@ -316,7 +334,11 @@ public class EditDrama extends Activity {
                             params2.width=400;
                         }
                         say2.setLayoutParams(params2);
+                        Drawable drawable2 = getResources().getDrawable(R.drawable.line2);
+                        drawable2.setBounds(0, 0, 40,40);
+                        say2.setCompoundDrawables(drawable2, null,null, null);
                         say2.setVisibility(VISIBLE);
+                        loadicon();
                         bubble++;
                         break;
                     case 2:
@@ -334,7 +356,11 @@ public class EditDrama extends Activity {
                                         params3.width=400;
                                     }
                                     say3.setLayoutParams(params3);
+                                    Drawable drawable3 = getResources().getDrawable(R.drawable.line3);
+                                    drawable3.setBounds(0, 0, 40,40);
+                                    say3.setCompoundDrawables(drawable3, null,null, null);
                                     say3.setVisibility(VISIBLE);
+                                    loadicon();
                                     bubble++;
                                 }
                             })
@@ -361,7 +387,11 @@ public class EditDrama extends Activity {
                                         }
                                         params4.setMargins((int) x_touch, (int) y_touch, 0, 0);
                                         say4.setLayoutParams(params4);
+                                        Drawable drawable4 = getResources().getDrawable(R.drawable.line4);
+                                        drawable4.setBounds(0, 0, 40,40);
+                                        say4.setCompoundDrawables(drawable4, null,null, null);
                                         say4.setVisibility(VISIBLE);
+                                        loadicon();
                                         bubble++;
                                     }
                                 })
@@ -474,6 +504,7 @@ public class EditDrama extends Activity {
             //取得傳遞過來的資料
             String ooo = intent.getStringExtra("ori_uri");
             editimage.setImageURI(Uri.parse(ooo));
+            Log.v("測試1",Uri.parse(ooo).toString());
         }
 
 
@@ -505,7 +536,7 @@ public class EditDrama extends Activity {
 
         try {
             fire_load_contextmenu = FirebaseDatabase.getInstance().getReference();
-            fire_load_contextmenu.child("學生" + Student.Name + "號").child(CreatDrama.spinner_drame_word).child("contextmenu")
+            fire_load_contextmenu.child("學生" + Student.Name + "號").child(spinner_drame_word).child("contextmenu")
                     .addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -522,15 +553,15 @@ public class EditDrama extends Activity {
                                 case 0:
                                     textOut_bol = true;
                                     textOut=sssttt[i-1];
-                                    list[4]=sssttt[i-1];
+                                    list[3]=sssttt[i-1];
                                     break;
                                 case 1:
                                     textOut_bol = true;
                                     textOut_bol_5 = true;
                                     textOut=sssttt[i-2];
                                     textOut_5=sssttt[i-1];
-                                    list[4]=sssttt[i-2];
-                                    list[5]=sssttt[i-1];
+                                    list[3]=sssttt[i-2];
+                                    list[4]=sssttt[i-1];
                                     break;
                                 case 2:
                                     textOut_bol = true;
@@ -539,9 +570,9 @@ public class EditDrama extends Activity {
                                     textOut=sssttt[i-3];
                                     textOut_5=sssttt[i-2];
                                     textOut_6=sssttt[i-1];
-                                    list[4]=sssttt[i-3];
-                                    list[5]=sssttt[i-2];
-                                    list[6]=sssttt[i-1];
+                                    list[3]=sssttt[i-3];
+                                    list[4]=sssttt[i-2];
+                                    list[5]=sssttt[i-1];
                                     break;
                                 case 3:
                                     textOut_bol = true;
@@ -552,10 +583,10 @@ public class EditDrama extends Activity {
                                     textOut_5=sssttt[i-3];
                                     textOut_6=sssttt[i-2];
                                     textOut_7=sssttt[i-1];
-                                    list[4]=sssttt[i-4];
-                                    list[5]=sssttt[i-3];
-                                    list[6]=sssttt[i-2];
-                                    list[7]=sssttt[i-1];
+                                    list[3]=sssttt[i-4];
+                                    list[4]=sssttt[i-3];
+                                    list[5]=sssttt[i-2];
+                                    list[6]=sssttt[i-1];
                                     break;
                                 case 4:
                                     textOut_bol = true;
@@ -568,11 +599,11 @@ public class EditDrama extends Activity {
                                     textOut_6=sssttt[i-3];
                                     textOut_7=sssttt[i-2];
                                     textOut_8=sssttt[i-1];
-                                    list[4]=sssttt[i-5];
-                                    list[5]=sssttt[i-4];
-                                    list[6]=sssttt[i-3];
-                                    list[7]=sssttt[i-2];
-                                    list[8]=sssttt[i-1];
+                                    list[3]=sssttt[i-5];
+                                    list[4]=sssttt[i-4];
+                                    list[5]=sssttt[i-3];
+                                    list[6]=sssttt[i-2];
+                                    list[7]=sssttt[i-1];
                                     break;
                             }
                         }
@@ -583,6 +614,21 @@ public class EditDrama extends Activity {
         }catch (Exception e){
             e.printStackTrace();
         }
+
+        btn_speak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
+                    if (ContextCompat.checkSelfPermission(EditDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(EditDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                    } else {
+                        BringImagePicker();
+                    }
+                } else {  //拍照
+                    BringImagePicker();
+                }
+            }
+        });
 
 
 
@@ -1523,6 +1569,8 @@ public class EditDrama extends Activity {
                     if (list[i] == null){
                         x=i;
                         break;
+                    }else{
+                        x=8;
                     }
                 }
 
@@ -1608,7 +1656,7 @@ public class EditDrama extends Activity {
             case R.id.option_edit_3:
                 switch (choose) {
                     case 1:
-                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(CreatDrama.spinner_drame_word+"/"+pathword_a);
+                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(spinner_drame_word+"/"+pathword_a);
                         playtimeA = playtimeA + 1;;
                         fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
@@ -1636,7 +1684,7 @@ public class EditDrama extends Activity {
                         });
                         break;
                     case 2:
-                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(CreatDrama.spinner_drame_word+"/"+pathword_b);
+                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(spinner_drame_word+"/"+pathword_b);
                         playtimeB += 1;
                         fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
@@ -1664,7 +1712,7 @@ public class EditDrama extends Activity {
                         });
                         break;
                     case 3:
-                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(CreatDrama.spinner_drame_word+"/"+pathword_3);
+                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(spinner_drame_word+"/"+pathword_3);
                         playtime3 += 1;
                         fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
@@ -1692,7 +1740,7 @@ public class EditDrama extends Activity {
                         });
                         break;
                     case 4:
-                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(CreatDrama.spinner_drame_word+"/"+pathword_4);
+                        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(spinner_drame_word+"/"+pathword_4);
                         playtime4 += 1;
                         fire_dramarecord.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
@@ -1810,6 +1858,21 @@ public class EditDrama extends Activity {
                 public void onClick(View v) {
                     tts_count++;
                     TTS.speak(editText1.getText().toString());
+                    if(!editText1.getText().toString().equals("")){
+                        try {
+                            //上傳點擊行為與時間點
+                            String date = sdf.format(new java.util.Date());
+                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("聆聽TTS");
+
+                            fire_60sec_student_data.child(date).child("Dialog Text").setValue(editText1.getText().toString().trim());
+                            fire_60sec_student_data.child(date).child("Dialog Number").setValue("Say1");
+                            fire_60sec_student_data.child(date).child("Dialog Role Name").setValue(info1.trim());
+                        }catch (Exception e){
+                            e.printStackTrace();
+                            Toast.makeText(EditDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }
             });
         }catch (Exception e) {
@@ -1843,7 +1906,13 @@ public class EditDrama extends Activity {
                             say1.setText(spb);
                             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) say1.getLayoutParams();
                             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                            if(params.width<100){
+                                params.width = 400;
+                            }
                             say1.setLayoutParams(params);
+                            Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                            drawable.setBounds(0, 0, 40,40);
+                            say1.setCompoundDrawables(drawable, null,null, null);
 //                            re_a=true;
 //                            re_a_line=editText1.getText().toString();
                             drama.dismiss();
@@ -1894,7 +1963,7 @@ public class EditDrama extends Activity {
 
             }
         });
-        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(CreatDrama.spinner_drame_word+"/"+pathword_a);
+        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(spinner_drame_word+"/"+pathword_a);
         //角色A對話錄音停止
         stop1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1924,6 +1993,21 @@ public class EditDrama extends Activity {
                         public void onComplete(@NonNull Task<Uri> task) {
                             Uri uri = task.getResult();
                             record_download_url_a = uri.toString();
+                            try {
+                                //上傳點擊行為與時間點
+                                String date = sdf.format(new java.util.Date());
+                                DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                        .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("對話錄音");
+
+                                if(!editText1.getText().toString().equals("")){
+                                    fire_60sec_student_data.child(date).child("Dialog Text").setValue(editText1.getText().toString().trim());
+                                }
+                                fire_60sec_student_data.child(date).child("Dialog Number").setValue("Say1");
+                                fire_60sec_student_data.child(date).child("Dialog Role Name").setValue(info1.trim());
+                            }catch (Exception e){
+                                e.printStackTrace();
+                                Toast.makeText(EditDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }).continueWithTask(new Continuation<Uri, Task<Void>>() {
                         @Override
@@ -2036,6 +2120,21 @@ public class EditDrama extends Activity {
                 public void onClick(View v) {
                     tts_count++;
                     TTS.speak(editText2.getText().toString());
+                    if(!editText2.getText().toString().equals("")){
+                        try {
+                            //上傳點擊行為與時間點
+                            String date = sdf.format(new java.util.Date());
+                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("聆聽TTS");
+
+                            fire_60sec_student_data.child(date).child("Dialog Text").setValue(editText2.getText().toString().trim());
+                            fire_60sec_student_data.child(date).child("Dialog Number").setValue("Say2");
+                            fire_60sec_student_data.child(date).child("Dialog Role Name").setValue(info2.trim());
+                        }catch (Exception e){
+                            e.printStackTrace();
+                            Toast.makeText(EditDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }
             });
         }catch (Exception e) {
@@ -2067,7 +2166,13 @@ public class EditDrama extends Activity {
                             say2.setText(spb);
                             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) say2.getLayoutParams();
                             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                            if(params.width<100){
+                                params.width = 400;
+                            }
                             say2.setLayoutParams(params);
+                            Drawable drawable2 = getResources().getDrawable(R.drawable.line2);
+                            drawable2.setBounds(0, 0, 40,40);
+                            say2.setCompoundDrawables(drawable2, null,null, null);
 //                            re_b=true;
 //                            re_b_line=editText2;
                             findViewById(R.id.adddialog2).setEnabled(true);
@@ -2117,7 +2222,7 @@ public class EditDrama extends Activity {
 
             }
         });
-        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(CreatDrama.spinner_drame_word+"/"+pathword_b);
+        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(spinner_drame_word+"/"+pathword_b);
         //角色A對話錄音停止
         stop2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -2147,6 +2252,21 @@ public class EditDrama extends Activity {
                         public void onComplete(@NonNull Task<Uri> task) {
                             Uri uri = task.getResult();
                             record_download_url_b = uri.toString();
+                            try {
+                                //上傳點擊行為與時間點
+                                String date = sdf.format(new java.util.Date());
+                                DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                        .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("對話錄音");
+
+                                if(!editText2.getText().toString().equals("")){
+                                    fire_60sec_student_data.child(date).child("Dialog Text").setValue(editText2.getText().toString().trim());
+                                }
+                                fire_60sec_student_data.child(date).child("Dialog Number").setValue("Say2");
+                                fire_60sec_student_data.child(date).child("Dialog Role Name").setValue(info2.trim());
+                            }catch (Exception e){
+                                e.printStackTrace();
+                                Toast.makeText(EditDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }).continueWithTask(new Continuation<Uri, Task<Void>>() {
                         @Override
@@ -2259,6 +2379,21 @@ public class EditDrama extends Activity {
                 public void onClick(View v) {
                     tts_count++;
                     TTS.speak(editText3.getText().toString());
+                    if(!editText3.getText().toString().equals("")){
+                        try {
+                            //上傳點擊行為與時間點
+                            String date = sdf.format(new java.util.Date());
+                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("聆聽TTS");
+
+                            fire_60sec_student_data.child(date).child("Dialog Text").setValue(editText3.getText().toString().trim());
+                            fire_60sec_student_data.child(date).child("Dialog Number").setValue("Say3");
+                            fire_60sec_student_data.child(date).child("Dialog Role Name").setValue(info3.trim());
+                        }catch (Exception e){
+                            e.printStackTrace();
+                            Toast.makeText(EditDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }
             });
         }catch (Exception e) {
@@ -2290,9 +2425,15 @@ public class EditDrama extends Activity {
                             say3.setText(spb);
                             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) say3.getLayoutParams();
                             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                            if(params.width<100){
+                                params.width = 400;
+                            }
 //                            re_3=true;
 //                            re_3_line=editText3;
                             say3.setLayoutParams(params);
+                            Drawable drawable3 = getResources().getDrawable(R.drawable.line3);
+                            drawable3.setBounds(0, 0, 40,40);
+                            say3.setCompoundDrawables(drawable3, null,null, null);
 //                            findViewById(R.id.adddialog2).setEnabled(true);
                             drama.dismiss();
                             Toast.makeText(getApplicationContext(), info3+"對話已建立", Toast.LENGTH_SHORT).show();
@@ -2340,7 +2481,7 @@ public class EditDrama extends Activity {
 
             }
         });
-        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(CreatDrama.spinner_drame_word+"/"+pathword_3);
+        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(spinner_drame_word+"/"+pathword_3);
         //角色A對話錄音停止
         stop3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -2370,6 +2511,21 @@ public class EditDrama extends Activity {
                         public void onComplete(@NonNull Task<Uri> task) {
                             Uri uri = task.getResult();
                             record_download_url_3 = uri.toString();
+                            try {
+                                //上傳點擊行為與時間點
+                                String date = sdf.format(new java.util.Date());
+                                DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                        .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("對話錄音");
+
+                                if(!editText3.getText().toString().equals("")){
+                                    fire_60sec_student_data.child(date).child("Dialog Text").setValue(editText3.getText().toString().trim());
+                                }
+                                fire_60sec_student_data.child(date).child("Dialog Number").setValue("Say3");
+                                fire_60sec_student_data.child(date).child("Dialog Role Name").setValue(info3.trim());
+                            }catch (Exception e){
+                                e.printStackTrace();
+                                Toast.makeText(EditDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }).continueWithTask(new Continuation<Uri, Task<Void>>() {
                         @Override
@@ -2482,6 +2638,21 @@ public class EditDrama extends Activity {
                 public void onClick(View v) {
                     tts_count++;
                     TTS.speak(editText4.getText().toString());
+                    if(!editText4.getText().toString().equals("")){
+                        try {
+                            //上傳點擊行為與時間點
+                            String date = sdf.format(new java.util.Date());
+                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("聆聽TTS");
+
+                            fire_60sec_student_data.child(date).child("Dialog Text").setValue(editText4.getText().toString().trim());
+                            fire_60sec_student_data.child(date).child("Dialog Number").setValue("Say4");
+                            fire_60sec_student_data.child(date).child("Dialog Role Name").setValue(info4.trim());
+                        }catch (Exception e){
+                            e.printStackTrace();
+                            Toast.makeText(EditDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }
             });
         }catch (Exception e) {
@@ -2513,7 +2684,13 @@ public class EditDrama extends Activity {
                             say4.setText(spb);
                             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) say4.getLayoutParams();
                             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                            if(params.width<100){
+                                params.width = 400;
+                            }
                             say4.setLayoutParams(params);
+                            Drawable drawable4 = getResources().getDrawable(R.drawable.line4);
+                            drawable4.setBounds(0, 0, 40,40);
+                            say4.setCompoundDrawables(drawable4, null,null, null);
 //                            re_4=true;
 //                            re_4_line=editText4;
 //                            findViewById(R.id.adddialog2).setEnabled(true);
@@ -2563,7 +2740,7 @@ public class EditDrama extends Activity {
 
             }
         });
-        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(CreatDrama.spinner_drame_word+"/"+pathword_4);
+        fire_dramarecord = FirebaseStorage.getInstance().getReference().child(Student.Name).child(spinner_drame_word+"/"+pathword_4);
         //角色A對話錄音停止
         stop4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -2593,6 +2770,21 @@ public class EditDrama extends Activity {
                         public void onComplete(@NonNull Task<Uri> task) {
                             Uri uri = task.getResult();
                             record_download_url_4 = uri.toString();
+                            try {
+                                //上傳點擊行為與時間點
+                                String date = sdf.format(new java.util.Date());
+                                DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                        .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("對話錄音");
+
+                                if(!editText4.getText().toString().equals("")){
+                                    fire_60sec_student_data.child(date).child("Dialog Text").setValue(editText4.getText().toString().trim());
+                                }
+                                fire_60sec_student_data.child(date).child("Dialog Number").setValue("Say4");
+                                fire_60sec_student_data.child(date).child("Dialog Role Name").setValue(info4.trim());
+                            }catch (Exception e){
+                                e.printStackTrace();
+                                Toast.makeText(EditDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }).continueWithTask(new Continuation<Uri, Task<Void>>() {
                         @Override
@@ -3183,16 +3375,22 @@ public class EditDrama extends Activity {
 //    private ArrayList<StoreTheEditData> list_editdata;
 //    String push_key = fire_editdata.getKey();
     public void returnbackdata(){
-        Toast.makeText(this, CreatDrama.spinner_drame_word + " & 情境" +CreatDrama.num+"進行編輯" , Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, spinner_drame_word + " & 情境" +CreatDrama.num+"進行編輯" , Toast.LENGTH_SHORT).show();
+
         fire_editdata = FirebaseDatabase.getInstance().getReference()
-                .child("學生"+Student.Name+"號").child(CreatDrama.spinner_drame_word).child(Integer.toString(CreatDrama.num));
+                .child("學生"+Student.Name+"號").child(spinner_drame_word).child(String.valueOf(CreatDrama.num));
+
         fire_editdata.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 StoreTheEditData storeTheEditData = dataSnapshot.getValue(StoreTheEditData.class);
                 if(!isDestroy((Activity)editimage.getContext())){
-                    Glide.with(editimage.getContext()).load(storeTheEditData.getOriginalPhotoUri()).into(editimage);
+                    Glide
+                            .with(editimage.getContext())
+                            .load(dataSnapshot.child("originalPhotoUri").getValue().toString())
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true)
+                            .into(editimage);
                 }
                 playtimeA= storeTheEditData.getPlayerA_playtime();
                 playtimeB= storeTheEditData.getPlayerB_playtime();
@@ -3235,6 +3433,9 @@ public class EditDrama extends Activity {
                     spb.append(lyrics2);
                     spb.append(lyrics3);
                     say1.setText(spb);
+                    Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                    drawable.setBounds(0, 0, 40,40);
+                    say1.setCompoundDrawables(drawable, null,null, null);
                 }
                 if(storeTheEditData.getPlayerB_text().equals("") == false){
                     say2.setVisibility(VISIBLE);
@@ -3248,6 +3449,9 @@ public class EditDrama extends Activity {
                     spb.append(lyrics2);
                     spb.append(lyrics3);
                     say2.setText(spb);
+                    Drawable drawable2 = getResources().getDrawable(R.drawable.line2);
+                    drawable2.setBounds(0, 0, 40,40);
+                    say2.setCompoundDrawables(drawable2, null,null, null);
                 }
                 if(storeTheEditData.getPlayer3_text().equals("") == false){
                     say3.setVisibility(VISIBLE);
@@ -3261,6 +3465,9 @@ public class EditDrama extends Activity {
                     spb.append(lyrics2);
                     spb.append(lyrics3);
                     say3.setText(spb);
+                    Drawable drawable3 = getResources().getDrawable(R.drawable.line3);
+                    drawable3.setBounds(0, 0, 40,40);
+                    say3.setCompoundDrawables(drawable3, null,null, null);
                 }
                 if(storeTheEditData.getPlayer4_text().equals("") == false){
                     say4.setVisibility(VISIBLE);
@@ -3274,7 +3481,12 @@ public class EditDrama extends Activity {
                     spb.append(lyrics2);
                     spb.append(lyrics3);
                     say4.setText(spb);
+                    Drawable drawable4 = getResources().getDrawable(R.drawable.line4);
+                    drawable4.setBounds(0, 0, 40,40);
+                    say4.setCompoundDrawables(drawable4, null,null, null);
                 }
+
+                loadicon();
 
 //                say1.setVisibility(VISIBLE);
 //                say2.setVisibility(VISIBLE);
@@ -3329,7 +3541,7 @@ public class EditDrama extends Activity {
 
                                 //將編輯好的照片截圖傳進Firebase
                                 fire_finishphoto = FirebaseStorage.getInstance().getReference().child(Student.Name + "/EditFinish/"
-                                        + CreatDrama.spinner_drame_word + "/" + "edit_screen"+ CreatDrama.num + ".jpeg");
+                                        + spinner_drame_word + "/" + "edit_screen"+ CreatDrama.num + ".jpeg");
                                 fire_finishphoto.putFile(uri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                                     @Override
                                     public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
@@ -3349,10 +3561,10 @@ public class EditDrama extends Activity {
                                     public Task<Void> then(@NonNull Task<Uri> task) throws Exception {
 
                                         fire_editdata = FirebaseDatabase.getInstance().getReference()
-                                                .child("學生"+Student.Name+"號").child(CreatDrama.spinner_drame_word).child(Integer.toString(CreatDrama.num));
+                                                .child("學生"+Student.Name+"號").child(spinner_drame_word).child(Integer.toString(CreatDrama.num));
 
                                         fire_contextmenu = FirebaseDatabase.getInstance().getReference()
-                                                .child("學生"+Student.Name+"號").child(CreatDrama.spinner_drame_word);
+                                                .child("學生"+Student.Name+"號").child(spinner_drame_word);
 
                                         try {
                                             fire_contextmenu.child("contextmenu").child("4").setValue(textOut);
@@ -3366,7 +3578,6 @@ public class EditDrama extends Activity {
 
                                         if(CreatDrama.edit){
                                             fire_editdata.child("playerA_playtime").setValue(playtimeA);
-                                            Log.v("測試", String.valueOf(playtimeA));
                                             fire_editdata.child("playerA_record").setValue(record_download_url_a);
                                             fire_editdata.child("playerA_text").setValue(say1.getText().toString());
                                             fire_editdata.child("playerA_x").setValue(say1.getX());
@@ -3499,37 +3710,45 @@ public class EditDrama extends Activity {
     }
 
     private void loadicon(){
-        final String pathword_a = Student.Name + "_" + CreatDrama.spinner_drame_word + "_" + CreatDrama.num + "_" + "A.amr";
-        final String pathword_b = Student.Name + "_" + CreatDrama.spinner_drame_word + "_" + CreatDrama.num + "_" + "B.amr";
-        final String pathword_3 = Student.Name + "_" + CreatDrama.spinner_drame_word + "_" + CreatDrama.num + "_" + "3.amr";
-        final String pathword_4 = Student.Name + "_" + CreatDrama.spinner_drame_word + "_" + CreatDrama.num + "_" + "4.amr";
+        final String pathword_a = Student.Name + "_" + spinner_drame_word + "_" + CreatDrama.num + "_" + "A.amr";
+        final String pathword_b = Student.Name + "_" + spinner_drame_word + "_" + CreatDrama.num + "_" + "B.amr";
+        final String pathword_3 = Student.Name + "_" + spinner_drame_word + "_" + CreatDrama.num + "_" + "3.amr";
+        final String pathword_4 = Student.Name + "_" + spinner_drame_word + "_" + CreatDrama.num + "_" + "4.amr";
         final File f_a=new File("/sdcard/" + pathword_a);
         final File f_b=new File("/sdcard/" + pathword_b);
         final File f_3=new File("/sdcard/" + pathword_3);
         final File f_4=new File("/sdcard/" + pathword_4);
         if(f_a.exists())
         {
+            Drawable drawable = getResources().getDrawable(R.drawable.line1);
             Drawable drawable1 = getResources().getDrawable(R.drawable.advertising);
+            drawable.setBounds(0, 0, 40,40);
             drawable1.setBounds(0, 0, 40,40);
-            say1.setCompoundDrawables(null, null,drawable1, null);
+            say1.setCompoundDrawables(drawable, null,drawable1, null);
         }
         if(f_b.exists())
         {
+            Drawable drawable = getResources().getDrawable(R.drawable.line2);
             Drawable drawable1 = getResources().getDrawable(R.drawable.advertising);
+            drawable.setBounds(0, 0, 40,40);
             drawable1.setBounds(0, 0, 40,40);
-            say2.setCompoundDrawables(null, null,drawable1, null);
+            say2.setCompoundDrawables(drawable, null,drawable1, null);
         }
         if(f_3.exists())
         {
+            Drawable drawable = getResources().getDrawable(R.drawable.line3);
             Drawable drawable1 = getResources().getDrawable(R.drawable.advertising);
+            drawable.setBounds(0, 0, 40,40);
             drawable1.setBounds(0, 0, 40,40);
-            say3.setCompoundDrawables(null, null,drawable1, null);
+            say3.setCompoundDrawables(drawable, null,drawable1, null);
         }
         if(f_4.exists())
         {
+            Drawable drawable = getResources().getDrawable(R.drawable.line4);
             Drawable drawable1 = getResources().getDrawable(R.drawable.advertising);
+            drawable.setBounds(0, 0, 40,40);
             drawable1.setBounds(0, 0, 40,40);
-            say4.setCompoundDrawables(null, null,drawable1, null);
+            say4.setCompoundDrawables(drawable, null,drawable1, null);
         }
     }
 
@@ -3540,7 +3759,51 @@ public class EditDrama extends Activity {
         TTS.stop();
     }
 
+    private void BringImagePicker() {
+        CropImage.activity().
+                setGuidelines(CropImageView.Guidelines.ON).
+                setAspectRatio(12,10).
+                start(EditDrama.this);
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK){
+                Intent intent = new Intent();
+                Uri imageUri=result.getUri();
+                editimage.setImageURI(imageUri);
+                intent.putExtra("ori_uri",imageUri.toString());//可放所有基本類別
+                StorageReference fire_originalphoto = FirebaseStorage.getInstance().getReference()
+                        .child(Student.Name + "/OriginalPhoto/" + CreatDrama.spinner_drame_word + "/" + "ori_screen" + CreatDrama.num + ".jpeg");
+
+                fire_originalphoto.putFile(imageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                    @Override
+                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                        if(!task.isSuccessful()){
+                            throw  task.getException();
+                        }
+                        return fire_originalphoto.getDownloadUrl();
+                    }
+                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        Uri uri = task.getResult();
+                        CreatDrama.download_url = uri.toString();
+                    }
+                }).continueWithTask(new Continuation<Uri, Task<Void>>() {
+                    @Override
+                    public Task<Void> then(@NonNull Task<Uri> task) throws Exception {
+                        return null;
+                    }
+                });
+            }else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
+            }
+        }
+    }
 
     public void writeInfo(String fileName, String strWrite) {
         try {

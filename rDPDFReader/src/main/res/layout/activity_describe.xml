@@ -269,6 +269,13 @@
         android:text="全選"/>
 
     <Button
+        android:id="@+id/video"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/hinttext"
+        android:text="測試" />
+
+    <Button
         android:id="@+id/toolbar_show"
         android:layout_width="150dp"
         android:layout_height="60dp"

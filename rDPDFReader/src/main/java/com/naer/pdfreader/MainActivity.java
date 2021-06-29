@@ -152,24 +152,23 @@ public class MainActivity extends Activity implements OnClickListener {
 				.setDisplay(Display.SNACKBAR)
 				.setDisplay(Display.DIALOG)
 				.setDisplay(Display.NOTIFICATION)
-				.setUpdateFrom(UpdateFrom.GITHUB)
-				.setGitHubUserAndRepo("ewp200894", "RDPDFReader3")
-				.setTitleOnUpdateAvailable("Update available")
-				.setContentOnUpdateAvailable("Check out the latest version available of my app!")
-				.setTitleOnUpdateNotAvailable("Update not available")
-				.setContentOnUpdateNotAvailable("No update available. Check for updates again later!")
-				.setButtonUpdate("Update now?")
-				.setButtonDismiss("Maybe later")
-				.setButtonDoNotShowAgain("Huh, not interested")
+				.setUpdateFrom(UpdateFrom.XML)
+				.setUpdateXML("https://firebasestorage.googleapis.com/v0/b/carolvpen.appspot.com/o/apk%2Fupdate-changelog.xml?alt=media")
+				.setTitleOnUpdateAvailable("更新系統")
+				.setContentOnUpdateAvailable("目前有新版本釋出，請點擊Update更新軟體")
+				.setTitleOnUpdateNotAvailable("系統為最新版本，不須更新")
+				.setContentOnUpdateNotAvailable("目前系統為最新版本，不需要更新唷!")
+				.setButtonUpdate("現在更新?")
+				.setButtonDismiss("稍後更新")
+				.setButtonDoNotShowAgain("不要更新")
 				.setIcon(R.drawable.ic_baseline_cloud_download_24) // Notification icon
 				.setCancelable(false)
-				.showEvery(5)
-				.showAppUpdated(true); // Dialog could not be dismissable
+				.showEvery(5); // Dialog could not be dismissable
 		appUpdater.start();
 
 		AppUpdaterUtils appUpdaterUtils = new AppUpdaterUtils(this)
-				.setUpdateFrom(UpdateFrom.GITHUB)
-				.setGitHubUserAndRepo("ewp200894", "RDPDFReader3")
+				.setUpdateFrom(UpdateFrom.XML)
+				.setUpdateXML("https://firebasestorage.googleapis.com/v0/b/carolvpen.appspot.com/o/apk%2Fupdate-changelog.xml?alt=media")
 				.withListener(new AppUpdaterUtils.UpdateListener() {
 					@Override
 					public void onSuccess(Update update, Boolean isUpdateAvailable) {

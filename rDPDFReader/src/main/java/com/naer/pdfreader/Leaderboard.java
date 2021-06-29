@@ -4,15 +4,21 @@ package com.naer.pdfreader;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -35,7 +41,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Random;
 
+import static android.view.View.VISIBLE;
+
 public class Leaderboard extends Activity implements SearchView.OnQueryTextListener {
+
+    private Context context;
     private RecyclerView recyclerView;
     private RecyclerView recyclerView2;
     private RecyclerView recyclerView3;
@@ -66,6 +76,8 @@ public class Leaderboard extends Activity implements SearchView.OnQueryTextListe
     private static int[] marks2;
     private static int[] marks3;
     private static int[] marks4;
+    private Toolbar toolbar;
+
 
 
     @Override
@@ -76,6 +88,7 @@ public class Leaderboard extends Activity implements SearchView.OnQueryTextListe
 
         nameAsce = true;
         marksAsce = false;
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
         textView = (TextView)findViewById(R.id.textview);
         recyclerView = (RecyclerView) findViewById(R.id.recycle);
         recyclerView2 = (RecyclerView) findViewById(R.id.recycle2);
@@ -94,6 +107,39 @@ public class Leaderboard extends Activity implements SearchView.OnQueryTextListe
         recyclerView2.setLayoutManager(new LinearLayoutManager(this));
         recyclerView3.setLayoutManager(new LinearLayoutManager(this));
         recyclerView4.setLayoutManager(new LinearLayoutManager(this));
+
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Leaderboard.this);
+                builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                final AlertDialog dialog = builder.create();
+                LayoutInflater inflater = getLayoutInflater();
+                View dialogLayout = inflater.inflate(R.layout.imageview, null);
+                dialog.setView(dialogLayout);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.show();
+                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface d) {
+                        ImageView image = (ImageView) dialog.findViewById(R.id.goProDialogImage);
+                        Bitmap icon = BitmapFactory.decodeResource(context.getResources(),
+                                R.drawable.leaderboard);
+                        float imageWidthInPX = (float)image.getWidth();
+
+                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(Math.round(imageWidthInPX),
+                                Math.round(imageWidthInPX * (float)icon.getHeight() / (float)icon.getWidth()));
+                        image.setLayoutParams(layoutParams);
+
+
+                    }
+                });
+            }
+        });
 
 
         try {
@@ -114,7 +160,7 @@ public class Leaderboard extends Activity implements SearchView.OnQueryTextListe
                         marks=new int[user];
 
                         for (DataSnapshot each : dataSnapshot.getChildren()) {
-                            namearray[i]="學生"+each.getKey()+"號";
+                            namearray[i]=each.getKey()+"號";
                             marks[i]= (int) each.getValue(Integer.class);
                             i++;
                         }
@@ -237,7 +283,7 @@ public class Leaderboard extends Activity implements SearchView.OnQueryTextListe
                         marks2=new int[user];
 
                         for (DataSnapshot each : dataSnapshot.getChildren()) {
-                            namearray2[i]="學生"+each.getKey()+"號";
+                            namearray2[i]=each.getKey()+"號";
                             marks2[i]= (int) each.getValue(Integer.class);
                             i++;
                         }
@@ -281,7 +327,7 @@ public class Leaderboard extends Activity implements SearchView.OnQueryTextListe
                         marks3=new int[user];
 
                         for (DataSnapshot each : dataSnapshot.getChildren()) {
-                            namearray3[i]="學生"+each.getKey()+"號";
+                            namearray3[i]=each.getKey()+"號";
                             marks3[i]= (int) each.getValue(Integer.class);
                             i++;
                         }

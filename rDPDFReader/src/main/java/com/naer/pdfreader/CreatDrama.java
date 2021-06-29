@@ -93,6 +93,7 @@ public class CreatDrama extends Activity {
     private Button cancel;
     private Button finish_and_return;
     private int scoreview;
+    private static int x;
 
 
     //劇本編號所選擇的選項文字
@@ -119,19 +120,20 @@ public class CreatDrama extends Activity {
 
     public static boolean cantoload = false;
     private View view;
-    private boolean drama1_edit = false;
-    private boolean drama2_edit = false;
-    private boolean drama3_edit = false;
-    private boolean drama4_edit = false;
-    private boolean drama5_edit = false;
-    private boolean drama6_edit = false;
-    private boolean drama7_edit = false;
-    private boolean drama8_edit = false;
+    private static boolean drama1_edit = false;
+    private static boolean drama2_edit = false;
+    private static boolean drama3_edit = false;
+    private static boolean drama4_edit = false;
+    private static boolean drama5_edit = false;
+    private static boolean drama6_edit = false;
+    private static boolean drama7_edit = false;
+    private static boolean drama8_edit = false;
     private SwitchMultiButton  switchmultibutton;
 
     private final String[] Drama = new String[4];
     private DatabaseReference fire_dramaname;
     private Button delete;
+
 
 
     @Override
@@ -333,7 +335,7 @@ public class CreatDrama extends Activity {
         drama1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!TextUtils.equals("請選擇", spinner_drame_word) && !drama1_edit) {
+                if (!TextUtils.equals("請選擇", spinner_drame_word) && !drama1_edit || x<1) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
                         if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(CreatDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -343,15 +345,12 @@ public class CreatDrama extends Activity {
                     } else {  //拍照
                         BringImagePicker();
                     }
-                    Log.v("test", "false");
                     num = 1;
                     edit = false;
                     drama1_edit = true;
-                } else if(drama1_edit){
-                    Log.v("test","True");
+                } else if(drama1_edit && x>=1){
                     re_edit1();
-                }
-                else{
+                } else{
                     Toast.makeText(CreatDrama.this, "請先選擇劇本編號", Toast.LENGTH_SHORT).show();
                 }
 
@@ -362,7 +361,7 @@ public class CreatDrama extends Activity {
         drama2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama2_edit){
+                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama2_edit || x<2){
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
                         if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(CreatDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -375,7 +374,7 @@ public class CreatDrama extends Activity {
                     num = 2;
                     edit = false;
                     drama2_edit = true;
-                }else if(drama2_edit){
+                }else if(drama2_edit && x>=2){
                     re_edit2();
                 } else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
@@ -386,7 +385,7 @@ public class CreatDrama extends Activity {
         drama3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama3_edit){
+                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama3_edit || x<3){
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
                         if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(CreatDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -399,7 +398,7 @@ public class CreatDrama extends Activity {
                     num = 3;
                     edit = false;
                     drama3_edit = true;
-                }else if(drama3_edit){
+                }else if(drama3_edit && x>=3){
                     re_edit3();
                 } else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
@@ -410,20 +409,21 @@ public class CreatDrama extends Activity {
         drama4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama4_edit){
+                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama4_edit || x<4){
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
                         if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(CreatDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
                         } else {
                             BringImagePicker();
+                            drama4_edit = true;
                         }
                     } else {  //拍照
                         BringImagePicker();
+                        drama4_edit = true;
                     }
                     num = 4;
                     edit = false;
-                    drama4_edit = true;
-                }else if(drama4_edit){
+                }else if(drama4_edit && x>=4){
                     re_edit4();
                 }else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
@@ -434,7 +434,7 @@ public class CreatDrama extends Activity {
         drama5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama5_edit){
+                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama5_edit || x<5){
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
                         if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(CreatDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -447,7 +447,7 @@ public class CreatDrama extends Activity {
                     num = 5;
                     edit = false;
                     drama5_edit = true;
-                }else if(drama5_edit){
+                }else if(drama5_edit && x>=5){
                     re_edit5();
                 }else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
@@ -488,7 +488,7 @@ public class CreatDrama extends Activity {
         drama6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama6_edit){
+                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama6_edit || x<6){
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
                         if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(CreatDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -501,7 +501,7 @@ public class CreatDrama extends Activity {
                     num = 6;
                     edit = false;
                     drama6_edit = true;
-                }else if(drama6_edit){
+                }else if(drama6_edit && x>=6){
                     re_edit6();
                 } else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
@@ -541,7 +541,7 @@ public class CreatDrama extends Activity {
         drama7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama7_edit){
+                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama7_edit || x<7){
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
                         if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(CreatDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -554,7 +554,7 @@ public class CreatDrama extends Activity {
                     num = 7;
                     edit = false;
                     drama7_edit = true;
-                }else if(drama7_edit){
+                }else if(drama7_edit && x>=7){
                     re_edit7();
                 } else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
@@ -594,7 +594,7 @@ public class CreatDrama extends Activity {
         drama8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama8_edit){
+                if(!TextUtils.equals("請選擇", spinner_drame_word) && !drama8_edit || x<8){
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
                         if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(CreatDrama.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -607,7 +607,7 @@ public class CreatDrama extends Activity {
                     num = 8;
                     edit = false;
                     drama8_edit = true;
-                }else if(drama8_edit){
+                }else if(drama8_edit && x>=8){
                     re_edit8();
                 } else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
@@ -924,8 +924,6 @@ public class CreatDrama extends Activity {
                 setGuidelines(CropImageView.Guidelines.ON).
                 setAspectRatio(6,3).
                 start(CreatDrama.this);
-
-
     }
 
     @Override
@@ -1117,13 +1115,26 @@ public class CreatDrama extends Activity {
     public static void ccc(){
         DatabaseReference fire_check_edit_exist;
         fire_check_edit_exist = FirebaseDatabase.getInstance().getReference();
+        drama1_edit = false;
+        drama2_edit = false;
+        drama3_edit = false;
+        drama4_edit = false;
+        drama5_edit = false;
+        drama6_edit = false;
+        drama7_edit = false;
+        drama8_edit = false;
 
         fire_check_edit_exist.child("學生"+Student.Name+"號").child(spinner_drame_word).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                double[] sssttt = new double[(int) dataSnapshot.getChildrenCount()];
-                 i = sssttt.length;
-                switch (i-2){
+                x=0;
+                for (DataSnapshot each : dataSnapshot.getChildren()) {
+                    if(each.getKey().equals("contextmenu") == false){
+                        x++;
+                    }
+                }
+                Log.v("測試", String.valueOf(x));
+                switch (x){
                     case 1:
                         drama5.setVisibility(INVISIBLE);
                         drama6.setVisibility(INVISIBLE);
@@ -1137,6 +1148,7 @@ public class CreatDrama extends Activity {
                         button2.setVisibility(INVISIBLE);
                         button3.setVisibility(INVISIBLE);
                         button4.setVisibility(INVISIBLE);
+                        drama1_edit = true;
                         break;
                     case 2:
                         drama5.setVisibility(INVISIBLE);
@@ -1151,6 +1163,8 @@ public class CreatDrama extends Activity {
                         button2.setVisibility(INVISIBLE);
                         button3.setVisibility(INVISIBLE);
                         button4.setVisibility(INVISIBLE);
+                        drama1_edit = true;
+                        drama2_edit = true;
                         break;
                     case 3:
                         drama5.setVisibility(INVISIBLE);
@@ -1165,6 +1179,9 @@ public class CreatDrama extends Activity {
                         button2.setVisibility(INVISIBLE);
                         button3.setVisibility(INVISIBLE);
                         button4.setVisibility(INVISIBLE);
+                        drama1_edit = true;
+                        drama2_edit = true;
+                        drama3_edit = true;
                         break;
                     case 4:
                         drama5.setVisibility(INVISIBLE);
@@ -1179,6 +1196,10 @@ public class CreatDrama extends Activity {
                         button2.setVisibility(INVISIBLE);
                         button3.setVisibility(INVISIBLE);
                         button4.setVisibility(INVISIBLE);
+                        drama1_edit = true;
+                        drama2_edit = true;
+                        drama3_edit = true;
+                        drama4_edit = true;
                         break;
                     case 5:
                         drama6.setVisibility(INVISIBLE);
@@ -1192,6 +1213,11 @@ public class CreatDrama extends Activity {
                         button2.setVisibility(VISIBLE);
                         button3.setVisibility(INVISIBLE);
                         button4.setVisibility(INVISIBLE);
+                        drama1_edit = true;
+                        drama2_edit = true;
+                        drama3_edit = true;
+                        drama4_edit = true;
+                        drama5_edit = true;
                         break;
                     case 6:
                         drama7.setVisibility(INVISIBLE);
@@ -1204,6 +1230,12 @@ public class CreatDrama extends Activity {
                         button2.setVisibility(INVISIBLE);
                         button3.setVisibility(VISIBLE);
                         button4.setVisibility(INVISIBLE);
+                        drama1_edit = true;
+                        drama2_edit = true;
+                        drama3_edit = true;
+                        drama4_edit = true;
+                        drama5_edit = true;
+                        drama6_edit = true;
                         break;
                     case 7:
                         drama8.setVisibility(INVISIBLE);
@@ -1214,8 +1246,34 @@ public class CreatDrama extends Activity {
                         button1.setVisibility(INVISIBLE);
                         button2.setVisibility(INVISIBLE);
                         button3.setVisibility(INVISIBLE);
-                        button4.setVisibility(INVISIBLE);
+                        button4.setVisibility(VISIBLE);
+                        drama1_edit = true;
+                        drama2_edit = true;
+                        drama3_edit = true;
+                        drama4_edit = true;
+                        drama5_edit = true;
+                        drama6_edit = true;
+                        drama7_edit = true;
                         break;
+                    case 8:
+                        creat5.setVisibility(VISIBLE);
+                        creat6.setVisibility(VISIBLE);
+                        creat7.setVisibility(VISIBLE);
+                        creat8.setVisibility(VISIBLE);
+                        button1.setVisibility(INVISIBLE);
+                        button2.setVisibility(INVISIBLE);
+                        button3.setVisibility(INVISIBLE);
+                        button4.setVisibility(INVISIBLE);
+                        drama1_edit = true;
+                        drama2_edit = true;
+                        drama3_edit = true;
+                        drama4_edit = true;
+                        drama5_edit = true;
+                        drama6_edit = true;
+                        drama7_edit = true;
+                        drama8_edit = true;
+                        break;
+
                 }
             }
 

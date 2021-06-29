@@ -1764,6 +1764,7 @@ drawable ic_baseline_keyboard_voice_24
 drawable ic_baseline_menu_book_24
 drawable ic_baseline_message_24
 drawable ic_baseline_notes_24
+drawable ic_baseline_pause_24
 drawable ic_baseline_photo_24
 drawable ic_baseline_play_circle_filled_24
 drawable ic_check_black_24dp
@@ -1788,10 +1789,15 @@ drawable icon_keyboardgone_selector
 drawable icon_photo_selector
 drawable icon_record_selector
 drawable icon_voice_selector
+drawable leaderboard
 drawable leavespattern11
 drawable letter_a
 drawable letter_b
 drawable light_veneer
+drawable line1
+drawable line2
+drawable line3
+drawable line4
 drawable list_background
 drawable listen_tts
 drawable listening_tts
@@ -2250,6 +2256,7 @@ id getanswer
 id ghost_view
 id ghost_view_holder
 id glowing_mic
+id goProDialogImage
 id gone
 id good
 id gps_view
@@ -2565,6 +2572,7 @@ id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
 id take_photo_text
 id takephoto
+id takephoto_right
 id talkmessage_gif
 id telldramanum
 id tellstunum
@@ -2663,6 +2671,10 @@ id useLogo
 id userTextView
 id userTextView_left
 id usernameMessage
+id video
+id videoView
+id video_imageview
+id video_spinner
 id view_dual
 id view_offset_helper
 id view_single
@@ -2817,6 +2829,7 @@ layout dlg_text
 layout fragment_messagechat
 layout give_the_hint
 layout image_item
+layout imageview
 layout list_layout
 layout marker_infowindow
 layout mtrl_alert_dialog
@@ -2890,6 +2903,7 @@ layout text_view_with_line_height_from_layout
 layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
+layout video
 menu aar_audio_recorder
 menu crop_image_menu
 menu example_menu

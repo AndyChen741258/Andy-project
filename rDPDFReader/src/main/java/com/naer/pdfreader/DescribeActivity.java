@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -57,10 +58,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -292,6 +295,11 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
     int creat_sentence = 0;
     int creat_see_other = 0;
 
+    //觀看範例影片
+    private Button video;
+    private Uri vidUri;
+    private int stopPosition=0;
+    private boolean stop = false;
 
 
     private LocationListener mLocationListener = new LocationListener() {
@@ -373,6 +381,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
     private String[] marker_name = new String[25];
     private String[] marker_time = new String[25];
     private String situation_word;
+    private VideoView video_view;
 
 
     @Override
@@ -401,6 +410,7 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
         place_tell = findViewById(R.id.place_tell);
 
         addmarker = findViewById(R.id.addmarker);
+        video = findViewById(R.id.video);
 
         //--------GPS顯示地點及經緯度--------
         PlaceName = findViewById(R.id.place);
@@ -445,6 +455,14 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
         //地圖
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map_fragment);
         mapFragment.getMapAsync(this::onMapReady);
+
+        //影片
+        video.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                video();
+            }
+        });
 
         
 
@@ -1463,6 +1481,9 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
                     }else if(score >= 80){
                         showdescribescore.append(Html.fromHtml("<br> <font color= #FFA500 >" + score + "%</font>"));
                         showdescribescore.append("\n很厲害欸! 快90%了，再試試看吧！");
+                    }else if(score >= 70){
+                        showdescribescore.append(Html.fromHtml("<br> <font color= #FFA500 >" + score + "%</font>"));
+                        showdescribescore.append("\n你念的不錯哦! 可以再更好,加油!");
                     }
 
 
@@ -1732,5 +1753,107 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
 //            return view;
 //        }
 //    }
+    
+    private void video() {
+        LayoutInflater inflater = LayoutInflater.from(DescribeActivity.this);
+        View diffView = inflater.inflate(R.layout.video, null);
+        video_view =diffView.findViewById(R.id.videoView);
+        TextView video_imageview = diffView.findViewById(R.id.video_imageview);
+        final String[] list = {"Step1-新增定位點", "Step2-拍攝照片", "Step3-建立語句", "Step4-聆聽語句發音","Step4-口說練習與儲存分享"};
+        final Spinner spinner= diffView.findViewById(R.id.video_spinner);
 
+        video_imageview.setVisibility(View.INVISIBLE);
+        ArrayAdapter<String> numberList=new ArrayAdapter<String>(DescribeActivity.this,
+                android.R.layout.simple_spinner_dropdown_item,
+                list);
+        spinner.setAdapter(numberList);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {//添加事件Spinner事件監聽
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                stop=false;
+                switch (position) {
+                    case 0:
+                        final String describe_1 = "describe_1.mp4";
+                        final File f_1=new File("/sdcard/Playlists/" + describe_1);
+                        if(f_1.exists()){
+                            vidUri = Uri.parse(f_1.getPath());
+                        }
+                        break;
+                    case 1:
+                        final String describe_2 = "describe_2.mp4";
+                        final File f_2=new File("/sdcard/Playlists/" + describe_2);
+                        if(f_2.exists()){
+                            vidUri = Uri.parse(f_2.getPath());
+                        }
+                        break;
+                    case 2:
+                        final String describe_3 = "describe_3.mp4";
+                        final File f_3=new File("/sdcard/Playlists/" + describe_3);
+                        if(f_3.exists()){
+                            vidUri = Uri.parse(f_3.getPath());
+                        }
+                        break;
+                    case 3:
+                        final String describe_4 = "describe_4.mp4";
+                        final File f_4=new File("/sdcard/Playlists/" + describe_4);
+                        if(f_4.exists()){
+                            vidUri = Uri.parse(f_4.getPath());
+                        }
+                        break;
+                    case 4:
+                        final String describe_5 = "describe_5.mp4";
+                        final File f_5=new File("/sdcard/Playlists/" + describe_5);
+                        if(f_5.exists()){
+                            vidUri = Uri.parse(f_5.getPath());
+                        }
+                        break;
+                }
+                final MediaController vidControl = new MediaController(DescribeActivity.this);
+                vidControl.setAnchorView(video_view);
+                video_view.setMediaController(vidControl);
+                video_view.setVideoURI(vidUri);
+                video_view.start();
+
+                video_view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(!stop){
+                            stopPosition = video_view.getCurrentPosition(); //stopPosition is an int
+                            video_view.pause();
+                            video_imageview.setVisibility(View.VISIBLE);
+                            stop = true;
+                            Toast.makeText(DescribeActivity.this, "暫停", Toast.LENGTH_SHORT).show();
+                        }else{
+                            stop = false;
+                            video_view.seekTo(stopPosition);
+                            video_imageview.setVisibility(View.INVISIBLE);
+                            video_view.start(); //Or use resume() if it doesn't work. I'm not sure
+                            Toast.makeText(DescribeActivity.this, "撥放", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+
+                video_view.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mp.reset();
+                        video_view.setVideoURI(vidUri);
+                        video_view.start();
+                    }
+                });
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {//沒有選時
+            }
+        });
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DescribeActivity.this, R.style.AlertDialogStyle);
+        alertDialogBuilder.setIcon(R.mipmap.photo_icon);
+        alertDialogBuilder.setTitle("\t教學影片");
+        alertDialogBuilder.setView(diffView);
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+        alertDialog.getWindow().setLayout(1500, 1500);
+    }
 }

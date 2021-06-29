@@ -94,8 +94,7 @@
         android:layout_marginLeft="80dp"
         android:layout_marginTop="675dp"
         android:layout_marginEnd="2dp"
-        android:visibility="invisible"
-        android:background="@drawable/ic_baseline_play_circle_filled_24" />
+        android:background="@drawable/take" />
 
     <TextView
         android:id="@+id/say1"

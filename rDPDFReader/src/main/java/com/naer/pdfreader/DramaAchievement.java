@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -28,6 +29,8 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.text.Editable;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StrikethroughSpan;
@@ -1618,10 +1621,7 @@ public class DramaAchievement extends Activity {
                         x++;
                     }
                 }
-                double[] sssttt = new double[(int) dataSnapshot.getChildrenCount()];
-                i = sssttt.length;
-                Log.v("測試", String.valueOf(x));
-                switch (i-2){
+                switch (x){
                     case 1:
                         drama5.setVisibility(INVISIBLE);
                         drama6.setVisibility(INVISIBLE);
@@ -1686,6 +1686,13 @@ public class DramaAchievement extends Activity {
                         creat7.setVisibility(VISIBLE);
                         creat8.setVisibility(VISIBLE);
                         break;
+
+                    case 8:
+                        creat5.setVisibility(VISIBLE);
+                        creat6.setVisibility(VISIBLE);
+                        creat7.setVisibility(VISIBLE);
+                        creat8.setVisibility(VISIBLE);
+                        break;
                 }
             }
 
@@ -1745,7 +1752,19 @@ public class DramaAchievement extends Activity {
                                     say2 = false;
                                     say3 = false;
                                     say4 = false;
-                                    practice_say.setText("\t"+s[0]);
+                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                    int i=s[0].indexOf(":");
+                                    String lyrics1 = s[0].substring(0,i).trim();
+                                    String lyrics2 = ":";
+                                    String lyrics3 = s[0].substring(i+1).trim();
+                                    spb.append(lyrics1);
+                                    spb.setSpan(new ForegroundColorSpan(Color.RED),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                    spb.append(lyrics2);
+                                    spb.append(lyrics3);
+                                    practice_say.setText(spb);
+                                    Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                    drawable.setBounds(0, 0, 40,40);
+                                    practice_say.setCompoundDrawables(drawable, null,null, null);
                                     choose=0;
                                     practice_say_right.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -1754,10 +1773,43 @@ public class DramaAchievement extends Activity {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                 practice_say.setText("\t"+s[choose+1]);
+                                                switch (choose+1){
+                                                    case 0:
+                                                        Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                                        drawable.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable, null,null, null);
+                                                        break;
+                                                    case 1:
+                                                        Drawable drawable2 = getResources().getDrawable(R.drawable.line2);
+                                                        drawable2.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable2, null,null, null);
+                                                        break;
+                                                    case 2:
+                                                        Drawable drawable3 = getResources().getDrawable(R.drawable.line3);
+                                                        drawable3.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable3, null,null, null);
+                                                        break;
+                                                    case 3:
+                                                        Drawable drawable4 = getResources().getDrawable(R.drawable.line4);
+                                                        drawable4.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable4, null,null, null);
+                                                        break;
+                                                }
                                                 if (choose+1 == int_bol_speak-1){
+                                                    practice_say.setText("\t"+s[choose+1]);
                                                     practice_say.setTextColor(Color.rgb(255,0,0));
                                                 }else{
-                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+//                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+                                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                                    int i=s[choose+1].indexOf(":");
+                                                    String lyrics1 = s[choose+1].substring(0,i).trim();
+                                                    String lyrics2 = ":";
+                                                    String lyrics3 = s[choose+1].substring(i+1).trim();
+                                                    spb.append(lyrics1);
+                                                    spb.setSpan(new ForegroundColorSpan(Color.rgb(255,0,0)),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                                    spb.append(lyrics2);
+                                                    spb.append(lyrics3);
+                                                    practice_say.setText(spb);
                                                 }
                                                 choose++;
                                                 one_listen = false;
@@ -1780,10 +1832,44 @@ public class DramaAchievement extends Activity {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                 practice_say.setText("\t"+s[choose-1]);
+                                                Log.v("測試", String.valueOf(choose-1));
+                                                switch (choose-1){
+                                                    case 0:
+                                                        Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                                        drawable.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable, null,null, null);
+                                                        break;
+                                                    case 1:
+                                                        Drawable drawable2 = getResources().getDrawable(R.drawable.line2);
+                                                        drawable2.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable2, null,null, null);
+                                                        break;
+                                                    case 2:
+                                                        Drawable drawable3 = getResources().getDrawable(R.drawable.line3);
+                                                        drawable3.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable3, null,null, null);
+                                                        break;
+                                                    case 3:
+                                                        Drawable drawable4 = getResources().getDrawable(R.drawable.line4);
+                                                        drawable4.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable4, null,null, null);
+                                                        break;
+                                                }
                                                 if (choose-1 == int_bol_speak-1){
+                                                    practice_say.setText("\t"+s[choose-1]);
                                                     practice_say.setTextColor(Color.rgb(255,0,0));
                                                 }else{
-                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+//                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+                                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                                    int i=s[choose-1].indexOf(":");
+                                                    String lyrics1 = s[choose-1].substring(0,i).trim();
+                                                    String lyrics2 = ":";
+                                                    String lyrics3 = s[choose-1].substring(i+1).trim();
+                                                    spb.append(lyrics1);
+                                                    spb.setSpan(new ForegroundColorSpan(Color.rgb(255,0,0)),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                                    spb.append(lyrics2);
+                                                    spb.append(lyrics3);
+                                                    practice_say.setText(spb);
                                                 }
                                                 choose--;
                                                 one_listen = false;
@@ -2164,6 +2250,21 @@ public class DramaAchievement extends Activity {
                             int i=practice_say.getText().toString().indexOf(":");
                             String tts=practice_say.getText().toString().substring(i,practice_say.length());
                             TTS.speak(tts);
+                            if(!tts.equals("")){
+                                try {
+                                    //上傳點擊行為與時間點
+                                    String date = sdf.format(new java.util.Date());
+                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽TTS");
+                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama"+drama_number);
+                                    fire_60sec_student_data.child(date).child("Text").setValue(tts);
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                }
+                            }
                         }
                     });
                     Glide.with(drama1.getContext()).load(dataSnapshot.child("editFinishPhotoUri").getValue().toString()).into(drama1);
@@ -2229,7 +2330,19 @@ public class DramaAchievement extends Activity {
                                     say2 = false;
                                     say3 = false;
                                     say4 = false;
-                                    practice_say.setText("\t"+s[0]);
+                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                    int i=s[0].indexOf(":");
+                                    String lyrics1 = s[0].substring(0,i).trim();
+                                    String lyrics2 = ":";
+                                    String lyrics3 = s[0].substring(i+1).trim();
+                                    spb.append(lyrics1);
+                                    spb.setSpan(new ForegroundColorSpan(Color.RED),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                    spb.append(lyrics2);
+                                    spb.append(lyrics3);
+                                    practice_say.setText(spb);
+                                    Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                    drawable.setBounds(0, 0, 40,40);
+                                    practice_say.setCompoundDrawables(drawable, null,null, null);
                                     choose=0;
                                     practice_say_right.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -2238,10 +2351,43 @@ public class DramaAchievement extends Activity {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                 practice_say.setText("\t"+s[choose+1]);
+                                                switch (choose+1){
+                                                    case 0:
+                                                        Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                                        drawable.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable, null,null, null);
+                                                        break;
+                                                    case 1:
+                                                        Drawable drawable2 = getResources().getDrawable(R.drawable.line2);
+                                                        drawable2.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable2, null,null, null);
+                                                        break;
+                                                    case 2:
+                                                        Drawable drawable3 = getResources().getDrawable(R.drawable.line3);
+                                                        drawable3.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable3, null,null, null);
+                                                        break;
+                                                    case 3:
+                                                        Drawable drawable4 = getResources().getDrawable(R.drawable.line4);
+                                                        drawable4.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable4, null,null, null);
+                                                        break;
+                                                }
                                                 if (choose+1 == int_bol_speak-1){
+                                                    practice_say.setText("\t"+s[choose+1]);
                                                     practice_say.setTextColor(Color.rgb(255,0,0));
                                                 }else{
-                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+//                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+                                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                                    int i=s[choose+1].indexOf(":");
+                                                    String lyrics1 = s[choose+1].substring(0,i).trim();
+                                                    String lyrics2 = ":";
+                                                    String lyrics3 = s[choose+1].substring(i+1).trim();
+                                                    spb.append(lyrics1);
+                                                    spb.setSpan(new ForegroundColorSpan(Color.rgb(255,0,0)),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                                    spb.append(lyrics2);
+                                                    spb.append(lyrics3);
+                                                    practice_say.setText(spb);
                                                 }
                                                 choose++;
                                                 one_listen = false;
@@ -2264,10 +2410,43 @@ public class DramaAchievement extends Activity {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                 practice_say.setText("\t"+s[choose-1]);
+                                                switch (choose-1){
+                                                    case 0:
+                                                        Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                                        drawable.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable, null,null, null);
+                                                        break;
+                                                    case 1:
+                                                        Drawable drawable2 = getResources().getDrawable(R.drawable.line2);
+                                                        drawable2.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable2, null,null, null);
+                                                        break;
+                                                    case 2:
+                                                        Drawable drawable3 = getResources().getDrawable(R.drawable.line3);
+                                                        drawable3.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable3, null,null, null);
+                                                        break;
+                                                    case 3:
+                                                        Drawable drawable4 = getResources().getDrawable(R.drawable.line4);
+                                                        drawable4.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable4, null,null, null);
+                                                        break;
+                                                }
                                                 if (choose-1 == int_bol_speak-1){
+                                                    practice_say.setText("\t"+s[choose-1]);
                                                     practice_say.setTextColor(Color.rgb(255,0,0));
                                                 }else{
-                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+//                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+                                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                                    int i=s[choose-1].indexOf(":");
+                                                    String lyrics1 = s[choose-1].substring(0,i).trim();
+                                                    String lyrics2 = ":";
+                                                    String lyrics3 = s[choose-1].substring(i+1).trim();
+                                                    spb.append(lyrics1);
+                                                    spb.setSpan(new ForegroundColorSpan(Color.rgb(255,0,0)),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                                    spb.append(lyrics2);
+                                                    spb.append(lyrics3);
+                                                    practice_say.setText(spb);
                                                 }
                                                 choose--;
                                                 one_listen = false;
@@ -2316,6 +2495,22 @@ public class DramaAchievement extends Activity {
                                                                 e.printStackTrace();
                                                             }
                                                             player.start();
+                                                            try {
+                                                                //上傳點擊行為與時間點
+                                                                String date = sdf.format(new java.util.Date());
+                                                                DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                        .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama2");
+
+                                                                fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                            }catch (Exception e){
+                                                                e.printStackTrace();
+                                                                Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                            }
                                                             listen_record_count++;
                                                             one_listen = true;
                                                         }
@@ -2327,6 +2522,22 @@ public class DramaAchievement extends Activity {
                                                     });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama2");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -2353,6 +2564,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama2");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -2364,6 +2591,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama2");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -2390,6 +2633,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama2");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -2401,6 +2660,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama2");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -2427,6 +2702,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama2");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -2438,6 +2729,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama2");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -2577,7 +2884,19 @@ public class DramaAchievement extends Activity {
                                     say2 = false;
                                     say3 = false;
                                     say4 = false;
-                                    practice_say.setText("\t"+s[0]);
+                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                    int i=s[0].indexOf(":");
+                                    String lyrics1 = s[0].substring(0,i).trim();
+                                    String lyrics2 = ":";
+                                    String lyrics3 = s[0].substring(i+1).trim();
+                                    spb.append(lyrics1);
+                                    spb.setSpan(new ForegroundColorSpan(Color.RED),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                    spb.append(lyrics2);
+                                    spb.append(lyrics3);
+                                    practice_say.setText(spb);
+                                    Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                    drawable.setBounds(0, 0, 40,40);
+                                    practice_say.setCompoundDrawables(drawable, null,null, null);
                                     choose=0;
                                     practice_say_right.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -2585,11 +2904,42 @@ public class DramaAchievement extends Activity {
                                             if (choose < s.length-1) {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
-                                                practice_say.setText("\t"+s[choose+1]);
+                                                switch (choose+1){
+                                                    case 0:
+                                                        Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                                        drawable.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable, null,null, null);
+                                                        break;
+                                                    case 1:
+                                                        Drawable drawable2 = getResources().getDrawable(R.drawable.line2);
+                                                        drawable2.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable2, null,null, null);
+                                                        break;
+                                                    case 2:
+                                                        Drawable drawable3 = getResources().getDrawable(R.drawable.line3);
+                                                        drawable3.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable3, null,null, null);
+                                                        break;
+                                                    case 3:
+                                                        Drawable drawable4 = getResources().getDrawable(R.drawable.line4);
+                                                        drawable4.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable4, null,null, null);
+                                                        break;
+                                                }
                                                 if (choose+1 == int_bol_speak-1){
+                                                    practice_say.setText("\t"+s[choose+1]);
                                                     practice_say.setTextColor(Color.rgb(255,0,0));
                                                 }else{
-                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+                                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                                    int i=s[choose+1].indexOf(":");
+                                                    String lyrics1 = s[choose+1].substring(0,i).trim();
+                                                    String lyrics2 = ":";
+                                                    String lyrics3 = s[choose+1].substring(i+1).trim();
+                                                    spb.append(lyrics1);
+                                                    spb.setSpan(new ForegroundColorSpan(Color.rgb(255,0,0)),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                                    spb.append(lyrics2);
+                                                    spb.append(lyrics3);
+                                                    practice_say.setText(spb);
                                                 }
                                                 choose++;
                                                 one_listen = false;
@@ -2611,11 +2961,42 @@ public class DramaAchievement extends Activity {
                                             if (choose-1 < s.length && choose > 0 ) {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
-                                                practice_say.setText("\t"+s[choose-1]);
+                                                switch (choose-1){
+                                                    case 0:
+                                                        Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                                        drawable.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable, null,null, null);
+                                                        break;
+                                                    case 1:
+                                                        Drawable drawable2 = getResources().getDrawable(R.drawable.line2);
+                                                        drawable2.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable2, null,null, null);
+                                                        break;
+                                                    case 2:
+                                                        Drawable drawable3 = getResources().getDrawable(R.drawable.line3);
+                                                        drawable3.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable3, null,null, null);
+                                                        break;
+                                                    case 3:
+                                                        Drawable drawable4 = getResources().getDrawable(R.drawable.line4);
+                                                        drawable4.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable4, null,null, null);
+                                                        break;
+                                                }
                                                 if (choose-1 == int_bol_speak-1){
+                                                    practice_say.setText("\t"+s[choose-1]);
                                                     practice_say.setTextColor(Color.rgb(255,0,0));
                                                 }else{
-                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+                                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                                    int i=s[choose-1].indexOf(":");
+                                                    String lyrics1 = s[choose-1].substring(0,i).trim();
+                                                    String lyrics2 = ":";
+                                                    String lyrics3 = s[choose-1].substring(i+1).trim();
+                                                    spb.append(lyrics1);
+                                                    spb.setSpan(new ForegroundColorSpan(Color.rgb(255,0,0)),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                                    spb.append(lyrics2);
+                                                    spb.append(lyrics3);
+                                                    practice_say.setText(spb);
                                                 }
                                                 choose--;
                                                 one_listen = false;
@@ -2664,6 +3045,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama3");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -2675,6 +3072,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama3");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -2712,6 +3125,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama3");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -2738,6 +3167,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama3");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -2749,6 +3194,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else {
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama3");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -2775,6 +3236,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama3");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -2786,6 +3263,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama3");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -2922,7 +3415,19 @@ public class DramaAchievement extends Activity {
                                     say2 = false;
                                     say3 = false;
                                     say4 = false;
-                                    practice_say.setText("\t"+s[0]);
+                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                    int i=s[0].indexOf(":");
+                                    String lyrics1 = s[0].substring(0,i).trim();
+                                    String lyrics2 = ":";
+                                    String lyrics3 = s[0].substring(i+1).trim();
+                                    spb.append(lyrics1);
+                                    spb.setSpan(new ForegroundColorSpan(Color.RED),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                    spb.append(lyrics2);
+                                    spb.append(lyrics3);
+                                    practice_say.setText(spb);
+                                    Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                    drawable.setBounds(0, 0, 40,40);
+                                    practice_say.setCompoundDrawables(drawable, null,null, null);
                                     choose=0;
                                     practice_say_right.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -2931,10 +3436,43 @@ public class DramaAchievement extends Activity {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                 practice_say.setText("\t"+s[choose+1]);
+                                                switch (choose+1){
+                                                    case 0:
+                                                        Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                                        drawable.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable, null,null, null);
+                                                        break;
+                                                    case 1:
+                                                        Drawable drawable2 = getResources().getDrawable(R.drawable.line2);
+                                                        drawable2.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable2, null,null, null);
+                                                        break;
+                                                    case 2:
+                                                        Drawable drawable3 = getResources().getDrawable(R.drawable.line3);
+                                                        drawable3.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable3, null,null, null);
+                                                        break;
+                                                    case 3:
+                                                        Drawable drawable4 = getResources().getDrawable(R.drawable.line4);
+                                                        drawable4.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable4, null,null, null);
+                                                        break;
+                                                }
                                                 if (choose+1 == int_bol_speak-1){
+                                                    practice_say.setText("\t"+s[choose+1]);
                                                     practice_say.setTextColor(Color.rgb(255,0,0));
                                                 }else{
-                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+//                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+                                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                                    int i=s[choose+1].indexOf(":");
+                                                    String lyrics1 = s[choose+1].substring(0,i).trim();
+                                                    String lyrics2 = ":";
+                                                    String lyrics3 = s[choose+1].substring(i+1).trim();
+                                                    spb.append(lyrics1);
+                                                    spb.setSpan(new ForegroundColorSpan(Color.rgb(255,0,0)),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                                    spb.append(lyrics2);
+                                                    spb.append(lyrics3);
+                                                    practice_say.setText(spb);
                                                 }
                                                 choose++;
                                                 one_listen = false;
@@ -2957,10 +3495,43 @@ public class DramaAchievement extends Activity {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                 practice_say.setText("\t"+s[choose-1]);
+                                                switch (choose-1){
+                                                    case 0:
+                                                        Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                                        drawable.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable, null,null, null);
+                                                        break;
+                                                    case 1:
+                                                        Drawable drawable2 = getResources().getDrawable(R.drawable.line2);
+                                                        drawable2.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable2, null,null, null);
+                                                        break;
+                                                    case 2:
+                                                        Drawable drawable3 = getResources().getDrawable(R.drawable.line3);
+                                                        drawable3.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable3, null,null, null);
+                                                        break;
+                                                    case 3:
+                                                        Drawable drawable4 = getResources().getDrawable(R.drawable.line4);
+                                                        drawable4.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable4, null,null, null);
+                                                        break;
+                                                }
                                                 if (choose-1 == int_bol_speak-1){
+                                                    practice_say.setText("\t"+s[choose-1]);
                                                     practice_say.setTextColor(Color.rgb(255,0,0));
                                                 }else{
-                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+//                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+                                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                                    int i=s[choose-1].indexOf(":");
+                                                    String lyrics1 = s[choose-1].substring(0,i).trim();
+                                                    String lyrics2 = ":";
+                                                    String lyrics3 = s[choose-1].substring(i+1).trim();
+                                                    spb.append(lyrics1);
+                                                    spb.setSpan(new ForegroundColorSpan(Color.rgb(255,0,0)),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                                    spb.append(lyrics2);
+                                                    spb.append(lyrics3);
+                                                    practice_say.setText(spb);
                                                 }
                                                 choose--;
                                                 one_listen = false;
@@ -3009,6 +3580,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama4");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -3020,6 +3607,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama4");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -3046,6 +3649,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama4");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -3057,6 +3676,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else {
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama4");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -3083,6 +3718,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama4");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -3094,6 +3745,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama4");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -3120,6 +3787,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama4");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -3131,6 +3814,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama4");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -3274,7 +3973,19 @@ public class DramaAchievement extends Activity {
                                      say2 = false;
                                      say3 = false;
                                      say4 = false;
-                                     practice_say.setText("\t"+s[0]);
+                                     SpannableStringBuilder spb = new SpannableStringBuilder();
+                                     int i=s[0].indexOf(":");
+                                     String lyrics1 = s[0].substring(0,i).trim();
+                                     String lyrics2 = ":";
+                                     String lyrics3 = s[0].substring(i+1).trim();
+                                     spb.append(lyrics1);
+                                     spb.setSpan(new ForegroundColorSpan(Color.RED),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                     spb.append(lyrics2);
+                                     spb.append(lyrics3);
+                                     practice_say.setText(spb);
+                                     Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                     drawable.setBounds(0, 0, 40,40);
+                                     practice_say.setCompoundDrawables(drawable, null,null, null);
                                      choose=0;
                                      practice_say_right.setOnClickListener(new View.OnClickListener() {
                                          @Override
@@ -3283,10 +3994,43 @@ public class DramaAchievement extends Activity {
                                                  practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                  practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                  practice_say.setText("\t"+s[choose+1]);
+                                                 switch (choose+1){
+                                                     case 0:
+                                                         Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                                         drawable.setBounds(0, 0, 40,40);
+                                                         practice_say.setCompoundDrawables(drawable, null,null, null);
+                                                         break;
+                                                     case 1:
+                                                         Drawable drawable2 = getResources().getDrawable(R.drawable.line2);
+                                                         drawable2.setBounds(0, 0, 40,40);
+                                                         practice_say.setCompoundDrawables(drawable2, null,null, null);
+                                                         break;
+                                                     case 2:
+                                                         Drawable drawable3 = getResources().getDrawable(R.drawable.line3);
+                                                         drawable3.setBounds(0, 0, 40,40);
+                                                         practice_say.setCompoundDrawables(drawable3, null,null, null);
+                                                         break;
+                                                     case 3:
+                                                         Drawable drawable4 = getResources().getDrawable(R.drawable.line4);
+                                                         drawable4.setBounds(0, 0, 40,40);
+                                                         practice_say.setCompoundDrawables(drawable4, null,null, null);
+                                                         break;
+                                                 }
                                                  if (choose+1 == int_bol_speak-1){
+                                                     practice_say.setText("\t"+s[choose+1]);
                                                      practice_say.setTextColor(Color.rgb(255,0,0));
                                                  }else{
-                                                     practice_say.setTextColor(Color.rgb(0,0,0));
+//                                                     practice_say.setTextColor(Color.rgb(0,0,0));
+                                                     SpannableStringBuilder spb = new SpannableStringBuilder();
+                                                     int i=s[choose+1].indexOf(":");
+                                                     String lyrics1 = s[choose+1].substring(0,i).trim();
+                                                     String lyrics2 = ":";
+                                                     String lyrics3 = s[choose+1].substring(i+1).trim();
+                                                     spb.append(lyrics1);
+                                                     spb.setSpan(new ForegroundColorSpan(Color.rgb(255,0,0)),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                                     spb.append(lyrics2);
+                                                     spb.append(lyrics3);
+                                                     practice_say.setText(spb);
                                                  }
                                                  choose++;
                                                  one_listen = false;
@@ -3309,10 +4053,43 @@ public class DramaAchievement extends Activity {
                                                  practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                  practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                  practice_say.setText("\t"+s[choose-1]);
+                                                 switch (choose-1){
+                                                     case 0:
+                                                         Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                                         drawable.setBounds(0, 0, 40,40);
+                                                         practice_say.setCompoundDrawables(drawable, null,null, null);
+                                                         break;
+                                                     case 1:
+                                                         Drawable drawable2 = getResources().getDrawable(R.drawable.line2);
+                                                         drawable2.setBounds(0, 0, 40,40);
+                                                         practice_say.setCompoundDrawables(drawable2, null,null, null);
+                                                         break;
+                                                     case 2:
+                                                         Drawable drawable3 = getResources().getDrawable(R.drawable.line3);
+                                                         drawable3.setBounds(0, 0, 40,40);
+                                                         practice_say.setCompoundDrawables(drawable3, null,null, null);
+                                                         break;
+                                                     case 3:
+                                                         Drawable drawable4 = getResources().getDrawable(R.drawable.line4);
+                                                         drawable4.setBounds(0, 0, 40,40);
+                                                         practice_say.setCompoundDrawables(drawable4, null,null, null);
+                                                         break;
+                                                 }
                                                  if (choose-1 == int_bol_speak-1){
+                                                     practice_say.setText("\t"+s[choose-1]);
                                                      practice_say.setTextColor(Color.rgb(255,0,0));
                                                  }else{
-                                                     practice_say.setTextColor(Color.rgb(0,0,0));
+//                                                     practice_say.setTextColor(Color.rgb(0,0,0));
+                                                     SpannableStringBuilder spb = new SpannableStringBuilder();
+                                                     int i=s[choose-1].indexOf(":");
+                                                     String lyrics1 = s[choose-1].substring(0,i).trim();
+                                                     String lyrics2 = ":";
+                                                     String lyrics3 = s[choose-1].substring(i+1).trim();
+                                                     spb.append(lyrics1);
+                                                     spb.setSpan(new ForegroundColorSpan(Color.rgb(255,0,0)),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                                     spb.append(lyrics2);
+                                                     spb.append(lyrics3);
+                                                     practice_say.setText(spb);
                                                  }
                                                  choose--;
                                                  one_listen = false;
@@ -3360,6 +4137,22 @@ public class DramaAchievement extends Activity {
                                                                      e.printStackTrace();
                                                                  }
                                                                  player.start();
+                                                                 try {
+                                                                     //上傳點擊行為與時間點
+                                                                     String date = sdf.format(new java.util.Date());
+                                                                     DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                             .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                     fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                     fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                     fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama5");
+
+                                                                     fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                 }catch (Exception e){
+                                                                     e.printStackTrace();
+                                                                     Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                 }
                                                                  listen_record_count++;
                                                                  one_listen = true;
                                                              }
@@ -3371,6 +4164,22 @@ public class DramaAchievement extends Activity {
                                                          });
                                                      }else {
                                                          player.start();
+                                                         try {
+                                                             //上傳點擊行為與時間點
+                                                             String date = sdf.format(new java.util.Date());
+                                                             DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                     .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                             fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                             fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                             fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama5");
+
+                                                             fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                         }catch (Exception e){
+                                                             e.printStackTrace();
+                                                             Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                         }
                                                          listen_record_count++;
                                                          one_listen = true;
                                                      }
@@ -3397,6 +4206,22 @@ public class DramaAchievement extends Activity {
                                                                      e.printStackTrace();
                                                                  }
                                                                  player.start();
+                                                                 try {
+                                                                     //上傳點擊行為與時間點
+                                                                     String date = sdf.format(new java.util.Date());
+                                                                     DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                             .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                     fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                     fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                     fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama5");
+
+                                                                     fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                 }catch (Exception e){
+                                                                     e.printStackTrace();
+                                                                     Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                 }
                                                                  listen_record_count++;
                                                                  one_listen = true;
                                                              }
@@ -3408,6 +4233,22 @@ public class DramaAchievement extends Activity {
                                                          });
                                                      }else {
                                                          player.start();
+                                                         try {
+                                                             //上傳點擊行為與時間點
+                                                             String date = sdf.format(new java.util.Date());
+                                                             DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                     .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                             fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                             fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                             fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama5");
+
+                                                             fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                         }catch (Exception e){
+                                                             e.printStackTrace();
+                                                             Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                         }
                                                          listen_record_count++;
                                                          one_listen = true;
                                                      }
@@ -3434,6 +4275,22 @@ public class DramaAchievement extends Activity {
                                                                      e.printStackTrace();
                                                                  }
                                                                  player.start();
+                                                                 try {
+                                                                     //上傳點擊行為與時間點
+                                                                     String date = sdf.format(new java.util.Date());
+                                                                     DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                             .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                     fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                     fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                     fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama5");
+
+                                                                     fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                 }catch (Exception e){
+                                                                     e.printStackTrace();
+                                                                     Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                 }
                                                                  listen_record_count++;
                                                                  one_listen = true;
                                                              }
@@ -3445,6 +4302,22 @@ public class DramaAchievement extends Activity {
                                                          });
                                                      }else{
                                                          player.start();
+                                                         try {
+                                                             //上傳點擊行為與時間點
+                                                             String date = sdf.format(new java.util.Date());
+                                                             DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                     .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                             fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                             fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                             fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama5");
+
+                                                             fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                         }catch (Exception e){
+                                                             e.printStackTrace();
+                                                             Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                         }
                                                          listen_record_count++;
                                                          one_listen = true;
                                                      }
@@ -3471,6 +4344,22 @@ public class DramaAchievement extends Activity {
                                                                      e.printStackTrace();
                                                                  }
                                                                  player.start();
+                                                                 try {
+                                                                     //上傳點擊行為與時間點
+                                                                     String date = sdf.format(new java.util.Date());
+                                                                     DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                             .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                     fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                     fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                     fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama5");
+
+                                                                     fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                 }catch (Exception e){
+                                                                     e.printStackTrace();
+                                                                     Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                 }
                                                                  listen_record_count++;
                                                                  one_listen = true;
                                                              }
@@ -3482,6 +4371,22 @@ public class DramaAchievement extends Activity {
                                                          });
                                                      }else{
                                                          player.start();
+                                                         try {
+                                                             //上傳點擊行為與時間點
+                                                             String date = sdf.format(new java.util.Date());
+                                                             DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                     .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                             fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                             fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                             fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama5");
+
+                                                             fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                         }catch (Exception e){
+                                                             e.printStackTrace();
+                                                             Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                         }
                                                          listen_record_count++;
                                                          one_listen = true;
                                                      }
@@ -3624,7 +4529,19 @@ public class DramaAchievement extends Activity {
                                     say2 = false;
                                     say3 = false;
                                     say4 = false;
-                                    practice_say.setText("\t"+s[0]);
+                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                    int i=s[0].indexOf(":");
+                                    String lyrics1 = s[0].substring(0,i).trim();
+                                    String lyrics2 = ":";
+                                    String lyrics3 = s[0].substring(i+1).trim();
+                                    spb.append(lyrics1);
+                                    spb.setSpan(new ForegroundColorSpan(Color.RED),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                    spb.append(lyrics2);
+                                    spb.append(lyrics3);
+                                    practice_say.setText(spb);
+                                    Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                    drawable.setBounds(0, 0, 40,40);
+                                    practice_say.setCompoundDrawables(drawable, null,null, null);
                                     choose=0;
                                     practice_say_right.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -3633,10 +4550,43 @@ public class DramaAchievement extends Activity {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                 practice_say.setText("\t"+s[choose+1]);
+                                                switch (choose+1){
+                                                    case 0:
+                                                        Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                                        drawable.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable, null,null, null);
+                                                        break;
+                                                    case 1:
+                                                        Drawable drawable2 = getResources().getDrawable(R.drawable.line2);
+                                                        drawable2.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable2, null,null, null);
+                                                        break;
+                                                    case 2:
+                                                        Drawable drawable3 = getResources().getDrawable(R.drawable.line3);
+                                                        drawable3.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable3, null,null, null);
+                                                        break;
+                                                    case 3:
+                                                        Drawable drawable4 = getResources().getDrawable(R.drawable.line4);
+                                                        drawable4.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable4, null,null, null);
+                                                        break;
+                                                }
                                                 if (choose+1 == int_bol_speak-1){
+                                                    practice_say.setText("\t"+s[choose+1]);
                                                     practice_say.setTextColor(Color.rgb(255,0,0));
                                                 }else{
-                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+//                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+                                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                                    int i=s[choose+1].indexOf(":");
+                                                    String lyrics1 = s[choose+1].substring(0,i).trim();
+                                                    String lyrics2 = ":";
+                                                    String lyrics3 = s[choose+1].substring(i+1).trim();
+                                                    spb.append(lyrics1);
+                                                    spb.setSpan(new ForegroundColorSpan(Color.rgb(255,0,0)),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                                    spb.append(lyrics2);
+                                                    spb.append(lyrics3);
+                                                    practice_say.setText(spb);
                                                 }
                                                 choose++;
                                                 one_listen = false;
@@ -3659,10 +4609,43 @@ public class DramaAchievement extends Activity {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                 practice_say.setText("\t"+s[choose-1]);
+                                                switch (choose-1){
+                                                    case 0:
+                                                        Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                                        drawable.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable, null,null, null);
+                                                        break;
+                                                    case 1:
+                                                        Drawable drawable2 = getResources().getDrawable(R.drawable.line2);
+                                                        drawable2.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable2, null,null, null);
+                                                        break;
+                                                    case 2:
+                                                        Drawable drawable3 = getResources().getDrawable(R.drawable.line3);
+                                                        drawable3.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable3, null,null, null);
+                                                        break;
+                                                    case 3:
+                                                        Drawable drawable4 = getResources().getDrawable(R.drawable.line4);
+                                                        drawable4.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable4, null,null, null);
+                                                        break;
+                                                }
                                                 if (choose-1 == int_bol_speak-1){
+                                                    practice_say.setText("\t"+s[choose-1]);
                                                     practice_say.setTextColor(Color.rgb(255,0,0));
                                                 }else{
-                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+//                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+                                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                                    int i=s[choose-1].indexOf(":");
+                                                    String lyrics1 = s[choose-1].substring(0,i).trim();
+                                                    String lyrics2 = ":";
+                                                    String lyrics3 = s[choose-1].substring(i+1).trim();
+                                                    spb.append(lyrics1);
+                                                    spb.setSpan(new ForegroundColorSpan(Color.rgb(255,0,0)),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                                    spb.append(lyrics2);
+                                                    spb.append(lyrics3);
+                                                    practice_say.setText(spb);
                                                 }
                                                 choose--;
                                                 one_listen = false;
@@ -3711,6 +4694,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama6");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -3722,6 +4721,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else {
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama6");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -3748,6 +4763,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama6");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -3759,6 +4790,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else {
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama6");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -3785,6 +4832,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama6");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -3796,6 +4859,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama6");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -3822,6 +4901,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama6");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -3833,6 +4928,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama6");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -3975,7 +5086,19 @@ public class DramaAchievement extends Activity {
                                     say2 = false;
                                     say3 = false;
                                     say4 = false;
-                                    practice_say.setText("\t"+s[0]);
+                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                    int i=s[0].indexOf(":");
+                                    String lyrics1 = s[0].substring(0,i).trim();
+                                    String lyrics2 = ":";
+                                    String lyrics3 = s[0].substring(i+1).trim();
+                                    spb.append(lyrics1);
+                                    spb.setSpan(new ForegroundColorSpan(Color.RED),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                    spb.append(lyrics2);
+                                    spb.append(lyrics3);
+                                    practice_say.setText(spb);
+                                    Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                    drawable.setBounds(0, 0, 40,40);
+                                    practice_say.setCompoundDrawables(drawable, null,null, null);
                                     choose=0;
                                     practice_say_right.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -3984,10 +5107,43 @@ public class DramaAchievement extends Activity {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                 practice_say.setText("\t"+s[choose+1]);
+                                                switch (choose+1){
+                                                    case 0:
+                                                        Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                                        drawable.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable, null,null, null);
+                                                        break;
+                                                    case 1:
+                                                        Drawable drawable2 = getResources().getDrawable(R.drawable.line2);
+                                                        drawable2.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable2, null,null, null);
+                                                        break;
+                                                    case 2:
+                                                        Drawable drawable3 = getResources().getDrawable(R.drawable.line3);
+                                                        drawable3.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable3, null,null, null);
+                                                        break;
+                                                    case 3:
+                                                        Drawable drawable4 = getResources().getDrawable(R.drawable.line4);
+                                                        drawable4.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable4, null,null, null);
+                                                        break;
+                                                }
                                                 if (choose+1 == int_bol_speak-1){
+                                                    practice_say.setText("\t"+s[choose+1]);
                                                     practice_say.setTextColor(Color.rgb(255,0,0));
                                                 }else{
-                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+//                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+                                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                                    int i=s[choose+1].indexOf(":");
+                                                    String lyrics1 = s[choose+1].substring(0,i).trim();
+                                                    String lyrics2 = ":";
+                                                    String lyrics3 = s[choose+1].substring(i+1).trim();
+                                                    spb.append(lyrics1);
+                                                    spb.setSpan(new ForegroundColorSpan(Color.rgb(255,0,0)),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                                    spb.append(lyrics2);
+                                                    spb.append(lyrics3);
+                                                    practice_say.setText(spb);
                                                 }
                                                 choose++;
                                                 one_listen = false;
@@ -4010,10 +5166,43 @@ public class DramaAchievement extends Activity {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                 practice_say.setText("\t"+s[choose-1]);
+                                                switch (choose-1){
+                                                    case 0:
+                                                        Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                                        drawable.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable, null,null, null);
+                                                        break;
+                                                    case 1:
+                                                        Drawable drawable2 = getResources().getDrawable(R.drawable.line2);
+                                                        drawable2.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable2, null,null, null);
+                                                        break;
+                                                    case 2:
+                                                        Drawable drawable3 = getResources().getDrawable(R.drawable.line3);
+                                                        drawable3.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable3, null,null, null);
+                                                        break;
+                                                    case 3:
+                                                        Drawable drawable4 = getResources().getDrawable(R.drawable.line4);
+                                                        drawable4.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable4, null,null, null);
+                                                        break;
+                                                }
                                                 if (choose-1 == int_bol_speak-1){
+                                                    practice_say.setText("\t"+s[choose-1]);
                                                     practice_say.setTextColor(Color.rgb(255,0,0));
                                                 }else{
-                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+//                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+                                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                                    int i=s[choose-1].indexOf(":");
+                                                    String lyrics1 = s[choose-1].substring(0,i).trim();
+                                                    String lyrics2 = ":";
+                                                    String lyrics3 = s[choose-1].substring(i+1).trim();
+                                                    spb.append(lyrics1);
+                                                    spb.setSpan(new ForegroundColorSpan(Color.rgb(255,0,0)),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                                    spb.append(lyrics2);
+                                                    spb.append(lyrics3);
+                                                    practice_say.setText(spb);
                                                 }
                                                 choose--;
                                                 one_listen = false;
@@ -4062,6 +5251,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama7");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -4073,6 +5278,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else {
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama7");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -4099,6 +5320,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama7");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -4110,6 +5347,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama7");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -4136,6 +5389,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama7");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -4147,6 +5416,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else {
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama7");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -4173,6 +5458,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama7");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -4184,6 +5485,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama7");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -4325,7 +5642,19 @@ public class DramaAchievement extends Activity {
                                     say2 = false;
                                     say3 = false;
                                     say4 = false;
-                                    practice_say.setText("\t"+s[0]);
+                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                    int i=s[0].indexOf(":");
+                                    String lyrics1 = s[0].substring(0,i).trim();
+                                    String lyrics2 = ":";
+                                    String lyrics3 = s[0].substring(i+1).trim();
+                                    spb.append(lyrics1);
+                                    spb.setSpan(new ForegroundColorSpan(Color.RED),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                    spb.append(lyrics2);
+                                    spb.append(lyrics3);
+                                    practice_say.setText(spb);
+                                    Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                    drawable.setBounds(0, 0, 40,40);
+                                    practice_say.setCompoundDrawables(drawable, null,null, null);
                                     choose=0;
                                     practice_say_right.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -4334,10 +5663,43 @@ public class DramaAchievement extends Activity {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                 practice_say.setText("\t"+s[choose+1]);
+                                                switch (choose+1){
+                                                    case 0:
+                                                        Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                                        drawable.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable, null,null, null);
+                                                        break;
+                                                    case 1:
+                                                        Drawable drawable2 = getResources().getDrawable(R.drawable.line2);
+                                                        drawable2.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable2, null,null, null);
+                                                        break;
+                                                    case 2:
+                                                        Drawable drawable3 = getResources().getDrawable(R.drawable.line3);
+                                                        drawable3.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable3, null,null, null);
+                                                        break;
+                                                    case 3:
+                                                        Drawable drawable4 = getResources().getDrawable(R.drawable.line4);
+                                                        drawable4.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable4, null,null, null);
+                                                        break;
+                                                }
                                                 if (choose+1 == int_bol_speak-1){
+                                                    practice_say.setText("\t"+s[choose+1]);
                                                     practice_say.setTextColor(Color.rgb(255,0,0));
                                                 }else{
-                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+//                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+                                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                                    int i=s[choose+1].indexOf(":");
+                                                    String lyrics1 = s[choose+1].substring(0,i).trim();
+                                                    String lyrics2 = ":";
+                                                    String lyrics3 = s[choose+1].substring(i+1).trim();
+                                                    spb.append(lyrics1);
+                                                    spb.setSpan(new ForegroundColorSpan(Color.rgb(255,0,0)),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                                    spb.append(lyrics2);
+                                                    spb.append(lyrics3);
+                                                    practice_say.setText(spb);
                                                 }
                                                 choose++;
                                                 one_listen = false;
@@ -4360,10 +5722,43 @@ public class DramaAchievement extends Activity {
                                                 practice_say_right.setBackgroundResource(R.drawable.ic_baseline_chevron_right_24);
                                                 practice_say_left.setBackgroundResource(R.drawable.ic_baseline_chevron_left_24);
                                                 practice_say.setText("\t"+s[choose-1]);
+                                                switch (choose-1){
+                                                    case 0:
+                                                        Drawable drawable = getResources().getDrawable(R.drawable.line1);
+                                                        drawable.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable, null,null, null);
+                                                        break;
+                                                    case 1:
+                                                        Drawable drawable2 = getResources().getDrawable(R.drawable.line2);
+                                                        drawable2.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable2, null,null, null);
+                                                        break;
+                                                    case 2:
+                                                        Drawable drawable3 = getResources().getDrawable(R.drawable.line3);
+                                                        drawable3.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable3, null,null, null);
+                                                        break;
+                                                    case 3:
+                                                        Drawable drawable4 = getResources().getDrawable(R.drawable.line4);
+                                                        drawable4.setBounds(0, 0, 40,40);
+                                                        practice_say.setCompoundDrawables(drawable4, null,null, null);
+                                                        break;
+                                                }
                                                 if (choose-1 == int_bol_speak-1){
+                                                    practice_say.setText("\t"+s[choose-1]);
                                                     practice_say.setTextColor(Color.rgb(255,0,0));
                                                 }else{
-                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+//                                                    practice_say.setTextColor(Color.rgb(0,0,0));
+                                                    SpannableStringBuilder spb = new SpannableStringBuilder();
+                                                    int i=s[choose-1].indexOf(":");
+                                                    String lyrics1 = s[choose-1].substring(0,i).trim();
+                                                    String lyrics2 = ":";
+                                                    String lyrics3 = s[choose-1].substring(i+1).trim();
+                                                    spb.append(lyrics1);
+                                                    spb.setSpan(new ForegroundColorSpan(Color.rgb(255,0,0)),0,lyrics1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                                    spb.append(lyrics2);
+                                                    spb.append(lyrics3);
+                                                    practice_say.setText(spb);
                                                 }
                                                 choose--;
                                                 one_listen = false;
@@ -4412,6 +5807,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama8");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -4423,6 +5834,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama8");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -4449,6 +5876,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama8");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -4460,6 +5903,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama8");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -4486,6 +5945,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama8");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -4497,6 +5972,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else{
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama8");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -4523,6 +6014,22 @@ public class DramaAchievement extends Activity {
                                                                     e.printStackTrace();
                                                                 }
                                                                 player.start();
+                                                                try {
+                                                                    //上傳點擊行為與時間點
+                                                                    String date = sdf.format(new java.util.Date());
+                                                                    DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                            .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                                    fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                                    fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                                    fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama8");
+
+                                                                    fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                                }
                                                                 listen_record_count++;
                                                                 one_listen = true;
                                                             }
@@ -4534,6 +6041,22 @@ public class DramaAchievement extends Activity {
                                                         });
                                                     }else {
                                                         player.start();
+                                                        try {
+                                                            //上傳點擊行為與時間點
+                                                            String date = sdf.format(new java.util.Date());
+                                                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("DramaAchievement").child("聆聽錄音");
+                                                            fire_60sec_student_data.child(date).child("Drama Name").setValue(select_string);
+
+                                                            fire_60sec_student_data.child(date).child("Student number").setValue(drama_studentNumber_word);
+
+                                                            fire_60sec_student_data.child(date).child("Drama Number").setValue("Drama8");
+
+                                                            fire_60sec_student_data.child(date).child("Text").setValue(practice_say.getText().toString().trim());
+                                                        }catch (Exception e){
+                                                            e.printStackTrace();
+                                                            Toast.makeText(DramaAchievement.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                                                        }
                                                         listen_record_count++;
                                                         one_listen = true;
                                                     }
@@ -4695,13 +6218,19 @@ public class DramaAchievement extends Activity {
                     // textSpeech.append(Html.fromHtml("<br>Correct: <font color=\""+ color +"\">" + score + "%</font>"));
                     //showdescribescore.setVisibility(View.VISIBLE);
                     if (score >= 90) {
+                        showdescribescore.setVisibility(View.VISIBLE);
                         showdescribescore.append(Html.fromHtml("<br> <font color=\"" + color + "\">" + score + "%</font>"));
                         showdescribescore.append("\n你念的很棒哦! 繼續保持");
                     } else if (score >= 80) {
+                        showdescribescore.setVisibility(View.VISIBLE);
                         showdescribescore.append(Html.fromHtml("<br> <font color= #FFA500 >" + score + "%</font>"));
                         showdescribescore.append("\n很厲害欸! 快90%了，再試試看吧！");
                     }
                     try {
+                        final String date = sdf.format(new java.util.Date());
+                        final DatabaseReference fire_timeclick = FirebaseDatabase.getInstance().getReference().child("學生" + Student.Name + "號").child("Student data")
+                                .child("點擊行為").child("DramaAchievement").child("口說練習");
+                        fire_timeclick.child(date).child("Score").setValue(score);
                         fire_speechdata = FirebaseDatabase.getInstance().getReference().child("學生" + Student.Name + "號").child("DramaAchievement");
                         fire_speechdata.child("SpeechData").child("Score").push().setValue(score);
                     }catch (Exception e){
