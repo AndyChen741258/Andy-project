@@ -194,16 +194,11 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
     private Button btn_recorder;
 
 
-
-
-
-
     private Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
             if (msg.what == 0x001) {
                 gps_view.setText(loc_msg);
-
             }
             return false;
         }
@@ -411,6 +406,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
         sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 
         readInfo(Student.Name+"號學生聊天機器人行為紀錄");
+
 
 
 
@@ -672,6 +668,10 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
 //    private String getHumanTimeText(long milliseconds) {
 //        return String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(milliseconds), TimeUnit.MILLISECONDS.toSeconds(milliseconds) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(milliseconds)));
 //    }
+
+
+
+
 
     private void BringImagePicker() {
         CropImage.activity().
@@ -2167,6 +2167,8 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
             });
         }
     }
+
+
 
 
 

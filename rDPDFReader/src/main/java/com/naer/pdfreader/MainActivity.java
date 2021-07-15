@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -18,8 +19,11 @@ import android.media.projection.MediaProjectionManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,6 +41,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.Builder;
 
@@ -142,8 +147,11 @@ public class MainActivity extends Activity implements OnClickListener {
 	private int best1=0;
 	private int best2=0;
 	private int best3=0;
+	private NotificationManager mNotificationManager;
+	private NotificationChannel chnnel;
 
 
+	@RequiresApi(api = Build.VERSION_CODES.O)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -261,6 +269,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		final String[] lunch2 = {"L5-Dialog", "L5-practice", "第一次作業", "第二次作業 ", "第三次作業", "戲劇成果1",
 				"戲劇成果2", "戲劇成果3"};
 
+		mNotificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+		chnnel=new NotificationChannel("ID","notification_text_a",NotificationManager.IMPORTANCE_HIGH);
+		mNotificationManager.createNotificationChannel(chnnel);
+		handler.post(runnable);
+
 
 		ArrayAdapter<String> lunchList = new ArrayAdapter<String>(MainActivity.this,
 				android.R.layout.simple_spinner_dropdown_item,
@@ -354,6 +367,126 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		//geofencingClient = LocationServices.getGeofencingClient(this);
 	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		//當按下鍵盤上返回按鈕，給出退出對話方塊
+		if(keyCode == KeyEvent.KEYCODE_BACK){
+			new AlertDialog.Builder(MainActivity.this)
+					.setIcon(R.drawable.ic_launcher)
+					.setTitle("編輯完畢?")
+					.setPositiveButton("確認", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							handler.removeCallbacks(runnable);
+						}
+					});
+
+		};
+		return super.onKeyDown(keyCode, event);
+	}
+
+	private Runnable runnable = new Runnable() {
+		@Override
+		public void run() {
+			handler.postDelayed(this,  21600000);
+			handler.sendEmptyMessage(1);
+		}
+	};
+
+	private Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			if(msg.what == 1){
+				java.util.Date date = new java.util.Date();
+				SimpleDateFormat df = new SimpleDateFormat("HH");
+				String str = df.format(date);
+				int a = Integer.parseInt(str);
+				Intent intent = new Intent(MainActivity.this,MainActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+				PendingIntent PI = PendingIntent.getActivity(MainActivity.this,0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
+				//上午
+				if (a > 8 && a <= 12) {
+					String[] welcome = new String[]{"What do you eat in the morning?",
+							"What did you do in the morning?",
+							"How's the weather in the morning?",};
+					Random x = new Random();
+					int welcome_number = x.nextInt(welcome.length);
+					Notification.Builder builder = new Notification.Builder(MainActivity.this);
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+						builder.setSmallIcon(R.drawable.ic_launcher)
+								.setChannelId("ID")
+								.setContentIntent(PI)
+								.setAutoCancel(true)
+								.setContentTitle("智慧提醒")
+								.setContentText(welcome[welcome_number]);
+					}
+					Notification notification = builder.build();
+					mNotificationManager.notify(0,notification);
+				}
+				//中午
+				else if (a > 12 && a <= 13) {
+					String[] welcome = new String[]{"What do you eat in the noon?",
+							"What did you do in the noon?",
+							"How's the weather in the noon?",};
+					Random x = new Random();
+					int welcome_number = x.nextInt(welcome.length);
+					Notification.Builder builder = new Notification.Builder(MainActivity.this);
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+						builder.setSmallIcon(R.drawable.ic_launcher)
+								.setChannelId("ID")
+								.setContentIntent(PI)
+								.setAutoCancel(true)
+								.setContentTitle("智慧提醒")
+								.setContentText(welcome[welcome_number]);
+					}
+					Notification notification = builder.build();
+					mNotificationManager.notify(0,notification);
+				}
+				//下午
+				else if (a > 13 && a <= 18) {
+					String[] welcome = new String[]{"What do you eat in the afternoon?",
+							"What did you do in the afternoon?",
+							"How's the weather in the afternoon?",};
+					Random x = new Random();
+					int welcome_number = x.nextInt(welcome.length);
+					Notification.Builder builder = new Notification.Builder(MainActivity.this);
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+						builder.setSmallIcon(R.drawable.ic_launcher)
+								.setChannelId("ID")
+								.setContentIntent(PI)
+								.setAutoCancel(true)
+								.setContentTitle("智慧提醒")
+								.setContentText(welcome[welcome_number]);
+					}
+					Notification notification = builder.build();
+					mNotificationManager.notify(0,notification);
+				}
+				//晚上
+				else if (a > 18 && a <= 24) {
+					Log.v("測試","執行");
+					String[] welcome = new String[]{"What do you eat in the night?",
+							"What did you do in the night?",
+							"How's the weather in the night?",};
+					Random x = new Random();
+					int welcome_number = x.nextInt(welcome.length);
+					Notification.Builder builder = new Notification.Builder(MainActivity.this);
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+						builder.setSmallIcon(R.drawable.ic_launcher)
+								.setChannelId("ID")
+								.setContentIntent(PI)
+								.setAutoCancel(true)
+								.setContentTitle("智慧提醒")
+								.setContentText(welcome[welcome_number]);
+					}
+					Notification notification = builder.build();
+					mNotificationManager.notify(0,notification);
+				}
+			}
+			super.handleMessage(msg);
+		}
+	};
+
 
 
 	@SuppressLint("InlinedApi")
