@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+    android:id="@+id/option_1"
+    android:title="Father" />
+
+    <item
+        android:id="@+id/option_2"
+        android:title="Brother" />
+    <item
+        android:id="@+id/option_3"
+        android:title="Sister" />
+    <item
+        android:id="@+id/option_4"
+        android:title="自訂角色" />
+
+</menu>

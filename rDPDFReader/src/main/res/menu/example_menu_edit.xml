@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/option_edit_0"
+        android:title="新增角色" />
+
+    <item
+        android:id="@+id/option_edit_1"
+        android:title="編輯角色" />
+
+    <item
+        android:id="@+id/option_edit_2"
+        android:title="編輯內容" />
+
+    <item
+        android:id="@+id/option_edit_3"
+        android:title="播放錄音" />
+
+    <item
+        android:id="@+id/option_edit_4"
+        android:title="隱藏對話框" />
+
+
+
+</menu>

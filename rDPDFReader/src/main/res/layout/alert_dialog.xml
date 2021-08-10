@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <RadioButton
+            android:id="@+id/Button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="All"
+            android:onClick="onRadioButtonClicked"
+            android:textSize="20dp"
+            android:paddingTop="5dp"
+            android:layout_marginTop="7dp"/>
+
+        <RadioButton
+            android:id="@+id/Button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pass"
+            android:onClick="onRadioButtonClicked"
+            android:paddingTop="5dp"
+            android:textSize="20dp"
+            android:layout_marginTop="7dp"/>
+
+        <RadioButton
+            android:id="@+id/Button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fail"
+            android:paddingTop="5dp"
+            android:layout_marginTop="7dp"
+            android:onClick="onRadioButtonClicked"
+            android:textSize="20dp"
+             />
+    </RadioGroup>
+
+
+</LinearLayout>

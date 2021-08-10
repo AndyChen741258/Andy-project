@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp">
+
+    <LinearLayout
+        android:layout_width="700dp"
+        android:layout_height="700dp"
+        android:layout_centerInParent="true"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="375dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="335dp"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:text="@string/user_diff_left_title"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/btn_tts_chatbot_left"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/ic_baseline_play_circle_filled_24"
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/userTextView_left"
+                    android:layout_width="375dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/textview_border"
+                    android:text=""
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:layout_width="375dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="Translate Chatbot"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/trans_speak_left"
+                    android:layout_width="375dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/textview_border"
+                    android:text=""
+                    android:textSize="22sp" />
+
+                <LinearLayout
+                    android:layout_width="374dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:text="Record Voice"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/show_time"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:textSize="24dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="375dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/recordplayer"
+                        android:layout_width="120dp"
+                        android:layout_height="70dp"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/record_btn"
+                        android:drawableLeft="@drawable/record_111"
+                        android:paddingLeft="5dp"
+                        android:text="開始錄音"
+                        android:textAlignment="center" />
+
+                    <Button
+                        android:id="@+id/stopplayer"
+                        android:layout_width="120dp"
+                        android:layout_height="70dp"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/record_btn"
+                        android:drawableLeft="@drawable/record_222"
+                        android:paddingLeft="5dp"
+                        android:text="停止錄音"
+                        android:textAlignment="center" />
+
+                    <Button
+                        android:id="@+id/playplayer"
+                        android:layout_width="120dp"
+                        android:layout_height="70dp"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/record_btn"
+                        android:drawableLeft="@drawable/playvoice_333"
+                        android:paddingLeft="5dp"
+                        android:text="播放錄音"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/wrongTextView_left"
+                    android:layout_width="375dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="@string/wrong_word_title"
+                    android:textColor="@color/orangeRed"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/takephoto"
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_above="@+id/place_tittle"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="65dp"
+                android:src="@drawable/noimage" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/wrongWordScrollView_left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fadeScrollbars="false"
+            android:scrollbarSize="5dp"
+            android:scrollbarThumbVertical="@color/colorPrimaryDark">
+
+            <LinearLayout
+                android:id="@+id/wrongWord_left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            </LinearLayout>
+        </ScrollView>
+
+
+    </LinearLayout>
+</RelativeLayout>

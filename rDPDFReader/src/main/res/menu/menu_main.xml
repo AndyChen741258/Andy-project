@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/tools"
+    xmlns:myapp="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/search"
+        android:title="Search"
+        android:theme="@style/AppTheme.NoActionBar"
+        myapp:showAsAction="always|collapseActionView"
+        myapp:actionViewClass="androidx.appcompat.widget.SearchView" />
+
+
+    <item android:title="SortOnName"
+        app:showAsAction="always"
+        android:id="@+id/sortOnName"
+        android:icon="@drawable/nameasec">
+
+    </item>
+
+    <item
+        android:title="SortOnMarks"
+        app:showAsAction="always"
+        android:id="@+id/sortOnMarks"
+        android:icon="@drawable/markdsec">
+    </item>
+
+    <item
+        android:title="Filter"
+        app:showAsAction="always"
+        android:id="@+id/filter"
+        android:icon="@drawable/filter">
+
+    </item>
+    <item
+        android:title="Maximum"
+        android:id="@+id/maximum">
+    </item>
+    <item
+        android:title="Minimum"
+        android:id="@+id/minimum">
+
+    </item>
+
+</menu>

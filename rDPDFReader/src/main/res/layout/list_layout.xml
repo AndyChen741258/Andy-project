@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5sp"
+        app:cardCornerRadius="12sp"
+        app:contentPadding="4sp"
+        android:foreground="@color/cardview_shadow_end_color"
+        app:cardBackgroundColor="@color/blue">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text"
+            android:textSize="28dp"
+            android:paddingBottom="4sp"
+            android:paddingTop="4sp"
+            android:paddingLeft="7sp"
+            android:textColor="@color/black1"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text1"
+            android:paddingLeft="150dp"
+            android:textSize="28dp"
+            android:textColor="@color/black1"
+            android:paddingTop="4sp">
+
+        </TextView>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rank"
+            android:paddingLeft="260dp"
+            android:paddingTop="4sp"
+            android:paddingBottom="4sp"
+            android:textSize="28sp"
+            android:textColor="@color/black1"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/maxim"
+            android:paddingLeft="100dp"
+            android:textSize="28sp"
+            android:paddingTop="4sp"
+            android:paddingBottom="4sp"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</LinearLayout>
