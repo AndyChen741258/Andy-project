@@ -315,8 +315,6 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
                 CheckLocation(latitude, longitude);//檢查地點是否在附近
                 Logger.d(String.format("%f, %f", location.getLatitude(), location.getLongitude()));
                 Log.d("hooooo", String.valueOf(longitude) + " : " + String.valueOf(latitude));
-
-
 //                sentence.setOnClickListener(new View.OnClickListener(){
 //                    @Override
 //                    public void onClick(View view) {
@@ -382,6 +380,8 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
     private String[] marker_time = new String[25];
     private String situation_word;
     private VideoView video_view;
+    private SimpleDateFormat sdf_now;
+    private String[] strings;
 
 
     @Override
@@ -425,32 +425,35 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
         toolbar_play = findViewById(R.id.toolbar_play);
         //初始化隱藏
 //        toolbar_show.setVisibility(INVISIBLE);
-        week1_hw_record.setVisibility(INVISIBLE);
-        toolbar_record.setVisibility(INVISIBLE);
-        toolbar_stop.setVisibility(INVISIBLE);
-        toolbar_play.setVisibility(INVISIBLE);
+//        week1_hw_record.setVisibility(INVISIBLE);
+//        toolbar_record.setVisibility(INVISIBLE);
+//        toolbar_stop.setVisibility(INVISIBLE);
+//        toolbar_play.setVisibility(INVISIBLE);
 
-        toolbar_show.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isShowOrNot == false) {
-                    Log.v("測試","執行");
-                    week1_hw_record.setVisibility(View.VISIBLE);
-                    toolbar_record.setVisibility(View.VISIBLE);
-                    toolbar_stop.setVisibility(View.VISIBLE);
-                    toolbar_play.setVisibility(View.VISIBLE); //設置顯示
-                    isShowOrNot = true;
-                } else {
-                    week1_hw_record.setVisibility(INVISIBLE);
-                    toolbar_record.setVisibility(INVISIBLE);
-                    toolbar_stop.setVisibility(INVISIBLE);
-                    toolbar_play.setVisibility(INVISIBLE); //設置隱藏
-                    isShowOrNot = false;
-                }
-            }
-        });
+//        toolbar_show.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (isShowOrNot == false) {
+//                    Log.v("測試","執行");
+//                    week1_hw_record.setVisibility(View.VISIBLE);
+//                    toolbar_record.setVisibility(View.VISIBLE);
+//                    toolbar_stop.setVisibility(View.VISIBLE);
+//                    toolbar_play.setVisibility(View.VISIBLE); //設置顯示
+//                    isShowOrNot = true;
+//                } else {
+//                    week1_hw_record.setVisibility(INVISIBLE);
+//                    toolbar_record.setVisibility(INVISIBLE);
+//                    toolbar_stop.setVisibility(INVISIBLE);
+//                    toolbar_play.setVisibility(INVISIBLE); //設置隱藏
+//                    isShowOrNot = false;
+//                }
+//            }
+//        });
 
         readInfo(Student.Name + "號學生描述情境行為紀錄");
+
+        //時間
+        sdf_now = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 
         //地圖
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map_fragment);
@@ -522,10 +525,43 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
             }
         });
 
+//        try {
+//            final DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference()
+//                    .child("學生" + Student.Name + "號").child("DescribeData").child("學生資料");
+//            databaseReference.child("描述內容").addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                    int i = 0;
+//                    strings = new String[(int) dataSnapshot.getChildrenCount()];
+//                    for (DataSnapshot each : dataSnapshot.getChildren()) {
+//                        strings [i] = String.valueOf(each.getValue());
+//                        i++;
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                }
+//            });
+//        }
+//        catch (Exception e){
+//            e.printStackTrace();
+//            Toast.makeText(DescribeActivity.this, "讀取學生語句錯誤", Toast.LENGTH_SHORT).show();
+//        }
+
 
         //--------錄音作業選單--------
         final String[] activity1_list = {"Homework_1_1", "Homework_1_2", "Homework_1_3", "Homework_2_1", "Homework_2_2", "Homework_3_1", "Homework_4_1"};
-        ArrayAdapter<String> hwList = new ArrayAdapter<String>(DescribeActivity.this,
+        ArrayAdapter<String> hwList;
+//        if (strings == null){
+//
+//        }else{
+//            hwList = new ArrayAdapter<String>(DescribeActivity.this,
+//                    android.R.layout.simple_spinner_dropdown_item,
+//                    strings);
+//        }
+        hwList = new ArrayAdapter<String>(DescribeActivity.this,
                 android.R.layout.simple_spinner_dropdown_item,
                 activity1_list);
         week1_hw_record.setAdapter(hwList);
@@ -761,6 +797,15 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
                 //fire_process_write_listen.child(studentdescribe.getText().toString().replaceAll("[,|.|!|?|']", "").trim()).push().setValue("TTS");
                 fire_listen_tts_time.child(choose_type_word).child("TTStime")
                         .push().setValue(studentdescribe.getText().toString().replaceAll("[,|.|!|?|']", "").trim());
+                try {
+                    final String date = sdf_now.format(new java.util.Date());
+                    final DatabaseReference fire_timeclick = FirebaseDatabase.getInstance().getReference().child("學生" + Student.Name + "號").child("Student data")
+                            .child("點擊行為").child("Describe").child("聆聽TTS發音");
+                    fire_timeclick.child(date).child("Describe Text").setValue(studentdescribe.getText().toString().trim());
+                }catch (Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(DescribeActivity.this, "儲存聆聽TTS發音錯誤", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -784,14 +829,15 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
                     recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
                     // 設定MediaRecorder錄製音訊的編碼為amr.
 
-                    hw_describe_pathword = Student.Name + "_" + hw1_list_word + ".amr";
+//                    hw_describe_pathword = Student.Name + "_" + hw1_list_word + ".amr";
+                    hw_describe_pathword = Student.Name + "_" + studentdescribe.getText().toString().trim() + ".amr";
                     recorder.setOutputFile("/sdcard/" + hw_describe_pathword);
 
                     // 設定錄製好的音訊檔案儲存路徑
                     try {
                         recorder.prepare();// 準備錄製
                         recorder.start();// 開始錄製
-                        Toast.makeText(DescribeActivity.this, "開始錄音" + hw1_list_word, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DescribeActivity.this, "開始錄音", Toast.LENGTH_SHORT).show();
 
                     } catch (IllegalStateException e) {
                         e.printStackTrace();
@@ -811,12 +857,25 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
             @Override
             public void onClick(View view) {
                 if (hw_isPress == false) {
-                    hw_describe_pathword = Student.Name + "_" + hw1_list_word + ".amr";
+//                    hw_describe_pathword = Student.Name + "_" + hw1_list_word + ".amr";
+                    hw_describe_pathword = Student.Name + "_" + studentdescribe.getText().toString().trim() + ".amr";
                     fire_hw_describe_record = FirebaseStorage.getInstance().getReference()
-                            .child(Student.Name).child(hw1_list_word + "/" + hw_describe_pathword);
+                            .child(Student.Name).child("Describe Record").child(studentdescribe.getText().toString().trim() + "/" + hw_describe_pathword);
 
                     recorder.stop();// 停止燒錄
-                    Toast.makeText(DescribeActivity.this, "停止錄音" + hw1_list_word, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DescribeActivity.this, "停止錄音", Toast.LENGTH_SHORT).show();
+
+                    try {
+                        //上傳點擊行為與時間點
+                        String date = sdf_now.format(new java.util.Date());
+                        DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("Describe").child("點擊錄音");
+                        fire_60sec_student_data.child(date).child("Describe Text").setValue(studentdescribe.getText().toString().trim());
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(DescribeActivity.this, "上傳點擊錄音紀錄失敗", Toast.LENGTH_SHORT).show();
+                    }
+
 
                     //上傳錄音檔至Firebase, 路徑為:"座號/Homework_1_1", 檔名為"學生座號_Homework_1_1.amr"
                     //並使用continueWithTask接回錄音檔url, 當按下播放鍵可以聽見錄音
@@ -839,7 +898,6 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
                     }).continueWithTask(new Continuation<Uri, Task<Void>>() {
                         @Override
                         public Task<Void> then(@NonNull Task<Uri> task) throws Exception {
-
                             return null;
                         }
                     });
@@ -858,12 +916,12 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
             @Override
             public void onClick(View view) {
                 fire_hw_describe_record = FirebaseStorage.getInstance().getReference()
-                        .child(Student.Name).child(hw1_list_word + "/" + hw_describe_pathword);
+                        .child(Student.Name).child("Describe Record").child(studentdescribe.getText().toString().trim() + "/" + hw_describe_pathword);
                 fire_hw_describe_record.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
                         hw_describe_Link = uri.toString();
-                        Toast.makeText(DescribeActivity.this, "播放錄音" + hw1_list_word, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DescribeActivity.this, "播放錄音", Toast.LENGTH_SHORT).show();
                         player = new MediaPlayer();
                         try {
                             player.setDataSource(hw_describe_Link);
@@ -876,6 +934,18 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
                             e.printStackTrace();
                         }
                         player.start();
+
+                        try {
+                            //上傳點擊行為與時間點
+                            String date = sdf_now.format(new java.util.Date());
+                            DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("Describe").child("撥放錄音");
+                            fire_60sec_student_data.child(date).child("Describe Text").setValue(studentdescribe.getText().toString().trim());
+                        }catch (Exception e){
+                            e.printStackTrace();
+                            Toast.makeText(DescribeActivity.this, "上傳點擊撥放錄音紀錄失敗", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -983,6 +1053,17 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
                                 );
                                 DescribeClickTime describeClickTime = new DescribeClickTime(
                                         vocabulary_clickTime, phrase_clickTime, sentence_clickTime, see_other_clickTime);
+                                try {
+                                    final String date = sdf_now.format(new java.util.Date());
+                                    final DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference()
+                                            .child("學生" + Student.Name + "號").child("DescribeData").child("學生資料");
+                                    databaseReference.child("描述內容").push().setValue(studentdescribe.getText().toString().trim());
+                                    databaseReference.child("儲存時間").push().setValue(date);
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                    Toast.makeText(DescribeActivity.this, "儲存學生資料錯誤", Toast.LENGTH_SHORT).show();
+                                }
+
 
                                 fire_describedata.child(choose_type_word).child(push_key).child("Content").setValue(describeData); //紀錄描述內容
                                 fire_describedata.child(choose_type_word).child(push_key).child("ClickTime").setValue(describeClickTime); //記錄過程中各個點擊次數
@@ -1266,7 +1347,6 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
         } else {
             Log.d(TAG, "REPLY IS NULL");
         }
-
     }
 
     @Override
@@ -1370,7 +1450,6 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
 
             @Override
             public View getInfoWindow(Marker marker) {
-
                 return null;
             }
 
@@ -1486,6 +1565,16 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
                         showdescribescore.append("\n你念的不錯哦! 可以再更好,加油!");
                     }
 
+                    try {
+                        final String date = sdf_now.format(new java.util.Date());
+                        final DatabaseReference fire_timeclick = FirebaseDatabase.getInstance().getReference().child("學生" + Student.Name + "號").child("Student data")
+                                .child("點擊行為").child("Describe").child("口說練習");
+                        fire_timeclick.child(date).child("Score").setValue(score);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(DescribeActivity.this, "儲存口說分數錯誤", Toast.LENGTH_SHORT).show();
+                    }
+
 
                     //紀錄Firebase口說的紀錄資料
                     String describeText = studentdescribe.getText().toString();
@@ -1553,6 +1642,17 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
                         encourage = "\n這句念得不是很正確哦！不要氣餒，再試試看！";
                         //showdescribescore.append("\n 這句念得不是很正確哦！不要氣餒，再試試看！");
                     }
+
+                    try {
+                        final String date = sdf_now.format(new java.util.Date());
+                        final DatabaseReference fire_timeclick = FirebaseDatabase.getInstance().getReference().child("學生" + Student.Name + "號").child("Student data")
+                                .child("點擊行為").child("Describe").child("口說練習");
+                        fire_timeclick.child(date).child("Score").setValue(similarity);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(DescribeActivity.this, "儲存口說分數錯誤", Toast.LENGTH_SHORT).show();
+                    }
+
                     // textSpeech.append(Html.fromHtml("<br>Similarity: <font color=\""+ color +"\">" + similarity + "%</font>"));
                     showdescribescore.setVisibility(View.VISIBLE);
                     showdescribescore.append(Html.fromHtml("<br> <font color=\""+ color +"\">" + similarity + "%</font>"));
@@ -1576,6 +1676,18 @@ public class DescribeActivity extends Activity implements OnMapReadyCallback, Go
                     //StudentsSpeech studentsSpeech = new StudentsSpeech(CompareSentences.toString().trim(),word.trim(),similarity,"錯誤");
                     //UploadStudentsBehavior.UploadSpeech(studentsSpeech);
                 }
+                try {
+                    final String date = sdf_now.format(new java.util.Date());
+                    final DatabaseReference fire_timeclick = FirebaseDatabase.getInstance().getReference().child("學生" + Student.Name + "號").child("Student data")
+                            .child("點擊行為").child("Describe").child("口說練習");
+                    fire_timeclick.child(date).child("Describe Text").setValue(studentdescribe.getText().toString().trim());
+                    fire_timeclick.child(date).child("User say").setValue(word);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(DescribeActivity.this, "儲存點擊口說紀錄錯誤", Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         }
 

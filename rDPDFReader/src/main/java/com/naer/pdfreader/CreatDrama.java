@@ -760,7 +760,9 @@ public class CreatDrama extends Activity {
                             editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                 // do something when the button is clicked
                                 public void onClick(DialogInterface arg0, int arg1) {
-                                    Drama[0] = editText.getText().toString().trim();
+                                    String drama_name = editText.getText().toString().trim();
+                                    drama_name = drama_name.toUpperCase().charAt(0)+drama_name.substring(1);
+                                    Drama[0] = drama_name;
                                     switchmultibutton
                                             .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ","                   "+Drama[3]+"                   ");
                                 }
@@ -811,7 +813,9 @@ public class CreatDrama extends Activity {
                                 editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                     // do something when the button is clicked
                                     public void onClick(DialogInterface arg0, int arg1) {
-                                        Drama[1] = editText.getText().toString().trim();
+                                        String drama_name = editText.getText().toString().trim();
+                                        drama_name = drama_name.toUpperCase().charAt(0)+drama_name.substring(1);
+                                        Drama[1] = drama_name;
                                         switchmultibutton
                                                 .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ","                   "+Drama[3]+"                   ");
                                     }
@@ -862,7 +866,9 @@ public class CreatDrama extends Activity {
                                 editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                     // do something when the button is clicked
                                     public void onClick(DialogInterface arg0, int arg1) {
-                                        Drama[2] = editText.getText().toString().trim();
+                                        String drama_name = editText.getText().toString().trim();
+                                        drama_name = drama_name.toUpperCase().charAt(0)+drama_name.substring(1);
+                                        Drama[2] = drama_name;
                                         switchmultibutton
                                                 .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ","                   "+Drama[3]+"                   ");
                                     }
@@ -891,7 +897,9 @@ public class CreatDrama extends Activity {
                             editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                 // do something when the button is clicked
                                 public void onClick(DialogInterface arg0, int arg1) {
-                                    Drama[3] = editText.getText().toString().trim();
+                                    String drama_name = editText.getText().toString().trim();
+                                    drama_name = drama_name.toUpperCase().charAt(0)+drama_name.substring(1);
+                                    Drama[3] = drama_name;
                                     switchmultibutton
                                             .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ","                   "+Drama[3]+"                   ");
                                 }

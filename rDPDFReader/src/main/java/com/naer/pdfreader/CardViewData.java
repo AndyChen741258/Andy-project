@@ -1,9 +1,13 @@
 package com.naer.pdfreader;
 
 //import android.support.v7.widget.RecyclerView;
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,27 +15,36 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import Model.DescribeData;
 import Model.DescribeList;
+import Model.StoreTheEditData;
 
 public class CardViewData extends RecyclerView.Adapter<CardViewData.ViewHolder>{
+    private DramaRecycleView context;
     private ArrayList<String> list_de_id; //存KEY值
     private ArrayList<DescribeData> list_describe;
     private LayoutInflater mInflater;
@@ -99,6 +112,7 @@ public class CardViewData extends RecyclerView.Adapter<CardViewData.ViewHolder>{
         TextView contenet_describe;
         Button share;
         Button listen_ttstts;
+        Button listen_record;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -108,6 +122,7 @@ public class CardViewData extends RecyclerView.Adapter<CardViewData.ViewHolder>{
             contenet_describe = itemView.findViewById(R.id.row_photo_content);
             share = itemView.findViewById(R.id.row_btn_share);
             listen_ttstts = itemView.findViewById(R.id.listen_ttstts);
+            listen_record = itemView.findViewById(R.id.listen_record);
 
             //TTS.init(getApplicationContext());
 
@@ -142,9 +157,44 @@ public class CardViewData extends RecyclerView.Adapter<CardViewData.ViewHolder>{
                 }
             });
 
+            listen_record.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String string=num.getText().toString().trim().substring(2,num.getText().toString().trim().length()-1);
+                    StorageReference storageReference = FirebaseStorage.getInstance().getReference()
+                            .child(string)
+                            .child("Describe Record")
+                            .child(contenet_describe.getText().toString().trim()+ "/" + string+"_"+contenet_describe.getText().toString().trim()+".amr");
+                    storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Toast.makeText(itemView.getContext(),"撥放錄音", Toast.LENGTH_SHORT).show();
+                            MediaPlayer player = new MediaPlayer();
+                            try {
+                                player.setDataSource(uri.toString());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            try {
+                                player.prepare();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            player.start();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(itemView.getContext(),"沒有錄音", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            });
+
             if(DescribeActivity.isWantToLearn == true){
                 share.setVisibility(View.INVISIBLE);
                 listen_ttstts.setVisibility(View.INVISIBLE);
+                listen_record.setVisibility(View.INVISIBLE);
             }
 
             itemView.setOnClickListener(this);

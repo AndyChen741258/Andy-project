@@ -257,6 +257,8 @@ public class DramaAchievement extends Activity {
     private int drama_number=0;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

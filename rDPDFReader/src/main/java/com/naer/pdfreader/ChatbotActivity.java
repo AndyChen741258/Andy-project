@@ -8,8 +8,11 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -26,6 +29,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.speech.RecognitionListener;
@@ -59,6 +63,8 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.api.client.util.Sleeper;
 import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.auth.oauth2.GoogleCredentials;
@@ -106,6 +112,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -116,6 +123,7 @@ import java.util.UUID;
 
 import pl.droidsonroids.gif.GifImageView;
 
+import static android.view.View.VISIBLE;
 import static com.naer.pdfreader.DialogActivity.LOCATION_UPDATE_MIN_DISTANCE;
 import static com.naer.pdfreader.DialogActivity.LOCATION_UPDATE_MIN_TIME;
 
@@ -305,7 +313,6 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
     private String[] user_array=new String[1000];
     private String[] chatbot_array=new String[1000];
     private String test="nul";
-    private int test_user;
     private FileOutputStream outputStream;
     private final Date now = new Date();
 
@@ -316,6 +323,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
     private boolean bol_takephoto = false;
     private boolean bol_takephoto_right = false;
     private SimpleDateFormat sdf;
+    private ProgressDialog pDialog;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -406,11 +414,6 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
         sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 
         readInfo(Student.Name+"號學生聊天機器人行為紀錄");
-
-
-
-
-
 
 
 //        storageReference = FirebaseDatabase.getInstance().getReference().child("playground").child("sentence");
@@ -664,6 +667,8 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
 
 
     }
+
+
 
 //    private String getHumanTimeText(long milliseconds) {
 //        return String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(milliseconds), TimeUnit.MILLISECONDS.toSeconds(milliseconds) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(milliseconds)));
@@ -951,15 +956,11 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
 //                Toast.makeText(ChatbotActivity.this,"儲存使用者口說錯誤",Toast.LENGTH_SHORT).show();
 //            }
             Log.d(TAG, "Recognizer onResults: " + queryText);
-            usersaycount++;
+
             if(queryText != null){
-                data_usersay[usersaycount]=queryText;
-                data_usersay[usersaycount].replaceAll(",","@");
-                Log.v("data_usersay",data_usersay[usersaycount]);
-                Log.v("data_usersay", String.valueOf(usersaycount));
+                usersaycount++;
+                data_usersay[usersaycount]=queryText.replaceAll(",","@");
             }
-
-
            /* if(inputbool==false){
                 inputText = "";
                 youspeak_text2.setText("");
@@ -1016,8 +1017,8 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                         }
                         final String speech = result.getFulfillmentText();
                         Log.i(TAG, "V2  Speech: " + speech);
-                        chatbotcount++;
                         if(speech != null){
+                            chatbotcount++;
                             data_chatbotsay[chatbotcount]=speech;
                         }
                         dialogflowspeak_text.setText(speech);
@@ -1066,8 +1067,6 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
 
                         addChat(speech, 1);
 
-
-
 //                        try{
 //                            final FirebaseDatabase database = FirebaseDatabase.getInstance();
 //                            DatabaseReference db=database.getReference().child("學生" + Student.Name + "號");
@@ -1078,8 +1077,6 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
 //                            e.printStackTrace();
 //                            Toast.makeText(ChatbotActivity.this,"儲存對話錯誤",Toast.LENGTH_SHORT).show();
 //                        }
-
-
                     }
                 }
             };
@@ -1121,7 +1118,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
             textView.setText(content);
             final String img_pathword_right = "Right_Image_" + Student.Name + "_" + content + ".jpg";
             try{
-                File f_photo=new File("/sdcard/Pictures/MyPicFolder/" + img_pathword_right);
+                final File f_photo=new File("/sdcard/Pictures/MyPicFolder/" + img_pathword_right);
                 if(f_photo.exists())
                 {
                     Drawable drawable = getResources().getDrawable(R.drawable.picture);
@@ -1173,7 +1170,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
             final String pathword = Student.Name + "_" + content + ".amr";
             final String img_pathword = "Image_" + Student.Name + "_" + content + ".jpg";
             try{
-                File f_photo=new File("/sdcard/Pictures/MyPicFolder/" + img_pathword);
+                final File f_photo=new File("/sdcard/Pictures/MyPicFolder/" + img_pathword);
                 if(f_photo.exists())
                 {
                     Drawable drawable2 = getResources().getDrawable(R.drawable.picture);
@@ -1187,7 +1184,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                 Toast.makeText(ChatbotActivity.this,"讀取照片檔錯誤",Toast.LENGTH_SHORT).show();
             }
             try{
-                File f=new File("/sdcard/" + pathword);
+                final File f=new File("/sdcard/" + pathword);
                 if(f.exists())
                 {
                     Drawable drawable1 = getResources().getDrawable(R.drawable.advertising);
@@ -1363,7 +1360,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
         Log.v("word_left:",Arrays.toString(anwerTextArray_left));
 
         try{
-            File f_photo=new File("/sdcard/Pictures/MyPicFolder/" + img_pathword);
+            final File f_photo=new File("/sdcard/Pictures/MyPicFolder/" + img_pathword);
             if(f_photo.exists())
             {
                 takephoto.setImageURI(Uri.fromFile(f_photo));
@@ -1648,7 +1645,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
         String img_pathword_right = "Right_Image_" + Student.Name + "_" + usertext + ".jpg";;
         try{
 
-            File f_photo=new File("/sdcard/Pictures/MyPicFolder/" + img_pathword_right);
+            final File f_photo=new File("/sdcard/Pictures/MyPicFolder/" + img_pathword_right);
             if(f_photo.exists())
             {
                 takephoto_right.setImageURI(Uri.fromFile(f_photo));
@@ -2036,7 +2033,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
           try {
               final FirebaseDatabase database = FirebaseDatabase.getInstance();
               DatabaseReference db = database.getReference().child("學生" + Student.Name + "號").child("Chatbot data").child("Usersay");
-              db.addValueEventListener(new ValueEventListener() {
+              db.addListenerForSingleValueEvent(new ValueEventListener() {
                   @Override
                   public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                       Log.v("getChildrenCount user", String.valueOf(dataSnapshot.getChildrenCount()));
@@ -2065,7 +2062,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
           try {
               final FirebaseDatabase database = FirebaseDatabase.getInstance();
               DatabaseReference db = database.getReference().child("學生" + Student.Name + "號").child("Chatbot data").child("Chatbotsay");
-              db.addValueEventListener(new ValueEventListener() {
+              db.addListenerForSingleValueEvent(new ValueEventListener() {
                   @Override
                   public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                       String test;
@@ -2076,10 +2073,6 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                       Log.v("getValue() chat",test);
                       chatbot_array = test.split(",");
                       chatbot_time();
-//                      for (int i=0;i<chatbot_array.length;i++){
-//                          Log.v("array chat",chatbot_array[i]);
-//                          Log.v("array chat", String.valueOf(i));
-//                      }
                   }
 
                   @Override
@@ -2171,27 +2164,53 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
 
 
 
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK){
+            int test_user = user;
+            int test_chatbot = chatbot;
+            pDialog = new ProgressDialog(ChatbotActivity.this);
+            pDialog.setTitle("上傳數據");
+            pDialog.setMessage("上傳中... \n請耐心等待。");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference db=database.getReference().child("學生" + Student.Name + "號");
+            DatabaseReference db=database.getReference().child("學生" + Student.Name + "號").child("Chatbot data");
             try{
-                for(int i=1;i<=usersaycount;i++){
-                    db.child("Chatbot data").child("Usersay").child(String.valueOf(i+user)).setValue(data_usersay[i].replace(",","__"));
+                HashMap map_user = new HashMap();
+                HashMap map_chatbot = new HashMap();
+                if(usersaycount == chatbotcount){
+                    for(int i=0;i<usersaycount;i++){
+                        map_user.put(String.valueOf(i+test_user+1),data_usersay[i+1].replace(",","__"));
+                        map_chatbot.put(String.valueOf(i+test_chatbot+1),data_chatbotsay[i+1].replace(",","__"));
+                    }
+                }else{
+                    for(int i=0;i<usersaycount;i++){
+                        map_user.put(String.valueOf(i+test_user+1),data_usersay[i+1].replace(",","__"));
+                    }
+                    for(int i=0;i<chatbotcount;i++){
+                        map_chatbot.put(String.valueOf(i+test_chatbot+1),data_chatbotsay[i+1].replace(",","__"));
+                    }
                 }
-                for(int i=1;i<=chatbotcount;i++){
-                    db.child("Chatbot data").child("Chatbotsay").child(String.valueOf(i+chatbot)).setValue(data_chatbotsay[i].replace(",","__"));
-                }
+
+                db.child("Usersay").updateChildren(map_user);
+                db.child("Chatbotsay").updateChildren(map_chatbot).addOnCompleteListener(new OnCompleteListener() {
+                    @Override
+                    public void onComplete(@NonNull Task task) {
+                        pDialog.dismiss();
+                        ChatbotActivity.this.finish();
+                    }
+                });
             }catch (Exception e){
                 e.printStackTrace();
                 Toast.makeText(ChatbotActivity.this,"儲存記錄錯誤",Toast.LENGTH_SHORT).show();
             }
-            writeInfo(Student.Name+"號學生聊天機器人行為紀錄","聊天機器人");
         }
         return super.onKeyDown(keyCode, event);
     }
+
+
 
     public void writeInfo(String fileName, String strWrite) {
         try {

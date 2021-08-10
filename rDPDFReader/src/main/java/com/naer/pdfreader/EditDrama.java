@@ -308,6 +308,17 @@ public class EditDrama extends Activity {
                 y_touch = lastTouchDownXY[1];
                 Log.e("Location", String.valueOf(x_touch));
                 Log.e("Location", String.valueOf(y_touch));
+                if(say1.getVisibility()== VISIBLE && say2.getVisibility()== VISIBLE && say3.getVisibility() == VISIBLE && say4.getVisibility() == VISIBLE){
+                    bubble=4;
+                }else if(say1.getVisibility()== VISIBLE && say2.getVisibility()== VISIBLE && say3.getVisibility() == VISIBLE && say4.getVisibility() == INVISIBLE){
+                    bubble=3;
+                }else if(say1.getVisibility()== VISIBLE && say2.getVisibility()== VISIBLE && say3.getVisibility() == INVISIBLE && say4.getVisibility() == INVISIBLE){
+                    bubble=2;
+                }else if(say1.getVisibility()== VISIBLE && say2.getVisibility()== INVISIBLE && say3.getVisibility() == INVISIBLE && say4.getVisibility() == INVISIBLE){
+                    bubble=1;
+                }else {
+                    bubble=0;
+                }
                 switch (bubble){
                     case 0:
                         Log.v("第一個X位置", String.valueOf(x_touch));
@@ -1770,6 +1781,49 @@ public class EditDrama extends Activity {
                 }
 
                 return true;
+            case R.id.option_edit_4:
+                switch (choose) {
+                    case 2:
+                        new AlertDialog.Builder(EditDrama.this)
+                                .setIcon(R.drawable.ic_launcher)
+                                .setTitle("隱藏"+info2)
+                                .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        say2.setVisibility(INVISIBLE);
+                                    }
+                                })
+                                .setNegativeButton("取消",null).create()
+                                .show();
+                        break;
+                    case 3:
+                        new AlertDialog.Builder(EditDrama.this)
+                                .setIcon(R.drawable.ic_launcher)
+                                .setTitle("隱藏"+info3)
+                                .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        say3.setVisibility(INVISIBLE);
+                                    }
+                                })
+                                .setNegativeButton("取消",null).create()
+                                .show();
+                        break;
+                    case 4:
+                        new AlertDialog.Builder(EditDrama.this)
+                                .setIcon(R.drawable.ic_launcher)
+                                .setTitle("隱藏"+info4)
+                                .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        say4.setVisibility(INVISIBLE);
+                                    }
+                                })
+                                .setNegativeButton("取消",null).create()
+                                .show();
+                        break;
+                }
+
 
             default:
                 return super.onContextItemSelected(item);

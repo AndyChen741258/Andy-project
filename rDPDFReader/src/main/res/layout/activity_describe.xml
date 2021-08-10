@@ -273,7 +273,8 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_below="@+id/hinttext"
-        android:text="測試" />
+        android:text="測試"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/toolbar_show"
@@ -286,7 +287,8 @@
         android:drawableRight="@drawable/hw_record_32"
         android:paddingRight="5dp"
         android:textAlignment="center"
-        android:text="我要做作業"/>
+        android:text="我要做作業"
+        android:visibility="invisible"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -295,17 +297,18 @@
         android:layout_alignParentEnd="true"
         android:layout_marginLeft="80dp"
         android:layout_marginTop="0dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="140dp"
         android:gravity="left"
         android:orientation="horizontal"
         android:visibility="visible">
 
         <Spinner
             android:id="@+id/week1_hw_record"
-            android:layout_width="150dp"
+            android:layout_width="10dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:visibility="invisible"/>
 
         <Button
             android:id="@+id/toolbar_record"

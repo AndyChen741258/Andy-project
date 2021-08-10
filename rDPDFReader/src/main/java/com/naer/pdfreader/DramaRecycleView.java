@@ -280,4 +280,5 @@ public class DramaRecycleView extends Activity{
         DescribeActivity.isWantToLearn = false;
         DramaRecycleView.this.finish();
     }
+
 }

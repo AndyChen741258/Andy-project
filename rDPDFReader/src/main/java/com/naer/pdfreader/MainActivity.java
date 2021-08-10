@@ -21,7 +21,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -149,6 +151,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private int best3=0;
 	private NotificationManager mNotificationManager;
 	private NotificationChannel chnnel;
+	private String string = "對話資料讀取中...請稍後";
 
 
 	@RequiresApi(api = Build.VERSION_CODES.O)
@@ -171,7 +174,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				.setButtonDoNotShowAgain("不要更新")
 				.setIcon(R.drawable.ic_baseline_cloud_download_24) // Notification icon
 				.setCancelable(false)
-				.showEvery(5); // Dialog could not be dismissable
+				.showEvery(10); // Dialog could not be dismissable
 		appUpdater.start();
 
 		AppUpdaterUtils appUpdaterUtils = new AppUpdaterUtils(this)
@@ -272,7 +275,16 @@ public class MainActivity extends Activity implements OnClickListener {
 		mNotificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
 		chnnel=new NotificationChannel("ID","notification_text_a",NotificationManager.IMPORTANCE_HIGH);
 		mNotificationManager.createNotificationChannel(chnnel);
-		handler.post(runnable);
+		Name.setOnKeyListener(new View.OnKeyListener() {
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				if(keyCode == KeyEvent.KEYCODE_ENTER){
+					Student.Name=Name.getText().toString();
+					handler.post(runnable);
+				}
+				return false;
+			}
+		});
 
 
 		ArrayAdapter<String> lunchList = new ArrayAdapter<String>(MainActivity.this,
@@ -283,7 +295,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 				spinner_std_word = spinner_std.getSelectedItem().toString();
-				Toast.makeText(MainActivity.this, spinner_std_word, Toast.LENGTH_SHORT).show();
+//				Toast.makeText(MainActivity.this, spinner_std_word, Toast.LENGTH_SHORT).show();
 				StudentSelectedName = lunch[position];//判斷選則其他同學名稱
 				mStorageRef = FirebaseStorage.getInstance().getReference();
 				mStorageRef.child(spinner_std_word + "/" + spinner_work_word + ".pdf").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -312,7 +324,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		spinner_work.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				Toast.makeText(MainActivity.this, "查看" + lunch2[position], Toast.LENGTH_SHORT).show();
+//				Toast.makeText(MainActivity.this, "查看" + lunch2[position], Toast.LENGTH_SHORT).show();
 				spinner_work_word = spinner_work.getSelectedItem().toString();
 				HomeworkSelected = spinner_work.getSelectedItem().toString();
 				mStorageRef = FirebaseStorage.getInstance().getReference();
@@ -400,88 +412,125 @@ public class MainActivity extends Activity implements OnClickListener {
 			if(msg.what == 1){
 				java.util.Date date = new java.util.Date();
 				SimpleDateFormat df = new SimpleDateFormat("HH");
+				SimpleDateFormat df_date = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 				String str = df.format(date);
-				int a = Integer.parseInt(str);
-				Intent intent = new Intent(MainActivity.this,MainActivity.class);
+				String str_date = df_date.format(date);
+				final int a = Integer.parseInt(str);
+				Intent intent = new Intent(MainActivity.this,ChatbotActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 				PendingIntent PI = PendingIntent.getActivity(MainActivity.this,0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
-				//上午
-				if (a > 8 && a <= 12) {
-					String[] welcome = new String[]{"What do you eat in the morning?",
-							"What did you do in the morning?",
-							"How's the weather in the morning?",};
-					Random x = new Random();
-					int welcome_number = x.nextInt(welcome.length);
-					Notification.Builder builder = new Notification.Builder(MainActivity.this);
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-						builder.setSmallIcon(R.drawable.ic_launcher)
-								.setChannelId("ID")
-								.setContentIntent(PI)
-								.setAutoCancel(true)
-								.setContentTitle("智慧提醒")
-								.setContentText(welcome[welcome_number]);
+				final DatabaseReference firebaseDatabase = FirebaseDatabase.getInstance().getReference();
+				firebaseDatabase.child("學生" + Name.getText().toString()+ "號").child("Chatbot data").child("Chatbotsay").orderByKey().limitToLast(1)
+						.addListenerForSingleValueEvent(new ValueEventListener() {
+					@Override
+					public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+						if(dataSnapshot.getValue().toString().equals("") == false){
+							string = dataSnapshot.getValue().toString().trim().replaceAll("__",",");
+							int i = string.indexOf("=");
+							string = string.substring(i+1,string.length()-1);
+							//上午
+							if (a > 8 && a <= 12 && !string.equals("對話資料讀取中...請稍後")) {
+//					String[] welcome = new String[]{"What do you eat in the morning?",
+//							"What did you do in the morning?",
+//							"How's the weather in the morning?",};
+//					Random x = new Random();
+//					int welcome_number = x.nextInt(welcome.length);
+								Notification.Builder builder = new Notification.Builder(MainActivity.this);
+								if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+									builder.setSmallIcon(R.drawable.ic_launcher)
+											.setChannelId("ID")
+											.setContentIntent(PI)
+											.setAutoCancel(true)
+											.setContentTitle("智慧提醒")
+											.setSubText("現在時間:\t"+str_date)
+											.setContentText("對話機器人:\t"+string);
+								}
+								Notification notification = builder.build();
+								mNotificationManager.notify(0,notification);
+							}
+							//中午
+							else if (a > 12 && a <= 13 && !string.equals("對話資料讀取中...請稍後")) {
+//					String[] welcome = new String[]{"What do you eat in the noon?",
+//							"What did you do in the noon?",
+//							"How's the weather in the noon?",};
+//					Random x = new Random();
+//					int welcome_number = x.nextInt(welcome.length);
+								Notification.Builder builder = new Notification.Builder(MainActivity.this);
+								if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+									builder.setSmallIcon(R.drawable.ic_launcher)
+											.setChannelId("ID")
+											.setContentIntent(PI)
+											.setAutoCancel(true)
+											.setContentTitle("智慧提醒")
+											.setSubText("現在時間:\t"+str_date)
+											.setContentText("對話機器人:\t"+string);
+								}
+								Notification notification = builder.build();
+								mNotificationManager.notify(0,notification);
+							}
+							//下午
+							else if (a > 13 && a <= 18 && !string.equals("對話資料讀取中...請稍後")) {
+//					String[] welcome = new String[]{"What do you eat in the afternoon?",
+//							"What did you do in the afternoon?",
+//							"How's the weather in the afternoon?",};
+//					Random x = new Random();
+//					int welcome_number = x.nextInt(welcome.length);
+								Notification.Builder builder = new Notification.Builder(MainActivity.this);
+								if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+									builder.setSmallIcon(R.drawable.ic_launcher)
+											.setChannelId("ID")
+											.setContentIntent(PI)
+											.setAutoCancel(true)
+											.setContentTitle("智慧提醒")
+											.setSubText("現在時間:\t"+str_date)
+											.setContentText("對話機器人:\t"+string);
+								}
+								Notification notification = builder.build();
+								mNotificationManager.notify(0,notification);
+							}
+							//晚上
+							else if (a > 18 && a <= 24 && !string.equals("對話資料讀取中...請稍後")) {
+//					Log.v("測試","執行");
+//					String[] welcome = new String[]{"What do you eat in the night?",
+//							"What did you do in the night?",
+//							"How's the weather in the night?",};
+//					Random x = new Random();
+//					int welcome_number = x.nextInt(welcome.length);
+								Notification.Builder builder = new Notification.Builder(MainActivity.this);
+								if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+									builder.setSmallIcon(R.drawable.ic_launcher)
+											.setChannelId("ID")
+											.setContentIntent(PI)
+											.setAutoCancel(true)
+											.setContentTitle("智慧提醒")
+											.setSubText("現在時間:\t"+str_date)
+											.setContentText("對話機器人:\t"+string);
+								}
+								Notification notification = builder.build();
+								mNotificationManager.notify(0,notification);
+							}else{
+								Notification.Builder builder = new Notification.Builder(MainActivity.this);
+								if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+									builder.setSmallIcon(R.drawable.ic_launcher)
+											.setChannelId("ID")
+											.setContentIntent(PI)
+											.setAutoCancel(true)
+											.setContentTitle("智慧提醒")
+											.setSubText("現在時間:\t"+str_date)
+											.setContentText("What do you do?");
+								}
+								Notification notification = builder.build();
+								mNotificationManager.notify(0,notification);
+							}
+						}
 					}
-					Notification notification = builder.build();
-					mNotificationManager.notify(0,notification);
-				}
-				//中午
-				else if (a > 12 && a <= 13) {
-					String[] welcome = new String[]{"What do you eat in the noon?",
-							"What did you do in the noon?",
-							"How's the weather in the noon?",};
-					Random x = new Random();
-					int welcome_number = x.nextInt(welcome.length);
-					Notification.Builder builder = new Notification.Builder(MainActivity.this);
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-						builder.setSmallIcon(R.drawable.ic_launcher)
-								.setChannelId("ID")
-								.setContentIntent(PI)
-								.setAutoCancel(true)
-								.setContentTitle("智慧提醒")
-								.setContentText(welcome[welcome_number]);
+
+					@Override
+					public void onCancelled(@NonNull DatabaseError databaseError) {
+						string = "對話資料讀取中...請稍後";
 					}
-					Notification notification = builder.build();
-					mNotificationManager.notify(0,notification);
-				}
-				//下午
-				else if (a > 13 && a <= 18) {
-					String[] welcome = new String[]{"What do you eat in the afternoon?",
-							"What did you do in the afternoon?",
-							"How's the weather in the afternoon?",};
-					Random x = new Random();
-					int welcome_number = x.nextInt(welcome.length);
-					Notification.Builder builder = new Notification.Builder(MainActivity.this);
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-						builder.setSmallIcon(R.drawable.ic_launcher)
-								.setChannelId("ID")
-								.setContentIntent(PI)
-								.setAutoCancel(true)
-								.setContentTitle("智慧提醒")
-								.setContentText(welcome[welcome_number]);
-					}
-					Notification notification = builder.build();
-					mNotificationManager.notify(0,notification);
-				}
-				//晚上
-				else if (a > 18 && a <= 24) {
-					Log.v("測試","執行");
-					String[] welcome = new String[]{"What do you eat in the night?",
-							"What did you do in the night?",
-							"How's the weather in the night?",};
-					Random x = new Random();
-					int welcome_number = x.nextInt(welcome.length);
-					Notification.Builder builder = new Notification.Builder(MainActivity.this);
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-						builder.setSmallIcon(R.drawable.ic_launcher)
-								.setChannelId("ID")
-								.setContentIntent(PI)
-								.setAutoCancel(true)
-								.setContentTitle("智慧提醒")
-								.setContentText(welcome[welcome_number]);
-					}
-					Notification notification = builder.build();
-					mNotificationManager.notify(0,notification);
-				}
+				});
+
 			}
 			super.handleMessage(msg);
 		}

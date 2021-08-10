@@ -310,7 +310,7 @@
         android:layout_height="100dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="200dp"
+        android:layout_marginStart="190dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/speak_score_background"
         android:textIsSelectable="true"
@@ -319,11 +319,11 @@
 
     <TextView
         android:id="@+id/practice_say"
-        android:layout_width="900dp"
+        android:layout_width="700dp"
         android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="200dp"
+        android:layout_marginStart="190dp"
         android:layout_marginBottom="140dp"
         android:background="@drawable/textview_border"
         android:textIsSelectable="true"
@@ -335,7 +335,7 @@
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_below="@+id/scrollview"
-        android:layout_marginStart="-240dp"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="-210dp"
         android:layout_toEndOf="@+id/practice_say"
         android:background="@drawable/ic_baseline_chevron_left_24" />
@@ -345,7 +345,7 @@
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_below="@+id/scrollview"
-        android:layout_marginStart="-150dp"
+        android:layout_marginStart="90dp"
         android:layout_marginTop="-210dp"
         android:layout_toEndOf="@+id/practice_say"
         android:background="@drawable/ic_baseline_chevron_right_24" />
@@ -366,7 +366,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="-80dp"
+        android:layout_marginStart="-90dp"
         android:layout_marginLeft="80dp"
         android:layout_marginTop="665dp"
         android:layout_toEndOf="@+id/showcorrect"
@@ -468,7 +468,6 @@
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="10dp"
         android:layout_marginBottom="183dp"
         android:text="目前位置:"
         android:textSize="30dp" />
@@ -480,7 +479,6 @@
         android:layout_alignTop="@+id/place_tittle"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="51dp"
-        android:layout_marginEnd="10dp"
         android:text=""
         android:textSize="20dp" />
 

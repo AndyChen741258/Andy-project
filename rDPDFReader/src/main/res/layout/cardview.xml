@@ -22,12 +22,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/row_photo_title"
+        android:layout_marginStart="30dp"
         android:layout_marginLeft="80dp"
-        android:layout_marginTop="30dp"
-        android:layout_toEndOf="@+id/cardphoto"
+        android:layout_marginTop="35dp"
+        android:layout_toEndOf="@+id/listen_record"
         android:text="content"
-        android:textSize="24sp"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="24sp" />
 
     <ImageView
         android:id="@+id/cardphoto"
@@ -66,13 +67,25 @@
 
     <Button
         android:id="@+id/listen_ttstts"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_toEndOf="@+id/cardphoto"
         android:layout_below="@+id/row_photo_title"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="25dp"
         android:background="@drawable/listening_tts"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/listen_record"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/row_photo_title"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="25dp"
+        android:layout_toEndOf="@+id/listen_ttstts"
+        android:background="@drawable/record"
         android:textSize="24sp" />
 
 </RelativeLayout>
