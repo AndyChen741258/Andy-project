@@ -1,0 +1,994 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config>
+        <device id="_device_class_tablet" />
+        <device id="_device_class_phone" />
+        <device id="pixel_xl" />
+        <device id="pixel_5" />
+        <device id="pixel_4" />
+        <device id="pixel" />
+        <option name="nonWearDeviceLastStateName" value="landscape" />
+      </config>
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8c5b2a77-d5d1-4065-90f7-a32641244677" name="Default Changelist" comment="Andy project">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__D.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__D__1_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__ai_api_libai_1_6_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_5_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_experimental_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_5_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_5_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_common_2_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_common_2_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_browser_browser_1_4_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_collection_collection_1_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_2_1_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_8_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_ktx_1_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_ktx_1_8_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_1_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_dynamicanimation_dynamicanimation_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_3_6_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_5_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_5_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_5_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_savedstate_2_5_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_2_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_9_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_3_7_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_ads_identifier_18_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_auth_20_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_auth_api_phone_17_4_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_auth_api_phone_18_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_auth_base_18_0_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_18_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_18_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_location_20_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_maps_18_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_21_1_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_api_21_1_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_base_21_1_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_impl_21_1_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_sdk_21_1_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_sdk_api_21_1_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_safetynet_17_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_stats_17_0_2_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_18_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_6_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_api_api_common_1_7_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_api_client_google_api_client_1_23_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_api_gax_1_32_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_api_gax_grpc_1_32_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_api_grpc_proto_google_cloud_dialogflow_v2_0_32_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_api_grpc_proto_google_cloud_dialogflow_v2beta1_0_32_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_api_grpc_proto_google_common_protos_1_12_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_api_grpc_proto_google_iam_v1_0_12_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_apis_google_api_services_translate_v2_rev47_1_22_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_auth_google_auth_library_credentials_0_11_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_auth_google_auth_library_oauth2_http_0_11_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_cloud_google_cloud_core_1_49_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_cloud_google_cloud_core_grpc_1_49_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_cloud_google_cloud_core_http_1_12_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_cloud_google_cloud_dialogflow_0_67_0_alpha.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_cloud_google_cloud_translate_1_12_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_errorprone_error_prone_annotations_2_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_analytics_21_1_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_annotations_16_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_appcheck_interop_16_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_auth_21_0_8_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_auth_interop_20_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_common_20_1_2_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_components_17_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_core_21_1_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_database_20_0_6_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_database_collection_18_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_installations_17_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_installations_interop_17_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_measurement_connector_19_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_storage_20_0_2_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_20_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_listenablefuture_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_http_client_google_http_client_1_24_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_http_client_google_http_client_appengine_1_23_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_http_client_google_http_client_jackson2_1_24_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_http_client_google_http_client_jackson_1_23_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_oauth_client_google_oauth_client_1_23_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_protobuf_protobuf_java_3_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_protobuf_protobuf_java_util_3_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_3_10_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp_okhttp_2_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okio_okio_1_14_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_8_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_theartofdev_edmodo_android_image_cropper_2_5_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_codec_commons_codec_1_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_io_commons_io_20030203_000550.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_logging_commons_logging_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_auth_1_13_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_context_1_13_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_core_1_13_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_netty_shaded_1_13_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_okhttp_1_13_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_protobuf_1_13_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_protobuf_lite_1_13_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_stub_1_13_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_opencensus_opencensus_api_0_12_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_opencensus_opencensus_contrib_grpc_metrics_0_12_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__joda_time_joda_time_2_9_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_13_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_sf_kxml_kxml2_2_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_5_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_4_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_codehaus_jackson_jackson_core_asl_1_9_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_annotations_13_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_6_21.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_7_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_6_21.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_7_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_6_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_6_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_coroutines_android_1_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_coroutines_core_jvm_1_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jsoup_jsoup_1_11_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_slf4j_slf4j_api_1_7_25.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_threeten_threetenbp_1_3_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/rDPDFReader/RDPDFReader3.rDPDFReader.androidTest.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/rDPDFReader/RDPDFReader3.rDPDFReader.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/rDPDFReader/RDPDFReader3.rDPDFReader.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/rDPDFReader/RDPDFReader3.rDPDFReader.unitTest.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/viewLib/RDPDFReader3.viewLib.androidTest.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/viewLib/RDPDFReader3.viewLib.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/viewLib/RDPDFReader3.viewLib.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/viewLib/RDPDFReader3.viewLib.unitTest.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/render.experimental.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/resourceHashesCache.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/classAnalysis.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/jarAnalysis.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/javaCompile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/taskHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Louis.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle____viewLib_libs_com_radaee_view_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle____viewLib_libs_google_api_translate_java_0_97_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__ai_api_libai_1_6_12_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__ai_api_sdk_2_0_7_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__ai_api_sdk_2_0_7_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_0_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_1_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_experimental_1_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_common_2_0_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_common_2_1_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_collection_collection_1_0_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_collection_collection_1_1_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_1_1_3_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_solver_1_1_3_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_1_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_2_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_exifinterface_exifinterface_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_exifinterface_exifinterface_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v4_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v4_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_0_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_1_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_media_media_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_media_media_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_1_0_alpha3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_1_0_alpha3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_1_0_alpha3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_1_0_alpha3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_1_0_alpha3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_1_0_alpha3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_1_0_alpha3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_1_0_alpha3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_2_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_1_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_1_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager2_viewpager2_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager2_viewpager2_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_cleveroad_audiovisualization_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_cleveroad_audiovisualization_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_devlomi_record_view_record_view_2_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_devlomi_record_view_record_view_2_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_9_2_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_firebase_geofire_android_2_1_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_firebase_geofire_android_2_1_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_firebaseui_firebase_ui_common_4_3_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_firebaseui_firebase_ui_common_4_3_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_firebaseui_firebase_ui_database_4_3_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_firebaseui_firebase_ui_database_4_3_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_adrielcafe_AndroidAudioRecorder_0_3_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_adrielcafe_AndroidAudioRecorder_0_3_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_3_7_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_chrisbanes_photoview_library_1_2_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_chrisbanes_photoview_library_1_2_4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_clans_fab_1_6_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_clans_fab_1_6_4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_iammannan_TranslateAPI_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_iammannan_TranslateAPI_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_javiersantos_AppUpdater_2_7_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_javiersantos_AppUpdater_2_7_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_ads_identifier_15_0_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_ads_identifier_17_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_auth_19_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_auth_api_phone_17_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_auth_base_17_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_15_0_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_17_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_15_0_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_17_1_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_flags_15_0_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_location_16_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_maps_16_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_17_6_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_api_17_6_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_base_15_0_2_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_base_17_6_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_impl_17_6_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_sdk_17_6_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_sdk_api_17_6_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_places_placereport_16_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_stats_15_0_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_stats_17_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_15_0_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_17_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_2_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_api_api_common_1_7_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_api_client_google_api_client_1_23_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_api_gax_1_32_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_api_gax_grpc_1_32_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_api_grpc_proto_google_cloud_dialogflow_v2_0_32_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_api_grpc_proto_google_cloud_dialogflow_v2beta1_0_32_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_api_grpc_proto_google_common_protos_1_12_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_api_grpc_proto_google_iam_v1_0_12_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_apis_google_api_services_translate_v2_rev47_1_22_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_auth_google_auth_library_credentials_0_11_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_auth_google_auth_library_oauth2_http_0_11_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_auto_value_auto_value_annotations_1_6_5_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_cloud_google_cloud_core_1_49_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_cloud_google_cloud_core_grpc_1_49_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_cloud_google_cloud_core_http_1_12_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_cloud_google_cloud_dialogflow_0_67_0_alpha_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_cloud_google_cloud_translate_1_12_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_2_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_5_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_errorprone_error_prone_annotations_2_1_2_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_analytics_15_0_2_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_analytics_17_6_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_analytics_impl_15_0_2_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_auth_15_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_auth_18_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_auth_interop_15_0_2_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_auth_interop_18_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_common_15_0_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_common_19_3_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_components_16_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_core_17_0_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_database_15_0_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_database_18_0_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_database_collection_15_0_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_database_collection_17_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_database_connection_15_0_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_iid_15_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_iid_interop_15_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_installations_16_3_2_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_installations_interop_16_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_measurement_connector_18_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_storage_15_0_2_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_storage_18_1_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_storage_common_15_0_2_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_20_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_http_client_google_http_client_1_24_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_http_client_google_http_client_appengine_1_23_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_http_client_google_http_client_jackson2_1_24_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_http_client_google_http_client_jackson_1_23_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_oauth_client_google_oauth_client_1_23_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_protobuf_protobuf_java_3_6_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_protobuf_protobuf_java_util_3_6_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_kailashdabhi_om_recorder_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_kailashdabhi_om_recorder_1_1_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_orhanobut_logger_1_15_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_orhanobut_logger_1_15_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_3_10_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp_okhttp_2_5_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okio_okio_1_14_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_theartofdev_edmodo_android_image_cropper_2_7_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_youth_banner_banner_1_4_9_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_youth_banner_banner_1_4_9_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_codec_commons_codec_1_9_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_io_commons_io_20030203_000550_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_logging_commons_logging_1_2_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__de_hdodenhof_circleimageview_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__de_hdodenhof_circleimageview_2_2_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_auth_1_13_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_context_1_13_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_core_1_13_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_netty_shaded_1_13_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_okhttp_1_13_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_protobuf_1_13_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_protobuf_lite_1_13_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_grpc_grpc_stub_1_13_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_opencensus_opencensus_api_0_12_3_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_opencensus_opencensus_contrib_grpc_metrics_0_12_3_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__joda_time_joda_time_2_9_2_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__lib_kingja_switchbutton_switchbutton_1_1_8_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__lib_kingja_switchbutton_switchbutton_1_1_8_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__net_sf_kxml_kxml2_2_3_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_5_3_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_4_6_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_codehaus_jackson_jackson_core_asl_1_9_11_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jsoup_jsoup_1_11_3_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_slf4j_slf4j_api_1_7_25_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_threeten_threetenbp_1_3_3_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__pl_droidsonroids_gif_android_gif_drawable_1_2_11_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__pl_droidsonroids_gif_android_gif_drawable_1_2_11_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/RDPDFReader3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/RDPDFReader3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/rDPDFReader/rDPDFReader.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/viewLib/viewLib.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/254f4b798cb73914efd91891a569115f.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/254f4b798cb73914efd91891a569115f/classes/classes.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/27983c3080008195961099d933647d29.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/27983c3080008195961099d933647d29/classes/classes.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/2ab1f9b51330c1af44ca08920eb2e32d.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/2ab1f9b51330c1af44ca08920eb2e32d/classes/classes.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/60b1b3adba8ba4cb54a97ccfff4b9a4d.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/60b1b3adba8ba4cb54a97ccfff4b9a4d/classes/classes.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/63973a4e36109248e7883c53af12e0b0.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/63973a4e36109248e7883c53af12e0b0/classes/classes.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/717731acded8146fe9d0c3721e5562ec.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/717731acded8146fe9d0c3721e5562ec/classes/classes.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/7541761213024e9bbf8ab2d2ca2b06de.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/7541761213024e9bbf8ab2d2ca2b06de/classes/classes.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/903066414c988c55e137d8146b11d62e.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/903066414c988c55e137d8146b11d62e/classes/classes.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/9e869845b55bf443d765cc46cd6fd043.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/9e869845b55bf443d765cc46cd6fd043/classes/classes.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/a89dd52ed83ebd74efab3132f036da4e.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/a89dd52ed83ebd74efab3132f036da4e/classes/classes.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/fed638dde342007c5f77cc54f98078f6.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/.transforms/fed638dde342007c5f77cc54f98078f6/classes/classes.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/generated/source/buildConfig/androidTest/debug/com/radaee/viewlib/test/BuildConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/generated/source/buildConfig/debug/com/radaee/viewlib/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/generated/source/buildConfig/debug/com/radaee/viewlib/BuildConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/output.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/annotations_typedef_file/debug/extractDebugAnnotations/typedefs.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compile_library_classes/debug/classes.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compile_library_classes_jar/debug/classes.jar" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compile_library_classes_jar/debug/classes.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/generateDebugRFile/R.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compile_symbol_list/debug/R.txt" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compile_symbol_list/debug/R.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_bar_back.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_bar_back.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_annot_ellipse.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_annot_ellipse.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_annot_ink.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_annot_ink.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_annot_line.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_annot_line.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_annot_note.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_annot_note.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_annot_rect.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_annot_rect.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_back.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_back.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_cancel.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_cancel.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_done.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_done.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_ink.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_ink.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_left.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_left.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_perform.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_perform.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_remove.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_remove.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_right.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_right.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_save.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_save.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_search.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_search.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_select.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_select.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_view.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_view.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_view_dual.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_view_dual.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_view_single.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_view_single.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_view_vert.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_btn_view_vert.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_drive.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_drive.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_file03.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_file03.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_folder0.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_folder0.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_folder1.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_folder1.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_folder2.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_folder2.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_menu_back.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_menu_back.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_pdf_custom_stamp.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_pdf_custom_stamp.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_pt_end.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_pt_end.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_pt_start.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_pt_start.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_tip.gif.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/drawable_tip.gif.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_bar_act.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_bar_act.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_bar_annot.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_bar_annot.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_bar_cmd.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_bar_cmd.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_bar_find.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_bar_find.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_bar_seek.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_bar_seek.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_dlg_note.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_dlg_note.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_dlg_pswd.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_dlg_pswd.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_dlg_text.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_dlg_text.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_mypdf_layout.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_mypdf_layout.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_pdf_curl.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_pdf_curl.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_pdf_nav.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_pdf_nav.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_photomain.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_photomain.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_pop_combo.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_pop_combo.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_pop_edit.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_pop_edit.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_pop_view.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_pop_view.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_takepic_main.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/layout_takepic_main.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_arimo.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_arimo.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_arimob.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_arimob.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_arimobi.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_arimobi.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_arimoi.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_arimoi.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_cmaps.dat.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_cmaps.dat.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_cmyk_rgb.dat.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_cmyk_rgb.dat.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_cousine.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_cousine.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_cousineb.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_cousineb.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_cousinebi.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_cousinebi.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_cousinei.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_cousinei.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_rdf008.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_rdf008.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_rdf013.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_rdf013.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_tinos.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_tinos.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_tinosb.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_tinosb.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_tinosbi.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_tinosbi.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_tinosi.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_tinosi.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_umaps.dat.flat" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/compiled_local_resources/debug/out/raw_umaps.dat.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/incremental/debug-mergeJavaRes/merge-state" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/incremental/debug-mergeJniLibs/merge-state" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/incremental/debug-mergeNativeLibs/merge-state" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/incremental/mergeDebugShaders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/incremental/packageDebugAssets/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/incremental/packageDebugAssets/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/incremental/packageDebugResources/merged.dir/values-v11/values-v11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/incremental/packageDebugResources/merged.dir/values-v14/values-v14.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/incremental/packageDebugResources/merged.dir/values/values.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/incremental/packageDebugResources/merger.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/intermediate-jars/debug/jni/arm64-v8a/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/intermediate-jars/debug/jni/armeabi-v7a/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/intermediate-jars/debug/jni/armeabi/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/intermediate-jars/debug/jni/mips/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/intermediate-jars/debug/jni/mips64/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/intermediate-jars/debug/jni/x86/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/intermediate-jars/debug/jni/x86_64/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/Broadcast/MyBroadcast.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/Broadcast/MyBroadcast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/Model/StudentsNote.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/Model/StudentsNote.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/BMDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/BMDatabase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/BMP.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/BMP.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/DIB.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/DIB.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Document$DocFont.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Document$DocFont.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Document$DocGState.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Document$DocGState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Document$DocImage.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Document$DocImage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Document$ImportContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Document$ImportContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Document$Outline.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Document$Outline.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Document$PDFFontDelegate.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Document$PDFFontDelegate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Document$PDFStream.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Document$PDFStream.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Document.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Document.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Global.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Global.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/HWriting.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/HWriting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Ink.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Ink.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Matrix.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Matrix.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Page$Annotation.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Page$Annotation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Page$Finder.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Page$Finder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Page$ResFont.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Page$ResFont.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Page$ResGState.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Page$ResGState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Page$ResImage.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Page$ResImage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Page.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Page.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/PageContent.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/PageContent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Path.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/Path.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/SuperDoc$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/SuperDoc$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/SuperDoc$DocInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/SuperDoc$DocInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/SuperDoc.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/pdf/SuperDoc.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFBotBar$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFBotBar$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFBotBar$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFBotBar$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFBotBar.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFBotBar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFCurlViewAct$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFCurlViewAct$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFCurlViewAct$PDFCurlThread$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFCurlViewAct$PDFCurlThread$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFCurlViewAct$PDFCurlThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFCurlViewAct$PDFCurlThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFCurlViewAct$PDFPageProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFCurlViewAct$PDFPageProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFCurlViewAct$PDFSizeChangedObserver.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFCurlViewAct$PDFSizeChangedObserver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFCurlViewAct.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFCurlViewAct.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$14.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$6$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$6$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$6$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$6$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$8$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$8$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$9$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$9$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$9$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$9$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$DownloadImageTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$DownloadImageTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$PDFGestureListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$PDFGestureListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$PDFLayoutListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$PDFLayoutListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$PDFVPageSet.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView$PDFVPageSet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFLayoutView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFNavAct$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFNavAct$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFNavAct$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFNavAct$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFNavAct.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFNavAct.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFTopBar$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFTopBar$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFTopBar$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFTopBar$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFTopBar.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFTopBar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewAct$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewAct$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewAct$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewAct$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewAct$2$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewAct$2$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewAct$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewAct$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewAct$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewAct$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewAct$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewAct$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewAct$MyPDFFontDel.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewAct$MyPDFFontDel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewAct.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewAct.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewController$PDFViewControllerListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewController$PDFViewControllerListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/PDFViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/ShowImageToNote.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/ShowImageToNote.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/onImageViewCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/reader/onImageViewCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/ComboList.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/ComboList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/ComboListAdt.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/ComboListAdt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFAESStream.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFAESStream.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFAssetStream.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFAssetStream.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFFileStream.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFFileStream.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFGridAdt$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFGridAdt$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFGridAdt$SnatchItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFGridAdt$SnatchItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFGridAdt.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFGridAdt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFGridItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFGridItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFGridThread$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFGridThread$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFGridThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFGridThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFGridView.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFGridView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFHttpStream$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFHttpStream$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFHttpStream$HttpDownloadThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFHttpStream$HttpDownloadThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFHttpStream$HttpThread$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFHttpStream$HttpThread$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFHttpStream$HttpThread$OP.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFHttpStream$HttpThread$OP.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFHttpStream$HttpThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFHttpStream$HttpThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFHttpStream.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFHttpStream.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFMemStream.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFMemStream.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFThumbView.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PDFThumbView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PictureUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/PictureUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/VideoServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/VideoServer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/VideoServer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/VideoServer$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/VideoServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/util/VideoServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/viewlib/BuildConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/com/radaee/viewlib/BuildConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlMesh$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlMesh$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlMesh$Array.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlMesh$Array.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlMesh$ShadowVertex.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlMesh$ShadowVertex.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlMesh$Vertex.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlMesh$Vertex.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlMesh.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlMesh.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlRenderer$Observer.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlRenderer$Observer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlRenderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlRenderer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlView$PageProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlView$PageProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlView$PointerPosition.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlView$PointerPosition.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlView$SizeChangedObserver.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlView$SizeChangedObserver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlView.class" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/classes/fi/harism/curl/CurlView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/Broadcast/MyBroadcast.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/Model/StudentsNote.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/BMDatabase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/BMP.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/DIB.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/Document$DocFont.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/Document$DocGState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/Document$DocImage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/Document$ImportContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/Document$Outline.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/Document$PDFFontDelegate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/Document$PDFStream.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/Document.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/Global.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/HWriting.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/Ink.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/Matrix.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/Page$Annotation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/Page$Finder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/Page$ResFont.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/Page$ResGState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/Page$ResImage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/Page.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/PageContent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/Path.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/SuperDoc$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/SuperDoc$DocInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/pdf/SuperDoc.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFBotBar$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFBotBar$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFBotBar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFCurlViewAct$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFCurlViewAct$PDFCurlThread$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFCurlViewAct$PDFCurlThread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFCurlViewAct$PDFPageProvider.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFCurlViewAct$PDFSizeChangedObserver.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFCurlViewAct.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$10.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$11.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$12.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$13.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$14.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$6$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$6$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$8$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$9$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$9$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$9.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$DownloadImageTask.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$PDFGestureListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$PDFLayoutListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView$PDFVPageSet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFLayoutView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFNavAct$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFNavAct$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFNavAct.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFTopBar$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFTopBar$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFTopBar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFViewAct$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFViewAct$2$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFViewAct$2$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFViewAct$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFViewAct$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFViewAct$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFViewAct$MyPDFFontDel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFViewAct.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFViewController$PDFViewControllerListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/PDFViewController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/ShowImageToNote.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/reader/onImageViewCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/ComboList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/ComboListAdt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/PDFAESStream.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/PDFAssetStream.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/PDFFileStream.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/PDFGridAdt$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/PDFGridAdt$SnatchItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/PDFGridAdt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/PDFGridItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/PDFGridThread$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/PDFGridThread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/PDFGridView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/PDFHttpStream$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/PDFHttpStream$HttpDownloadThread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/PDFHttpStream$HttpThread$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/PDFHttpStream$HttpThread$OP.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/PDFHttpStream$HttpThread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/PDFHttpStream.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/PDFMemStream.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/PDFThumbView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/PictureUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/VideoServer$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/VideoServer$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/util/VideoServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/radaee/viewlib/BuildConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/fi/harism/curl/CurlMesh$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/fi/harism/curl/CurlMesh$Array.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/fi/harism/curl/CurlMesh$ShadowVertex.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/fi/harism/curl/CurlMesh$Vertex.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/fi/harism/curl/CurlMesh.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/fi/harism/curl/CurlPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/fi/harism/curl/CurlRenderer$Observer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/fi/harism/curl/CurlRenderer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/fi/harism/curl/CurlView$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/fi/harism/curl/CurlView$PageProvider.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/fi/harism/curl/CurlView$PointerPosition.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/fi/harism/curl/CurlView$SizeChangedObserver.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/fi/harism/curl/CurlView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/library_and_local_jars_jni/debug/arm64-v8a/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/library_and_local_jars_jni/debug/armeabi-v7a/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/library_and_local_jars_jni/debug/armeabi/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/library_and_local_jars_jni/debug/mips/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/library_and_local_jars_jni/debug/mips64/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/library_and_local_jars_jni/debug/x86/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/library_and_local_jars_jni/debug/x86_64/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/library_manifest/debug/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/local_only_symbol_list/debug/R-def.txt" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/local_only_symbol_list/debug/R-def.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/merged_manifests/debug/output.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/merged_manifests/debugAndroidTest/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/merged_manifests/debugAndroidTest/output.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/packaged-classes/debug/classes.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/packaged-classes/debug/libs/com.radaee.view.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/packaged-classes/debug/libs/google-api-translate-java-0.97.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/packaged_res/debug/values-v11/values-v11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/packaged_res/debug/values-v11/values-v11.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/packaged_res/debug/values-v14/values-v14.xml" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/packaged_res/debug/values-v14/values-v14.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/packaged_res/debug/values/values.xml" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/packaged_res/debug/values/values.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/runtime_library_classes/debug/classes.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/runtime_library_classes_jar/debug/classes.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/stripped_native_libs/debug/out/lib/arm64-v8a/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/stripped_native_libs/debug/out/lib/armeabi-v7a/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/stripped_native_libs/debug/out/lib/armeabi/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/stripped_native_libs/debug/out/lib/mips/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/stripped_native_libs/debug/out/lib/mips64/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/stripped_native_libs/debug/out/lib/x86/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/stripped_native_libs/debug/out/lib/x86_64/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/symbol_list_with_package_name/debug/package-aware-r.txt" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/intermediates/symbol_list_with_package_name/debug/package-aware-r.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/symbols/debug/R.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/transforms/mergeJavaRes/debug/0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/transforms/mergeJavaRes/debug/__content__.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/transforms/mergeJniLibs/debug/0/lib/arm64-v8a/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/transforms/mergeJniLibs/debug/0/lib/armeabi-v7a/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/transforms/mergeJniLibs/debug/0/lib/armeabi/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/transforms/mergeJniLibs/debug/0/lib/mips/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/transforms/mergeJniLibs/debug/0/lib/mips64/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/transforms/mergeJniLibs/debug/0/lib/x86/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/transforms/mergeJniLibs/debug/0/lib/x86_64/librdpdf.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/intermediates/transforms/mergeJniLibs/debug/__content__.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/outputs/aar/viewLib-debug.aar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/build/tmp/compileDebugJavaWithJavac/source-classes-mapping.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewLib/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/viewLib/src/main/AndroidManifest.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\s\.android\avd\Pixel_C_Edited_API_30.avd]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="RDPDFReader3" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="layoutResourceFile" />
+        <option value="valueResourceFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
+  </component>
+  <component name="ProjectId" id="29UeURGcqcwfQY7ohZ4RhrF14Hl" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+  </component>
+  <component name="PsdUISettings">
+    <option name="MODULE_TAB" value="Default Config" />
+    <option name="LAST_EDITED_SIGNING_CONFIG" value="debug" />
+    <option name="LAST_EDITED_BUILD_TYPE" value="release" />
+  </component>
+  <component name="RunManager">
+    <configuration name="rDPDFReader" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="RDPDFReader3.rDPDFReader.main" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+        <option name="PROFILING_MODE" value="NOT_SET" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8c5b2a77-d5d1-4065-90f7-a32641244677" name="Default Changelist" comment="" />
+      <created>1653172106467</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1653172106467</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Andy project">
+      <created>1664897326351</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1664897326351</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="617e6cc1-4ef1-47d7-a46c-6a43a2c530d6">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:D:/RDPDFReader3/rDPDFReader" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/openai/openai-quickstart-python" />
+    </ignored-roots>
+    <MESSAGE value="finished project" />
+    <MESSAGE value="Andy project" />
+    <option name="LAST_COMMIT_MESSAGE" value="Andy project" />
+  </component>
+</project>
