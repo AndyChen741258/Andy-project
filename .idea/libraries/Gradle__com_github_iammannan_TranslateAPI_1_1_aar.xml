@@ -1,11 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.iammannan:TranslateAPI:1.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0d72c4eed648471fa2a879e14391c987/jetified-TranslateAPI-1.1/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0d72c4eed648471fa2a879e14391c987/jetified-TranslateAPI-1.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0d72c4eed648471fa2a879e14391c987/jetified-TranslateAPI-1.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/0140e541b5fb7151967b5b29894242d8/transformed/jetified-TranslateAPI-1.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0140e541b5fb7151967b5b29894242d8/transformed/jetified-TranslateAPI-1.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0140e541b5fb7151967b5b29894242d8/transformed/jetified-TranslateAPI-1.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.iammannan/TranslateAPI/1.1/7a9a0647ec22e2174ae4e7013d96ccc1e61e20dc/TranslateAPI-1.1-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

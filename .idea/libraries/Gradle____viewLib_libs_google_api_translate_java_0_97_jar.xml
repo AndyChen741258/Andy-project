@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: ./viewLib/libs/google-api-translate-java-0.97.jar">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/viewLib/libs/google-api-translate-java-0.97.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

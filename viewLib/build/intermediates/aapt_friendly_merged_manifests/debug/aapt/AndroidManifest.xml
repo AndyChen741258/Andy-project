@@ -5,8 +5,8 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="21"
-        android:targetSdkVersion="21" />
+        android:minSdkVersion="28"
+        android:targetSdkVersion="32" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -21,7 +21,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application android:allowBackup="true" >
-        <receiver android:name="com.radaee.Broadcast.MyBroadcast" >
+        <receiver
+            android:name="com.radaee.Broadcast.MyBroadcast"
+            android:exported="false" >
             <intent-filter>
                 <action android:name="StudentsName" />
             </intent-filter>

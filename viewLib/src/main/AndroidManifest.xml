@@ -14,7 +14,8 @@
 	<uses-permission android:name="android.permission.INTERNET" />
     <application android:allowBackup="true" >
 
-        <receiver android:name="com.radaee.Broadcast.MyBroadcast">
+        <receiver android:name="com.radaee.Broadcast.MyBroadcast"
+            android:exported="false">
             <intent-filter>
                 <action android:name="StudentsName"/>
             </intent-filter>

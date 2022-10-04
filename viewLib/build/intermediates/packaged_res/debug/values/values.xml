@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ViewLib</string>
+    <string name="default_web_client_id" translatable="false">251953467825-416djto2lsv7evvggavqi3baq415b9f0.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://newvpen-809b2.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">251953467825</string>
+    <string name="google_api_key" translatable="false">AIzaSyCjQVP4uYpRNWIH5kK5mTqWBu0YqxjHUAU</string>
+    <string name="google_app_id" translatable="false">1:251953467825:android:c379018b15e5bf6e</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCjQVP4uYpRNWIH5kK5mTqWBu0YqxjHUAU</string>
+    <string name="google_storage_bucket" translatable="false">newvpen-809b2.appspot.com</string>
+    <string name="project_id" translatable="false">newvpen-809b2</string>
     <style name="AppBaseTheme" parent="android:Theme.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
+        
     </style>
     <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        
     </style>
 </resources>

@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: lib.kingja.switchbutton:switchbutton:1.1.8@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bfa960d43f34c4fd2dad92cea3d9a4cd/jetified-switchbutton-1.1.8/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bfa960d43f34c4fd2dad92cea3d9a4cd/jetified-switchbutton-1.1.8/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bfa960d43f34c4fd2dad92cea3d9a4cd/jetified-switchbutton-1.1.8/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/77ce144b62e5ff298743d2771faeab25/transformed/jetified-switchbutton-1.1.8/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/77ce144b62e5ff298743d2771faeab25/transformed/jetified-switchbutton-1.1.8/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/77ce144b62e5ff298743d2771faeab25/transformed/jetified-switchbutton-1.1.8/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/lib.kingja.switchbutton/switchbutton/1.1.8/a0c6865142885e6991f2066af0971d1baf0443b0/switchbutton-1.1.8-javadoc.jar!/" />
