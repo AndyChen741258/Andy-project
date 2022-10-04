@@ -52,6 +52,7 @@ public class CardViewData extends RecyclerView.Adapter<CardViewData.ViewHolder>{
     private DatabaseReference fire_sharedata; //分享區
     private DatabaseReference fire_share_time; //分享次數/個數記錄
     private DatabaseReference fire_see_other_tts; //觀看時聆聽tts的次數及內容記錄
+    private SimpleDateFormat sdf_now = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     String date = sdf.format(new java.util.Date());
@@ -85,13 +86,15 @@ public class CardViewData extends RecyclerView.Adapter<CardViewData.ViewHolder>{
         holder.share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //上傳點擊行為與時間點
+                String date = sdf_now.format(new java.util.Date());
                 fire_sharedata = FirebaseDatabase.getInstance().getReference();
                 //上傳到分享區
                 fire_sharedata.child("DescribeData_place").child(describeData.getLocation()).child(id_num).setValue(describeData);
                 Toast.makeText(view.getContext(), "已上傳至分享區", Toast.LENGTH_SHORT).show();
                 fire_share_time = FirebaseDatabase.getInstance().getReference();
                 //記錄下分享的內容及個數
-                fire_share_time.child("學生"+Student.Name+"號").child("Share_Time").child(describeData.getLocation()).push().setValue(describeData.getDescribe_text());
+                fire_share_time.child("學生"+Student.Name+"號").child("Share_Time").child(describeData.getLocation()).child(date).setValue(describeData.getDescribe_text());
             }
         });
 
@@ -124,6 +127,7 @@ public class CardViewData extends RecyclerView.Adapter<CardViewData.ViewHolder>{
             listen_ttstts = itemView.findViewById(R.id.listen_ttstts);
             listen_record = itemView.findViewById(R.id.listen_record);
 
+
             //TTS.init(getApplicationContext());
 
             if(DramaRecycleView.people_spinner_word.equals("其他人的情境探索")){
@@ -137,11 +141,75 @@ public class CardViewData extends RecyclerView.Adapter<CardViewData.ViewHolder>{
                 }
             }
 
+            String string=num.getText().toString().trim().substring(2,num.getText().toString().trim().length()-1);
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference()
+                    .child(string)
+                    .child("Describe Record")
+                    .child(contenet_describe.getText().toString().trim()+ "/" + string+"_"+contenet_describe.getText().toString().trim()+".amr");
+            storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    listen_record.setVisibility(View.VISIBLE);
+                    listen_record.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            try {
+                                //上傳點擊行為與時間點
+                                String date = sdf_now.format(new java.util.Date());
+                                DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                        .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("Describe").child("聆聽情境錄音");
+                                fire_60sec_student_data.child(date).child("Describe Text").setValue(contenet_describe.getText().toString().trim());
+                                fire_60sec_student_data.child(date).child("Student number").setValue(num.getText().toString().trim());
+                            }catch (Exception e){
+                                e.printStackTrace();
+                                Toast.makeText(itemView.getContext(), "上傳聆聽情境錄音紀錄失敗", Toast.LENGTH_SHORT).show();
+                            }
+                            Toast.makeText(itemView.getContext(),"撥放錄音", Toast.LENGTH_SHORT).show();
+                            MediaPlayer player = new MediaPlayer();
+                            try {
+                                player.setDataSource(uri.toString());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            try {
+                                player.prepare();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            player.start();
+                        }
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                }
+            });
+
 
             listen_ttstts.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     TTS.speak(contenet_describe.getText().toString());
+                    try {
+                        //上傳點擊行為與時間點
+                        String date = sdf_now.format(new java.util.Date());
+                        DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("Describe").child("聆聽情境TTS");
+                        if(DramaRecycleView.people_spinner_word.equals("自己的情境探索")){
+                            fire_60sec_student_data.child("觀看自己的").child(date).child("Describe Text").setValue(contenet_describe.getText().toString().trim());
+                        }else{
+                            if(num.getText().toString().trim().substring(2, num.getText().toString().length() - 1).trim().equals(Student.Name.trim())){
+                                fire_60sec_student_data.child("觀看自己的").child(date).child("Describe Text").setValue(contenet_describe.getText().toString().trim());
+                            }else{
+                                fire_60sec_student_data.child("觀看同學的").child(date).child("Describe Text").setValue(contenet_describe.getText().toString().trim());
+                                fire_60sec_student_data.child("觀看同學的").child(date).child("Student number").setValue(num.getText().toString().trim());
+                            }
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(itemView.getContext(), "上傳聆聽情境TTS紀錄失敗", Toast.LENGTH_SHORT).show();
+                    }
 
                     if(DramaRecycleView.people_spinner_word.equals("其他人的情境探索")){
                         //紀錄: 觀看其他人的描述時 看哪個地點哪個學生的紀錄 tts聽了幾個幾次
@@ -153,7 +221,6 @@ public class CardViewData extends RecyclerView.Adapter<CardViewData.ViewHolder>{
                         fire_see_other_tts.child("學生"+Student.Name+"號").child("See_Self_Description_Time").child(date)
                                 .child("TTS").push().setValue(contenet_describe.getText().toString().replaceAll("[,|.|!|?|']", "").trim());
                     }
-
                 }
             });
 
@@ -168,6 +235,25 @@ public class CardViewData extends RecyclerView.Adapter<CardViewData.ViewHolder>{
                     storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
+                            try {
+                                //上傳點擊行為與時間點
+                                String date = sdf_now.format(new java.util.Date());
+                                DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                        .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("Describe").child("聆聽情境錄音");
+                                if(DramaRecycleView.people_spinner_word.equals("自己的情境探索")){
+                                    fire_60sec_student_data.child("觀看自己的").child(date).child("Describe Text").setValue(contenet_describe.getText().toString().trim());
+                                }else{
+                                    if(num.getText().toString().trim().substring(2, num.getText().toString().length() - 1).trim().equals(Student.Name.trim())){
+                                        fire_60sec_student_data.child("觀看自己的").child(date).child("Describe Text").setValue(contenet_describe.getText().toString().trim());
+                                    }else{
+                                        fire_60sec_student_data.child("觀看同學的").child(date).child("Describe Text").setValue(contenet_describe.getText().toString().trim());
+                                        fire_60sec_student_data.child("觀看同學的").child(date).child("Student number").setValue(num.getText().toString().trim());
+                                    }
+                                }
+                            }catch (Exception e){
+                                e.printStackTrace();
+                                Toast.makeText(itemView.getContext(), "上傳聆聽情境錄音紀錄失敗", Toast.LENGTH_SHORT).show();
+                            }
                             Toast.makeText(itemView.getContext(),"撥放錄音", Toast.LENGTH_SHORT).show();
                             MediaPlayer player = new MediaPlayer();
                             try {
@@ -193,10 +279,7 @@ public class CardViewData extends RecyclerView.Adapter<CardViewData.ViewHolder>{
 
             if(DescribeActivity.isWantToLearn == true){
                 share.setVisibility(View.INVISIBLE);
-                listen_ttstts.setVisibility(View.INVISIBLE);
-                listen_record.setVisibility(View.INVISIBLE);
             }
-
             itemView.setOnClickListener(this);
         }
 

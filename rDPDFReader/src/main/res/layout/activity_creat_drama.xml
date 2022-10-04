@@ -32,18 +32,18 @@
         android:visibility="invisible" />
 
     <Button
-    android:id="@+id/finish_and_return"
-    android:layout_width="150dp"
-    android:layout_height="70dp"
-    android:layout_alignParentRight="true"
-    android:layout_marginTop="30dp"
-    android:layout_marginRight="40dp"
-    android:background="@drawable/save_drama_btn"
-    android:drawableLeft="@drawable/save4"
-    android:paddingLeft="15dp"
-    android:paddingTop="5dp"
-    android:text="儲存劇本"
-    android:visibility="invisible" />
+        android:id="@+id/finish_and_return"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/save_drama_btn"
+        android:drawableLeft="@drawable/save4"
+        android:paddingLeft="15dp"
+        android:paddingTop="5dp"
+        android:text="儲存劇本"
+        android:visibility="invisible" />
 
 
     <Button

@@ -11,8 +11,8 @@ public class KeyList {
        //keyDatabaseList.add(new KeyDatabase(24.967341,121.187608,15,"92071a1c3cd24ec8a494a02ab61c8dc9","engineer"));//工五館
         keyDatabaseList.add(new KeyDatabase(24.967128,121.187708,20, R.raw.engineerbuilding_hiowhp_ac400b4c08c1,"MeetingRoom"));//會議室A402
         keyDatabaseList.add(new KeyDatabase(24.967128,121.187708,50, R.raw.engineerbuilding_hiowhp_ac400b4c08c1,"laboratory"));//實驗室
-        keyDatabaseList.add(new KeyDatabase(24.906179,121.181004,75, R.raw.engineerbuilding_hiowhp_ac400b4c08c1,"Playground"));//瑞坪操場
-        keyDatabaseList.add(new KeyDatabase(24.906777,121.181026,50, R.raw.engineerbuilding_hiowhp_ac400b4c08c1,"Playground"));//瑞坪教室
+        keyDatabaseList.add(new KeyDatabase(24.906071, 121.180740,50, R.raw.engineerbuilding_hiowhp_ac400b4c08c1,"playground"));//瑞坪操場
+        keyDatabaseList.add(new KeyDatabase(24.906931, 121.180603,50, R.raw.engineerbuilding_hiowhp_ac400b4c08c1,"classroom"));//瑞坪教室
 //        keyDatabaseList.add(new KeyDatabase(24.950263,121.206318,50, R.raw.engineerbuilding_hiowhp_ac400b4c08c1,"swimming pool"));//平興游泳池
 //        keyDatabaseList.add(new KeyDatabase(24.9498411,121.2062200,25, R.raw.engineerbuilding_hiowhp_ac400b4c08c1,"library"));//平興圖書館
 //        keyDatabaseList.add(new KeyDatabase(24.9501966,121.2056203,50, R.raw.engineerbuilding_hiowhp_ac400b4c08c1,"playground"));//平興操場

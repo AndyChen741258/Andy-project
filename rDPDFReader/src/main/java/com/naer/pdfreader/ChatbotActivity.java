@@ -31,6 +31,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.os.PowerManager;
 import android.provider.MediaStore;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
@@ -50,6 +51,7 @@ import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -202,6 +204,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
     private Button btn_recorder;
 
 
+
     private Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
@@ -212,7 +215,6 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
         }
     });
 
-
     private LocationListener mLocationListener = new LocationListener() {
 
         @RequiresApi(api = Build.VERSION_CODES.O)
@@ -222,6 +224,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
             final Date now = new Date();
             android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm", now);
             if (location != null) {
+                last_location = PlaceName.getText().toString().trim();
                 longitude = location.getLongitude();   //取得經度
                 latitude = location.getLatitude();    //取得緯度
                 CheckLocation(latitude, longitude);//檢查地點是否在附近
@@ -324,7 +327,12 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
     private boolean bol_takephoto_right = false;
     private SimpleDateFormat sdf;
     private ProgressDialog pDialog;
-
+    private String last_location;
+    private Boolean bol_lastlocation = false;
+    private Button btn_change;
+    private boolean bol_english;
+    private String dialog;
+    private PowerManager pm;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressLint("ServiceCast")
@@ -337,6 +345,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
 //        btnShow = (Button) findViewById(R.id.btn_show);
 //        btnShow.setOnClickListener(listener);
 //        initPopupWindow();
+
 
         dialogList = new ArrayList<String>();
         alertDialogList = new ArrayList<AlertDialog>();
@@ -355,15 +364,37 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
         dialogspeak_text = findViewById(R.id.dialogspeak_text);
         loading = findViewById(R.id.loading);
         btn_voice = findViewById(R.id.btn_voice);
+        btn_change = findViewById(R.id.btn_change);
+        bol_english = true;
+        btn_change.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (bol_english){
+                    bol_english = false;
+                    Toast.makeText(context,"切換中文", Toast.LENGTH_SHORT).show();
+                    btn_change.setBackgroundResource(R.drawable.chinese);
+                }else{
+                    bol_english = true;
+                    Toast.makeText(context,"切換英文", Toast.LENGTH_SHORT).show();
+                    btn_change.setBackgroundResource(R.drawable.english);
+                }
+            }
+        });
 //        btn_photo = findViewById(R.id.btn_photo);
 
-        
+//        //進來class號碼偵測
+//        if(Student.Name.trim().equals("") || Student.Name.trim()==null){
+//            alertdialog_name();
+//        }
         // init speechRecognizer
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         speechRecognizer.setRecognitionListener(new MyRecognizerListener());
         TTS.init(getApplicationContext());
         // Java V2
         initV2Chatbot();
+
+        handler.post(runnable_message);
+        pm = (PowerManager) getSystemService(android.content.Context.POWER_SERVICE);
 
 
         voice_text2.setVisibility(View.INVISIBLE);
@@ -415,6 +446,14 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
 
         readInfo(Student.Name+"號學生聊天機器人行為紀錄");
 
+        pDialog = new ProgressDialog(ChatbotActivity.this);
+        pDialog.setTitle("載入數據");
+        pDialog.setMessage("載入中... \n請耐心等待。");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+        pDialog.show();
+
+
 
 //        storageReference = FirebaseDatabase.getInstance().getReference().child("playground").child("sentence");
 
@@ -465,26 +504,26 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
 
 
 
-        btn_Notify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context,ChatbotActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                PendingIntent  PI = PendingIntent.getActivity(context,0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
-
-                Notification.Builder builder = new Notification.Builder(context);
-                builder.setSmallIcon(R.drawable.ic_launcher)
-                        .setChannelId("ID")
-                        .setContentTitle("位置更換")
-                        .setContentText("您現在位置是:"+PlaceName.getText().toString())
-                        .setContentIntent(PI);
-
-                Notification notification = builder.build();
-                mNotificationManager.notify(0,notification);
-
-            }
-        });
+//        btn_Notify.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(context,ChatbotActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+//
+//                PendingIntent  PI = PendingIntent.getActivity(context,0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
+//
+//                Notification.Builder builder = new Notification.Builder(context);
+//                builder.setSmallIcon(R.drawable.ic_launcher)
+//                        .setChannelId("ID")
+//                        .setContentTitle("位置更換")
+//                        .setContentText("您現在位置是:"+PlaceName.getText().toString())
+//                        .setContentIntent(PI);
+//
+//                Notification notification = builder.build();
+//                mNotificationManager.notify(0,notification);
+//
+//            }
+//        });
 //        btn_photo.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -822,8 +861,9 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                             //上傳點擊行為與時間點
                             String date = sdf.format(new java.util.Date());
                             DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
-                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("Chatbot").child("自己對話拍攝照片");
+                                    .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("Chatbot").child("");
                             fire_60sec_student_data.child(date).child("Dialog Text").setValue(answerTextView.getText().toString());
+                            fire_60sec_student_data.child(date).child("User say text").setValue(usertext);
                         }catch (Exception e){
                             e.printStackTrace();
                             Toast.makeText(ChatbotActivity.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
@@ -871,8 +911,11 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
         Log.d(TAG, "startRecord: ");
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "zh-TW");
+        if(bol_english){
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
+        }else{
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "zh-TW");
+        }
         speechRecognizer.startListening(intent);
 //        }
     }
@@ -931,8 +974,11 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                 speechRecognizer.cancel();
                 Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
-                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "zh-TW");
+                if(bol_english){
+                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
+                }else{
+                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "zh-TW");
+                }
                 speechRecognizer.startListening(intent);
             }
             if (i == 7) {
@@ -1267,6 +1313,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
             public void run() {
                 scrollView.scrollTo(0, scrollView.getBottom());
                 scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                pDialog.dismiss();
             }
         });
     }
@@ -1311,6 +1358,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
         wrongWord_left = diffView.findViewById(R.id.wrongWord_left);
         wrongWordScrollView_left = diffView.findViewById(R.id.wrongWordScrollView_left);
         trans_speak_left = diffView.findViewById(R.id.trans_speak_left);
+
         final Button record = (diffView.findViewById(R.id.recordplayer));
         final Button stop = (diffView.findViewById(R.id.stopplayer));
         final Button play = (diffView.findViewById(R.id.playplayer));
@@ -1379,7 +1427,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                     recorder = new MediaRecorder();// new出MediaRecorder物件
                     recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
                     // 設定MediaRecorder的音訊源為麥克風
-                    recorder.setOutputFormat(MediaRecorder.OutputFormat.RAW_AMR);
+                    recorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB);
                     // 設定MediaRecorder錄製的音訊格式
                     recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
                     // 設定MediaRecorder錄製音訊的編碼為amr.
@@ -1391,7 +1439,6 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                         recorder.prepare();// 準備錄製
                         recorder.start();// 開始錄製
                         Toast.makeText(ChatbotActivity.this, "開始錄音", Toast.LENGTH_SHORT).show();
-
                         timeCount = 0;
                         handler.post(runnable);
 
@@ -1530,9 +1577,13 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
             imageButton.setImageDrawable(getResources().getDrawable(R.drawable.chatbot_player));
             imageButton.setBackgroundColor(getResources().getColor(R.color.transparent));
             imageButton.setPaddingRelative(0,0,55,0);
+
             linearLayout.addView(imageButton);
+
 //            imageButton.setOnClickListener(new TtsOnClickListener(anwerTextArray_left[i]));
             int finalI = i;
+
+
             imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -1559,7 +1610,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
         alertDialogBuilder.setView(diffView);
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
-        alertDialog.getWindow().setLayout(1000, 1000);
+        alertDialog.getWindow().setLayout(1000, 1150);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -1567,9 +1618,10 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
         LayoutInflater inflater = LayoutInflater.from(context);
         View diffView = inflater.inflate(R.layout.activity_diff, null);
 
-
         answerTextView = diffView.findViewById(R.id.answerTextViewDiff);
         userTextView = diffView.findViewById(R.id.userTextView);
+
+
         wrongTextView = diffView.findViewById(R.id.wrongTextView);
         wrongWord = diffView.findViewById(R.id.wrongWord);
         wrongWordScrollView = diffView.findViewById(R.id.wrongWordScrollView);
@@ -1577,7 +1629,9 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
         takephoto_right = diffView.findViewById(R.id.takephoto_right);
 //        trans_speak = diffView.findViewById(R.id.trans_speak);
         chinese = diffView.findViewById(R.id.chinese);
+
         final Button btn_tts_chatbot = diffView.findViewById(R.id.btn_tts_chatbot);
+
         btn_tts_chatbot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1715,6 +1769,8 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
             imageButton.setBackgroundColor(getResources().getColor(R.color.transparent));
             imageButton.setPaddingRelative(0,0,50,0);
             linearLayout.addView(imageButton);
+
+
             imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -1726,6 +1782,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                                 .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("Chatbot").child("撥放自己對話字節TTS");
                         fire_60sec_student_data.child(date).child("Dialog Single Text").setValue(anwerTextArray[finalI]);
                         fire_60sec_student_data.child(date).child("Dialog Text").setValue(answerTextView.getText().toString());
+                        fire_60sec_student_data.child(date).child("User say text").setValue(usertext);
                     }catch (Exception e){
                         e.printStackTrace();
                         Toast.makeText(ChatbotActivity.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
@@ -1832,8 +1889,16 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
 
     }
 
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void CheckLocation(Double latitude, Double longitude) {
+        String[] home=new String[]{"Who is at home last night?","Who did you have dinner today?",
+                "Did you go to the convenience stores last night?","Do you like convenience stores?","How many dishes did you have last night?"};
+        String[] other=new String[]{"What's is weather now?","How was the weather last night?","You can tell me the weather.","You can ask me the convenience store."};
+        String[] classroom =new String[]{"What did you eat yesterday morning?","What main food did you have?","What's your favorite side dish at this breakfast shop?"
+        ,"Did you have your breakfast?"};
+        String[] playground =new String[]{"How was the weather last afternoon?","What's is weather now?","Did you played basketball yesterday?"
+        ,"Did you jogged yesterday?"};
         //Place 裡面的資料是目前的位置
         Place place = new Place();
         place.setLat(latitude);
@@ -1861,23 +1926,31 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                         }
                     }, 5000);
                 }
+                Random x;
+                int i;
                 PlaceName.setText((keyDatabase.Place));
 
-                Intent intent = new Intent(context,MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                PendingIntent  PI = PendingIntent.getActivity(context,0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
-
-                Notification.Builder builder = new Notification.Builder(context);
-                builder.setSmallIcon(R.drawable.ic_launcher)
-                        .setChannelId("ID")
-                        .setContentTitle("位置更換")
-                        .setContentText("您現在位置是:"+PlaceName.getText().toString())
-                        .setContentIntent(PI);
-
-                Notification notification = builder.build();
-                mNotificationManager.notify(0,notification);
-
+                switch (PlaceName.getText().toString().trim()){
+                    case "home":
+                        x = new Random();
+                        i = x.nextInt(home.length);
+                        dialog = home[i];
+                        break;
+                    case "classroom":
+                        x = new Random();
+                        i = x.nextInt(classroom.length);
+                        dialog = classroom[i];
+                        break;
+                    case "playground":
+                        x = new Random();
+                        i = x.nextInt(playground.length);
+                        dialog = playground[i];
+                        break;
+                }
+                //控制隱藏下一行
+                if(!last_location.trim().equals(PlaceName.getText().toString().trim())){
+                    notfy_message();
+                }
                 //抓到PlaceName後，讀取相對應的資料塞進String陣列中，在Adapter進AutoCompleteTextview中
 //                fire_vocabulary.child(PlaceName.getText().toString()).child("sentence").addValueEventListener(new ValueEventListener() {
 //                    @Override
@@ -1897,9 +1970,99 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
 //                });
             }
         }
-
         if (Unidentified_List.size() == 0) {
             PlaceName.setText("Other");
+        }
+    }
+
+    private Runnable runnable_message = new Runnable() {
+        @Override
+        public void run() {
+            handler_message.postDelayed(this,  7200000);
+            handler_message.sendEmptyMessage(1);
+        }
+    };
+
+    private Handler handler_message = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            if(msg.what == 1 && !pm.isInteractive()){
+                Random x;
+                int i;
+                java.util.Date date = new java.util.Date();
+                SimpleDateFormat df = new SimpleDateFormat("HH");
+                String str = df.format(date);
+
+                final int a = Integer.parseInt(str);
+                if (a > 8 && a <= 12){
+                    String[] morning=new String[]{"Who is at home now?","Who did you have breakfast today?",
+                            "Did you go to the convenience stores last night?","What's is weather now?","What's your favorite side dish at this breakfast shop?"};
+                    x = new Random();
+                    i = x.nextInt(morning.length);
+                    dialog = morning[i];
+                    //控制隱藏下一行
+                    notfy_message();
+                }else if(a > 13 && a <= 18){
+                    String[] afternoon =new String[]{"What did you eat last lunch?","Who is at home now?","You can tell me the weather."
+                            ,"Did you have your lunch?"};
+                    x = new Random();
+                    i = x.nextInt(afternoon.length);
+                    dialog = afternoon[i];
+                    //控制隱藏下一行
+                    notfy_message();
+                }else if(a > 18 && a <= 21){
+                    String[] night =new String[]{"How was the weather last night?","You can tell me Convenience stores","Did you have dinner?"
+                            ,"Who is at home now?"};
+                    x = new Random();
+                    i = x.nextInt(night.length);
+                    dialog = night[i];
+                    //控制隱藏下一行
+                    notfy_message();
+                }
+            }
+        }
+    };
+
+    private void notfy_message(){
+        java.util.Date date = new java.util.Date();
+        SimpleDateFormat df_date = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+        String str_date = df_date.format(date);
+        //抓到PlaceName後，讀取相對應的資料塞進String陣列中，在Adapter進AutoCompleteTextview中
+//                fire_vocabulary.child(PlaceName.getText().toString()).child("sentence").addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                        int i = 0;
+//                        autoStrs= new String [(int)dataSnapshot.getChildrenCount()];   //若擺在for迴圈中會每一次都洗掉 抓不到值 null
+//                        for(DataSnapshot each : dataSnapshot.getChildren()){
+//                            autoStrs[i] = each.getValue().toString();
+//                            i++;
+//                        }
+//                        String[] auto = autoStrs;
+//                        adapter = new ArrayAdapter<String>(DescribeActivity.this, android.R.layout.simple_dropdown_item_1line,auto);
+//                        studentdescribe.setAdapter(adapter);
+//                    }
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) { }
+//                });
+        Intent intent = new Intent(this,ChatbotActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        PendingIntent  PI = PendingIntent.getActivity(context,0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
+        Notification.Builder builder = new Notification.Builder(context);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            builder.setSmallIcon(R.drawable.ic_launcher)
+                    .setChannelId("ID")
+                    .setContentTitle(dialog)
+                    .setSubText("現在時間"+str_date)
+                    .setContentText("您現在位置是:"+PlaceName.getText().toString())
+                    .setContentIntent(PI);
+        }
+        //控制組隱藏下五行
+        Notification notification = builder.build();
+        mNotificationManager.notify(0,notification);
+        if (!bol_lastlocation){
+            addChat(dialog,1);
+            bol_lastlocation=true;
         }
     }
 
@@ -2042,10 +2205,6 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
                       test = test.substring(0,test.length()-1);
                       Log.v("getValue()",test);
                       user_array = test.split(",");
-                      for (int i=0;i<user_array.length;i++){
-                          Log.v("array",user_array[i]);
-                          Log.v("array", String.valueOf(i));
-                      }
                       user_time();
                   }
                   @Override
@@ -2053,6 +2212,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
 
                   }
               });
+
           } catch (Exception e) {
               e.printStackTrace();
               Toast.makeText(ChatbotActivity.this, "取得學生次數錯誤", Toast.LENGTH_SHORT).show();
@@ -2115,8 +2275,8 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
             Log.v("確認執行",test);
             Log.v("無法辨認", String.valueOf(user));
             for (int i=1;i<=user;i++) {
-                addChat(user_array[i].replace("__",","),0);
-                addChat(chatbot_array[i].replace("__",","),1);
+                addChat(user_array[i].replace("__",",").trim(),0);
+                addChat(chatbot_array[i].replace("__",",").trim(),1);
 //                if (i%2!=0){
 //                    Log.v("test_z", String.valueOf(i-((i-1)/2)));
 //                    addChat(user_array[i-((i-1)/2)],0);
@@ -2132,6 +2292,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
 //                    Log.v("chatbot_array[1]",chatbot_array[1]);
 //                    addChat(chatbot_array[1],1);
                 }
+            pDialog.dismiss();
         }else{
             Log.v("確認執行","True");
             fire_welcome = FirebaseDatabase.getInstance().getReference();
@@ -2167,6 +2328,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK){
+            handler_message.removeCallbacks(runnable_message);
             int test_user = user;
             int test_chatbot = chatbot;
             pDialog = new ProgressDialog(ChatbotActivity.this);
@@ -2239,6 +2401,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
         }
     }
 
+
     public String readInfo(String fileName){
 
         BufferedReader br = null;
@@ -2269,6 +2432,31 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
             return null;
         }
         return response;
+    }
+
+    private void alertdialog_name(){
+        AlertDialog.Builder editDialog = new AlertDialog.Builder(ChatbotActivity.this);
+        editDialog.setTitle("輸入你的班級+座號");
+        editDialog.setIcon(R.drawable.ic_launcher);
+
+        final EditText editText = new EditText(ChatbotActivity.this);
+        editDialog.setView(editText);
+
+        editDialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+            // do something when the button is clicked
+            public void onClick(DialogInterface arg0, int arg1) {
+                Student.Name = editText.getText().toString().trim();
+            }
+        });
+        editDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            // do something when the button is clicked
+            public void onClick(DialogInterface arg0, int arg1) {
+                Intent intent = new Intent(ChatbotActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        editDialog.show();
+
     }
 }
 

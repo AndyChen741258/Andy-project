@@ -5,20 +5,21 @@
     android:layout_margin="10dp">
 
     <LinearLayout
-        android:layout_width="500dp"
-        android:layout_height="500dp"
+        android:layout_width="700dp"
+        android:layout_height="700dp"
         android:layout_centerInParent="true"
-        android:padding="20dp"
-        android:orientation="vertical">
+        android:background="#F4D5D5"
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="250dp"
+            android:layout_width="580dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="308dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -40,6 +41,7 @@
                         android:layout_height="30dp"
                         android:background="@drawable/ic_baseline_play_circle_filled_24" />
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/answerTextViewDiff"
                     android:layout_width="300dp"
@@ -49,10 +51,11 @@
                     android:textSize="22sp" />
 
                 <TextView
+                    android:id="@+id/view_trans_correct"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Translate Correct"
                     android:paddingTop="10dp"
+                    android:text="Translate Correct"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="18sp" />
 
@@ -60,8 +63,8 @@
                     android:id="@+id/trans_correct"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:text=""
                     android:background="@drawable/textview_border"
+                    android:text=""
                     android:textSize="22sp" />
 
                 <LinearLayout
@@ -70,12 +73,14 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/view_chinese"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dp"
                         android:text="@string/user_diff_title"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="18sp" />
+
                     <TextView
                         android:id="@+id/chinese"
                         android:layout_width="180dp"
@@ -92,14 +97,14 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text=""
                     android:background="@drawable/textview_border_1"
+                    android:text=""
                     android:textSize="22sp" />
             </LinearLayout>
 
             <ImageView
                 android:id="@+id/takephoto_right"
-                android:layout_width="150dp"
+                android:layout_width="214dp"
                 android:layout_height="150dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginLeft="5dp"
@@ -123,8 +128,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fadeScrollbars="false"
-            android:scrollbarThumbVertical="@color/colorPrimaryDark"
-            android:scrollbarSize="5dp">>
+            android:scrollbarSize="5dp"
+            android:scrollbarThumbVertical="@color/colorPrimaryDark">>
 
             <LinearLayout
                 android:id="@+id/wrongWord"

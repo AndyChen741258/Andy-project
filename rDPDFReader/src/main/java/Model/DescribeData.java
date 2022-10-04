@@ -7,10 +7,12 @@ public class DescribeData {
     String imgUrl;
 
     public DescribeData(String student_number, String location, String describe_text, String imgUrl){
+
         this.student_number = student_number;
         this.location = location;
         this.describe_text = describe_text;
         this.imgUrl = imgUrl;
+
     }
 
     public DescribeData(){

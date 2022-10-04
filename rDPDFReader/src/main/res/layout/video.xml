@@ -14,7 +14,8 @@
         <Spinner
             android:id="@+id/video_spinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:minHeight="48dp" />
 
         <VideoView
             android:id="@+id/videoView"

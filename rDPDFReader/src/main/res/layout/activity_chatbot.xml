@@ -30,13 +30,13 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="30dp"
         android:layout_toEndOf="@+id/dialogflowspeak_text3"
-        android:textSize="30dp"
         android:background="@drawable/text_dialogspeak"
+        android:textSize="30dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="invisible" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/dialogflowspeak_text3"
@@ -106,13 +106,13 @@
         android:text="您輸入的訊息"
         android:textColor="#FFFFFF"
         android:textSize="50dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_voice"
         app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.978"
-        android:visibility="invisible"/>
+        app:layout_constraintVertical_bias="0.978" />
 
     <TextView
         android:id="@+id/voice_text2"
@@ -167,6 +167,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/btn_change"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/placechatbot"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="62dp"
+        android:layout_marginEnd="72dp"
+        android:background="@drawable/english" />
 
     <Button
         android:id="@+id/btn_voice"
@@ -280,7 +290,7 @@
         android:layout_height="80dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="63dp"
+        android:layout_marginEnd="70dp"
         android:layout_marginBottom="26dp"
         android:src="@drawable/loading"
         android:visibility="invisible"
@@ -291,12 +301,24 @@
         android:id="@+id/placechatbot"
         android:layout_width="150dp"
         android:layout_height="50dp"
+        android:layout_below="@+id/place_tittle"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="31dp"
-        android:layout_marginBottom="121dp"
+        android:layout_marginTop="-300dp"
+        android:layout_marginEnd="40dp"
         android:text=""
         android:textSize="20dp" />
+
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/placechatbot"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-19dp"
+        android:layout_marginEnd="38dp"
+        android:background="#FAD3E0"
+        android:text="目前語言:"
+        android:textSize="30dp" />
 
     <TextView
         android:id="@+id/place_tittle"
@@ -304,22 +326,23 @@
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="37dp"
-        android:layout_marginBottom="183dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="300dp"
+        android:background="#EFE485"
         android:text="目前位置:"
         android:textSize="30dp" />
 
 
     <TextView
         android:id="@+id/gps_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="162dp"
+        android:layout_height="597dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="1063dp"
-        android:layout_marginBottom="127dp"
-        android:textStyle="bold"
-        android:textSize="10dp"/>
+        android:layout_marginEnd="1118dp"
+        android:layout_marginBottom="122dp"
+        android:textSize="10dp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_Notify"
@@ -340,18 +363,18 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="2dp"
         android:layout_marginBottom="3dp"
-        android:src="@drawable/noimage"
         android:background="@drawable/textview_border"
-        android:visibility="invisible"/>
+        android:src="@drawable/noimage"
+        android:visibility="invisible" />
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_width="850dp"
-        android:layout_height="650dp"
+        android:layout_width="904dp"
+        android:layout_height="601dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="206dp">>
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="202dp">>
 
         <LinearLayout
             android:id="@+id/linerlayout"

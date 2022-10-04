@@ -1,0 +1,36 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.naer.pdfreader.rDPDFReader-mergeDebugResources-49:/values-zh/values-zh.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\040fcee4744b347e5f26899389ca020b\\transformed\\jetified-AppUpdater-2.7\\res\\values-zh\\values-zh.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,111,165,218,280,403,534,630,719,785",
+                        "endColumns": "55,53,52,61,122,130,95,88,65,87",
+                        "endOffsets": "106,160,213,275,398,529,625,714,780,868"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\b3e9a5d34dfcf8849108404da3b01e18\\transformed\\jetified-android-image-cropper-2.5.1\\res\\values-zh\\values-zh.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,107,169,232",
+                        "endColumns": "51,61,62,64",
+                        "endOffsets": "102,164,227,292"
+                    },
+                    "to": {
+                        "startLines": "12,13,14,15",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "873,925,987,1050",
+                        "endColumns": "51,61,62,64",
+                        "endOffsets": "920,982,1045,1110"
+                    }
+                }
+            ]
+        }
+    ]
+}

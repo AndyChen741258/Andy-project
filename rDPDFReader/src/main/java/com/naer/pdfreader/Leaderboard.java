@@ -144,6 +144,7 @@ public class Leaderboard extends Activity implements SearchView.OnQueryTextListe
 
         try {
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
+            //控制加上.child("Control")
             DatabaseReference db = database.getReference().child("Other").child("stu_data");
             myAdapter = new MyAdapter(this);
             myAdapter2 = new MyAdapter(this);
@@ -342,12 +343,14 @@ public class Leaderboard extends Activity implements SearchView.OnQueryTextListe
                                 studentlist3.add(student);
                             }
 
-                            String name = namearray3[z];
-                            int mark = (int) ((marks[z]*0.25)+(marks2[z]*0.4)+(marks3[z]*0.35));
-                            Student student = new Student();
-                            student.setName(name);
-                            student.setMarks(mark);
-                            studentlist4.add(student);
+                            if(marks.length == marks2.length && marks2.length == marks3.length && marks.length == marks3.length){
+                                String name = namearray3[z];
+                                int mark = (int) ((marks[z]*0.25)+(marks2[z]*0.4)+(marks3[z]*0.35));
+                                Student student = new Student();
+                                student.setName(name);
+                                student.setMarks(mark);
+                                studentlist4.add(student);
+                            }
                         }
 
                         sortStudent3(false, false);

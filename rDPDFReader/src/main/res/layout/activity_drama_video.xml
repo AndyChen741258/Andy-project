@@ -1,0 +1,131 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8BC34A">
+
+    <RelativeLayout
+        android:layout_width="1219dp"
+        android:layout_height="742dp"
+        android:background="#E8BDBD"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <lib.kingja.switchbutton.SwitchMultiButton
+            android:id="@+id/switchmultibutton4"
+            android:layout_width="46dp"
+            android:layout_height="63dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="59dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="1114dp"
+            app:selectedColor="#e12251"
+            app:strokeRadius="14dp"
+            app:strokeWidth="2dp"
+            app:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/video_preview"
+            android:layout_width="824dp"
+            android:layout_height="368dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="252dp"
+            android:layout_marginEnd="143dp"
+            android:layout_marginBottom="279dp"
+            android:background="#6A5E5E" />
+        <VideoView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:id="@+id/video_play"
+            android:visibility="gone">
+
+        </VideoView>
+
+        <ScrollView
+            android:layout_width="936dp"
+            android:layout_height="261dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="119dp"
+            android:layout_marginBottom="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="166dp"
+                android:layout_marginEnd="97dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    android:background="#BDEDF3"
+                    android:text="Please try to make a drama dialogue"
+                    android:textSize="34sp" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTextView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="436dp"
+                    android:background="#EFE9E9" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="94dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="349dp"
+            android:layout_marginEnd="1059dp"
+            android:layout_marginBottom="299dp"
+            android:background="#F1E9A1"
+            android:text="choose the video"
+            android:textSize="24sp"
+            android:onClick="buttonRecordVideo"
+            />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="155dp"
+            android:layout_height="89dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="1064dp"
+            android:layout_marginBottom="461dp"
+            android:background="#89EA8D"
+            android:text="Add your situation"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/recvideo1"
+            android:layout_width="149dp"
+            android:layout_height="87dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="1064dp"
+            android:layout_marginBottom="147dp"
+            android:background="#C59CD5"
+            android:text="take video"
+            android:textSize="24sp"
+            android:onClick="buttonSelectVideo">
+
+        </Button>
+
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

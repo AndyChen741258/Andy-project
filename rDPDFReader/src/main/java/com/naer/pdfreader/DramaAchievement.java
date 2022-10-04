@@ -266,7 +266,6 @@ public class DramaAchievement extends Activity {
         setContentView(R.layout.activity_drama_achievement);
 
         TTS.init(getApplicationContext());
-
         drama_stu_num = findViewById(R.id.drama_stu_num);
         switchMultiButton = findViewById(R.id.switchmultibutton);
 //        drama_dramawork_num = findViewById(R.id.drama_dramawork_num);
@@ -322,6 +321,7 @@ public class DramaAchievement extends Activity {
 
         //取得現在時間
        sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+
 //        String date = sdf.format(new java.util.Date());
 //        Calendar c = Calendar.getInstance();
 //        c.setTime(new java.util.Date());
@@ -375,12 +375,25 @@ public class DramaAchievement extends Activity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {
 //                                Updatevalue(dataSnapshot.getValue().toString());
-                                String[] test=new String[(int) dataSnapshot.getChildrenCount()];
                                 String get_test= dataSnapshot.getValue().toString().substring(1,dataSnapshot.getValue().toString().length()-1);
                                 String[] test_array =get_test.split(",");
+                                //控制組807,實驗801
+                                int y=0;
+                                for (int i=0;i<test_array.length;i++){
+                                    //控制組.equals("807"),實驗組.equals("801")
+                                    if(test_array[i].trim().substring(0,3).equals("801")){
+                                        y++;
+                                    }
+                                }
+                                String[] test = new String[y];
+                                int z=0;
                                 for (int i=0;i<test_array.length;i++){
                                     int x =test_array[i].trim().indexOf("=");
-                                    test[i]=test_array[i].trim().substring(0,x);
+                                    //控制組.equals("807"),實驗組.equals("801")
+                                    if(test_array[i].trim().substring(0,3).equals("801")){
+                                        test[z]=test_array[i].trim().substring(0,x);
+                                        z++;
+                                    }
                                 }
                                 test2_spinner.setVisibility(VISIBLE);
                                 ArrayAdapter<String> test_list=new ArrayAdapter<String>(DramaAchievement.this,
@@ -1614,6 +1627,7 @@ public class DramaAchievement extends Activity {
         DatabaseReference fire_check_edit_exist;
         fire_check_edit_exist = FirebaseDatabase.getInstance().getReference();
 
+
         fire_check_edit_exist.child("學生"+drama_studentNumber_word+"號").child(drama_dramaNumber_word).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -1887,7 +1901,6 @@ public class DramaAchievement extends Activity {
                                             drama_record4 = false;
                                         }
                                     });
-
                                     btn_speak.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -2245,6 +2258,7 @@ public class DramaAchievement extends Activity {
                     }catch (Exception e){
                         e.printStackTrace();
                     }
+
                     practice_say.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -6219,6 +6233,7 @@ public class DramaAchievement extends Activity {
                     //textScore.setText("正確 : "+score+"/100");
                     // textSpeech.append(Html.fromHtml("<br>Correct: <font color=\""+ color +"\">" + score + "%</font>"));
                     //showdescribescore.setVisibility(View.VISIBLE);
+                    //控制組隱藏if
                     if (score >= 90) {
                         showdescribescore.setVisibility(View.VISIBLE);
                         showdescribescore.append(Html.fromHtml("<br> <font color=\"" + color + "\">" + score + "%</font>"));
@@ -6263,6 +6278,7 @@ public class DramaAchievement extends Activity {
                             }
                         }
                     });
+                    //控制組(recorrect_response 改 word)
                     showdescribescore.setText(recorrect_response);
                     //   textSpeech.setText(recorrect_response);
 
@@ -6291,6 +6307,7 @@ public class DramaAchievement extends Activity {
                     }
                     // textSpeech.append(Html.fromHtml("<br>Similarity: <font color=\""+ color +"\">" + similarity + "%</font>"));
                     showdescribescore.setVisibility(View.VISIBLE);
+                    //控制組(隱藏下兩行)
                     showdescribescore.append(Html.fromHtml("<br> <font color=\"" + color + "\">" + similarity + "%</font>"));
                     showdescribescore.append(encourage);
                     Toast.makeText(DramaAchievement.this, showdescribescore.getText().toString(), Toast.LENGTH_SHORT).show();
@@ -6380,7 +6397,6 @@ public class DramaAchievement extends Activity {
                     }, 5000);
                 }
                 PlaceName.setText((keyDatabase.Place));
-
                 //抓到PlaceName後，讀取相對應的資料塞進String陣列中，在Adapter進AutoCompleteTextview中
 //                fire_vocabulary.child(PlaceName.getText().toString()).child("sentence").addValueEventListener(new ValueEventListener() {
 //                    @Override
@@ -6556,6 +6572,7 @@ public class DramaAchievement extends Activity {
             try {
                 final FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference db = database.getReference().child("學生"+Student.Name+"號").child("Student data").child("DramaAchievement");
+                //控制加上.child("Control")
                 DatabaseReference db2 = database.getReference().child("Other").child("stu_data").child("DramaAchievement");
                 db.child("Listen record").setValue(listen_record_count);
                 db.child("TTS").setValue(tts_count);

@@ -94,7 +94,7 @@
             <ImageView
                 android:id="@+id/drama1"
                 android:layout_width="800dp"
-                android:layout_height="600dp"
+                android:layout_height="480dp"
                 android:layout_marginLeft="140dp"
                 android:layout_marginTop="-70dp"
                 android:background="@drawable/noimage"
@@ -112,7 +112,7 @@
             <ImageView
                 android:id="@+id/drama2"
                 android:layout_width="800dp"
-                android:layout_height="600dp"
+                android:layout_height="480dp"
                 android:layout_marginLeft="140dp"
                 android:layout_marginTop="-70dp"
                 android:background="@drawable/noimage"
@@ -131,7 +131,7 @@
             <ImageView
                 android:id="@+id/drama3"
                 android:layout_width="800dp"
-                android:layout_height="600dp"
+                android:layout_height="480dp"
                 android:layout_marginLeft="140dp"
                 android:layout_marginTop="-70dp"
                 android:background="@drawable/noimage"
@@ -150,7 +150,7 @@
             <ImageView
                 android:id="@+id/drama4"
                 android:layout_width="800dp"
-                android:layout_height="600dp"
+                android:layout_height="480dp"
                 android:layout_marginLeft="140dp"
                 android:layout_marginTop="-70dp"
                 android:background="@drawable/noimage"
@@ -169,7 +169,7 @@
             <ImageView
                 android:id="@+id/drama5"
                 android:layout_width="800dp"
-                android:layout_height="600dp"
+                android:layout_height="480dp"
                 android:layout_marginLeft="140dp"
                 android:layout_marginTop="-70dp"
                 android:background="@drawable/noimage"
@@ -190,7 +190,7 @@
             <ImageView
                 android:id="@+id/drama6"
                 android:layout_width="800dp"
-                android:layout_height="600dp"
+                android:layout_height="480dp"
                 android:layout_marginLeft="140dp"
                 android:layout_marginTop="-70dp"
                 android:background="@drawable/noimage"
@@ -211,7 +211,7 @@
             <ImageView
                 android:id="@+id/drama7"
                 android:layout_width="800dp"
-                android:layout_height="600dp"
+                android:layout_height="480dp"
                 android:layout_marginLeft="140dp"
                 android:layout_marginTop="-70dp"
                 android:background="@drawable/noimage"
@@ -232,7 +232,7 @@
             <ImageView
                 android:id="@+id/drama8"
                 android:layout_width="800dp"
-                android:layout_height="600dp"
+                android:layout_height="480dp"
                 android:layout_marginLeft="140dp"
                 android:layout_marginTop="-70dp"
                 android:background="@drawable/noimage"
@@ -468,7 +468,7 @@
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="183dp"
+        android:layout_marginBottom="250dp"
         android:text="目前位置:"
         android:textSize="30dp" />
 

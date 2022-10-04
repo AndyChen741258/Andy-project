@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -56,6 +57,7 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.Key;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -133,7 +135,8 @@ public class CreatDrama extends Activity {
     private final String[] Drama = new String[4];
     private DatabaseReference fire_dramaname;
     private Button delete;
-
+    private ProgressDialog pDialog;
+    private SimpleDateFormat sdf;
 
 
     @Override
@@ -169,6 +172,19 @@ public class CreatDrama extends Activity {
         delete = findViewById(R.id.delete);
         finish_and_return = findViewById(R.id.finish_and_return);
         switchmultibutton = findViewById(R.id.switchmultibutton);
+
+        //取得現在時間(日期)
+        sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+
+        pDialog = new ProgressDialog(CreatDrama.this);
+        pDialog.setTitle("載入數據");
+        pDialog.setMessage("載入中... \n請耐心等待。");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+        pDialog.show();
+
+        creat5.setVisibility(INVISIBLE);
+        button1.setVisibility(INVISIBLE);
 
 
 
@@ -222,6 +238,7 @@ public class CreatDrama extends Activity {
 
 
         try {
+
             ccc();
         } catch (Exception e) {
             e.printStackTrace();
@@ -247,8 +264,9 @@ public class CreatDrama extends Activity {
                                 Log.v("檢查i", String.valueOf(i));
                                 i++;
                             }
-                                switchmultibutton
-                                        .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ","                   "+Drama[3]+"                   ");
+                            switchmultibutton
+                                    .setText("                   "+Drama[0]+"                   ","                   "+Drama[1]+"                   ","                   "+Drama[2]+"                   ","                   "+Drama[3]+"                   ");
+                            pDialog.dismiss();
                         }
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -335,6 +353,7 @@ public class CreatDrama extends Activity {
         drama1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (!TextUtils.equals("請選擇", spinner_drame_word) && !drama1_edit || x<1) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //照片庫
                         if (ContextCompat.checkSelfPermission(CreatDrama.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -345,11 +364,32 @@ public class CreatDrama extends Activity {
                     } else {  //拍照
                         BringImagePicker();
                     }
+                    try {
+                        //上傳點擊行為與時間點
+                        String date = sdf.format(new java.util.Date());
+                        DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("點擊拍照");
+                        fire_60sec_student_data.child(date).setValue("Drama1");
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(CreatDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                    }
                     num = 1;
                     edit = false;
                     drama1_edit = true;
+
                 } else if(drama1_edit && x>=1){
                     re_edit1();
+                    try {
+                        //上傳點擊行為與時間點
+                        String date = sdf.format(new java.util.Date());
+                        DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("編輯劇本");
+                        fire_60sec_student_data.child(date).setValue("Drama1");
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(CreatDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                    }
                 } else{
                     Toast.makeText(CreatDrama.this, "請先選擇劇本編號", Toast.LENGTH_SHORT).show();
                 }
@@ -371,10 +411,30 @@ public class CreatDrama extends Activity {
                     } else {  //拍照
                         BringImagePicker();
                     }
+                    try {
+                        //上傳點擊行為與時間點
+                        String date = sdf.format(new java.util.Date());
+                        DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("點擊拍照");
+                        fire_60sec_student_data.child(date).setValue("Drama2");
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(CreatDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                    }
                     num = 2;
                     edit = false;
                     drama2_edit = true;
                 }else if(drama2_edit && x>=2){
+                    try {
+                        //上傳點擊行為與時間點
+                        String date = sdf.format(new java.util.Date());
+                        DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("編輯劇本");
+                        fire_60sec_student_data.child(date).setValue("Drama2");
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(CreatDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                    }
                     re_edit2();
                 } else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
@@ -395,10 +455,30 @@ public class CreatDrama extends Activity {
                     } else {  //拍照
                         BringImagePicker();
                     }
+                    try {
+                        //上傳點擊行為與時間點
+                        String date = sdf.format(new java.util.Date());
+                        DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("點擊拍照");
+                        fire_60sec_student_data.child(date).setValue("Drama3");
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(CreatDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                    }
                     num = 3;
                     edit = false;
                     drama3_edit = true;
                 }else if(drama3_edit && x>=3){
+                    try {
+                        //上傳點擊行為與時間點
+                        String date = sdf.format(new java.util.Date());
+                        DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("編輯劇本");
+                        fire_60sec_student_data.child(date).setValue("Drama3");
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(CreatDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                    }
                     re_edit3();
                 } else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
@@ -421,9 +501,29 @@ public class CreatDrama extends Activity {
                         BringImagePicker();
                         drama4_edit = true;
                     }
+                    try {
+                        //上傳點擊行為與時間點
+                        String date = sdf.format(new java.util.Date());
+                        DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("點擊拍照");
+                        fire_60sec_student_data.child(date).setValue("Drama4");
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(CreatDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                    }
                     num = 4;
                     edit = false;
                 }else if(drama4_edit && x>=4){
+                    try {
+                        //上傳點擊行為與時間點
+                        String date = sdf.format(new java.util.Date());
+                        DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("編輯劇本");
+                        fire_60sec_student_data.child(date).setValue("Drama4");
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(CreatDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                    }
                     re_edit4();
                 }else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
@@ -444,10 +544,31 @@ public class CreatDrama extends Activity {
                     } else {  //拍照
                         BringImagePicker();
                     }
+                    try {
+                        //上傳點擊行為與時間點
+                        String date = sdf.format(new java.util.Date());
+                        DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("點擊拍照");
+                        fire_60sec_student_data.child(date).setValue("Drama5");
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(CreatDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                    }
+
                     num = 5;
                     edit = false;
                     drama5_edit = true;
                 }else if(drama5_edit && x>=5){
+                    try {
+                        //上傳點擊行為與時間點
+                        String date = sdf.format(new java.util.Date());
+                        DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("編輯劇本");
+                        fire_60sec_student_data.child(date).setValue("Drama5");
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(CreatDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                    }
                     re_edit5();
                 }else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
@@ -498,10 +619,32 @@ public class CreatDrama extends Activity {
                     } else {  //拍照
                         BringImagePicker();
                     }
+                    try {
+                        //上傳點擊行為與時間點
+                        String date = sdf.format(new java.util.Date());
+                        DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("點擊拍照");
+                        fire_60sec_student_data.child(date).setValue("Drama6");
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(CreatDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                    }
+
                     num = 6;
                     edit = false;
                     drama6_edit = true;
                 }else if(drama6_edit && x>=6){
+
+                    try {
+                        //上傳點擊行為與時間點
+                        String date = sdf.format(new java.util.Date());
+                        DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("編輯劇本");
+                        fire_60sec_student_data.child(date).setValue("Drama6");
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(CreatDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                    }
                     re_edit6();
                 } else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
@@ -551,10 +694,30 @@ public class CreatDrama extends Activity {
                     } else {  //拍照
                         BringImagePicker();
                     }
+                    try {
+                        //上傳點擊行為與時間點
+                        String date = sdf.format(new java.util.Date());
+                        DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("點擊拍照");
+                        fire_60sec_student_data.child(date).setValue("Drama7");
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(CreatDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                    }
                     num = 7;
                     edit = false;
                     drama7_edit = true;
                 }else if(drama7_edit && x>=7){
+                    try {
+                        //上傳點擊行為與時間點
+                        String date = sdf.format(new java.util.Date());
+                        DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("編輯劇本");
+                        fire_60sec_student_data.child(date).setValue("Drama7");
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(CreatDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                    }
                     re_edit7();
                 } else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
@@ -604,10 +767,31 @@ public class CreatDrama extends Activity {
                     } else {  //拍照
                         BringImagePicker();
                     }
+                    try {
+                        //上傳點擊行為與時間點
+                        String date = sdf.format(new java.util.Date());
+                        DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("點擊拍照");
+                        fire_60sec_student_data.child(date).setValue("Drama8");
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(CreatDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                    }
+
                     num = 8;
                     edit = false;
                     drama8_edit = true;
                 }else if(drama8_edit && x>=8){
+                    try {
+                        //上傳點擊行為與時間點
+                        String date = sdf.format(new java.util.Date());
+                        DatabaseReference fire_60sec_student_data = FirebaseDatabase.getInstance().getReference()
+                                .child("學生"+Student.Name+"號").child("Student data").child("點擊行為").child("EditDrama").child("編輯劇本");
+                        fire_60sec_student_data.child(date).setValue("Drama8");
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(CreatDrama.this, "上傳時間點擊紀錄失敗", Toast.LENGTH_SHORT).show();
+                    }
                     re_edit8();
                 } else{
                     Toast.makeText(CreatDrama.this, "請選擇劇本編號", Toast.LENGTH_SHORT).show();
@@ -930,7 +1114,7 @@ public class CreatDrama extends Activity {
     private void BringImagePicker() {
         CropImage.activity().
                 setGuidelines(CropImageView.Guidelines.ON).
-                setAspectRatio(6,3).
+                setAspectRatio(12,10).
                 start(CreatDrama.this);
     }
 
@@ -1141,8 +1325,22 @@ public class CreatDrama extends Activity {
                         x++;
                     }
                 }
-                Log.v("測試", String.valueOf(x));
                 switch (x){
+                    //控制(button1和creat5)都隱藏
+                    case 0:
+                        drama5.setVisibility(INVISIBLE);
+                        drama6.setVisibility(INVISIBLE);
+                        drama7.setVisibility(INVISIBLE);
+                        drama8.setVisibility(INVISIBLE);
+                        creat5.setVisibility(VISIBLE);
+                        creat6.setVisibility(INVISIBLE);
+                        creat7.setVisibility(INVISIBLE);
+                        creat8.setVisibility(INVISIBLE);
+                        button1.setVisibility(VISIBLE);
+                        button2.setVisibility(INVISIBLE);
+                        button3.setVisibility(INVISIBLE);
+                        button4.setVisibility(INVISIBLE);
+                        break;
                     case 1:
                         drama5.setVisibility(INVISIBLE);
                         drama6.setVisibility(INVISIBLE);

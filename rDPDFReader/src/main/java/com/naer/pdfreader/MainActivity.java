@@ -21,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.PowerManager;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -100,7 +101,10 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Button btn_seedrama;
 	private Button btn_hw;
 	private Button btn_review;
-//	private Button btn_conversation;
+	private Button btn_conversation;
+	private Button drama_video_btn;
+
+
 
 	private EditText m_ID_edit;
 	private EditText m_Pwd_edit;
@@ -132,8 +136,8 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	public static boolean isFromMain = false;
 	FloatingActionMenu floatingActionMenu;
-	FloatingActionButton chatbot;
-	FloatingActionButton rank;
+	FloatingActionButton fab_chatbot;
+	FloatingActionButton fab_rank;
 
 
 	//private GeofencingClient geofencingClient;//////////////
@@ -152,6 +156,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private NotificationManager mNotificationManager;
 	private NotificationChannel chnnel;
 	private String string = "對話資料讀取中...請稍後";
+//	private PowerManager pm;
 
 
 	@RequiresApi(api = Build.VERSION_CODES.O)
@@ -159,12 +164,16 @@ public class MainActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		//控制
+		String control = "https://firebasestorage.googleapis.com/v0/b/carolvpen.appspot.com/o/apk%2Fcontral_update.xml?alt=media&token=89aaf366-d33f-4088-9e45-300ba4b95fa6";
+		//實驗
+		String test = "https://firebasestorage.googleapis.com/v0/b/carolvpen.appspot.com/o/apk%2Fupdate-changelog.xml?alt=media";
 		AppUpdater appUpdater = new AppUpdater(this)
 				.setDisplay(Display.SNACKBAR)
 				.setDisplay(Display.DIALOG)
 				.setDisplay(Display.NOTIFICATION)
 				.setUpdateFrom(UpdateFrom.XML)
-				.setUpdateXML("https://firebasestorage.googleapis.com/v0/b/carolvpen.appspot.com/o/apk%2Fupdate-changelog.xml?alt=media")
+				.setUpdateXML(test)
 				.setTitleOnUpdateAvailable("更新系統")
 				.setContentOnUpdateAvailable("目前有新版本釋出，請點擊Update更新軟體")
 				.setTitleOnUpdateNotAvailable("系統為最新版本，不須更新")
@@ -174,7 +183,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				.setButtonDoNotShowAgain("不要更新")
 				.setIcon(R.drawable.ic_baseline_cloud_download_24) // Notification icon
 				.setCancelable(false)
-				.showEvery(10); // Dialog could not be dismissable
+				.showEvery(3); // Dialog could not be dismissable
 		appUpdater.start();
 
 		AppUpdaterUtils appUpdaterUtils = new AppUpdaterUtils(this)
@@ -202,7 +211,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		Name = layout.findViewById(com.naer.pdfreader.R.id.editName);
 		Name.setInputType(EditorInfo.TYPE_CLASS_PHONE);
 
-
+//		pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 		floatingActionMenu = (FloatingActionMenu) findViewById(R.id.fab_menu);
 		m_btn_file = layout.findViewById(com.naer.pdfreader.R.id.btn_file);
 		m_btn_asset = layout.findViewById(com.naer.pdfreader.R.id.btn_asset);
@@ -229,7 +238,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		btn_seedrama = layout.findViewById(R.id.btn_seedrama);
 		btn_hw = layout.findViewById(R.id.btn_hw);
 		btn_review = layout.findViewById(R.id.btn_review);
-//		btn_conversation = layout.findViewById(R.id.btn_conversation);
+		btn_conversation = layout.findViewById(R.id.btn_conversation);
+		drama_video_btn=layout.findViewById(R.id.drama_video_btn);
+
 
 		spinner_std = (Spinner) layout.findViewById(com.naer.pdfreader.R.id.spinner_std);
 		spinner_work = (Spinner) layout.findViewById(com.naer.pdfreader.R.id.spinner_work);
@@ -240,10 +251,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		btn_seedrama.setOnClickListener(this);
 		btn_hw.setOnClickListener(this);
 		btn_review.setOnClickListener(this);
-		chatbot = (FloatingActionButton) layout.findViewById(R.id.fab_item1);
-		rank = (FloatingActionButton) layout.findViewById(R.id.fab_item2);
-		chatbot.setOnClickListener(this);
-		rank.setOnClickListener(this);
+		fab_chatbot= (FloatingActionButton) layout.findViewById(R.id.fab_item1);
+		fab_rank = (FloatingActionButton) layout.findViewById(R.id.fab_item2);
+		fab_chatbot.setOnClickListener(this);
+		fab_rank.setOnClickListener(this);
+		drama_video_btn.setOnClickListener(this);
 //		chatbot.setOnClickListener(new View.OnClickListener(){
 //			@Override
 //			public void onClick(View view){
@@ -252,7 +264,7 @@ public class MainActivity extends Activity implements OnClickListener {
 //		});
 
 
-//		btn_conversation.setOnClickListener(this);
+		btn_conversation.setOnClickListener(this);
 
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -280,7 +292,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			public boolean onKey(View v, int keyCode, KeyEvent event) {
 				if(keyCode == KeyEvent.KEYCODE_ENTER){
 					Student.Name=Name.getText().toString();
-					handler.post(runnable);
+//					handler.post(runnable);
 				}
 				return false;
 			}
@@ -367,7 +379,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				a = x.nextInt(st.length);
 				Log.v("Get_main", st[a]);
 				welcome = st[a];
-				chatbot.setLabelText(welcome);
+				fab_chatbot.setLabelText(welcome);
 			}
 
 			@Override
@@ -390,7 +402,7 @@ public class MainActivity extends Activity implements OnClickListener {
 					.setPositiveButton("確認", new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							handler.removeCallbacks(runnable);
+//							handler.removeCallbacks(runnable);
 						}
 					});
 
@@ -409,6 +421,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Handler handler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
+//			if(msg.what == 1 && !pm.isInteractive())
 			if(msg.what == 1){
 				java.util.Date date = new java.util.Date();
 				SimpleDateFormat df = new SimpleDateFormat("HH");
@@ -430,11 +443,6 @@ public class MainActivity extends Activity implements OnClickListener {
 							string = string.substring(i+1,string.length()-1);
 							//上午
 							if (a > 8 && a <= 12 && !string.equals("對話資料讀取中...請稍後")) {
-//					String[] welcome = new String[]{"What do you eat in the morning?",
-//							"What did you do in the morning?",
-//							"How's the weather in the morning?",};
-//					Random x = new Random();
-//					int welcome_number = x.nextInt(welcome.length);
 								Notification.Builder builder = new Notification.Builder(MainActivity.this);
 								if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 									builder.setSmallIcon(R.drawable.ic_launcher)
@@ -450,11 +458,6 @@ public class MainActivity extends Activity implements OnClickListener {
 							}
 							//中午
 							else if (a > 12 && a <= 13 && !string.equals("對話資料讀取中...請稍後")) {
-//					String[] welcome = new String[]{"What do you eat in the noon?",
-//							"What did you do in the noon?",
-//							"How's the weather in the noon?",};
-//					Random x = new Random();
-//					int welcome_number = x.nextInt(welcome.length);
 								Notification.Builder builder = new Notification.Builder(MainActivity.this);
 								if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 									builder.setSmallIcon(R.drawable.ic_launcher)
@@ -658,27 +661,36 @@ public class MainActivity extends Activity implements OnClickListener {
 				startActivity(intent);
 			} else if (arg0 == btn_hw) {
 				Student.Name = Name.getText().toString();
-				Intent intent = new Intent(this, ConversationHomework.class);
+				Intent intent = new Intent(this, Leaderboard.class);
 				startActivity(intent);
+//				Student.Name = Name.getText().toString();
+//				Intent intent = new Intent(this, ConversationHomework.class);
+//				startActivity(intent);
 			} else if (arg0 == btn_review) {
 				Student.Name = Name.getText().toString();
 				isFromMain = true;
 				Intent intent = new Intent(this, DramaRecycleView.class);
 				startActivity(intent);
-			}
-			else if (arg0 == chatbot) {
+			} else if (arg0 == btn_conversation) {
 				Student.Name = Name.getText().toString();
 				Intent intent = new Intent(this, ChatbotActivity.class);
 				startActivity(intent);
-			}else if (arg0 == rank) {
+			} else if (arg0 == fab_chatbot) {
+				Student.Name = Name.getText().toString();
+				Intent intent = new Intent(this, ChatbotActivity.class);
+				startActivity(intent);
+			} else if (arg0 == fab_rank) {
 				Student.Name = Name.getText().toString();
 				Intent intent = new Intent(this, Leaderboard.class);
 				startActivity(intent);
+			} else if (arg0 == drama_video_btn) {
+				Student.Name = Name.getText().toString();
+				Intent intent = new Intent(this, activity_drama_video.class);
+				startActivity(intent);
+			} else {
+				Toast.makeText(this, "請輸入座號", Toast.LENGTH_SHORT).show();
 			}
-		} else {
-			Toast.makeText(this, "請輸入座號", Toast.LENGTH_SHORT).show();
 		}
-	}
 
 //	private void viewTask() {
 //
@@ -713,144 +725,116 @@ public class MainActivity extends Activity implements OnClickListener {
 //
 //	}
 
-	//按下對話後,進入選單選擇內容腳色等
-	public void conversationClick(final View view) {
-		if (!TextUtils.isEmpty(Name.getText().toString())) {
-			Student.Name = Name.getText().toString();//設定學生名稱
-			LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
-			final View v = inflater.inflate(R.layout.activity_choose_practicr_part, null);
-//			final TextView way_text = v.findViewById(R.id.way_text);
-//			final Spinner practice_way = v.findViewById(R.id.practice_way);
-//			final Spinner practice_drama_num = v.findViewById(R.id.practice_drama_num);
-			final SwitchMultiButton switchMultiButton2 = v.findViewById(R.id.switchmultibutton2);
-			final SwitchMultiButton switchMultiButton3 = v.findViewById(R.id.switchmultibutton3);
-			final TextView drama_text = v.findViewById(R.id.drama_text);
-			final Spinner practice_drama_stu = v.findViewById(R.id.practice_drama_stu);
-			final TextView character_text = v.findViewById(R.id.character_text);
-			final Spinner practice_character = v.findViewById(R.id.practice_character);
-			final ImageView choose_drama_photo = v.findViewById(R.id.choose_drama_photo);
-
-			drama_text.setVisibility(View.INVISIBLE);
-			switchMultiButton3.setVisibility(View.INVISIBLE);
-			practice_drama_stu.setVisibility(View.INVISIBLE);
-			character_text.setVisibility(View.INVISIBLE);
-			practice_character.setVisibility(View.INVISIBLE);
-			choose_drama_photo.setVisibility(View.INVISIBLE);
-
-
-			final AlertDialog conversation_choose = new AlertDialog.Builder(MainActivity.this)
-					.setTitle("對話練習選單")
-					.setView(v)
-					.setPositiveButton("確定", null)
-					.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							dialog.dismiss();
-						}
-					})
-					.show();
-
-			//--------選擇練習模式----------
-			switchMultiButton2.setText("課本對話練習", "劇本對話練習").setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
-				@Override
-				public void onSwitch(int position, String tabText) {
-					way_word = tabText;
-					if (way_word.equals("劇本對話練習")) {
-						drama_text.setVisibility(View.VISIBLE);
-						practice_drama_stu.setVisibility(View.VISIBLE);
-						switchMultiButton3.setVisibility(View.VISIBLE);
-						choose_drama_photo.setVisibility(View.VISIBLE);
-					} else {
-						drama_text.setVisibility(View.INVISIBLE);
-						practice_drama_stu.setVisibility(View.INVISIBLE);
-						switchMultiButton3.setVisibility(View.INVISIBLE);
-						choose_drama_photo.setVisibility(View.INVISIBLE);
-
-					}
-					Toast.makeText(MainActivity.this, tabText, Toast.LENGTH_SHORT).show();
-				}
-			});
-//			ArrayAdapter<String> way = new ArrayAdapter<String>(MainActivity.this,
-//					android.R.layout.simple_spinner_dropdown_item,
-//					way_list);
-//			practice_way.setAdapter(way);
-//			practice_way.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {//添加事件Spinner事件監聽
+		//按下對話後,進入選單選擇內容腳色等
+//	public void conversationClick(final View view) {
+//		if (!TextUtils.isEmpty(Name.getText().toString())) {
+//			Student.Name = Name.getText().toString();//設定學生名稱
+//			LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+//			final View v = inflater.inflate(R.layout.activity_choose_practicr_part, null);
+////			final TextView way_text = v.findViewById(R.id.way_text);
+////			final Spinner practice_way = v.findViewById(R.id.practice_way);
+////			final Spinner practice_drama_num = v.findViewById(R.id.practice_drama_num);
+//			final SwitchMultiButton switchMultiButton2 = v.findViewById(R.id.switchmultibutton2);
+//			final SwitchMultiButton switchMultiButton3 = v.findViewById(R.id.switchmultibutton3);
+//			final TextView drama_text = v.findViewById(R.id.drama_text);
+//			final Spinner practice_drama_stu = v.findViewById(R.id.practice_drama_stu);
+//			final TextView character_text = v.findViewById(R.id.character_text);
+//			final Spinner practice_character = v.findViewById(R.id.practice_character);
+//			final ImageView choose_drama_photo = v.findViewById(R.id.choose_drama_photo);
+//
+//			drama_text.setVisibility(View.INVISIBLE);
+//			switchMultiButton3.setVisibility(View.INVISIBLE);
+//			practice_drama_stu.setVisibility(View.INVISIBLE);
+//			character_text.setVisibility(View.INVISIBLE);
+//			practice_character.setVisibility(View.INVISIBLE);
+//			choose_drama_photo.setVisibility(View.INVISIBLE);
+//
+//
+//			final AlertDialog conversation_choose = new AlertDialog.Builder(MainActivity.this)
+//					.setTitle("對話練習選單")
+//					.setView(v)
+//					.setPositiveButton("確定", null)
+//					.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//						@Override
+//						public void onClick(DialogInterface dialog, int which) {
+//							dialog.dismiss();
+//						}
+//					})
+//					.show();
+//
+//			//--------選擇練習模式----------
+//			switchMultiButton2.setText("課本對話練習", "劇本對話練習").setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
 //				@Override
-//				public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//					way_word = practice_way.getSelectedItem().toString();
+//				public void onSwitch(int position, String tabText) {
+//					way_word = tabText;
 //					if (way_word.equals("劇本對話練習")) {
 //						drama_text.setVisibility(View.VISIBLE);
 //						practice_drama_stu.setVisibility(View.VISIBLE);
-//						practice_drama_num.setVisibility(View.VISIBLE);
+//						switchMultiButton3.setVisibility(View.VISIBLE);
 //						choose_drama_photo.setVisibility(View.VISIBLE);
 //					} else {
 //						drama_text.setVisibility(View.INVISIBLE);
 //						practice_drama_stu.setVisibility(View.INVISIBLE);
-//						practice_drama_num.setVisibility(View.INVISIBLE);
+//						switchMultiButton3.setVisibility(View.INVISIBLE);
 //						choose_drama_photo.setVisibility(View.INVISIBLE);
 //
 //					}
+//					Toast.makeText(MainActivity.this, tabText, Toast.LENGTH_SHORT).show();
+//				}
+//			});
+////			ArrayAdapter<String> way = new ArrayAdapter<String>(MainActivity.this,
+////					android.R.layout.simple_spinner_dropdown_item,
+////					way_list);
+////			practice_way.setAdapter(way);
+////			practice_way.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {//添加事件Spinner事件監聽
+////				@Override
+////				public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+////					way_word = practice_way.getSelectedItem().toString();
+////					if (way_word.equals("劇本對話練習")) {
+////						drama_text.setVisibility(View.VISIBLE);
+////						practice_drama_stu.setVisibility(View.VISIBLE);
+////						practice_drama_num.setVisibility(View.VISIBLE);
+////						choose_drama_photo.setVisibility(View.VISIBLE);
+////					} else {
+////						drama_text.setVisibility(View.INVISIBLE);
+////						practice_drama_stu.setVisibility(View.INVISIBLE);
+////						practice_drama_num.setVisibility(View.INVISIBLE);
+////						choose_drama_photo.setVisibility(View.INVISIBLE);
+////
+////					}
+////
+////				}
+////
+////				@Override
+////				public void onNothingSelected(AdapterView<?> adapterView) {//沒有選時
+////					way_word = practice_way.getSelectedItem().toString();
+////				}
+////			});
 //
+//			//--------選擇劇本內容----------
+//			final String[] drama_list1 = {"Student Number", "111", "01", "4", "06", "10", "32", "36", "40", "43"};
+//			ArrayAdapter<String> drama1 = new ArrayAdapter<String>(MainActivity.this,
+//					android.R.layout.simple_spinner_dropdown_item,
+//					drama_list1);
+//			practice_drama_stu.setAdapter(drama1);
+//			practice_drama_stu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {//添加事件Spinner事件監聽
+//				@Override
+//				public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//					drama_word_stu = practice_drama_stu.getSelectedItem().toString();
+//					character_text.setVisibility(View.VISIBLE);
+//					practice_character.setVisibility(View.VISIBLE);
 //				}
 //
 //				@Override
 //				public void onNothingSelected(AdapterView<?> adapterView) {//沒有選時
-//					way_word = practice_way.getSelectedItem().toString();
+//					drama_word_stu = practice_drama_stu.getSelectedItem().toString();
 //				}
 //			});
-
-			//--------選擇劇本內容----------
-			final String[] drama_list1 = {"Student Number", "111", "01", "4", "06", "10", "32", "36", "40", "43"};
-			ArrayAdapter<String> drama1 = new ArrayAdapter<String>(MainActivity.this,
-					android.R.layout.simple_spinner_dropdown_item,
-					drama_list1);
-			practice_drama_stu.setAdapter(drama1);
-			practice_drama_stu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {//添加事件Spinner事件監聽
-				@Override
-				public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-					drama_word_stu = practice_drama_stu.getSelectedItem().toString();
-					character_text.setVisibility(View.VISIBLE);
-					practice_character.setVisibility(View.VISIBLE);
-				}
-
-				@Override
-				public void onNothingSelected(AdapterView<?> adapterView) {//沒有選時
-					drama_word_stu = practice_drama_stu.getSelectedItem().toString();
-				}
-			});
-
-			switchMultiButton3.setText("Drama_1","Drama_2","Drama_3").setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
-				@Override
-				public void onSwitch(int position, String tabText) {
-					drama_word_num = tabText;
-					character_text.setVisibility(View.VISIBLE);
-					practice_character.setVisibility(View.VISIBLE);
-					if ((!drama_word_stu.equals("Student Number")) && way_word.equals("劇本對話練習")) {
-						fire_ph = FirebaseStorage.getInstance().getReference().child(drama_word_stu).child("Four-frame").child(drama_word_num);
-						fire_ph.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-							@Override
-							public void onComplete(@NonNull Task<Uri> task) {
-								Uri uri = task.getResult();
-								Glide.with(choose_drama_photo.getContext()).load(uri).into(choose_drama_photo);
-								choose_drama_photo.setVisibility(View.VISIBLE);
-							}
-						});
-					} else {
-						Toast.makeText(MainActivity.this, "你沒有選擇同學的座號哦!", Toast.LENGTH_SHORT).show();
-					}
-					Toast.makeText(MainActivity.this, tabText, Toast.LENGTH_SHORT).show();
-				}
-			});
-
-//			final String[] drama_list2 = {"Drama_1", "Drama_2", "Drama_3"};
-//			ArrayAdapter<String> drama2 = new ArrayAdapter<String>(MainActivity.this,
-//					android.R.layout.simple_spinner_dropdown_item,
-//					drama_list2);
-//			practice_drama_num.setAdapter(drama2);
-//			practice_drama_num.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {//添加事件Spinner事件監聽
+//
+//			switchMultiButton3.setText("Drama_1","Drama_2","Drama_3").setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
 //				@Override
-//				public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//					drama_word_num = practice_drama_num.getSelectedItem().toString();
+//				public void onSwitch(int position, String tabText) {
+//					drama_word_num = tabText;
 //					character_text.setVisibility(View.VISIBLE);
 //					practice_character.setVisibility(View.VISIBLE);
 //					if ((!drama_word_stu.equals("Student Number")) && way_word.equals("劇本對話練習")) {
@@ -866,62 +850,91 @@ public class MainActivity extends Activity implements OnClickListener {
 //					} else {
 //						Toast.makeText(MainActivity.this, "你沒有選擇同學的座號哦!", Toast.LENGTH_SHORT).show();
 //					}
+//					Toast.makeText(MainActivity.this, tabText, Toast.LENGTH_SHORT).show();
+//				}
+//			});
+//
+////			final String[] drama_list2 = {"Drama_1", "Drama_2", "Drama_3"};
+////			ArrayAdapter<String> drama2 = new ArrayAdapter<String>(MainActivity.this,
+////					android.R.layout.simple_spinner_dropdown_item,
+////					drama_list2);
+////			practice_drama_num.setAdapter(drama2);
+////			practice_drama_num.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {//添加事件Spinner事件監聽
+////				@Override
+////				public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+////					drama_word_num = practice_drama_num.getSelectedItem().toString();
+////					character_text.setVisibility(View.VISIBLE);
+////					practice_character.setVisibility(View.VISIBLE);
+////					if ((!drama_word_stu.equals("Student Number")) && way_word.equals("劇本對話練習")) {
+////						fire_ph = FirebaseStorage.getInstance().getReference().child(drama_word_stu).child("Four-frame").child(drama_word_num);
+////						fire_ph.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+////							@Override
+////							public void onComplete(@NonNull Task<Uri> task) {
+////								Uri uri = task.getResult();
+////								Glide.with(choose_drama_photo.getContext()).load(uri).into(choose_drama_photo);
+////								choose_drama_photo.setVisibility(View.VISIBLE);
+////							}
+////						});
+////					} else {
+////						Toast.makeText(MainActivity.this, "你沒有選擇同學的座號哦!", Toast.LENGTH_SHORT).show();
+////					}
+////				}
+////
+////				@Override
+////				public void onNothingSelected(AdapterView<?> adapterView) {//沒有選時
+////					drama_word_num = practice_drama_num.getSelectedItem().toString();
+////				}
+////			});
+//
+//			//--------選擇腳色----------
+//			final String[] character_list = {"A", "B"};
+//			ArrayAdapter<String> character = new ArrayAdapter<String>(MainActivity.this,
+//					android.R.layout.simple_spinner_dropdown_item,
+//					character_list);
+//			practice_character.setAdapter(character);
+//			practice_character.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {//添加事件Spinner事件監聽
+//				@Override
+//				public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//					character_word = practice_character.getSelectedItem().toString();
 //				}
 //
 //				@Override
 //				public void onNothingSelected(AdapterView<?> adapterView) {//沒有選時
-//					drama_word_num = practice_drama_num.getSelectedItem().toString();
+//					character_word = practice_character.getSelectedItem().toString();
 //				}
 //			});
-
-			//--------選擇腳色----------
-			final String[] character_list = {"A", "B"};
-			ArrayAdapter<String> character = new ArrayAdapter<String>(MainActivity.this,
-					android.R.layout.simple_spinner_dropdown_item,
-					character_list);
-			practice_character.setAdapter(character);
-			practice_character.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {//添加事件Spinner事件監聽
-				@Override
-				public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-					character_word = practice_character.getSelectedItem().toString();
-				}
-
-				@Override
-				public void onNothingSelected(AdapterView<?> adapterView) {//沒有選時
-					character_word = practice_character.getSelectedItem().toString();
-				}
-			});
-
-			conversation_choose.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					if ((!drama_word_stu.equals("Student Number")) && way_word.equals("劇本對話練習")) {
-						Intent intent = new Intent();
-						intent.setClass(MainActivity.this, ConversationPractice.class);
-						startActivity(intent);
-
-						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-						String date = sdf.format(new java.util.Date());
-						fire_conversation_practice = FirebaseDatabase.getInstance().getReference().child("學生" + Student.Name + "號").child("ConversationPractice");
-						practice_id_key = fire_conversation_practice.push().getKey();
-						DialogPracticBehavior dialogPracticBehavior = new DialogPracticBehavior(date, way_word, drama_word_stu + "_" + drama_word_num,
-								character_word, "null", "null", 0, "null", "null", 0,
-								"null", "null", 0, "null", "null", 0);
-						fire_conversation_practice.child(practice_id_key).child("Content").setValue(dialogPracticBehavior);
-					} else {
-						Toast.makeText(MainActivity.this, "你沒有選擇要練習誰的哦!", Toast.LENGTH_SHORT).show();
-					}
-
-
-				}
-			});
-
-		} else {
-			Toast.makeText(this, "請輸入姓名", Toast.LENGTH_SHORT).show();
-		}
+//
+//			conversation_choose.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+//				@Override
+//				public void onClick(View v) {
+//					if ((!drama_word_stu.equals("Student Number")) && way_word.equals("劇本對話練習")) {
+//						Intent intent = new Intent();
+//						intent.setClass(MainActivity.this, ConversationPractice.class);
+//						startActivity(intent);
+//
+//						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//						String date = sdf.format(new java.util.Date());
+//						fire_conversation_practice = FirebaseDatabase.getInstance().getReference().child("學生" + Student.Name + "號").child("ConversationPractice");
+//						practice_id_key = fire_conversation_practice.push().getKey();
+//						DialogPracticBehavior dialogPracticBehavior = new DialogPracticBehavior(date, way_word, drama_word_stu + "_" + drama_word_num,
+//								character_word, "null", "null", 0, "null", "null", 0,
+//								"null", "null", 0, "null", "null", 0);
+//						fire_conversation_practice.child(practice_id_key).child("Content").setValue(dialogPracticBehavior);
+//					} else {
+//						Toast.makeText(MainActivity.this, "你沒有選擇要練習誰的哦!", Toast.LENGTH_SHORT).show();
+//					}
+//
+//
+//				}
+//			});
+//
+//		} else {
+//			Toast.makeText(this, "請輸入姓名", Toast.LENGTH_SHORT).show();
+//		}
+//
+//	}
 
 	}
-
 
 	public void buttonSampleClick(final View view) {
 		if (!TextUtils.isEmpty(Name.getText().toString())) {
@@ -954,9 +967,6 @@ public class MainActivity extends Activity implements OnClickListener {
 				break;
 		}
 	}
-
-
-
 
 
 

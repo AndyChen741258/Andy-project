@@ -100,10 +100,14 @@ public class DramaRecycleView extends Activity{
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                        String kk = dataSnapshot1.getKey();
-                        DescribeData describeData = dataSnapshot1.getValue(DescribeData.class);
-                        list_id.add(kk);
-                        list_describe.add(describeData);
+                        //控制807,實驗801
+                        if(dataSnapshot1.child("student_number").getValue().toString().trim().contains("801")){
+                            String kk = dataSnapshot1.getKey();
+                            DescribeData describeData = dataSnapshot1.getValue(DescribeData.class);
+                            list_id.add(kk);
+                            list_describe.add(describeData);
+                        }
+
                     }
                     mAdapter = new CardViewData(list_id, list_describe, DramaRecycleView.this);
                     recyclerView.setAdapter(mAdapter);
@@ -170,9 +174,11 @@ public class DramaRecycleView extends Activity{
                         });
                     //紀錄觀看自己的紀錄次數 (複習次數)
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    SimpleDateFormat sdf_sec = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
                     String date = sdf.format(new java.util.Date());
+                    String date_sec = sdf_sec.format(new java.util.Date());
                     fire_see_time = FirebaseDatabase.getInstance().getReference();
-                    fire_see_time.child("學生" + Student.Name + "號").child("See_Self_Description_Time").child(date).child("see_time").push().setValue("1");
+                    fire_see_time.child("學生" + Student.Name + "號").child("See_Self_Description_Time").child(date).child("see_time").child(date_sec).setValue("1");
                 }
             }
             @Override
@@ -229,10 +235,13 @@ public class DramaRecycleView extends Activity{
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                            String kk = dataSnapshot1.getKey();
-                            DescribeData describeData = dataSnapshot1.getValue(DescribeData.class);
-                            list_id.add(kk);
-                            list_describe.add(describeData);
+                            //控制807,實驗801
+                            if(dataSnapshot1.child("student_number").getValue().toString().trim().contains("801")){
+                                String kk = dataSnapshot1.getKey();
+                                DescribeData describeData = dataSnapshot1.getValue(DescribeData.class);
+                                list_id.add(kk);
+                                list_describe.add(describeData);
+                            }
                         }
                         mAdapter = new CardViewData(list_id, list_describe, DramaRecycleView.this);
                         recyclerView.setAdapter(mAdapter);
@@ -244,9 +253,11 @@ public class DramaRecycleView extends Activity{
                     }
                 });
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat sdf_sec = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
                 String date = sdf.format(new java.util.Date());
+                String date_sec = sdf_sec.format(new java.util.Date());
                 fire_see_time = FirebaseDatabase.getInstance().getReference();
-                fire_see_time.child("學生" + Student.Name + "號").child("See_Other_Description_Time").child(date).child(place_spinner_word).child("see_time").push().setValue("1");
+                fire_see_time.child("學生" + Student.Name + "號").child("See_Other_Description_Time").child(date).child(place_spinner_word).child("see_time").child(date_sec).setValue("1");
             }
         });
 
