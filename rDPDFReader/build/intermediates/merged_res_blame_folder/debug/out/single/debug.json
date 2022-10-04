@@ -1,922 +1,926 @@
 [
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap-xxhdpi_video_icon_round.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-debug-52:/mipmap-xxhdpi/video_icon_round.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_builddrama3.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\builddrama3.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_fragment_messagechat.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/fragment_messagechat.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\anim_zoom_out.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\anim\\zoom_out.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_save4.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/save4.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_check_black_24dp.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_check_black_24dp.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_re_edit.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/re_edit.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_explorer128.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\explorer128.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_theater128.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/theater128.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\menu_example_menu.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\menu\\example_menu.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_mic.gif.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/mic.gif"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_voice_a.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\voice_a.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap_record_icon_pressed.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/mipmap/record_icon_pressed.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_recordvoice.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\recordvoice.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_text_fields_black_24dp.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_text_fields_black_24dp.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_playvoice_333.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\playvoice_333.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_conversation128.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/conversation128.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_my_icon.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_my_icon.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_image_list.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_image_list.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap-anydpi-v26_video_icon.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-debug-52:\\mipmap-anydpi-v26\\video_icon.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_homework.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/homework.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_baseline_play_circle_filled_24.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_baseline_play_circle_filled_24.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_video.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/video.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap-xhdpi_video_icon_round.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-debug-52:\\mipmap-xhdpi\\video_icon_round.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_photo.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/photo.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_chat95.gif.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\chat95.gif"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_play_circle_filled_black_24dp.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_play_circle_filled_black_24dp.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\raw_engineerbuilding_hiowhp_bf82041d2f2a.json.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\raw\\engineerbuilding_hiowhp_bf82041d2f2a.json"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_textview_style.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/textview_style.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_cinema128.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\cinema128.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_video_icon_background.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-debug-52:/drawable/video_icon_background.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_speaking.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\speaking.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_chat_item_left.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/chat_item_left.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_research128.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\research128.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_baseline_message_24.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_baseline_message_24.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_video.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\video.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_wooden2.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/wooden2.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\raw_newagent_cqnfce_1fbb0504b0f8.json.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\raw\\newagent_cqnfce_1fbb0504b0f8.json"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_give_the_hint.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/give_the_hint.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_scan.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\scan.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-xhdpi_line4.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-xhdpi/line4.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_record_doalog1.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\record_doalog1.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-mdpi_background_left_selector.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-mdpi/background_left_selector.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_builddrama4.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\builddrama4.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_content_scrolling.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/content_scrolling.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\raw_test_stop.mp3.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\raw\\test_stop.mp3"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_spinnerstyle.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/spinnerstyle.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_baseline_cloud_download_24.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_baseline_cloud_download_24.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_baseline_cloud_download_24.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_baseline_cloud_download_24.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap_profile_koala.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\mipmap\\profile_koala.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap-xhdpi_video_icon_round.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-debug-52:/mipmap-xhdpi/video_icon_round.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_chat35.gif.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\chat35.gif"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-xhdpi_line2.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-xhdpi/line2.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_test2.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_test2.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_light_veneer.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/light_veneer.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_record.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\record.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_thisis.gif.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/thisis.gif"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_mydata.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\mydata.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap_photo_icon_pressed.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/mipmap/photo_icon_pressed.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_teacher.gif.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\teacher.gif"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_cinema128.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/cinema128.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-mdpi_background_left_selector.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-mdpi\\background_left_selector.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap-xxhdpi_video_icon.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-debug-52:/mipmap-xxhdpi/video_icon.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-mdpi_icon_keyboard_selector.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-mdpi\\icon_keyboard_selector.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_resixe_b_36.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/resixe_b_36.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-xxhdpi_advertising.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-xxhdpi\\advertising.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_baseline_chevron_left_24.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_baseline_chevron_left_24.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap_correction_icon.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\mipmap\\correction_icon.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_hw_record_32.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/hw_record_32.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-v24_filter.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-v24\\filter.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-v24_video_icon_foreground.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-debug-52:/drawable-v24/video_icon_foreground.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_text_fields_black_24dp.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_text_fields_black_24dp.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-v24_cross.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-v24/cross.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap-hdpi_video_icon_round.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-debug-52:\\mipmap-hdpi\\video_icon_round.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/raw_test_start.wav.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/raw/test_start.wav"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_image_item.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\image_item.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_record_222.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/record_222.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap_volume_pressed.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\mipmap\\volume_pressed.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap-xhdpi_video_icon.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-debug-52:/mipmap-xhdpi/video_icon.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_border_sentence_btn.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\border_sentence_btn.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_leaderboard.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_leaderboard.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_mic_off_black_24dp.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_mic_off_black_24dp.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_b_lines.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/b_lines.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_mic.gif.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\mic.gif"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_describe.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_describe.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap_record_icon_pressed.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\mipmap\\record_icon_pressed.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_save3.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/save3.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_a_lines.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\a_lines.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_conversation_homework.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_conversation_homework.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_save2.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\save2.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_savefile.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/savefile.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_conversation_practice.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_conversation_practice.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_standby.gif.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/standby.gif"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_search_black_24dp.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_search_black_24dp.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap_record_icon.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/mipmap/record_icon.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_text_send.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\text_send.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_builddrama2.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/builddrama2.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_text_receive.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\text_receive.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_sakura.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/sakura.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-hdpi\\ic_launcher.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_chat55.gif.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/chat55.gif"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-v24_nameasec.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-v24\\nameasec.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_baseline_keyboard_voice_24.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_baseline_keyboard_voice_24.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_play_hw.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\play_hw.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-mdpi_background_right_selector.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-mdpi/background_right_selector.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-xxhdpi_picture.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-xxhdpi\\picture.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-hdpi_chinese.jpg.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-hdpi/chinese.jpg"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_icon_voice_selector.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\icon_voice_selector.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_noimage.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/noimage.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ok_btn.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ok_btn.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-v24_search.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-v24/search.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_baseline_chevron_left_24.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_baseline_chevron_left_24.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap-hdpi_video_icon.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-debug-52:/mipmap-hdpi/video_icon.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_save3.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\save3.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap-anydpi-v26_video_icon.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-debug-52:/mipmap-anydpi-v26/video_icon.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_drama_video.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_drama_video.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_text_dialogspeak.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/text_dialogspeak.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_diff.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_diff.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_english_word.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/english_word.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_noimage2.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\noimage2.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_letter_b.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/letter_b.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_baseline_chevron_right_24_black.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_baseline_chevron_right_24_black.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-v24_markasec.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-v24/markasec.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_alert_dialog.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\alert_dialog.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_voice_a.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/voice_a.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_back.jpg.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\back.jpg"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_share.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/share.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-v24_close.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-v24\\close.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_check_black_24dp.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_check_black_24dp.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_imageview.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\imageview.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_mic_off_black_24dp.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_mic_off_black_24dp.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_person_outline_black_24dp.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_person_outline_black_24dp.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_hw_record_64.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/hw_record_64.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_startspeak.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\startspeak.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/raw_test_stop.mp3.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/raw/test_stop.mp3"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap_photo_icon_pressed.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\mipmap\\photo_icon_pressed.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_baseline_chevron_right_24_black.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_baseline_chevron_right_24_black.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_hint.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\hint.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_builddrama3.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/builddrama3.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_wooden2.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\wooden2.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_chat35.gif.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/chat35.gif"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap_ic_action_send.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\mipmap\\ic_action_send.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_image_item.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/image_item.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_edit_text_design.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\edit_text_design.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_next.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/next.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_save4.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\save4.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_edit_text_design.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/edit_text_design.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-ldpi_add.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-ldpi\\add.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_builddrama4.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/builddrama4.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\anim_zoom_in.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\anim\\zoom_in.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_leavespattern11.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/leavespattern11.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_textview_border.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\textview_border.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-xhdpi_line1.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-xhdpi/line1.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_btn_speake.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\btn_speake.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap-mdpi_video_icon.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-debug-52:/mipmap-mdpi/video_icon.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_listen_tts.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\listen_tts.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_question.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/question.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\raw_engineerbuilding_hiowhp_ac400b4c08c1.json.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\raw\\engineerbuilding_hiowhp_ac400b4c08c1.json"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_baseline_menu_book_24.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_baseline_menu_book_24.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_leavespattern11.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\leavespattern11.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_btn_speake.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/btn_speake.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_give_the_hint.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\give_the_hint.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/anim_zoom_out.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/anim/zoom_out.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_baseline_notes_24.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_baseline_notes_24.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-v24_filter.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-v24/filter.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-v24_markasec.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-v24\\markasec.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-mdpi_icon_keyboard_selector.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-mdpi/icon_keyboard_selector.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_choose_practicr_part.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_choose_practicr_part.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_chat15.gif.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/chat15.gif"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_spinnerstyle.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\spinnerstyle.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-v24_namedsec.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-v24/namedsec.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_photo.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_photo.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap-anydpi-v26_video_icon_round.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-debug-52:/mipmap-anydpi-v26/video_icon_round.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_back1222.jpg.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\back1222.jpg"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_role.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_role.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap_keyboard_icon_pressed.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/mipmap/keyboard_icon_pressed.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_wooden1.jpg.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\wooden1.jpg"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_take.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/take.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-mdpi_background_right_selector.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-mdpi\\background_right_selector.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-hdpi_english.jpg.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-hdpi/english.jpg"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_big_picture.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\big_picture.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_loading.gif.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/loading.gif"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-v24_markdsec.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-v24\\markdsec.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-ldpi_ic_launcher.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-ldpi/ic_launcher.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_baseline_chevron_left_24_black.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_baseline_chevron_left_24_black.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_person_outline_black_24dp.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_person_outline_black_24dp.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-xhdpi_chatbot_player.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-xhdpi\\chatbot_player.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_chatbot.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_chatbot.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_content_scrolling.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\content_scrolling.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_text_send.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/text_send.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-mdpi_icon_keyboardgone_selector.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-mdpi\\icon_keyboardgone_selector.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_letter_a.jpg.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/letter_a.jpg"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-v24_cross.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-v24\\cross.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_view_alpha_selector.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/view_alpha_selector.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\raw_credentials.json.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\raw\\credentials.json"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-ldpi_cancel.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-ldpi/cancel.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-mdpi_icon_photo_selector.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-mdpi\\icon_photo_selector.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-hdpi_ic_launcher.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-hdpi/ic_launcher.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_folder_1_128.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\folder_1_128.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_search_black_64dp.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_search_black_64dp.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_speak_score_background.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\speak_score_background.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_screenshot1.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/screenshot1.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_fragment_messagechat.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\fragment_messagechat.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_search_black_24dp.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_search_black_24dp.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_baseline_message_24.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_baseline_message_24.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/menu_example_menu_edit.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/menu/example_menu_edit.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_video_icon_background.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-debug-52:\\drawable\\video_icon_background.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_recordvoice.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/recordvoice.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap_record_icon.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\mipmap\\record_icon.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/raw_engineerbuilding_hiowhp_ac400b4c08c1.json.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/raw/engineerbuilding_hiowhp_ac400b4c08c1.json"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_sound_accuracy.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\sound_accuracy.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_main.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_main.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_screenshot1.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\screenshot1.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_diff_left.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_diff_left.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_textview_youspeak.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\textview_youspeak.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap_correction_icon.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/mipmap/correction_icon.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_describe.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_describe.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_cantunderstand.gif.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/cantunderstand.gif"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap_good_icon.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\mipmap\\good_icon.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_record_btn.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/record_btn.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_baseline_menu_book_24.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_baseline_menu_book_24.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap_volume.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/mipmap/volume.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap-xxhdpi_video_icon.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-debug-52:\\mipmap-xxhdpi\\video_icon.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_myspinner.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/myspinner.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_conversation_homework.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_conversation_homework.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_folder.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/folder.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_marker_infowindow.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\marker_infowindow.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_search_main_btn.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/search_main_btn.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-ldpi_cancel.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-ldpi\\cancel.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_speak_score_background.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/speak_score_background.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_play_circle_filled_black_24dp.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_play_circle_filled_black_24dp.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_baseline_chevron_right_24.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_baseline_chevron_right_24.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_voice_b.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\voice_b.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_listen_tts.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/listen_tts.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_photo.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\photo.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_test2.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_test2.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_re_edit.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\re_edit.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_back.jpg.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/back.jpg"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_take.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\take.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-xhdpi_chatbot_player.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-xhdpi/chatbot_player.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_search_main_btn.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\search_main_btn.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_back1222.jpg.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/back1222.jpg"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-xxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_hint.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/hint.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_role.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_role.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_speaking.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/speaking.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_percent1.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\percent1.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_get_data_show.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_get_data_show.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_builddrama2.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\builddrama2.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-mdpi_ic_launcher.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-mdpi/ic_launcher.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap_volume.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\mipmap\\volume.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_dialog.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_dialog.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_list_layout.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\list_layout.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_diff.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_diff.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_drama_recycle_view.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_drama_recycle_view.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-ldpi_add.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-ldpi/add.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap-mdpi_video_icon.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-debug-52:\\mipmap-mdpi\\video_icon.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_resize_a_36.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/resize_a_36.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_baseline_pause_24.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_baseline_pause_24.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-xhdpi_leaderboard.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-xhdpi/leaderboard.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_add_border.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\add_border.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_textview_youspeak.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/textview_youspeak.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\raw_test_cancel.wav.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\raw\\test_cancel.wav"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-v24_nameasec.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-v24/nameasec.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-mdpi_icon_record_selector.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-mdpi\\icon_record_selector.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap_volume_pressed.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/mipmap/volume_pressed.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_drama_achievement.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_drama_achievement.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_sound_accuracy.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/sound_accuracy.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_letter_a.jpg.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\letter_a.jpg"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap_keyboard_icon.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/mipmap/keyboard_icon.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_question.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\question.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ok_btn.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ok_btn.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_next.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\next.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_btn_talk_selector.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/btn_talk_selector.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_conversation128.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\conversation128.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_record_111.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/record_111.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_noimage.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\noimage.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_a_lines.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/a_lines.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_sakura.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\sakura.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_creat_drama.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_creat_drama.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap-hdpi_video_icon.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-debug-52:\\mipmap-hdpi\\video_icon.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_baseline_pause_24.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_baseline_pause_24.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_test_aitext.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_test_aitext.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_border_layout_card.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/border_layout_card.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-xhdpi_line1.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-xhdpi\\line1.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_noimage2.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/noimage2.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-v24_menu.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-v24\\menu.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_baseline_photo_24.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_baseline_photo_24.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_b_lines.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\b_lines.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_big_picture.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/big_picture.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_loading.gif.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\loading.gif"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_back123.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/back123.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_leaderboard.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_leaderboard.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_builddrama.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/builddrama.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_thisis.gif.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\thisis.gif"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_record_doalog1.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/record_doalog1.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap-xxxhdpi_video_icon_round.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-debug-52:\\mipmap-xxxhdpi\\video_icon_round.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_save_drama_btn.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/save_drama_btn.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap-anydpi-v26_video_icon_round.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-debug-52:\\mipmap-anydpi-v26\\video_icon_round.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap_message_gif.gif.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/mipmap/message_gif.gif"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_boader_vocabulary_btn.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\boader_vocabulary_btn.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-mdpi_icon_photo_selector.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-mdpi/icon_photo_selector.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_list_background.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\list_background.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_chat75.gif.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/chat75.gif"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_standby.gif.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\standby.gif"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_play_hw.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/play_hw.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-xhdpi_line2.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-xhdpi\\line2.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-v24_close.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-v24/close.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\menu_menu_main.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\menu\\menu_main.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap-hdpi_video_icon_round.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-debug-52:/mipmap-hdpi/video_icon_round.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_share.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\share.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/raw_newagent_cqnfce_1fbb0504b0f8.json.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/raw/newagent_cqnfce_1fbb0504b0f8.json"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_text_dialogspeak.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\text_dialogspeak.xml"
+    },
+    {
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_edit_drama.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_edit_drama.xml"
+    },
+    {
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_hw_record_32.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\hw_record_32.png"
+    },
+    {
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_listening_tts.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\listening_tts.png"
+    },
+    {
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_chat15.gif.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\chat15.gif"
+    },
+    {
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_get_data_show.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_get_data_show.xml"
+    },
+    {
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_resixe_b_36.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\resixe_b_36.png"
+    },
+    {
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_mic_black_24dp.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_mic_black_24dp.xml"
+    },
+    {
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_letter_b.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\letter_b.png"
+    },
+    {
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_save_drama_btn.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\save_drama_btn.xml"
+    },
+    {
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_light_veneer.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\light_veneer.png"
+    },
+    {
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_back123.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\back123.png"
+    },
+    {
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_main_file_btn.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\main_file_btn.xml"
     },
     {
         "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_drama_video.xml.flat",
         "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_drama_video.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_icon_voice_selector.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/icon_voice_selector.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_creat_drama.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_creat_drama.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_percent1.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/percent1.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_search_black_64dp.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_search_black_64dp.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_marker_infowindow.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/marker_infowindow.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_btn_talk_selector.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\btn_talk_selector.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_check_homework.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/check_homework.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_conversation.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\conversation.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-xxhdpi_advertising.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-xxhdpi/advertising.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_chat_item_right.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\chat_item_right.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_imageview.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/imageview.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap-mdpi_video_icon_round.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-debug-52:\\mipmap-mdpi\\video_icon_round.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_test_aitext.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_test_aitext.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_border_layout_card.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\border_layout_card.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_alert_dialog.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/alert_dialog.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\menu_example_menu_edit.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\menu\\example_menu_edit.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap_photo_icon.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/mipmap/photo_icon.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_chat_item_left.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\chat_item_left.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap-mdpi_video_icon_round.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-debug-52:/mipmap-mdpi/video_icon_round.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-xhdpi_choosing.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-xhdpi\\choosing.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/raw_test_cancel.wav.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/raw/test_cancel.wav"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_baseline_chevron_right_24.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_baseline_chevron_right_24.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap_ic_action_send.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/mipmap/ic_action_send.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_diff_left.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_diff_left.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-mdpi_icon_keyboardgone_selector.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-mdpi/icon_keyboardgone_selector.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-xhdpi_line4.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-xhdpi\\line4.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_record.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/record.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_english_word.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\english_word.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_border_sentence_btn.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/border_sentence_btn.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-hdpi_chinese.jpg.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-hdpi\\chinese.jpg"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_my_icon.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_my_icon.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_cardview.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\cardview.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_edit_drama.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_edit_drama.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-ldpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-ldpi\\ic_launcher.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_boader_vocabulary_btn.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/boader_vocabulary_btn.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-v24_video_icon_foreground.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-debug-52:\\drawable-v24\\video_icon_foreground.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_drama_achievement.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_drama_achievement.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-hdpi_en_gl_r2_c6.jpg.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-hdpi\\en_gl_r2_c6.jpg"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-mdpi_gradient.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-mdpi/gradient.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_builddrama.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\builddrama.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_scan.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/scan.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_textview_style.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\textview_style.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_mic_black_24dp.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_mic_black_24dp.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_dialog.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_dialog.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_baseline_chevron_left_24_black.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_baseline_chevron_left_24_black.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_hw_record_64.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\hw_record_64.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_mydata.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/mydata.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_chat55.gif.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\chat55.gif"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_explorer128.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/explorer128.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_baseline_keyboard_voice_24.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_baseline_keyboard_voice_24.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_playvoice_333.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/playvoice_333.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_resize_a_36.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\resize_a_36.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_research128.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/research128.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_homework.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\homework.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_textview_border.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/textview_border.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap-xxhdpi_video_icon_round.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-debug-52:\\mipmap-xxhdpi\\video_icon_round.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_text_receive.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/text_receive.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_theater128.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\theater128.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_baseline_notes_24.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_baseline_notes_24.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_myspinner.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\myspinner.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_add_border.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/add_border.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_check_homework.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\check_homework.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-xxhdpi_picture.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-xxhdpi/picture.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap_keyboard_icon.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\mipmap\\keyboard_icon.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_teacher.gif.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/teacher.gif"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_border_phrase_btn.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\border_phrase_btn.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_drama_recycle_view.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_drama_recycle_view.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap-xxxhdpi_video_icon.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-debug-52:\\mipmap-xxxhdpi\\video_icon.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/menu_menu_main.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/menu/menu_main.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_cantunderstand.gif.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\cantunderstand.gif"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-xhdpi_ic_launcher.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-xhdpi/ic_launcher.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_textview_border_1.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\textview_border_1.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_list_layout.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/list_layout.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-hdpi_english.jpg.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-hdpi\\english.jpg"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/raw_credentials.json.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/raw/credentials.json"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap_message_gif.gif.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\mipmap\\message_gif.gif"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_chat95.gif.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/chat95.gif"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_chat75.gif.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\chat75.gif"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap_profile_koala.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/mipmap/profile_koala.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_record_222.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\record_222.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_voice_b.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/voice_b.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_record_111.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\record_111.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-xhdpi_choosing.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-xhdpi/choosing.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-xxhdpi_photo_and_speaker.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-xxhdpi\\photo_and_speaker.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap-xxxhdpi_video_icon.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-debug-52:/mipmap-xxxhdpi/video_icon.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap-xhdpi_video_icon.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-debug-52:\\mipmap-xhdpi\\video_icon.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-xxhdpi_photo_and_speaker.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-xxhdpi/photo_and_speaker.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-mdpi_gradient.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-mdpi\\gradient.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap-xxxhdpi_video_icon_round.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-debug-52:/mipmap-xxxhdpi/video_icon_round.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_chatbot.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_chatbot.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/mipmap_good_icon.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/mipmap/good_icon.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_image_list.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_image_list.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_listening_tts.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/listening_tts.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-xhdpi_leaderboard.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-xhdpi\\leaderboard.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_ic_baseline_play_circle_filled_24.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/ic_baseline_play_circle_filled_24.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_savefile.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\savefile.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-v24_menu.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-v24/menu.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-v24_search.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-v24\\search.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-hdpi_en_gl_r2_c6.jpg.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-hdpi/en_gl_r2_c6.jpg"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_record_btn.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\record_btn.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_list_background.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/list_background.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-xhdpi\\ic_launcher.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-v24_markdsec.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-v24/markdsec.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-xhdpi_line3.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-xhdpi\\line3.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/anim_zoom_in.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/anim/zoom_in.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable-v24_namedsec.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable-v24\\namedsec.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-xxhdpi_ic_launcher.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-xxhdpi/ic_launcher.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_folder.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\folder.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_main_file_btn.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/main_file_btn.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_ic_baseline_photo_24.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\ic_baseline_photo_24.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_conversation.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/conversation.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\raw_test_start.wav.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\raw\\test_start.wav"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-xhdpi_line3.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-xhdpi/line3.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\layout_activity_test.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\layout\\activity_test.xml"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_folder_1_128.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/folder_1_128.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap_keyboard_icon_pressed.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\mipmap\\keyboard_icon_pressed.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_save2.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/save2.png"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\mipmap_photo_icon.png.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\mipmap\\photo_icon.png"
     },
     {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_photo.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_photo.xml"
-    },
-    {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable-mdpi_icon_record_selector.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable-mdpi/icon_record_selector.xml"
-    },
-    {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/raw_engineerbuilding_hiowhp_bf82041d2f2a.json.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/raw/engineerbuilding_hiowhp_bf82041d2f2a.json"
-    },
-    {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_cardview.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/cardview.xml"
-    },
-    {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/menu_example_menu.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/menu/example_menu.xml"
-    },
-    {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_border_phrase_btn.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/border_phrase_btn.xml"
-    },
-    {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_textview_border_1.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/textview_border_1.xml"
-    },
-    {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_wooden1.jpg.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/wooden1.jpg"
-    },
-    {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_test.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_test.xml"
-    },
-    {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_choose_practicr_part.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_choose_practicr_part.xml"
-    },
-    {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/drawable_startspeak.png.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/drawable/startspeak.png"
-    },
-    {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_activity_conversation_practice.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/activity_conversation_practice.xml"
-    },
-    {
-        "merged": "com.naer.pdfreader.rDPDFReader-merged_res-51:/layout_chat_item_right.xml.flat",
-        "source": "com.naer.pdfreader.rDPDFReader-main-53:/layout/chat_item_right.xml"
+        "merged": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-merged_res-51:\\drawable_view_alpha_selector.xml.flat",
+        "source": "C:\\Users\\s\\.gradle\\daemon\\7.4\\com.naer.pdfreader.rDPDFReader-main-53:\\drawable\\view_alpha_selector.xml"
     }
 ]

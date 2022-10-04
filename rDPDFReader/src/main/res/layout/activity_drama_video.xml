@@ -83,48 +83,68 @@
             </LinearLayout>
         </ScrollView>
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="94dp"
+        <LinearLayout
+            android:layout_width="190dp"
+            android:layout_height="520dp"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="349dp"
-            android:layout_marginEnd="1059dp"
-            android:layout_marginBottom="299dp"
-            android:background="#F1E9A1"
-            android:text="choose the video"
-            android:textSize="24sp"
-            android:onClick="buttonRecordVideo"
-            />
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="113dp"
+            android:layout_marginBottom="109dp"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="155dp"
-            android:layout_height="89dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="1064dp"
-            android:layout_marginBottom="461dp"
-            android:background="#89EA8D"
-            android:text="Add your situation"
-            android:textSize="24sp" />
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="163dp"
+                android:layout_height="108dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:background="#89EA8D"
+                android:gravity="center_horizontal"
+                android:paddingLeft="8dp"
+                android:paddingTop="10dp"
+                android:text="Add your situation"
+                android:textSize="24sp" />
 
-        <Button
-            android:id="@+id/recvideo1"
-            android:layout_width="149dp"
-            android:layout_height="87dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="1064dp"
-            android:layout_marginBottom="147dp"
-            android:background="#C59CD5"
-            android:text="take video"
-            android:textSize="24sp"
-            android:onClick="buttonSelectVideo">
+            <Button
+                android:id="@+id/button"
+                android:layout_width="163dp"
+                android:layout_height="108dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:background="#F1E9A1"
+                android:onClick="buttonRecordVideo"
+                android:text="choose the video"
+                android:textSize="24sp" />
 
-        </Button>
+            <Button
+                android:id="@+id/recvideo1"
+                android:layout_width="163dp"
+                android:layout_height="108dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+
+                android:background="#C59CD5"
+                android:onClick="buttonSelectVideo"
+                android:text="take video"
+                android:textSize="24sp">
+
+            </Button>
+
+            <Button
+                android:id="@+id/savebutton"
+                android:layout_width="163dp"
+                android:layout_height="108dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:background="#A6AFE1"
+                android:onClick="buttonSelectVideo"
+                android:text="save the drama"
+                android:textSize="24sp">
+
+            </Button>
+        </LinearLayout>
 
 
     </RelativeLayout>
