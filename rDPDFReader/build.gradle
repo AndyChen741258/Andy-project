@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 buildscript {
     repositories {
+
         maven { url 'https://plugins.gradle.org/m2/' }
        gradlePluginPortal()
     }
@@ -120,6 +121,8 @@ dependencies {
     implementation 'com.github.javiersantos:AppUpdater:2.7'
 
     implementation 'com.squareup.picasso:picasso:2.8'
+    implementation 'com.intuit.ssp:ssp-android:1.1.0'
+    implementation 'com.intuit.sdp:sdp-android:1.1.0'
 
     // Java V2
     implementation 'com.google.cloud:google-cloud-dialogflow:0.67.0-alpha'

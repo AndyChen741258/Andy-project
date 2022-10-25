@@ -79,6 +79,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="imagePath" value="D:\UnitVideoResearch_video_layout\UnitVideoResearch\app\src\main\res\mipmap-hdpi\plus_icon.png" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -110,7 +111,7 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="video_icon" />
+                                      <entry key="outputName" value="add_video_icon" />
                                     </map>
                                   </option>
                                 </PersistentState>

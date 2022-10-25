@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.naer.pdfreader.rDPDFReader-mergeDebugResources-49:/values-v18/values-v18.xml",
+            "outputFile": "com.naer.pdfreader.rDPDFReader-mergeDebugResources-51:/values-v18/values-v18.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\0d36b2d7e5192800dedb5f220f37856c\\transformed\\appcompat-1.5.1\\res\\values-v18\\values-v18.xml",
+                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\6def8af451405e571a08465e493ce6a4\\transformed\\appcompat-1.5.1\\res\\values-v18\\values-v18.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

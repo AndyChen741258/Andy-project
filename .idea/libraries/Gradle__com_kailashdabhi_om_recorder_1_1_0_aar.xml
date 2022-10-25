@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.kailashdabhi:om-recorder:1.1.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/a7b716b35abccfa17104ad9e19bba32f/transformed/jetified-om-recorder-1.1.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a7b716b35abccfa17104ad9e19bba32f/transformed/jetified-om-recorder-1.1.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a7b716b35abccfa17104ad9e19bba32f/transformed/jetified-om-recorder-1.1.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b8c87e320fee4618e66e1028eb79af45/transformed/jetified-om-recorder-1.1.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b8c87e320fee4618e66e1028eb79af45/transformed/jetified-om-recorder-1.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b8c87e320fee4618e66e1028eb79af45/transformed/jetified-om-recorder-1.1.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.kailashdabhi/om-recorder/1.1.0/f8d6e370e955d967ea8fc048341b171aaec877ab/om-recorder-1.1.0-javadoc.jar!/" />

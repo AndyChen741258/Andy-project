@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.naer.pdfreader.rDPDFReader-mergeDebugResources-49:/values-en-rGB/values-en-rGB.xml",
+            "outputFile": "com.naer.pdfreader.rDPDFReader-mergeDebugResources-51:/values-en-rGB/values-en-rGB.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\0d36b2d7e5192800dedb5f220f37856c\\transformed\\appcompat-1.5.1\\res\\values-en-rGB\\values-en-rGB.xml",
+                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\6def8af451405e571a08465e493ce6a4\\transformed\\appcompat-1.5.1\\res\\values-en-rGB\\values-en-rGB.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\6dd2fa327251af89a734b61c09e62dd2\\transformed\\material-1.6.1\\res\\values-en-rGB\\values-en-rGB.xml",
+                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\21327949d7abe936fa61853f69a9eeaf\\transformed\\browser-1.4.0\\res\\values-en-rGB\\values-en-rGB.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,153,250,359",
+                        "endColumns": "97,96,108,98",
+                        "endOffsets": "148,245,354,453"
+                    },
+                    "to": {
+                        "startLines": "55,58,59,60",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "5462,5715,5812,5921",
+                        "endColumns": "97,96,108,98",
+                        "endOffsets": "5555,5807,5916,6015"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\b14b36005d6ef56d2c79d602f63f9417\\transformed\\material-1.6.1\\res\\values-en-rGB\\values-en-rGB.xml",
                     "from": {
                         "startLines": "2,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -40,41 +57,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\1c2d407180cedda51a53c8250e5adb0d\\transformed\\browser-1.4.0\\res\\values-en-rGB\\values-en-rGB.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,153,250,359",
-                        "endColumns": "97,96,108,98",
-                        "endOffsets": "148,245,354,453"
-                    },
-                    "to": {
-                        "startLines": "55,58,59,60",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "5462,5715,5812,5921",
-                        "endColumns": "97,96,108,98",
-                        "endOffsets": "5555,5807,5916,6015"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\477cd45e14e038237a801eea0e115e99\\transformed\\jetified-play-services-base-18.0.1\\res\\values-en-rGB\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "197,298,446,567,670,817,936,1048,1147,1302,1403,1551,1672,1814,1958,2017,2075",
-                        "endColumns": "100,147,120,102,146,118,111,98,154,100,147,120,141,143,58,57,74",
-                        "endOffsets": "297,445,566,669,816,935,1047,1146,1301,1402,1550,1671,1813,1957,2016,2074,2149"
-                    },
-                    "to": {
-                        "startLines": "37,38,39,40,41,42,43,44,46,47,48,49,50,51,52,53,54",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "3303,3408,3560,3685,3792,3943,4066,4182,4423,4582,4687,4839,4964,5110,5258,5321,5383",
-                        "endColumns": "104,151,124,106,150,122,115,102,158,104,151,124,145,147,62,61,78",
-                        "endOffsets": "3403,3555,3680,3787,3938,4061,4177,4280,4577,4682,4834,4959,5105,5253,5316,5378,5457"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\e70bfea22750687091d64acea9e7fd0e\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-en-rGB\\values.xml",
+                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\e6ded08d67897445da79b5de8b67df66\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-en-rGB\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -91,7 +74,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\cecb4ef5a7ca33eeb099e3565dcc2e24\\transformed\\core-1.8.0\\res\\values-en-rGB\\values-en-rGB.xml",
+                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\e2dcc6d5c9af35f9e139439f19fb7d91\\transformed\\jetified-play-services-base-18.0.1\\res\\values-en-rGB\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "197,298,446,567,670,817,936,1048,1147,1302,1403,1551,1672,1814,1958,2017,2075",
+                        "endColumns": "100,147,120,102,146,118,111,98,154,100,147,120,141,143,58,57,74",
+                        "endOffsets": "297,445,566,669,816,935,1047,1146,1301,1402,1550,1671,1813,1957,2016,2074,2149"
+                    },
+                    "to": {
+                        "startLines": "37,38,39,40,41,42,43,44,46,47,48,49,50,51,52,53,54",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3303,3408,3560,3685,3792,3943,4066,4182,4423,4582,4687,4839,4964,5110,5258,5321,5383",
+                        "endColumns": "104,151,124,106,150,122,115,102,158,104,151,124,145,147,62,61,78",
+                        "endOffsets": "3403,3555,3680,3787,3938,4061,4177,4280,4577,4682,4834,4959,5105,5253,5316,5378,5457"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\c373f4144a1d27261ab5dafa06eb1974\\transformed\\core-1.8.0\\res\\values-en-rGB\\values-en-rGB.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

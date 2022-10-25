@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.naer.pdfreader.rDPDFReader-mergeDebugResources-49:/values-ru-rRU/values-ru-rRU.xml",
+            "outputFile": "com.naer.pdfreader.rDPDFReader-mergeDebugResources-51:/values-ru-rRU/values-ru-rRU.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\b3e9a5d34dfcf8849108404da3b01e18\\transformed\\jetified-android-image-cropper-2.5.1\\res\\values-ru-rRU\\values-ru-rRU.xml",
+                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\c51f8f0a43e6fd0540284c1a81ae653e\\transformed\\jetified-android-image-cropper-2.5.1\\res\\values-ru-rRU\\values-ru-rRU.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8",
                         "startColumns": "4,4,4,4,4,4,4",

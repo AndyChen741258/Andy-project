@@ -203,6 +203,8 @@
     <orderEntry type="library" scope="TEST" name="Gradle: lib.kingja.switchbutton:switchbutton:1.1.8@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.github.javiersantos:AppUpdater:2.7@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.picasso:picasso:2.8@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.intuit.ssp:ssp-android:1.1.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.intuit.sdp:sdp-android:1.1.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.github.iammannan:TranslateAPI:1.1@aar" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="RDPDFReader3.rDPDFReader.main" />

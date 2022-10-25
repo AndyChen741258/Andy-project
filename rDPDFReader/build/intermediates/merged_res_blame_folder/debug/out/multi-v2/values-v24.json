@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.naer.pdfreader.rDPDFReader-mergeDebugResources-49:/values-v24/values-v24.xml",
+            "outputFile": "com.naer.pdfreader.rDPDFReader-mergeDebugResources-51:/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\e947e571b1e8b094b08d249709c8bb1d\\transformed\\media-1.0.0\\res\\values-v24\\values-v24.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,121,182,248",
-                        "endColumns": "65,60,65,66",
-                        "endOffsets": "116,177,243,310"
-                    },
-                    "to": {
-                        "startLines": "20,21,22,23",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "1547,1613,1674,1740",
-                        "endColumns": "65,60,65,66",
-                        "endOffsets": "1608,1669,1735,1802"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\6dd2fa327251af89a734b61c09e62dd2\\transformed\\material-1.6.1\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\b14b36005d6ef56d2c79d602f63f9417\\transformed\\material-1.6.1\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,9,12,15",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -40,7 +23,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\0d36b2d7e5192800dedb5f220f37856c\\transformed\\appcompat-1.5.1\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\ed7417769475ce11f3b577085cb48603\\transformed\\media-1.0.0\\res\\values-v24\\values-v24.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,121,182,248",
+                        "endColumns": "65,60,65,66",
+                        "endOffsets": "116,177,243,310"
+                    },
+                    "to": {
+                        "startLines": "20,21,22,23",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "1547,1613,1674,1740",
+                        "endColumns": "65,60,65,66",
+                        "endOffsets": "1608,1669,1735,1802"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\s\\.gradle\\caches\\transforms-3\\6def8af451405e571a08465e493ce6a4\\transformed\\appcompat-1.5.1\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

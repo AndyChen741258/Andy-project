@@ -11,28 +11,14 @@
         android:layout_width="220dp"
         android:layout_height="736dp"
         android:layout_below="@+id/Pwdedit"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="-209dp"
-        android:layout_marginEnd="1056dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="-131dp"
+        android:layout_marginEnd="1042dp"
+        android:layout_marginBottom="-73dp"
         android:orientation="vertical">
-
-        <Button
-            android:id="@+id/btn_review"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:layout_below="@+id/imageView1"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/main_file_btn"
-            android:drawableTop="@drawable/research128"
-            android:gravity="center_horizontal"
-            android:paddingLeft="8dp"
-            android:paddingTop="10dp"
-            android:text="查看情境造句"
-            android:textAlignment="center"
-            android:textSize="24dp" />
 
         <Button
             android:id="@+id/btn_describe"
@@ -49,58 +35,12 @@
             android:textSize="24dp" />
 
         <Button
-            android:id="@+id/btn_creatdrama"
+            android:id="@+id/btn_conversation"
             android:layout_width="180dp"
             android:layout_height="180dp"
             android:layout_marginStart="12dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="1dp"
-            android:background="@drawable/main_file_btn"
-            android:drawableTop="@drawable/theater128"
-            android:gravity="center_horizontal"
-            android:paddingLeft="8dp"
-            android:paddingTop="10dp"
-            android:text="戲劇創作"
-            android:textSize="24dp" />
-
-        <Button
-            android:id="@+id/btn_hw"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="407dp"
-            android:layout_marginTop="1dp"
-            android:background="@drawable/main_file_btn"
-            android:drawableTop="@drawable/homework"
-            android:gravity="center_horizontal"
-            android:paddingLeft="8dp"
-            android:paddingTop="10dp"
-            android:text="排行榜"
-            android:textSize="24dp" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="719dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="961dp"
-        android:layout_marginTop="-2dp"
-        android:layout_marginEnd="107dp"
-        android:layout_marginBottom="2dp"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/btn_conversation"
-            android:layout_width="197dp"
-            android:layout_height="181dp"
-            android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/main_file_btn"
             android:drawableTop="@drawable/conversation128"
             android:gravity="center_horizontal"
@@ -110,24 +50,9 @@
             android:textSize="24dp" />
 
         <Button
-            android:id="@+id/btn_seedrama"
-            android:layout_width="197dp"
-            android:layout_height="181dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/main_file_btn"
-            android:drawableTop="@drawable/cinema128"
-            android:gravity="center_horizontal"
-            android:paddingLeft="8dp"
-            android:paddingTop="10dp"
-            android:text="觀看劇本"
-            android:textSize="24dp" />
-
-        <Button
             android:id="@+id/drama_video_btn"
-            android:layout_width="197dp"
-            android:layout_height="181dp"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
             android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"
@@ -142,6 +67,83 @@
             android:textSize="24dp"
             android:visibility="visible" />
 
+        <Button
+            android:id="@+id/btn_creatdrama"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/main_file_btn"
+            android:drawableTop="@drawable/theater128"
+            android:gravity="center_horizontal"
+            android:paddingLeft="8dp"
+            android:paddingTop="10dp"
+            android:text="戲劇創作"
+            android:textSize="24dp"
+            android:visibility="invisible" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="719dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="976dp"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="92dp"
+        android:layout_marginBottom="-43dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_seedrama"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/main_file_btn"
+            android:drawableTop="@drawable/cinema128"
+            android:gravity="center_horizontal"
+            android:paddingLeft="8dp"
+            android:paddingTop="10dp"
+            android:text="觀看劇本"
+            android:textSize="24dp" />
+
+        <Button
+            android:id="@+id/btn_review"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_below="@+id/imageView1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/main_file_btn"
+            android:drawableTop="@drawable/research128"
+            android:gravity="center_horizontal"
+            android:paddingLeft="8dp"
+            android:paddingTop="10dp"
+            android:text="查看情境造句"
+            android:textAlignment="center"
+            android:textSize="24dp" />
+
+        <Button
+            android:id="@+id/btn_hw"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="407dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/main_file_btn"
+            android:drawableTop="@drawable/homework"
+            android:gravity="center_horizontal"
+            android:paddingLeft="8dp"
+            android:paddingTop="10dp"
+            android:text="排行榜"
+            android:textSize="24dp" />
     </LinearLayout>
 
     <Button
@@ -306,7 +308,8 @@
         android:background="@drawable/main_file_btn"
         android:text="選擇文件"
         android:textSize="24dp"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        tools:ignore="NotSibling" />
 
     <Spinner
         android:id="@+id/spinner_std"

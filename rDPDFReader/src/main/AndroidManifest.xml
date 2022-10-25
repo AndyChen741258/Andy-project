@@ -92,6 +92,7 @@
         <activity android:name=".testAItext" />
         <activity android:name=".EditDrama" />
         <activity android:name=".CreatDrama" />
+        <activity android:name=".activity_drama_video" />
         <activity android:name=".TestAc" />
         <activity
             android:name=".MainActivity"
@@ -138,6 +139,7 @@
         <activity
             android:name=".DescribeActivity"
             android:windowSoftInputMode="adjustPan" />
+
 
 
         <service

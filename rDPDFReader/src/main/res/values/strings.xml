@@ -31,4 +31,20 @@
     <string name="capture" />
     <string name="preview_area" />
 
+    <string name="title_submit_video">Upload/Take a short video</string>
+    <string name="title_recognition_result">Recognition Result:</string>
+    <string name="button_take_video">Take Video</string>
+    <string name="button_choose_video">Choose Video</string>
+    <string name="choose_media">Choose Action:</string>
+    <string name="button_media_video">Video Mode</string>
+    <string name="button_media_image">Image Mode</string>
+    <string name="title_video_maker">Video - Drama Maker (try to take video and make your drama)</string>
+    <string name="default_video_label">label by recognize</string>
+    <string name="dialog_input">Try to write down your drama here....</string>
+    <string name="recognizebutton">recognize</string>
+    <string name="save_video_drama">save</string>
+    <string name="title_watch_share">~"Watching" or "Sharing" with your classmates~</string>
+    <string name="title_watch_share_situation">Situation</string>
+    <string name="title_watch_share_search">Search: English Learning</string>
+    <string name="dialog_input_activity4">write down your Search</string>
 </resources>

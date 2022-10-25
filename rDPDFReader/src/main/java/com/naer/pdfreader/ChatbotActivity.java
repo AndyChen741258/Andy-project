@@ -940,7 +940,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
 
     }
 
-    private class MyRecognizerListener implements RecognitionListener {
+    class MyRecognizerListener implements RecognitionListener {
 
         @Override
         public void onReadyForSpeech(Bundle bundle) {
@@ -2066,6 +2066,7 @@ public class ChatbotActivity<MyBinder> extends Activity implements Animation.Ani
         }
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private void updateShow(Location location) {
         if (location != null) {
             StringBuilder sb = new StringBuilder();
